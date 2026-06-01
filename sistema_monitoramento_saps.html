@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Monitoramento SAPS — COMAV</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde: #1a6b4a;
+  --verde-med: #2d8f65;
+  --verde-claro: #4db88a;
+  --verde-bg: #e8f5ef;
+  --azul: #1b3f6b;
+  --azul-med: #2e5fa3;
+  --azul-claro: #5b8ed4;
+  --azul-bg: #eaf0fb;
+  --laranja: #d9541a;
+  --amarelo: #e6a817;
+  --vermelho: #c0392b;
+  --cinza-escuro: #1c1f24;
+  --cinza: #4a5568;
+  --cinza-med: #718096;
+  --cinza-claro: #e2e8f0;
+  --cinza-bg: #f7f9fc;
+  --branco: #ffffff;
+  --sombra: 0 2px 12px rgba(0,0,0,0.09);
+  --sombra-forte: 0 8px 32px rgba(0,0,0,0.14);
+  --raio: 12px;
+  --raio-pequeno: 7px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cinza-bg);
+  color: var(--cinza-escuro);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--azul);
+  color: #fff;
+  padding: 0 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  letter-spacing: .03em;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.topbar-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: .01em;
+  color: #fff;
+}
+.topbar-sep { width: 1px; height: 22px; background: rgba(255,255,255,.25); }
+.topbar-subtitle { opacity: .75; font-weight: 300; }
+.topbar-right { display: flex; align-items: center; gap: 18px; }
+.badge-comav {
+  background: var(--verde-med);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+.topbar-date { opacity: .65; font-size: 11.5px; }
+.topbar-user { display: flex; align-items: center; gap: 7px; cursor: pointer; }
+.avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--verde-claro);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 12px; color: #fff;
+}
+
+/* ── LAYOUT ── */
+.app-body { display: flex; flex: 1; min-height: 0; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 230px;
+  background: var(--branco);
+  border-right: 1px solid var(--cinza-claro);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  flex-shrink: 0;
+}
+.sidebar-section { padding: 0 14px 6px; margin-top: 14px; }
+.sidebar-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--cinza-med);
+  padding: 0 8px;
+  margin-bottom: 6px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--raio-pequeno);
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--cinza);
+  transition: background .15s, color .15s;
+  margin-bottom: 2px;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+.nav-item:hover { background: var(--cinza-bg); color: var(--cinza-escuro); }
+.nav-item.active {
+  background: var(--azul-bg);
+  color: var(--azul-med);
+  font-weight: 600;
+}
+.nav-item.active .nav-icon { color: var(--azul-med); }
+.nav-icon { font-size: 16px; width: 20px; text-align: center; }
+.sidebar-divider { height: 1px; background: var(--cinza-claro); margin: 10px 14px; }
+.sidebar-footer {
+  margin-top: auto;
+  padding: 14px;
+  font-size: 11px;
+  color: var(--cinza-med);
+  border-top: 1px solid var(--cinza-claro);
+}
+.sidebar-footer strong { color: var(--verde-med); }
+
+/* ── MAIN CONTENT ── */
+.main {
+  flex: 1;
+  padding: 28px 32px;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── PAGE HEADER ── */
+.page-header { margin-bottom: 24px; }
+.page-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--cinza-escuro);
+  line-height: 1.2;
+}
+.page-desc { color: var(--cinza-med); font-size: 14px; margin-top: 5px; font-weight: 300; }
+
+/* ── STAT CARDS ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--branco);
+  border-radius: var(--raio);
+  padding: 20px 22px;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-left: 4px solid transparent;
+  transition: transform .15s, box-shadow .15s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--sombra-forte); }
+.stat-card.verde { border-color: var(--verde-med); }
+.stat-card.azul { border-color: var(--azul-med); }
+.stat-card.laranja { border-color: var(--laranja); }
+.stat-card.amarelo { border-color: var(--amarelo); }
+.stat-card.vermelho { border-color: var(--vermelho); }
+.stat-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.stat-label { font-size: 12px; color: var(--cinza-med); font-weight: 500; letter-spacing: .03em; }
+.stat-icon { font-size: 22px; }
+.stat-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cinza-escuro);
+}
+.stat-change {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.stat-change.up { color: var(--verde-med); }
+.stat-change.down { color: var(--vermelho); }
+.stat-change.neutral { color: var(--cinza-med); }
+
+/* ── CARDS GENÉRICOS ── */
+.card {
+  background: var(--branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cinza-escuro);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-title span { font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+/* ── ALERT PILLS ── */
+.alert-list { display: flex; flex-direction: column; gap: 10px; }
+.alert-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--raio-pequeno);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.alert-item.critico { background: #fdf0ee; border-left: 3px solid var(--vermelho); }
+.alert-item.atencao { background: #fef9ec; border-left: 3px solid var(--amarelo); }
+.alert-item.ok { background: var(--verde-bg); border-left: 3px solid var(--verde-med); }
+.alert-item.info { background: var(--azul-bg); border-left: 3px solid var(--azul-med); }
+.alert-dot { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+.alert-text { flex: 1; }
+.alert-text strong { font-weight: 600; display: block; margin-bottom: 2px; }
+.alert-meta { font-size: 11.5px; color: var(--cinza-med); margin-top: 3px; }
+
+/* ── INDICADORES ── */
+.ind-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--cinza-claro);
+  background: var(--branco);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--cinza);
+  transition: all .15s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--azul-med);
+  color: #fff;
+  border-color: var(--azul-med);
+}
+.filter-select {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1.5px solid var(--cinza-claro);
+  font-size: 12.5px;
+  color: var(--cinza);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  background: var(--branco);
+}
+.filter-select:focus { border-color: var(--azul-med); }
+
+.ind-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.ind-table th {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--cinza-med);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 2px solid var(--cinza-claro);
+}
+.ind-table td {
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--cinza-claro);
+  vertical-align: middle;
+}
+.ind-table tr:last-child td { border-bottom: none; }
+.ind-table tr:hover td { background: var(--cinza-bg); }
+.ind-name { font-weight: 500; color: var(--cinza-escuro); }
+.ind-name small { font-size: 11px; color: var(--cinza-med); font-weight: 400; display: block; }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.tag-verde { background: #d1f5e5; color: var(--verde); }
+.tag-amarelo { background: #fef3cd; color: #a07010; }
+.tag-vermelho { background: #fde8e6; color: var(--vermelho); }
+.tag-azul { background: var(--azul-bg); color: var(--azul-med); }
+.tag-cinza { background: var(--cinza-claro); color: var(--cinza); }
+.progress-bar-bg {
+  height: 6px; border-radius: 3px;
+  background: var(--cinza-claro);
+  width: 100px; overflow: hidden;
+}
+.progress-bar-fill { height: 100%; border-radius: 3px; }
+.ind-actions { display: flex; gap: 6px; }
+.btn-xs {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1.5px solid var(--cinza-claro);
+  background: transparent;
+  color: var(--cinza);
+  font-family: 'DM Sans', sans-serif;
+  transition: all .13s;
+}
+.btn-xs:hover { background: var(--azul-med); color: #fff; border-color: var(--azul-med); }
+.btn-xs.verde:hover { background: var(--verde-med); border-color: var(--verde-med); }
+
+/* ── MINI CHART ── */
+.mini-chart {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 24px;
+}
+.mini-bar {
+  width: 5px;
+  border-radius: 2px 2px 0 0;
+  background: var(--cinza-claro);
+}
+
+/* ── MAPA ── */
+.map-container {
+  background: var(--cinza-bg);
+  border-radius: var(--raio-pequeno);
+  padding: 20px;
+  text-align: center;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--cinza-claro);
+  position: relative;
+  overflow: hidden;
+}
+.map-svg { width: 100%; max-width: 480px; }
+.map-legend {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+  font-size: 11.5px;
+  color: var(--cinza-med);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+
+/* ── IA ANÁLISE ── */
+.ia-panel {
+  background: linear-gradient(135deg, #1b3f6b 0%, #2e5fa3 100%);
+  border-radius: var(--raio);
+  padding: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.ia-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.ia-badge {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.ia-panel h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+.ia-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  margin-bottom: 16px;
+  align-items: end;
+}
+@media (max-width: 820px) { .ia-form { grid-template-columns: 1fr 1fr; } }
+.ia-field { display: flex; flex-direction: column; gap: 5px; }
+.ia-field label { font-size: 11px; opacity: .75; font-weight: 500; letter-spacing: .04em; }
+.ia-select, .ia-input {
+  padding: 9px 12px;
+  border-radius: var(--raio-pequeno);
+  border: 1.5px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border .15s;
+}
+.ia-select option { background: var(--azul); color: #fff; }
+.ia-select:focus, .ia-input:focus { border-color: rgba(255,255,255,.6); }
+.ia-input::placeholder { opacity: .5; }
+.btn-ia {
+  padding: 10px 22px;
+  background: var(--verde-claro);
+  color: #fff;
+  border: none;
+  border-radius: var(--raio-pequeno);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.btn-ia:hover { background: var(--verde-med); }
+.btn-ia:disabled { opacity: .6; cursor: not-allowed; }
+
+.ia-result {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--raio-pequeno);
+  padding: 18px 20px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  min-height: 80px;
+  display: none;
+}
+.ia-result.visible { display: block; }
+.ia-result .typing::after {
+  content: '▋';
+  animation: blink .7s infinite;
+  font-size: 14px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.ia-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 11.5px;
+  opacity: .65;
+}
+.btn-export {
+  padding: 6px 14px;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background .15s;
+}
+.btn-export:hover { background: rgba(255,255,255,.25); }
+
+/* ── QUALIDADE ── */
+.qc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 20px; }
+.qc-card {
+  background: var(--branco);
+  border-radius: var(--raio);
+  padding: 16px 18px;
+  box-shadow: var(--sombra);
+  text-align: center;
+}
+.qc-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.qc-label { font-size: 12px; color: var(--cinza-med); }
+.qc-status { margin-top: 8px; }
+
+/* ── AUDITORIA ── */
+.audit-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.audit-table th {
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--cinza-med);
+  padding: 8px 12px; text-align: left;
+  border-bottom: 2px solid var(--cinza-claro);
+  background: var(--cinza-bg);
+}
+.audit-table td { padding: 10px 12px; border-bottom: 1px solid var(--cinza-claro); }
+.audit-table tr:last-child td { border-bottom: none; }
+.audit-table tr:hover td { background: var(--cinza-bg); }
+.change-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; font-weight: 500;
+}
+.change-old { color: var(--vermelho); text-decoration: line-through; }
+.change-new { color: var(--verde-med); font-weight: 600; }
+
+/* ── BUTTONS GERAIS ── */
+.btn {
+  padding: 9px 20px;
+  border-radius: var(--raio-pequeno);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  border: none;
+  transition: all .15s;
+}
+.btn-primary { background: var(--azul-med); color: #fff; }
+.btn-primary:hover { background: var(--azul); }
+.btn-verde { background: var(--verde-med); color: #fff; }
+.btn-verde:hover { background: var(--verde); }
+.btn-outline {
+  background: transparent;
+  color: var(--cinza);
+  border: 1.5px solid var(--cinza-claro);
+}
+.btn-outline:hover { background: var(--cinza-bg); }
+
+/* ── LOADING ── */
+.loading-spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2.5px solid rgba(255,255,255,.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── SCROLL ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--cinza-claro); border-radius: 3px; }
+
+/* ── FADE IN ── */
+.page.active { animation: fadeIn .25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--branco);
+  border-radius: var(--raio);
+  padding: 28px 30px;
+  max-width: 520px;
+  width: 90%;
+  box-shadow: var(--sombra-forte);
+  animation: fadeIn .2s ease;
+}
+.modal h2 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+.modal-close { float: right; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--cinza-med); line-height: 1; }
+.ficha-row { display: flex; gap: 10px; margin-bottom: 10px; font-size: 13.5px; }
+.ficha-row dt { font-weight: 600; color: var(--cinza-med); min-width: 130px; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; padding-top: 2px; }
+.ficha-row dd { flex: 1; color: var(--cinza-escuro); line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-logo">SAPS Monitor</div>
+    <div class="topbar-sep"></div>
+    <div class="topbar-subtitle">Secretaria de Atenção Primária à Saúde</div>
+  </div>
+  <div class="topbar-right">
+    <span class="badge-comav">COMAV</span>
+    <span class="topbar-date" id="dataAtual"></span>
+    <div class="topbar-user">
+      <div class="avatar">JM</div>
+      <span style="opacity:.8;font-size:12.5px;">João M.</span>
+    </div>
+  </div>
+</header>
+
+<!-- BODY -->
+<div class="app-body">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Painel</div>
+      <button class="nav-item active" onclick="goTo('dashboard', this)">
+        <span class="nav-icon">📊</span> Visão Geral
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Monitoramento</div>
+      <button class="nav-item" onclick="goTo('indicadores', this)">
+        <span class="nav-icon">📈</span> Indicadores
+      </button>
+      <button class="nav-item" onclick="goTo('mapa', this)">
+        <span class="nav-icon">🗺️</span> Mapa Territorial
+      </button>
+      <button class="nav-item" onclick="goTo('alertas', this)">
+        <span class="nav-icon">🔔</span> Alertas
+        <span style="margin-left:auto;background:var(--vermelho);color:#fff;border-radius:10px;font-size:10px;padding:1px 6px;font-weight:700;">3</span>
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Inteligência Artificial</div>
+      <button class="nav-item" onclick="goTo('ia', this)">
+        <span class="nav-icon">🤖</span> Análise por IA
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Gestão</div>
+      <button class="nav-item" onclick="goTo('qualidade', this)">
+        <span class="nav-icon">✅</span> Qualidade dos Dados
+      </button>
+      <button class="nav-item" onclick="goTo('auditoria', this)">
+        <span class="nav-icon">📋</span> Trilha de Auditoria
+      </button>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-footer">
+      Última carga: <strong>Mai/2026</strong><br>
+      Versão 1.0 · COMAV/SAPS
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ── DASHBOARD ── -->
+    <div id="page-dashboard" class="page active">
+      <div class="page-header">
+        <div class="page-title">Visão Geral — Competência Mai/2026</div>
+        <div class="page-desc">Panorama dos indicadores estratégicos da SAPS. Atualização automática via DW.</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card verde">
+          <div class="stat-top">
+            <div class="stat-label">Cobertura AB Brasil</div>
+            <div class="stat-icon">🏥</div>
+          </div>
+          <div class="stat-value">67,4%</div>
+          <div class="stat-change up">▲ +1,2 p.p. vs. abr/2026</div>
+        </div>
+        <div class="stat-card azul">
+          <div class="stat-top">
+            <div class="stat-label">Equipes Cadastradas</div>
+            <div class="stat-icon">👥</div>
+          </div>
+          <div class="stat-value">47.823</div>
+          <div class="stat-change up">▲ +318 equipes</div>
+        </div>
+        <div class="stat-card laranja">
+          <div class="stat-top">
+            <div class="stat-label">Internações CSAPS / 10k</div>
+            <div class="stat-icon">🏨</div>
+          </div>
+          <div class="stat-value">54,3</div>
+          <div class="stat-change down">▼ −2,1 vs. média nacional</div>
+        </div>
+        <div class="stat-card amarelo">
+          <div class="stat-top">
+            <div class="stat-label">Mortalidade Materna / 100k</div>
+            <div class="stat-icon">🩺</div>
+          </div>
+          <div class="stat-value">52,1</div>
+          <div class="stat-change neutral">→ Estável (meta: 45)</div>
+        </div>
+        <div class="stat-card vermelho">
+          <div class="stat-top">
+            <div class="stat-label">Alertas Ativos</div>
+            <div class="stat-icon">⚠️</div>
+          </div>
+          <div class="stat-value">3</div>
+          <div class="stat-change down">▲ +1 novo alerta</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title"><span>🔔</span> Alertas Recentes</div>
+          <div class="alert-list">
+            <div class="alert-item critico">
+              <div class="alert-dot">🔴</div>
+              <div class="alert-text">
+                <strong>Mortalidade infantil — Norte</strong>
+                Região com piora acima de 15% na competência. Requer atenção imediata.
+                <div class="alert-meta">⏱ Gerado hoje · Indicador: MORT_INF · Região: Norte</div>
+              </div>
+            </div>
+            <div class="alert-item atencao">
+              <div class="alert-dot">🟡</div>
+              <div class="alert-text">
+                <strong>Internações CSAPS — Nordeste abaixo da média</strong>
+                7 UFs abaixo da média nacional com tendência de piora.
+                <div class="alert-meta">⏱ Ontem · Indicador: INT_CSAPS · Região: Nordeste</div>
+              </div>
+            </div>
+            <div class="alert-item atencao">
+              <div class="alert-dot">🟡</div>
+              <div class="alert-text">
+                <strong>Carga de dados incompleta — Base ESF</strong>
+                Competência mai/2026 com 3 municípios sem atualização na base ESF.
+                <div class="alert-meta">⏱ 2 dias atrás · Módulo: Qualidade de Dados</div>
+              </div>
+            </div>
+            <div class="alert-item ok">
+              <div class="alert-dot">🟢</div>
+              <div class="alert-text">
+                <strong>Cobertura AB atinge meta trimestral</strong>
+                Meta de 67% atingida com 1 mês de antecedência.
+                <div class="alert-meta">⏱ 3 dias atrás · Indicador: COB_AB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span>📊</span> Evolução — Cobertura AB (%)</div>
+          <canvas id="chartCobertura" height="160"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>📌</span> Indicadores Prioritários — Visão Rápida</div>
+        <table class="ind-table">
+          <thead>
+            <tr>
+              <th>Indicador</th>
+              <th>Última competência</th>
+              <th>Meta</th>
+              <th>Progresso</th>
+              <th>Tendência</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ind-name">Cobertura AB<small>Percentual de cobertura nacional</small></td>
+              <td><strong>67,4%</strong></td>
+              <td>70%</td>
+              <td>
+                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:96%;background:var(--verde-med)"></div></div>
+              </td>
+              <td>
+                <div class="mini-chart" id="mc1"></div>
+              </td>
+              <td><span class="tag tag-verde">✓ No prazo</span></td>
+            </tr>
+            <tr>
+              <td class="ind-name">Mortalidade Materna<small>por 100.000 NV</small></td>
+              <td><strong>52,1</strong></td>
+              <td>45,0</td>
+              <td>
+                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:60%;background:var(--amarelo)"></div></div>
+              </td>
+              <td>
+                <div class="mini-chart" id="mc2"></div>
+              </td>
+              <td><span class="tag tag-amarelo">⚡ Atenção</span></td>
+            </tr>
+            <tr>
+              <td class="ind-name">Internações CSAPS<small>por 10.000 hab.</small></td>
+              <td><strong>54,3</strong></td>
+              <td>50,0</td>
+              <td>
+                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:55%;background:var(--laranja)"></div></div>
+              </td>
+              <td>
+                <div class="mini-chart" id="mc3"></div>
+              </td>
+              <td><span class="tag tag-amarelo">⚡ Atenção</span></td>
+            </tr>
+            <tr>
+              <td class="ind-name">Mortalidade Infantil<small>por 1.000 NV</small></td>
+              <td><strong>11,8</strong></td>
+              <td>10,0</td>
+              <td>
+                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:40%;background:var(--vermelho)"></div></div>
+              </td>
+              <td>
+                <div class="mini-chart" id="mc4"></div>
+              </td>
+              <td><span class="tag tag-vermelho">✗ Crítico</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── INDICADORES ── -->
+    <div id="page-indicadores" class="page">
+      <div class="page-header">
+        <div class="page-title">Indicadores</div>
+        <div class="page-desc">Visualização, filtros e análise por território, equipe e período.</div>
+      </div>
+
+      <div class="card">
+        <div class="ind-filters">
+          <button class="filter-btn active">Todos</button>
+          <button class="filter-btn">Mortalidade</button>
+          <button class="filter-btn">Internações</button>
+          <button class="filter-btn">Cobertura</button>
+          <button class="filter-btn">Equidade</button>
+          <select class="filter-select">
+            <option>🇧🇷 Brasil</option>
+            <option>Norte</option>
+            <option>Nordeste</option>
+            <option>Centro-Oeste</option>
+            <option>Sudeste</option>
+            <option>Sul</option>
+          </select>
+          <select class="filter-select">
+            <option>Mai/2026</option>
+            <option>Abr/2026</option>
+            <option>Mar/2026</option>
+            <option>Fev/2026</option>
+            <option>Jan/2026</option>
+          </select>
+          <button class="btn btn-primary" style="margin-left:auto" onclick="exportarCSV()">⬇ Exportar CSV</button>
+        </div>
+
+        <table class="ind-table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Indicador</th>
+              <th>Valor</th>
+              <th>Meta</th>
+              <th>Δ Mensal</th>
+              <th>Status</th>
+              <th>Fonte</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaIndicadores">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── MAPA ── -->
+    <div id="page-mapa" class="page">
+      <div class="page-header">
+        <div class="page-title">Mapa Territorial</div>
+        <div class="page-desc">Distribuição dos indicadores por região, UF e município.</div>
+      </div>
+      <div class="two-col">
+        <div class="card" style="grid-column: 1 / -1;">
+          <div class="card-title"><span>🗺️</span> Cobertura de Atenção Básica por Região — Mai/2026</div>
+          <div class="ind-filters">
+            <select class="filter-select" onchange="atualizarMapa(this.value)">
+              <option value="cob">Cobertura AB (%)</option>
+              <option value="mort_mat">Mortalidade Materna / 100k NV</option>
+              <option value="mort_inf">Mortalidade Infantil / 1k NV</option>
+              <option value="int_csaps">Internações CSAPS / 10k</option>
+            </select>
+            <select class="filter-select">
+              <option>Região</option>
+              <option>UF</option>
+            </select>
+            <button class="btn btn-outline">⬇ Exportar Mapa</button>
+          </div>
+          <div class="map-container">
+            <svg class="map-svg" viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" id="svgMapa">
+              <!-- Norte -->
+              <polygon id="reg-norte" points="80,30 280,30 310,80 290,140 200,160 100,140 60,100" fill="#4db88a" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Norte','69,2%')"/>
+              <text x="175" y="95" text-anchor="middle" font-size="13" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Norte</text>
+              <text x="175" y="112" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vNorte">69,2%</text>
+
+              <!-- Nordeste -->
+              <polygon id="reg-nordeste" points="290,50 400,40 440,100 420,180 350,210 290,160 300,110" fill="#2d8f65" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Nordeste','58,9%')"/>
+              <text x="370" y="120" text-anchor="middle" font-size="13" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Nordeste</text>
+              <text x="370" y="137" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vNordeste">58,9%</text>
+
+              <!-- Centro-Oeste -->
+              <polygon id="reg-co" points="100,160 200,155 280,165 300,200 280,280 180,300 80,270 70,200" fill="#5b8ed4" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Centro-Oeste','71,4%')"/>
+              <text x="180" y="228" text-anchor="middle" font-size="12" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Centro-Oeste</text>
+              <text x="180" y="244" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vCO">71,4%</text>
+
+              <!-- Sudeste -->
+              <polygon id="reg-sudeste" points="290,200 380,195 420,240 390,310 310,330 270,290 275,240" fill="#1b3f6b" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Sudeste','65,8%')"/>
+              <text x="350" y="265" text-anchor="middle" font-size="13" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Sudeste</text>
+              <text x="350" y="282" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vSudeste">65,8%</text>
+
+              <!-- Sul -->
+              <polygon id="reg-sul" points="200,310 275,295 310,330 290,390 220,400 170,370 165,330" fill="#e6a817" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Sul','74,1%')"/>
+              <text x="240" y="355" text-anchor="middle" font-size="13" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Sul</text>
+              <text x="240" y="372" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vSul">74,1%</text>
+            </svg>
+
+            <div id="mapaTooltip" style="display:none;position:absolute;background:rgba(28,31,36,.88);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;pointer-events:none;"></div>
+
+            <div class="map-legend">
+              <div class="legend-item"><div class="legend-dot" style="background:#1a6b4a"></div> &gt; 70%</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#4db88a"></div> 65–70%</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#5b8ed4"></div> 60–65%</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#2d8f65"></div> &lt; 60%</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#e6a817"></div> Meta atingida</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ALERTAS ── -->
+    <div id="page-alertas" class="page">
+      <div class="page-header">
+        <div class="page-title">Central de Alertas</div>
+        <div class="page-desc">Alertas automáticos do sistema de monitoramento.</div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card vermelho">
+          <div class="stat-top"><div class="stat-label">Críticos</div><div class="stat-icon">🔴</div></div>
+          <div class="stat-value">1</div>
+        </div>
+        <div class="stat-card amarelo">
+          <div class="stat-top"><div class="stat-label">Atenção</div><div class="stat-icon">🟡</div></div>
+          <div class="stat-value">2</div>
+        </div>
+        <div class="stat-card azul">
+          <div class="stat-top"><div class="stat-label">Informativos</div><div class="stat-icon">🔵</div></div>
+          <div class="stat-value">4</div>
+        </div>
+        <div class="stat-card verde">
+          <div class="stat-top"><div class="stat-label">Resolvidos (30d)</div><div class="stat-icon">🟢</div></div>
+          <div class="stat-value">11</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span>🔔</span> Todos os Alertas</div>
+        <div class="alert-list">
+          <div class="alert-item critico">
+            <div class="alert-dot">🔴</div>
+            <div class="alert-text">
+              <strong>Mortalidade infantil — Região Norte: piora expressiva</strong>
+              Taxa subiu de 10,4 para 11,8 por 1.000 NV na competência mai/2026. Variação de +13,5% em relação ao mês anterior, acima de 2 desvios-padrão da série histórica.
+              <div class="alert-meta">⏱ 01/06/2026 08:32 · Indicador: MORT_INF · Gerado automaticamente por IA</div>
+            </div>
+          </div>
+          <div class="alert-item atencao">
+            <div class="alert-dot">🟡</div>
+            <div class="alert-text">
+              <strong>Internações CSAPS — 7 UFs do Nordeste abaixo da média nacional</strong>
+              Pilotos de AM, PA, MA, PI, CE, RN e BA com valores acima de 65 por 10 mil hab. Tendência de piora nos últimos 3 meses.
+              <div class="alert-meta">⏱ 31/05/2026 · Indicador: INT_CSAPS · Regiões: Nordeste, Norte</div>
+            </div>
+          </div>
+          <div class="alert-item atencao">
+            <div class="alert-dot">🟡</div>
+            <div class="alert-text">
+              <strong>Carga de dados incompleta — Base ESF (mai/2026)</strong>
+              3 municípios ainda sem atualização: Codó/MA, Altamira/PA, Marabá/PA. Pode impactar cálculo de cobertura AB regional.
+              <div class="alert-meta">⏱ 30/05/2026 · Módulo: Qualidade de Dados · Responsável: TI/SAPS</div>
+            </div>
+          </div>
+          <div class="alert-item info">
+            <div class="alert-dot">🔵</div>
+            <div class="alert-text">
+              <strong>Nova carga DW disponível — competência Mai/2026</strong>
+              Dados carregados com sucesso em 30/05/2026. 47.823 equipes processadas.
+              <div class="alert-meta">⏱ 30/05/2026 · Módulo: Integração DW</div>
+            </div>
+          </div>
+          <div class="alert-item info">
+            <div class="alert-dot">🔵</div>
+            <div class="alert-text">
+              <strong>Desigualdade racial — Mortalidade materna negra 2,4x maior</strong>
+              Análise estratificada por raça/cor indica persistência de desigualdade. Taxa para mulheres pretas: 121,0 vs 50,4 para brancas.
+              <div class="alert-meta">⏱ 28/05/2026 · Indicador: MORT_MAT · Desagregação: Raça/Cor</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── IA ── -->
+    <div id="page-ia" class="page">
+      <div class="page-header">
+        <div class="page-title">Análise Inteligente dos Indicadores</div>
+        <div class="page-desc">Agente de IA para leitura automatizada, alertas e minutas de relatórios.</div>
+      </div>
+
+      <div class="ia-panel">
+        <div class="ia-panel-header">
+          <div>
+            <div class="ia-badge">✦ Agente IA · COMAV</div>
+            <h3 style="margin-top:7px;">Gerar análise automática de indicador</h3>
+          </div>
+        </div>
+        <div class="ia-form">
+          <div class="ia-field">
+            <label>INDICADOR</label>
+            <select class="ia-select" id="iaIndicador">
+              <option value="cobertura_ab">Cobertura de Atenção Básica</option>
+              <option value="mortalidade_materna">Mortalidade Materna</option>
+              <option value="mortalidade_infantil">Mortalidade Infantil</option>
+              <option value="internacoes_csaps">Internações CSAPS</option>
+              <option value="mortalidade_csaps">Mortalidade por CSAPS</option>
+            </select>
+          </div>
+          <div class="ia-field">
+            <label>TERRITÓRIO</label>
+            <select class="ia-select" id="iaTerritorio">
+              <option value="Brasil">🇧🇷 Brasil</option>
+              <option value="Norte">Região Norte</option>
+              <option value="Nordeste">Região Nordeste</option>
+              <option value="Centro-Oeste">Centro-Oeste</option>
+              <option value="Sudeste">Sudeste</option>
+              <option value="Sul">Sul</option>
+            </select>
+          </div>
+          <div class="ia-field">
+            <label>PERÍODO</label>
+            <select class="ia-select" id="iaPeriodo">
+              <option value="mai/2026">Mai/2026 (última carga)</option>
+              <option value="últimos 3 meses">Últimos 3 meses</option>
+              <option value="2025-2026">2025–2026</option>
+              <option value="2023-2026">Série 2023–2026</option>
+            </select>
+          </div>
+          <div class="ia-field">
+            <label>‎</label>
+            <button class="btn-ia" id="btnGerarIA" onclick="gerarAnaliseIA()">
+              <span>✦</span> Gerar análise
+            </button>
+          </div>
+        </div>
+        <div class="ia-result" id="iaResult"></div>
+        <div class="ia-meta" id="iaMeta" style="display:none">
+          <span>Análise gerada por IA · Revisão obrigatória pela COMAV antes de uso institucional</span>
+          <button class="btn-export" onclick="exportarAnalise()">⬇ Exportar análise</button>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title"><span>📝</span> Produtos disponíveis</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;">
+            <button class="btn btn-outline" onclick="gerarProduto('boletim')" style="text-align:left;padding:12px 16px;">
+              📄 <strong>Boletim mensal</strong> — Resumo Mai/2026
+            </button>
+            <button class="btn btn-outline" onclick="gerarProduto('executivo')" style="text-align:left;padding:12px 16px;">
+              📊 <strong>Informe executivo</strong> — Principais destaques
+            </button>
+            <button class="btn btn-outline" onclick="gerarProduto('reuniao')" style="text-align:left;padding:12px 16px;">
+              🗓 <strong>Pauta para reunião de monitoramento</strong>
+            </button>
+            <button class="btn btn-outline" onclick="gerarProduto('desigualdade')" style="text-align:left;padding:12px 16px;">
+              ⚖️ <strong>Análise de desigualdades</strong> — Raça/cor, gênero
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span>📄</span> Saída gerada</div>
+          <div id="produtoResult" style="font-size:13.5px;color:var(--cinza-med);line-height:1.7;min-height:120px;">
+            Selecione um produto ao lado para gerar o texto automaticamente via IA.
+          </div>
+          <div id="produtoBtns" style="display:none;margin-top:14px;display:flex;gap:8px;">
+            <button class="btn btn-verde" style="font-size:12.5px;" onclick="copiarProduto()">📋 Copiar</button>
+            <button class="btn btn-outline" style="font-size:12.5px;" onclick="exportarProduto()">⬇ Exportar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── QUALIDADE ── -->
+    <div id="page-qualidade" class="page">
+      <div class="page-header">
+        <div class="page-title">Controle de Qualidade dos Dados</div>
+        <div class="page-desc">Verificação automática das cargas recebidas. Sinaliza falhas antes da atualização dos painéis.</div>
+      </div>
+      <div class="qc-grid">
+        <div class="qc-card">
+          <div class="qc-value" style="color:var(--verde-med)">✓</div>
+          <div class="qc-label">Carga Mai/2026</div>
+          <div class="qc-status"><span class="tag tag-verde">Completa</span></div>
+        </div>
+        <div class="qc-card">
+          <div class="qc-value" style="color:var(--cinza-escuro)">47.823</div>
+          <div class="qc-label">Equipes processadas</div>
+          <div class="qc-status"><span class="tag tag-azul">Normal</span></div>
+        </div>
+        <div class="qc-card">
+          <div class="qc-value" style="color:var(--amarelo)">3</div>
+          <div class="qc-label">Municípios s/ dados</div>
+          <div class="qc-status"><span class="tag tag-amarelo">Atenção</span></div>
+        </div>
+        <div class="qc-card">
+          <div class="qc-value" style="color:var(--verde-med)">0</div>
+          <div class="qc-label">Campos nulos críticos</div>
+          <div class="qc-status"><span class="tag tag-verde">OK</span></div>
+        </div>
+        <div class="qc-card">
+          <div class="qc-value" style="color:var(--verde-med)">0</div>
+          <div class="qc-label">Duplicidades</div>
+          <div class="qc-status"><span class="tag tag-verde">OK</span></div>
+        </div>
+        <div class="qc-card">
+          <div class="qc-value" style="color:var(--verde-med)">99,3%</div>
+          <div class="qc-label">Completude geral</div>
+          <div class="qc-status"><span class="tag tag-verde">Meta: ≥ 98%</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span>⚙️</span> Ocorrências da última carga — Mai/2026</div>
+        <div class="alert-list">
+          <div class="alert-item atencao">
+            <div class="alert-dot">🟡</div>
+            <div class="alert-text">
+              <strong>Base ESF — 3 municípios sem competência Mai/2026</strong>
+              Codó/MA, Altamira/PA e Marabá/PA não enviaram dados. Indicadores de cobertura regional podem estar subestimados.
+              <div class="alert-meta">Base: ESF · Campos: prod_amb, prod_vis · Impacto: médio · 30/05/2026</div>
+            </div>
+          </div>
+          <div class="alert-item info">
+            <div class="alert-dot">🔵</div>
+            <div class="alert-text">
+              <strong>Variação atípica detectada — MORT_INF · Região Norte</strong>
+              Aumento de +13,5% em relação à competência anterior. Verificado e confirmado como dado real (não é erro de carga).
+              <div class="alert-meta">Base: SIM · Competência: mai/2026 · Status: validado · 01/06/2026</div>
+            </div>
+          </div>
+          <div class="alert-item ok">
+            <div class="alert-dot">🟢</div>
+            <div class="alert-text">
+              <strong>Integração DW concluída com sucesso</strong>
+              Todas as bases principais carregadas. Nenhum erro de integração ou campo obrigatório ausente.
+              <div class="alert-meta">Bases: ESF, SIAB, SIM, SINASC, SIH · 30/05/2026 02:14</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── AUDITORIA ── -->
+    <div id="page-auditoria" class="page">
+      <div class="page-header">
+        <div class="page-title">Trilha de Auditoria</div>
+        <div class="page-desc">Registro de todas as alterações realizadas no sistema. Rastreabilidade e governança dos dados.</div>
+      </div>
+      <div class="card">
+        <div class="ind-filters" style="margin-bottom:16px;">
+          <select class="filter-select">
+            <option>Todos os usuários</option>
+            <option>João Mello (COMAV)</option>
+            <option>Ana Lima (COMAV)</option>
+            <option>Sistema (automático)</option>
+          </select>
+          <select class="filter-select">
+            <option>Todos os campos</option>
+            <option>Valor de indicador</option>
+            <option>Meta</option>
+            <option>Status do alerta</option>
+          </select>
+          <input type="date" class="filter-select" value="2026-06-01">
+          <button class="btn btn-outline">⬇ Exportar log</button>
+        </div>
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th>Data/Hora</th>
+              <th>Usuário</th>
+              <th>Campo alterado</th>
+              <th>Alteração</th>
+              <th>Justificativa</th>
+              <th>Origem</th>
+              <th>Validação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="white-space:nowrap;font-size:12px;color:var(--cinza-med)">01/06/2026<br>08:32</td>
+              <td>Sistema (automático)</td>
+              <td>MORT_INF · Norte · Mai/2026</td>
+              <td>
+                <div class="change-badge">
+                  <span class="change-old">10,4</span>
+                  <span>→</span>
+                  <span class="change-new">11,8</span>
+                </div>
+              </td>
+              <td style="font-size:12px;">Carga automática DW</td>
+              <td><span class="tag tag-azul">DW / SIM</span></td>
+              <td><span class="tag tag-verde">✓ Validado</span></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;font-size:12px;color:var(--cinza-med)">30/05/2026<br>15:48</td>
+              <td>Ana Lima (COMAV)</td>
+              <td>META · MORT_MAT · 2026</td>
+              <td>
+                <div class="change-badge">
+                  <span class="change-old">48,0</span>
+                  <span>→</span>
+                  <span class="change-new">45,0</span>
+                </div>
+              </td>
+              <td style="font-size:12px;">Atualização por determinação da gestão — Reunião 28/05</td>
+              <td><span class="tag tag-cinza">Manual</span></td>
+              <td><span class="tag tag-verde">✓ Validado</span></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;font-size:12px;color:var(--cinza-med)">30/05/2026<br>02:14</td>
+              <td>Sistema (automático)</td>
+              <td>Carga completa — Mai/2026</td>
+              <td>
+                <div class="change-badge">
+                  <span class="change-old">Abr/2026</span>
+                  <span>→</span>
+                  <span class="change-new">Mai/2026</span>
+                </div>
+              </td>
+              <td style="font-size:12px;">Integração DW mensal</td>
+              <td><span class="tag tag-azul">DW</span></td>
+              <td><span class="tag tag-verde">✓ Validado</span></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;font-size:12px;color:var(--cinza-med)">25/05/2026<br>11:05</td>
+              <td>João Mello (COMAV)</td>
+              <td>COB_AB · MA · Abr/2026</td>
+              <td>
+                <div class="change-badge">
+                  <span class="change-old">61,2%</span>
+                  <span>→</span>
+                  <span class="change-new">63,8%</span>
+                </div>
+              </td>
+              <td style="font-size:12px;">Correção enviada pela área técnica do MA (memorando 12/05)</td>
+              <td><span class="tag tag-cinza">Manual</span></td>
+              <td><span class="tag tag-amarelo">⏳ Pendente</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL FICHA DO INDICADOR -->
+<div class="modal-overlay" id="modalFicha">
+  <div class="modal">
+    <button class="modal-close" onclick="fecharModal()">×</button>
+    <h2 id="fichaTitle">Ficha do Indicador</h2>
+    <div id="fichaContent"></div>
+    <div style="margin-top:18px;display:flex;gap:10px;">
+      <button class="btn btn-primary" onclick="fecharModal()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ── DATA ──
+const indicadoresData = [
+  { cod: 'COB_AB', nome: 'Cobertura de Atenção Básica', tipo: 'Cobertura', valor: '67,4%', meta: '70%', delta: '+1,2 p.p.', deltaUp: true, status: 'atencao', fonte: 'SIAB/DW',
+    ficha: { definicao: 'Proporção da população coberta por equipes de AB cadastradas no SCNES.', numerador: 'Pop. coberta por equipes AB', denominador: 'Pop. total estimada', periodicidade: 'Mensal', fonte: 'SCNES/SIAB — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '70%' }},
+  { cod: 'MORT_MAT', nome: 'Mortalidade Materna', tipo: 'Mortalidade', valor: '52,1', meta: '45,0', delta: '±0,0', deltaUp: null, status: 'atencao', fonte: 'SIM/DW',
+    ficha: { definicao: 'Óbitos maternos por 100.000 nascidos vivos.', numerador: 'Óbitos maternos', denominador: '100.000 NV', periodicidade: 'Anual/mensal', fonte: 'SIM — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '45,0' }},
+  { cod: 'MORT_INF', nome: 'Mortalidade Infantil', tipo: 'Mortalidade', valor: '11,8', meta: '10,0', delta: '+1,4 ▲', deltaUp: false, status: 'critico', fonte: 'SIM/DW',
+    ficha: { definicao: 'Óbitos de menores de 1 ano por 1.000 nascidos vivos.', numerador: 'Óbitos < 1 ano', denominador: '1.000 NV', periodicidade: 'Mensal', fonte: 'SIM — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '10,0' }},
+  { cod: 'INT_CSAPS', nome: 'Internações por CSAPS', tipo: 'Internações', valor: '54,3', meta: '50,0', delta: '−2,1', deltaUp: true, status: 'atencao', fonte: 'SIH/DW',
+    ficha: { definicao: 'Taxa de internações por condições sensíveis à APS por 10.000 habitantes.', numerador: 'Internações CSAPS', denominador: '10.000 hab.', periodicidade: 'Mensal', fonte: 'SIH — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '50,0' }},
+  { cod: 'MORT_CSAPS', nome: 'Mortalidade por CSAPS', tipo: 'Mortalidade', valor: '38,7', meta: '35,0', delta: '−0,8', deltaUp: true, status: 'ok', fonte: 'SIM/DW',
+    ficha: { definicao: 'Taxa de mortalidade por condições sensíveis à APS por 100.000 habitantes.', numerador: 'Óbitos CSAPS', denominador: '100.000 hab.', periodicidade: 'Anual', fonte: 'SIM — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '35,0' }},
+];
+
+function popularTabelaIndicadores() {
+  const tbody = document.getElementById('tabelaIndicadores');
+  tbody.innerHTML = indicadoresData.map(ind => `
+    <tr>
+      <td><code style="font-size:11.5px;background:var(--cinza-bg);padding:2px 6px;border-radius:4px;">${ind.cod}</code></td>
+      <td class="ind-name">${ind.nome}<small>${ind.tipo}</small></td>
+      <td><strong>${ind.valor}</strong></td>
+      <td>${ind.meta}</td>
+      <td style="color:${ind.deltaUp === true ? 'var(--verde-med)' : ind.deltaUp === false ? 'var(--vermelho)' : 'var(--cinza-med)'}; font-weight:500;">${ind.delta}</td>
+      <td><span class="tag ${ind.status === 'ok' ? 'tag-verde' : ind.status === 'atencao' ? 'tag-amarelo' : 'tag-vermelho'}">${ind.status === 'ok' ? '✓ OK' : ind.status === 'atencao' ? '⚡ Atenção' : '✗ Crítico'}</span></td>
+      <td style="font-size:12px;color:var(--cinza-med)">${ind.fonte}</td>
+      <td class="ind-actions">
+        <button class="btn-xs" onclick="abrirFicha('${ind.cod}')">📄 Ficha</button>
+        <button class="btn-xs verde" onclick="analisarIA('${ind.cod}')">🤖 IA</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ── NAVEGAÇÃO ──
+function goTo(page, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+// ── CHART ──
+function criarChart() {
+  const ctx = document.getElementById('chartCobertura');
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez','Jan','Fev','Mar','Abr','Mai'],
+      datasets: [{
+        label: 'Cobertura AB (%)',
+        data: [64.1,64.3,64.8,65.0,65.4,65.6,65.9,66.1,66.3,66.5,66.7,66.8,66.9,67.0,67.1,67.2,67.4],
+        borderColor: '#2d8f65',
+        backgroundColor: 'rgba(45,143,101,.1)',
+        tension: 0.35,
+        fill: true,
+        pointRadius: 3,
+        pointBackgroundColor: '#2d8f65',
+      },{
+        label: 'Meta 2026',
+        data: Array(17).fill(70),
+        borderColor: '#e6a817',
+        borderDash: [6,3],
+        pointRadius: 0,
+        borderWidth: 1.5,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { font: { family: 'DM Sans' }, boxWidth: 12 } } },
+      scales: {
+        y: { min: 60, max: 75, grid: { color: '#f0f0f0' }, ticks: { font: { family: 'DM Sans', size: 11 } } },
+        x: { grid: { display: false }, ticks: { font: { family: 'DM Sans', size: 10 } } }
+      }
+    }
+  });
+}
+
+// ── MINI CHARTS ──
+function criarMiniCharts() {
+  const dados = {
+    mc1: [60,62,63,64,65,66,67],
+    mc2: [51,52,51,53,52,53,52],
+    mc3: [58,57,56,55,55,54,54],
+    mc4: [10.1,10.3,10.2,10.4,10.8,11.2,11.8]
+  };
+  Object.entries(dados).forEach(([id, vals]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const max = Math.max(...vals), min = Math.min(...vals);
+    const trend = vals[vals.length-1] > vals[0];
+    el.innerHTML = vals.map(v => {
+      const h = Math.round(6 + ((v - min) / (max - min + .001)) * 18);
+      return `<div class="mini-bar" style="height:${h}px;background:${trend ? 'var(--verde-claro)' : 'var(--laranja)'}"></div>`;
+    }).join('');
+  });
+}
+
+// ── FICHA DO INDICADOR ──
+function abrirFicha(cod) {
+  const ind = indicadoresData.find(i => i.cod === cod);
+  if (!ind) return;
+  document.getElementById('fichaTitle').textContent = `📄 ${ind.nome}`;
+  document.getElementById('fichaContent').innerHTML = `
+    <dl>
+      ${[
+        ['Código', ind.cod],
+        ['Tipo', ind.tipo],
+        ['Definição', ind.ficha.definicao],
+        ['Numerador', ind.ficha.numerador],
+        ['Denominador', ind.ficha.denominador],
+        ['Periodicidade', ind.ficha.periodicidade],
+        ['Fonte', ind.ficha.fonte],
+        ['Polaridade', ind.ficha.polaridade],
+        ['Meta 2026', ind.ficha.meta2026],
+      ].map(([k,v]) => `<div class="ficha-row"><dt>${k}</dt><dd>${v}</dd></div>`).join('')}
+    </dl>
+  `;
+  document.getElementById('modalFicha').classList.add('open');
+}
+function fecharModal() {
+  document.getElementById('modalFicha').classList.remove('open');
+}
+
+function analisarIA(cod) {
+  const ind = indicadoresData.find(i => i.cod === cod);
+  if (ind) {
+    document.getElementById('iaIndicador').value = ind.cod.toLowerCase().replace('_', '_');
+    goTo('ia', null);
+    document.querySelector('[onclick="goTo(\'ia\', this)"]')?.classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n => {
+      if (n.textContent.includes('Análise por IA')) n.classList.add('active');
+      else n.classList.remove('active');
+    });
+  }
+}
+
+// ── MAPA ──
+function cliqueMapa(regiao, valor) {
+  const tt = document.getElementById('mapaTooltip');
+  tt.textContent = `${regiao}: ${valor}`;
+  tt.style.display = 'block';
+  setTimeout(() => { tt.style.display = 'none'; }, 2200);
+}
+function atualizarMapa() {}
+
+// ── EXPORTAR CSV ──
+function exportarCSV() {
+  const rows = [['Código','Indicador','Tipo','Valor','Meta','Variação Mensal','Status','Fonte']];
+  indicadoresData.forEach(i => rows.push([i.cod, i.nome, i.tipo, i.valor, i.meta, i.delta, i.status, i.fonte]));
+  const csv = rows.map(r => r.join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'indicadores_saps_mai2026.csv';
+  a.click();
+}
+
+// ── IA ANÁLISE ──
+async function gerarAnaliseIA() {
+  const indicador = document.getElementById('iaIndicador').value;
+  const territorio = document.getElementById('iaTerritorio').value;
+  const periodo = document.getElementById('iaPeriodo').value;
+  const btn = document.getElementById('btnGerarIA');
+  const result = document.getElementById('iaResult');
+  const meta = document.getElementById('iaMeta');
+
+  btn.disabled = true;
+  btn.innerHTML = '<div class="loading-spinner"></div> Analisando...';
+  result.classList.add('visible');
+  result.innerHTML = '<span class="typing">Gerando análise do indicador</span>';
+  meta.style.display = 'none';
+
+  // Dados simulados por indicador
+  const dadosPorInd = {
+    cobertura_ab: { v: '67,4%', meta: '70%', delta: '+1,2 p.p.', hist: '64,1% → 67,4% (jan/2025–mai/2026)', tendencia: 'crescimento constante' },
+    mortalidade_materna: { v: '52,1/100k NV', meta: '45,0', delta: 'estável (±0,1)', hist: '55,2 → 52,1', tendencia: 'queda lenta, meta não atingida' },
+    mortalidade_infantil: { v: '11,8/1k NV', meta: '10,0', delta: '+1,4 (+13,5%)', hist: '10,4 → 11,8', tendencia: 'piora expressiva em mai/2026' },
+    internacoes_csaps: { v: '54,3/10k hab.', meta: '50,0', delta: '−2,1 (−3,7%)', hist: '60,2 → 54,3', tendencia: 'queda consistente' },
+    mortalidade_csaps: { v: '38,7/100k hab.', meta: '35,0', delta: '−0,8', hist: '42,1 → 38,7', tendencia: 'redução gradual' },
+  };
+  const dados = dadosPorInd[indicador] || dadosPorInd['cobertura_ab'];
+
+  const prompt = `Você é um analista sênior de indicadores de saúde da COMAV/SAPS (Coordenação de Monitoramento e Avaliação da Secretaria de Atenção Primária à Saúde do Brasil). Gere uma análise técnica concisa e orientada à gestão.
+
+INDICADOR: ${indicador.replace(/_/g,' ').toUpperCase()}
+TERRITÓRIO: ${territorio}
+PERÍODO: ${periodo}
+VALOR ATUAL: ${dados.v}
+META 2026: ${dados.meta}
+VARIAÇÃO MENSAL: ${dados.delta}
+SÉRIE HISTÓRICA (resumo): ${dados.hist}
+TENDÊNCIA: ${dados.tendencia}
+
+Estruture a análise com: (1) situação atual e comparação com a meta, (2) análise de tendência, (3) possíveis fatores explicativos, (4) pontos de atenção ou alertas, (5) recomendação para a gestão. Seja direto, objetivo, em português brasileiro formal. Máximo 300 palavras.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const texto = data.content?.map(b => b.text || '').join('') || 'Não foi possível gerar a análise.';
+    result.innerHTML = texto.replace(/\n/g, '<br>');
+    meta.style.display = 'flex';
+    window._ultimaAnalise = texto;
+  } catch (e) {
+    result.innerHTML = '⚠️ Erro ao conectar com a IA. Verifique a conexão e tente novamente.';
+  }
+  btn.disabled = false;
+  btn.innerHTML = '<span>✦</span> Gerar análise';
+}
+
+// ── PRODUTOS IA ──
+async function gerarProduto(tipo) {
+  const el = document.getElementById('produtoResult');
+  const btns = document.getElementById('produtoBtns');
+  el.innerHTML = '<span style="color:var(--azul-med)"><div class="loading-spinner" style="border-color:rgba(30,80,163,.2);border-top-color:var(--azul-med);display:inline-block;margin-right:8px;"></div> Gerando com IA...</span>';
+  btns.style.display = 'none';
+
+  const prompts = {
+    boletim: 'Gere um boletim mensal conciso (mai/2026) para a SAPS com os principais indicadores: cobertura AB (67,4%, meta 70%), mortalidade materna (52,1, meta 45), mortalidade infantil (11,8, meta 10, ALERTA: piora de 13,5% na região Norte), internações CSAPS (54,3, meta 50). Inclua destaques positivos e pontos de atenção. Tom técnico-institucional, 200-250 palavras.',
+    executivo: 'Gere um informe executivo de 3 parágrafos para o secretário da SAPS com os principais destaques de mai/2026. Priorize o alerta de mortalidade infantil na região Norte, o progresso na cobertura AB e a situação das internações CSAPS. Tom direto e objetivo.',
+    reuniao: 'Gere uma pauta sugerida para reunião de monitoramento da SAPS (jun/2026) com base nos indicadores de mai/2026. Inclua: itens críticos, discussões estratégicas, deliberações propostas. Formato de lista estruturada.',
+    desigualdade: 'Gere uma análise de desigualdades em saúde para a SAPS referente a mai/2026. Considere: mortalidade materna negra (121/100k NV) vs branca (50,4/100k NV), diferenciais regionais Norte vs Sul, e ausência de dados por renda e escolaridade. Inclua recomendações de desagregação. 200-250 palavras.',
+  };
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompts[tipo] }]
+      })
+    });
+    const data = await response.json();
+    const texto = data.content?.map(b => b.text || '').join('') || 'Erro ao gerar o conteúdo.';
+    el.innerHTML = texto.replace(/\n/g, '<br>');
+    btns.style.display = 'flex';
+    window._ultimoProduto = texto;
+  } catch(e) {
+    el.innerHTML = '⚠️ Erro ao conectar com a IA.';
+  }
+}
+
+function copiarProduto() {
+  if (window._ultimoProduto) navigator.clipboard.writeText(window._ultimoProduto);
+}
+
+function exportarAnalise() {
+  if (!window._ultimaAnalise) return;
+  const a = document.createElement('a');
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._ultimaAnalise);
+  a.download = 'analise_ia_saps.txt';
+  a.click();
+}
+
+function exportarProduto() {
+  if (!window._ultimoProduto) return;
+  const a = document.createElement('a');
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._ultimoProduto);
+  a.download = 'produto_ia_saps.txt';
+  a.click();
+}
+
+// ── FILTROS DE INDICADORES ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.closest('.ind-filters').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ── DATA ──
+const d = new Date();
+document.getElementById('dataAtual').textContent = d.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' });
+
+// ── INIT ──
+window.addEventListener('load', () => {
+  popularTabelaIndicadores();
+  criarChart();
+  criarMiniCharts();
+});
+</script>
+</body>
+</html>
