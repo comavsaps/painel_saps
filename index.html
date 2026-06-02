@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sistema de Monitoramento SAPS — COMAV</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Public+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --verde: #1a6b4a;
@@ -33,7 +33,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--cinza-bg);
   color: var(--cinza-escuro);
   min-height: 100vh;
@@ -59,7 +59,7 @@ body {
 }
 .topbar-left { display: flex; align-items: center; gap: 14px; }
 .topbar-logo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-weight: 800;
   font-size: 17px;
   letter-spacing: .01em;
@@ -159,7 +159,7 @@ body {
 /* ── PAGE HEADER ── */
 .page-header { margin-bottom: 24px; }
 .page-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-size: 24px;
   font-weight: 700;
   color: var(--cinza-escuro);
@@ -195,7 +195,7 @@ body {
 .stat-label { font-size: 12px; color: var(--cinza-med); font-weight: 500; letter-spacing: .03em; }
 .stat-icon { font-size: 22px; }
 .stat-value {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-size: 30px;
   font-weight: 700;
   line-height: 1;
@@ -221,7 +221,7 @@ body {
   margin-bottom: 20px;
 }
 .card-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-size: 15px;
   font-weight: 700;
   color: var(--cinza-escuro);
@@ -285,7 +285,7 @@ body {
   font-size: 12.5px;
   color: var(--cinza);
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   outline: none;
   background: var(--branco);
 }
@@ -339,7 +339,7 @@ body {
   border: 1.5px solid var(--cinza-claro);
   background: transparent;
   color: var(--cinza);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   transition: all .13s;
 }
 .btn-xs:hover { background: var(--azul-med); color: #fff; border-color: var(--azul-med); }
@@ -364,7 +364,7 @@ body {
   border-radius: var(--raio-pequeno);
   padding: 20px;
   text-align: center;
-  min-height: 340px;
+  min-height: 640px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -373,7 +373,7 @@ body {
   position: relative;
   overflow: hidden;
 }
-.map-svg { width: 100%; max-width: 480px; }
+.map-svg { width: 100%; max-width: 760px; }
 .map-legend {
   display: flex;
   gap: 14px;
@@ -411,7 +411,7 @@ body {
   text-transform: uppercase;
 }
 .ia-panel h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-size: 17px;
   font-weight: 700;
 }
@@ -432,7 +432,7 @@ body {
   background: rgba(255,255,255,.1);
   color: #fff;
   font-size: 13px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   outline: none;
   transition: border .15s;
 }
@@ -448,7 +448,7 @@ body {
   font-size: 13.5px;
   font-weight: 700;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -491,7 +491,7 @@ body {
   border-radius: 6px;
   font-size: 12px;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   transition: background .15s;
 }
 .btn-export:hover { background: rgba(255,255,255,.25); }
@@ -506,7 +506,7 @@ body {
   text-align: center;
 }
 .qc-value {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-size: 28px;
   font-weight: 800;
   margin-bottom: 4px;
@@ -540,7 +540,7 @@ body {
   font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   border: none;
   transition: all .15s;
 }
@@ -595,11 +595,972 @@ body {
   box-shadow: var(--sombra-forte);
   animation: fadeIn .2s ease;
 }
-.modal h2 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+.modal h2 { font-family: 'Public Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
 .modal-close { float: right; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--cinza-med); line-height: 1; }
 .ficha-row { display: flex; gap: 10px; margin-bottom: 10px; font-size: 13.5px; }
 .ficha-row dt { font-weight: 600; color: var(--cinza-med); min-width: 130px; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; padding-top: 2px; }
 .ficha-row dd { flex: 1; color: var(--cinza-escuro); line-height: 1.5; }
+
+/* ── AJUSTES INSTITUCIONAIS PARA APRESENTAÇÃO À GESTÃO ── */
+.executive-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #eef5fb 100%);
+  border: 1px solid var(--cinza-claro);
+  border-left: 5px solid var(--azul-med);
+  border-radius: var(--raio);
+  padding: 22px 24px;
+  margin-bottom: 22px;
+  box-shadow: var(--sombra);
+}
+.hero-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--azul-med);
+  margin-bottom: 8px;
+}
+.hero-title {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--cinza-escuro);
+  margin-bottom: 8px;
+}
+.hero-text {
+  color: var(--cinza);
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 980px;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.institutional-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--cinza-claro);
+  background: #fff;
+  color: var(--cinza);
+  border-radius: 18px;
+  padding: 5px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.status-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.status-item {
+  background: var(--branco);
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  padding: 12px 14px;
+}
+.status-item strong {
+  display: block;
+  font-size: 12px;
+  color: var(--cinza-med);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 4px;
+}
+.status-item span {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--cinza-escuro);
+}
+.validation-note {
+  background: #fff;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  padding: 12px 14px;
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--cinza);
+  line-height: 1.55;
+}
+.prototype-banner {
+  background: #fef9ec;
+  border: 1px solid #f4d58a;
+  color: #7a5608;
+  padding: 9px 14px;
+  border-radius: var(--raio-pequeno);
+  font-size: 12.5px;
+  margin-bottom: 18px;
+}
+
+
+.chart-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.chart-card { min-height: 320px; }
+.chart-card canvas { width: 100% !important; }
+.chart-caption {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--cinza-med);
+  line-height: 1.55;
+}
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ranking-item {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  background: #fff;
+}
+.ranking-pos {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--azul-bg);
+  color: var(--azul-med);
+  font-size: 12px;
+  font-weight: 700;
+}
+.ranking-name { font-size: 13.5px; color: var(--cinza-escuro); font-weight: 600; }
+.ranking-sub { font-size: 11.5px; color: var(--cinza-med); margin-top: 2px; }
+.ranking-value { font-family: 'Public Sans', sans-serif; font-size: 18px; font-weight: 800; color: var(--cinza-escuro); }
+.map-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+.map-meta-item {
+  background: #fff;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  padding: 12px 14px;
+}
+.map-meta-item strong { display:block; font-size:12px; color:var(--cinza-med); margin-bottom:5px; }
+.map-meta-item span { font-size: 16px; font-weight: 700; color: var(--cinza-escuro); }
+.section-note {
+  font-size: 12.5px;
+  color: var(--cinza);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+
+.brasil-svg path[id^="reg-"] {
+  transition: opacity .15s ease, transform .15s ease, filter .15s ease;
+  transform-origin: center;
+}
+.brasil-svg path[id^="reg-"]:hover {
+  opacity: 1;
+  filter: brightness(1.05);
+}
+
+
+.brasil-real-map {
+  width: 100%;
+  height: 560px;
+  min-height: 480px;
+}
+.brasil-real-map .highcharts-background {
+  fill: transparent;
+}
+.brasil-real-map .highcharts-credits {
+  display: none;
+}
+
+
+.brasil-real-map {
+  width: 100%;
+  height: 590px;
+  min-height: 520px;
+}
+.brasil-real-map .highcharts-background {
+  fill: transparent;
+}
+.brasil-real-map .highcharts-credits {
+  display: none;
+}
+.brasil-real-map .highcharts-map-navigation {
+  opacity: .85;
+}
+
+
+.filter-select:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+  background: #f1f5f9;
+}
+
+
+.strategic-filters {
+  align-items: stretch;
+}
+.strategic-filters .filter-select {
+  min-width: 190px;
+}
+@media (max-width: 1100px) {
+  .strategic-filters .filter-select {
+    min-width: 160px;
+    flex: 1 1 180px;
+  }
+}
+
+
+/* ── INTERSECCIONALIDADE ── */
+.inter-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 20px;
+}
+.inter-axis-box {
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio);
+  padding: 16px;
+  background: #fff;
+}
+.inter-axis-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  background: var(--cinza-bg);
+  margin-bottom: 10px;
+}
+.inter-axis-row label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--cinza-escuro);
+}
+.inter-axis-row select {
+  max-width: 170px;
+}
+.inter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.inter-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--azul-bg);
+  color: var(--azul-med);
+}
+.inter-note {
+  background: #f8fafc;
+  border-left: 4px solid var(--azul-med);
+  border-radius: var(--raio-pequeno);
+  padding: 12px 14px;
+  font-size: 12.5px;
+  color: var(--cinza);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+.extremes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+.extreme-card {
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio);
+  padding: 15px 16px;
+  background: #fff;
+}
+.extreme-card strong {
+  display: block;
+  font-size: 12px;
+  color: var(--cinza-med);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 6px;
+}
+.extreme-card span {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--cinza-escuro);
+}
+.inter-score {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+}
+@media (max-width: 980px) {
+  .inter-grid, .extremes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ── APOIO ANALÍTICO AVANÇADO ── */
+.ia-advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.ia-copy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.ia-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.ia-table th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--cinza-med);
+  text-align: left;
+  border-bottom: 2px solid var(--cinza-claro);
+  padding: 8px 10px;
+}
+.ia-table td {
+  border-bottom: 1px solid var(--cinza-claro);
+  padding: 10px;
+  vertical-align: top;
+}
+.ia-table tr:last-child td {
+  border-bottom: none;
+}
+.ia-highlight {
+  background: var(--cinza-bg);
+  border-left: 4px solid var(--azul-med);
+  border-radius: var(--raio-pequeno);
+  padding: 13px 15px;
+  color: var(--cinza);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+.ia-highlight b {
+  color: var(--cinza-escuro);
+}
+.ia-panel.light {
+  background: linear-gradient(135deg, #ffffff 0%, #eef5fb 100%);
+  border: 1px solid var(--cinza-claro);
+  color: var(--cinza-escuro);
+}
+.ia-panel.light .ia-badge {
+  background: var(--azul-bg);
+  border-color: var(--azul-bg);
+  color: var(--azul-med);
+}
+.ia-panel.light .ia-select,
+.ia-panel.light .ia-input {
+  background: #fff;
+  color: var(--cinza-escuro);
+  border-color: var(--cinza-claro);
+}
+.ia-panel.light .ia-field label {
+  color: var(--cinza-med);
+  opacity: 1;
+}
+
+
+/* ── FILTRO GLOBAL TERRITORIAL ── */
+.global-filterbar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--cinza-claro);
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  position: sticky;
+  top: 52px;
+  z-index: 90;
+  box-shadow: 0 2px 10px rgba(15,23,42,.04);
+}
+.global-filter-title {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 260px;
+}
+.global-filter-title strong {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--cinza-med);
+}
+.global-filter-title span {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--cinza-escuro);
+}
+.global-filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  flex: 1;
+}
+.global-filter-controls select {
+  border: 1.5px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  padding: 8px 10px;
+  background: #fff;
+  color: var(--cinza);
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  min-width: 145px;
+}
+.global-filter-controls select:disabled {
+  opacity: .55;
+  background: #f1f5f9;
+}
+.global-reset {
+  font-size: 12px;
+  padding: 8px 12px;
+}
+.scope-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--azul-bg);
+  color: var(--azul-med);
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+@media (max-width: 980px) {
+  .global-filterbar {
+    align-items: flex-start;
+    flex-direction: column;
+    position: static;
+  }
+  .global-filter-controls {
+    justify-content: flex-start;
+  }
+}
+
+
+/* ── REFINAMENTO VISUAL E ANALÍTICO ── */
+:root {
+  --grad-hero: linear-gradient(135deg, #ffffff 0%, #f4f8fb 48%, #edf7f2 100%);
+  --focus-ring: 0 0 0 3px rgba(46, 95, 163, .16);
+}
+body {
+  background:
+    radial-gradient(circle at top right, rgba(77,184,138,.10), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(46,95,163,.08), transparent 26%),
+    var(--cinza-bg);
+}
+.topbar {
+  backdrop-filter: saturate(120%) blur(8px);
+}
+.sidebar {
+  box-shadow: 5px 0 20px rgba(15, 23, 42, .03);
+}
+.nav-item {
+  position: relative;
+}
+.nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  width: 4px;
+  height: 22px;
+  border-radius: 0 4px 4px 0;
+  background: var(--azul-med);
+}
+.main {
+  max-width: 1560px;
+}
+.page-title {
+  letter-spacing: -.02em;
+}
+.executive-hero {
+  background: var(--grad-hero);
+  position: relative;
+  overflow: hidden;
+}
+.executive-hero::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  right: -90px;
+  top: -120px;
+  border-radius: 50%;
+  background: rgba(45,143,101,.10);
+}
+.card, .stat-card, .qc-card {
+  border: 1px solid rgba(226,232,240,.75);
+}
+.card:hover, .stat-card:hover {
+  border-color: rgba(46,95,163,.22);
+}
+button:focus, select:focus, input:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.kpi-card {
+  background: #fff;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio);
+  padding: 15px 16px;
+  box-shadow: var(--sombra);
+}
+.kpi-card small {
+  display: block;
+  color: var(--cinza-med);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 800;
+  margin-bottom: 7px;
+}
+.kpi-card strong {
+  display: block;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 24px;
+  letter-spacing: -.02em;
+}
+.kpi-card span {
+  display: block;
+  color: var(--cinza-med);
+  font-size: 12px;
+  margin-top: 5px;
+}
+.insight-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.insight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.insight-item {
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  padding: 12px 13px;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 8px 1fr;
+  gap: 10px;
+}
+.insight-bar {
+  width: 8px;
+  border-radius: 999px;
+  background: var(--azul-med);
+}
+.insight-item strong {
+  display: block;
+  font-size: 13.5px;
+  color: var(--cinza-escuro);
+  margin-bottom: 3px;
+}
+.insight-item span {
+  font-size: 12.5px;
+  color: var(--cinza);
+  line-height: 1.45;
+}
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.health-item {
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  padding: 11px 12px;
+  background: var(--cinza-bg);
+}
+.health-item strong {
+  display: block;
+  font-size: 12px;
+  color: var(--cinza-med);
+  margin-bottom: 5px;
+}
+.health-item span {
+  font-weight: 800;
+  color: var(--cinza-escuro);
+}
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.meta-card {
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  padding: 12px;
+  background: #fff;
+}
+.meta-card strong {
+  display: block;
+  font-size: 12px;
+  color: var(--cinza-med);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.meta-card span {
+  font-size: 13px;
+  color: var(--cinza-escuro);
+  line-height: 1.45;
+}
+.decision-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.decision-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 10px;
+  background: var(--cinza-bg);
+  border: 1px solid var(--cinza-claro);
+  color: var(--cinza);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.skeleton-load {
+  opacity: .65;
+  pointer-events: none;
+}
+@media (max-width: 1100px) {
+  .insight-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ── DOWNLOAD DE GRÁFICOS ── */
+.chart-tools {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-top: -6px;
+  margin-bottom: 8px;
+}
+.chart-download-btn {
+  border: 1px solid var(--cinza-claro);
+  background: #fff;
+  color: var(--cinza);
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.chart-download-btn:hover {
+  background: var(--azul-bg);
+  color: var(--azul-med);
+  border-color: rgba(46,95,163,.25);
+}
+.download-toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  background: rgba(28,31,36,.92);
+  color: #fff;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  z-index: 500;
+  box-shadow: var(--sombra-forte);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .2s, transform .2s;
+  pointer-events: none;
+}
+.download-toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ── PAINEL EXECUTIVO REORGANIZADO ── */
+.exec-top-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr);
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.exec-summary-card {
+  background: linear-gradient(135deg, #ffffff 0%, #eef5fb 52%, #e8f5ef 100%);
+  border: 1px solid var(--cinza-claro);
+  border-left: 6px solid var(--azul-med);
+  border-radius: var(--raio);
+  padding: 24px 26px;
+  box-shadow: var(--sombra);
+  position: relative;
+  overflow: hidden;
+}
+.exec-summary-card::after {
+  content: "";
+  position: absolute;
+  right: -70px;
+  top: -80px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(45,143,101,.12);
+}
+.exec-summary-kicker {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--azul-med);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.exec-summary-title {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin-bottom: 10px;
+  color: var(--cinza-escuro);
+  position: relative;
+  z-index: 1;
+}
+.exec-summary-text {
+  font-size: 14px;
+  line-height: 1.62;
+  color: var(--cinza);
+  max-width: 980px;
+  position: relative;
+  z-index: 1;
+}
+.exec-summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  position: relative;
+  z-index: 1;
+}
+.exec-decision-card {
+  background: var(--azul);
+  color: #fff;
+  border-radius: var(--raio);
+  padding: 22px;
+  box-shadow: var(--sombra-forte);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+.exec-decision-card small {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: 11px;
+  opacity: .75;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.exec-decision-card strong {
+  display: block;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.exec-decision-card span {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: .88;
+}
+.exec-action-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.exec-action-list div {
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 12.5px;
+}
+.exec-primary-kpis {
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+}
+.exec-primary-kpis .stat-card {
+  min-height: 150px;
+}
+.exec-primary-kpis .stat-card.destaque {
+  background: linear-gradient(135deg, #ffffff 0%, #f4fff9 100%);
+  border-left-width: 6px;
+}
+.exec-primary-kpis .stat-card.destaque .stat-value {
+  font-size: 38px;
+}
+.exec-evidence-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.exec-alert-column {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 18px;
+}
+.exec-quality-mini {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.exec-quality-mini .health-item {
+  background: #fff;
+}
+.exec-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.exec-section-title .card-title {
+  margin-bottom: 0;
+}
+.exec-section-title .scope-chip {
+  flex-shrink: 0;
+}
+.exec-priority-table .ind-table th,
+.exec-priority-table .ind-table td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.exec-main-chart {
+  min-height: 380px;
+}
+.exec-secondary-charts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.exec-secondary-charts .chart-card {
+  min-height: 300px;
+}
+@media (max-width: 1280px) {
+  .exec-primary-kpis {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+  .exec-evidence-grid,
+  .exec-top-layout {
+    grid-template-columns: 1fr;
+  }
+  .exec-secondary-charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ── MÓDULOS ADICIONAIS DE GESTÃO ANALÍTICA ── */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.module-card {
+  background: #fff;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio);
+  padding: 16px;
+  box-shadow: var(--sombra);
+}
+.module-card strong {
+  display: block;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.module-card span {
+  color: var(--cinza);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.report-box {
+  background: #fff;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio);
+  padding: 18px 20px;
+  line-height: 1.7;
+  color: var(--cinza);
+  font-size: 14px;
+  min-height: 260px;
+}
+.report-box h3 {
+  color: var(--cinza-escuro);
+  font-family: 'Public Sans', sans-serif;
+  margin-bottom: 8px;
+}
+.report-box h4 {
+  color: var(--azul);
+  margin: 16px 0 6px;
+}
+.action-status {
+  display: inline-flex;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.action-status.novo { background: #eaf0fb; color: var(--azul-med); }
+.action-status.andamento { background: #fef3cd; color: #8a6500; }
+.action-status.resolvido { background: #d1f5e5; color: var(--verde); }
+.dictionary-search {
+  min-width: 260px;
+  flex: 1;
+}
+.dictionary-search input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  font-family: 'Inter', sans-serif;
+}
+
 </style>
 </head>
 <body>
@@ -607,12 +1568,12 @@ body {
 <!-- TOPBAR -->
 <header class="topbar">
   <div class="topbar-left">
-    <div class="topbar-logo">SAPS Monitor</div>
+    <div class="topbar-logo">MonitoraSAPS</div>
     <div class="topbar-sep"></div>
-    <div class="topbar-subtitle">Secretaria de Atenção Primária à Saúde</div>
+    <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da APS</div>
   </div>
   <div class="topbar-right">
-    <span class="badge-comav">COMAV</span>
+    <span class="badge-comav">COMAV · Gabinete SAPS</span>
     <span class="topbar-date" id="dataAtual"></span>
     <div class="topbar-user">
       <div class="avatar">JM</div>
@@ -620,6 +1581,37 @@ body {
     </div>
   </div>
 </header>
+
+<div class="global-filterbar">
+  <div class="global-filter-title">
+    <strong>Escopo territorial do sistema</strong>
+    <span id="globalScopeText">Brasil completo · Mai/2026</span>
+  </div>
+  <div class="global-filter-controls">
+    <select id="globalRegiao" onchange="globalAlterarRegiao(this.value)">
+      <option value="todas">Todas as regiões</option>
+      <option value="Norte">Norte</option>
+      <option value="Nordeste">Nordeste</option>
+      <option value="Centro-Oeste">Centro-Oeste</option>
+      <option value="Sudeste">Sudeste</option>
+      <option value="Sul">Sul</option>
+    </select>
+    <select id="globalUF" onchange="globalAlterarUF(this.value)">
+      <option value="todas">Todas as UFs</option>
+    </select>
+    <select id="globalMunicipio" onchange="globalAlterarMunicipio(this.value)">
+      <option value="todos">Municípios da UF</option>
+    </select>
+    <select id="globalCompetencia" onchange="globalAplicarEscopo()">
+      <option value="Mai/2026">Mai/2026</option>
+      <option value="Abr/2026">Abr/2026</option>
+      <option value="Mar/2026">Mar/2026</option>
+      <option value="2025-2026">2025–2026</option>
+    </select>
+    <button class="btn btn-outline global-reset" onclick="globalLimparEscopo()">Limpar escopo</button>
+    <button class="btn btn-primary global-reset" onclick="baixarTodosGraficos()">⬇ Baixar gráficos</button>
+  </div>
+</div>
 
 <!-- BODY -->
 <div class="app-body">
@@ -629,41 +1621,53 @@ body {
     <div class="sidebar-section">
       <div class="sidebar-label">Painel</div>
       <button class="nav-item active" onclick="goTo('dashboard', this)">
-        <span class="nav-icon">📊</span> Visão Geral
+        <span class="nav-icon">📊</span> Painel Executivo
       </button>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Monitoramento</div>
       <button class="nav-item" onclick="goTo('indicadores', this)">
-        <span class="nav-icon">📈</span> Indicadores
+        <span class="nav-icon">📈</span> Indicadores Estratégicos
       </button>
       <button class="nav-item" onclick="goTo('mapa', this)">
-        <span class="nav-icon">🗺️</span> Mapa Territorial
+        <span class="nav-icon">🗺️</span> Análise Territorial
+      </button>
+      <button class="nav-item" onclick="goTo('interseccionalidade', this)">
+        <span class="nav-icon">🧩</span> Interseccionalidade
       </button>
       <button class="nav-item" onclick="goTo('alertas', this)">
-        <span class="nav-icon">🔔</span> Alertas
-        <span style="margin-left:auto;background:var(--vermelho);color:#fff;border-radius:10px;font-size:10px;padding:1px 6px;font-weight:700;">3</span>
+        <span class="nav-icon">🔔</span> Central de Alertas
+        <span style="margin-left:auto;background:var(--vermelho);color:#fff;border-radius:10px;font-size:10px;padding:1px 6px;font-weight:700;">2</span>
       </button>
     </div>
     <div class="sidebar-section">
-      <div class="sidebar-label">Inteligência Artificial</div>
+      <div class="sidebar-label">Apoio à decisão</div>
       <button class="nav-item" onclick="goTo('ia', this)">
-        <span class="nav-icon">🤖</span> Análise por IA
+        <span class="nav-icon">🤖</span> Apoio Analítico
+      </button>
+      <button class="nav-item" onclick="goTo('relatorio', this)">
+        <span class="nav-icon">🗂️</span> Relatório Executivo
+      </button>
+      <button class="nav-item" onclick="goTo('plano', this)">
+        <span class="nav-icon">✅</span> Plano de Ação
       </button>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Gestão</div>
+      <button class="nav-item" onclick="goTo('dicionario', this)">
+        <span class="nav-icon">📚</span> Dicionário de Indicadores
+      </button>
       <button class="nav-item" onclick="goTo('qualidade', this)">
         <span class="nav-icon">✅</span> Qualidade dos Dados
       </button>
       <button class="nav-item" onclick="goTo('auditoria', this)">
-        <span class="nav-icon">📋</span> Trilha de Auditoria
+        <span class="nav-icon">📋</span> Auditoria e Governança
       </button>
     </div>
     <div class="sidebar-divider"></div>
     <div class="sidebar-footer">
       Última carga: <strong>Mai/2026</strong><br>
-      Versão 1.0 · COMAV/SAPS
+      Protótipo para validação · COMAV · Gabinete SAPS
     </div>
   </nav>
 
@@ -671,24 +1675,82 @@ body {
   <main class="main">
 
     <!-- ── DASHBOARD ── -->
+    
     <div id="page-dashboard" class="page active">
       <div class="page-header">
-        <div class="page-title">Visão Geral — Competência Mai/2026</div>
-        <div class="page-desc">Panorama dos indicadores estratégicos da SAPS. Atualização automática via DW.</div>
+        <div class="page-title">Painel Executivo — Competência Mai/2026</div>
+        <div class="page-desc">Leitura executiva dos principais indicadores, alertas analíticos, qualidade dos dados e tendências para apoio à decisão.</div>
       </div>
 
-      <div class="stats-grid">
-        <div class="stat-card verde">
+      <div class="prototype-banner">Protótipo demonstrativo. Os valores são simulados e demonstram monitoramento estratégico dos indicadores.</div>
+
+      <div class="validation-note" id="dashboardScopeNote">Escopo aplicado: Brasil completo · Mai/2026.</div>
+
+      <div class="exec-top-layout">
+        <div class="exec-summary-card">
+          <div class="exec-summary-kicker">Síntese analítica da competência</div>
+          <div class="exec-summary-title">Situação geral: avanço em cobertura, atenção em materno-infantil e monitoramento das internações por CSAPS</div>
+          <div class="exec-summary-text">
+            Na competência maio/2026, o sistema sinaliza crescimento da cobertura de Atenção Básica, redução gradual das internações por condições sensíveis à APS e manutenção de indicadores materno-infantis em situação de atenção. A leitura executiva destaca os principais movimentos analíticos observados na competência, com foco em tendência, comparação territorial e identificação de prioridades para acompanhamento técnico.
+          </div>
+          <div class="exec-summary-actions">
+            <span class="institutional-pill">✓ Atualização via DW</span>
+            <span class="institutional-pill">✓ Validação COMAV</span>
+            <span class="institutional-pill">✓ Alertas automatizados</span>
+            <span class="institutional-pill">✓ Auditoria e rastreabilidade</span>
+            <span class="institutional-pill">✓ Granularidade municipal</span>
+          </div>
+        </div>
+
+        <div class="exec-decision-card">
+          <div>
+            <small>Prioridade analítica para gestão</small>
+            <strong>2 alertas</strong>
+            <span>1 crítico e 1 em atenção. Principal foco: mortalidade infantil e internações por condições sensíveis à APS, com encaminhamento técnico orientado por território.</span>
+          </div>
+          <div class="exec-action-list">
+            <div>1. Priorizar leitura materno-infantil no território selecionado.</div>
+            <div>2. Avaliar tendência e concentração territorial das internações por CSAPS.</div>
+            <div>3. Gerar síntese analítica para discussão com a área técnica responsável.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-row" id="globalKpiRow">
+        <div class="kpi-card">
+          <small>Território em análise</small>
+          <strong id="kpiTerritorio">Brasil</strong>
+          <span id="kpiTerritorioSub">Escopo nacional consolidado</span>
+        </div>
+        <div class="kpi-card">
+          <small>Granularidade</small>
+          <strong id="kpiGranularidade">Brasil</strong>
+          <span>Região, UF e município disponíveis</span>
+        </div>
+        <div class="kpi-card">
+          <small>Indicadores filtráveis</small>
+          <strong id="kpiIndicadores">12</strong>
+          <span>Com metadados institucionais</span>
+        </div>
+        <div class="kpi-card">
+          <small>Confiabilidade da carga</small>
+          <strong id="kpiConfiabilidade">99,3%</strong>
+          <span id="kpiCargaSub">Carga completa com ressalvas pontuais</span>
+        </div>
+      </div>
+
+      <div class="stats-grid exec-primary-kpis">
+        <div class="stat-card verde destaque">
           <div class="stat-top">
-            <div class="stat-label">Cobertura AB Brasil</div>
+            <div class="stat-label">Cobertura AB</div>
             <div class="stat-icon">🏥</div>
           </div>
           <div class="stat-value">67,4%</div>
-          <div class="stat-change up">▲ +1,2 p.p. vs. abr/2026</div>
+          <div class="stat-change up">▲ +1,2 p.p. vs. abr/2026 · meta 70%</div>
         </div>
         <div class="stat-card azul">
           <div class="stat-top">
-            <div class="stat-label">Equipes Cadastradas</div>
+            <div class="stat-label">Equipes cadastradas</div>
             <div class="stat-icon">👥</div>
           </div>
           <div class="stat-value">47.823</div>
@@ -700,168 +1762,236 @@ body {
             <div class="stat-icon">🏨</div>
           </div>
           <div class="stat-value">54,3</div>
-          <div class="stat-change down">▼ −2,1 vs. média nacional</div>
+          <div class="stat-change up">▼ redução gradual · meta 50</div>
         </div>
         <div class="stat-card amarelo">
           <div class="stat-top">
-            <div class="stat-label">Mortalidade Materna / 100k</div>
+            <div class="stat-label">Mortalidade materna / 100k</div>
             <div class="stat-icon">🩺</div>
           </div>
           <div class="stat-value">52,1</div>
-          <div class="stat-change neutral">→ Estável (meta: 45)</div>
+          <div class="stat-change neutral">→ estável · acima da meta 45</div>
         </div>
         <div class="stat-card vermelho">
           <div class="stat-top">
-            <div class="stat-label">Alertas Ativos</div>
+            <div class="stat-label">Alertas ativos</div>
             <div class="stat-icon">⚠️</div>
           </div>
-          <div class="stat-value">3</div>
-          <div class="stat-change down">▲ +1 novo alerta</div>
+          <div class="stat-value">2</div>
+          <div class="stat-change down">1 crítico · 1 atenção</div>
         </div>
       </div>
 
-      <div class="two-col">
-        <div class="card">
-          <div class="card-title"><span>🔔</span> Alertas Recentes</div>
-          <div class="alert-list">
-            <div class="alert-item critico">
-              <div class="alert-dot">🔴</div>
-              <div class="alert-text">
-                <strong>Mortalidade infantil — Norte</strong>
-                Região com piora acima de 15% na competência. Requer atenção imediata.
-                <div class="alert-meta">⏱ Gerado hoje · Indicador: MORT_INF · Região: Norte</div>
+      <div class="status-strip">
+        <div class="status-item"><strong>Indicadores acompanhados</strong><span>12</span></div>
+        <div class="status-item"><strong>Indicadores em atenção</strong><span>3</span></div>
+        <div class="status-item"><strong>Última carga DW</strong><span id="healthCarga">Mai/2026</span></div>
+        <div class="status-item"><strong>Completude geral</strong><span>99,3%</span></div>
+      </div>
+
+      <div class="exec-evidence-grid">
+        <div class="exec-alert-column">
+          <div class="card">
+            <div class="exec-section-title">
+              <div class="card-title"><span>🔔</span> Alertas que exigem decisão</div>
+              <span class="scope-chip" id="healthAlertas">alertas analíticos</span>
+            </div>
+            <div class="alert-list">
+              <div class="alert-item critico">
+                <div class="alert-dot">🔴</div>
+                <div class="alert-text">
+                  <strong>Mortalidade infantil — Norte</strong>
+                  Piora acima do esperado na competência. Requer validação da série e leitura territorial.
+                  <div class="alert-meta">⏱ Gerado hoje · Indicador: MORT_INF · Prioridade: alta</div>
+                </div>
+              </div>
+              <div class="alert-item atencao">
+                <div class="alert-dot">🟡</div>
+                <div class="alert-text">
+                  <strong>Internações CSAPS — Nordeste</strong>
+                  UFs acima da média nacional, com necessidade de comparação com série histórica.
+                  <div class="alert-meta">⏱ Ontem · Indicador: INT_CSAPS · Prioridade: média</div>
+                </div>
               </div>
             </div>
-            <div class="alert-item atencao">
-              <div class="alert-dot">🟡</div>
-              <div class="alert-text">
-                <strong>Internações CSAPS — Nordeste abaixo da média</strong>
-                7 UFs abaixo da média nacional com tendência de piora.
-                <div class="alert-meta">⏱ Ontem · Indicador: INT_CSAPS · Região: Nordeste</div>
-              </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title"><span>🛡️</span> Saúde da informação</div>
+            <div class="exec-quality-mini">
+              <div class="health-item"><strong>Validação</strong><span>COMAV</span></div>
+              <div class="health-item"><strong>Completude</strong><span>99,3%</span></div>
+              <div class="health-item"><strong>Pendências de carga</strong><span>ver módulo</span></div>
+              <div class="health-item"><strong>Duplicidades críticas</strong><span>0</span></div>
             </div>
-            <div class="alert-item atencao">
-              <div class="alert-dot">🟡</div>
-              <div class="alert-text">
-                <strong>Carga de dados incompleta — Base ESF</strong>
-                Competência mai/2026 com 3 municípios sem atualização na base ESF.
-                <div class="alert-meta">⏱ 2 dias atrás · Módulo: Qualidade de Dados</div>
-              </div>
-            </div>
-            <div class="alert-item ok">
-              <div class="alert-dot">🟢</div>
-              <div class="alert-text">
-                <strong>Cobertura AB atinge meta trimestral</strong>
-                Meta de 67% atingida com 1 mês de antecedência.
-                <div class="alert-meta">⏱ 3 dias atrás · Indicador: COB_AB</div>
-              </div>
+            <div class="decision-strip">
+              <span class="decision-chip">Rastreabilidade ativa</span>
+              <span class="decision-chip">Controle de qualidade</span>
+              <span class="decision-chip">Consulta em Qualidade dos Dados</span>
             </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-title"><span>📊</span> Evolução — Cobertura AB (%)</div>
-          <canvas id="chartCobertura" height="160"></canvas>
+        <div class="card chart-card exec-main-chart">
+          <div class="card-title"><span>📊</span> Tendência principal — Cobertura AB (%)</div>
+          <canvas id="chartCobertura" height="210"></canvas>
+          <div class="chart-caption">Gráfico principal do painel executivo. Mostra a evolução da cobertura e a distância em relação à meta anual.</div>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-title"><span>📌</span> Indicadores Prioritários — Visão Rápida</div>
-        <table class="ind-table">
-          <thead>
-            <tr>
-              <th>Indicador</th>
-              <th>Última competência</th>
-              <th>Meta</th>
-              <th>Progresso</th>
-              <th>Tendência</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="ind-name">Cobertura AB<small>Percentual de cobertura nacional</small></td>
-              <td><strong>67,4%</strong></td>
-              <td>70%</td>
-              <td>
-                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:96%;background:var(--verde-med)"></div></div>
-              </td>
-              <td>
-                <div class="mini-chart" id="mc1"></div>
-              </td>
-              <td><span class="tag tag-verde">✓ No prazo</span></td>
-            </tr>
-            <tr>
-              <td class="ind-name">Mortalidade Materna<small>por 100.000 NV</small></td>
-              <td><strong>52,1</strong></td>
-              <td>45,0</td>
-              <td>
-                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:60%;background:var(--amarelo)"></div></div>
-              </td>
-              <td>
-                <div class="mini-chart" id="mc2"></div>
-              </td>
-              <td><span class="tag tag-amarelo">⚡ Atenção</span></td>
-            </tr>
-            <tr>
-              <td class="ind-name">Internações CSAPS<small>por 10.000 hab.</small></td>
-              <td><strong>54,3</strong></td>
-              <td>50,0</td>
-              <td>
-                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:55%;background:var(--laranja)"></div></div>
-              </td>
-              <td>
-                <div class="mini-chart" id="mc3"></div>
-              </td>
-              <td><span class="tag tag-amarelo">⚡ Atenção</span></td>
-            </tr>
-            <tr>
-              <td class="ind-name">Mortalidade Infantil<small>por 1.000 NV</small></td>
-              <td><strong>11,8</strong></td>
-              <td>10,0</td>
-              <td>
-                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:40%;background:var(--vermelho)"></div></div>
-              </td>
-              <td>
-                <div class="mini-chart" id="mc4"></div>
-              </td>
-              <td><span class="tag tag-vermelho">✗ Crítico</span></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="insight-grid">
+        <div class="card">
+          <div class="card-title"><span>🧠</span> Leitura executiva automatizada do escopo</div>
+          <div class="insight-list" id="executiveInsights">
+            <div class="insight-item"><div class="insight-bar"></div><div><strong>Integração territorial</strong><span>Os filtros globais orientam painel, mapa, indicadores, IA, interseccionalidade, qualidade e auditoria.</span></div></div>
+            <div class="insight-item"><div class="insight-bar" style="background:var(--amarelo)"></div><div><strong>Atenção metodológica</strong><span>Valores são fictícios, mas a lógica de governança e análise por granularidade está estruturada.</span></div></div>
+            <div class="insight-item"><div class="insight-bar" style="background:var(--verde-med)"></div><div><strong>Uso esperado</strong><span>Subsidiar reuniões de monitoramento, priorização de territórios e validação técnica das áreas responsáveis.</span></div></div>
+          </div>
+        </div>
+
+        <div class="card exec-priority-table">
+          <div class="card-title"><span>📌</span> Indicadores prioritários</div>
+          <table class="ind-table">
+            <thead>
+              <tr>
+                <th>Indicador</th>
+                <th>Atual</th>
+                <th>Meta</th>
+                <th>Progresso</th>
+                <th>Tendência</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ind-name">Cobertura AB<small>Percentual de cobertura no escopo</small></td>
+                <td><strong>67,4%</strong></td>
+                <td>70%</td>
+                <td><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:96%;background:var(--verde-med)"></div></div></td>
+                <td><div class="mini-chart" id="mc1"></div></td>
+                <td><span class="tag tag-verde">✓ Próximo da meta</span></td>
+              </tr>
+              <tr>
+                <td class="ind-name">Mortalidade Materna<small>por 100.000 NV</small></td>
+                <td><strong>52,1</strong></td>
+                <td>45,0</td>
+                <td><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:60%;background:var(--amarelo)"></div></div></td>
+                <td><div class="mini-chart" id="mc2"></div></td>
+                <td><span class="tag tag-amarelo">⚡ Atenção</span></td>
+              </tr>
+              <tr>
+                <td class="ind-name">Internações CSAPS<small>por 10.000 hab.</small></td>
+                <td><strong>54,3</strong></td>
+                <td>50,0</td>
+                <td><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:55%;background:var(--laranja)"></div></div></td>
+                <td><div class="mini-chart" id="mc3"></div></td>
+                <td><span class="tag tag-amarelo">⚡ Atenção</span></td>
+              </tr>
+              <tr>
+                <td class="ind-name">Mortalidade Infantil<small>por 1.000 NV</small></td>
+                <td><strong>11,8</strong></td>
+                <td>10,0</td>
+                <td><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:40%;background:var(--vermelho)"></div></div></td>
+                <td><div class="mini-chart" id="mc4"></div></td>
+                <td><span class="tag tag-vermelho">✗ Crítico</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="exec-secondary-charts">
+        <div class="card chart-card">
+          <div class="card-title"><span>📈</span> Série histórica — Internações por CSAPS</div>
+          <canvas id="chartSerieCsaps" height="175"></canvas>
+          <div class="chart-caption">Tendência de redução gradual, ainda acima da meta de acompanhamento.</div>
+        </div>
+        <div class="card chart-card">
+          <div class="card-title"><span>🗺️</span> Comparativo regional — Cobertura AB</div>
+          <canvas id="chartRegioesCob" height="175"></canvas>
+          <div class="chart-caption">Comparação rápida entre regiões para priorização territorial.</div>
+        </div>
+        <div class="card chart-card">
+          <div class="card-title"><span>📉</span> Indicadores em atenção — tendência trimestral</div>
+          <canvas id="chartTendenciaAtencao" height="175"></canvas>
+          <div class="chart-caption">Evolução dos indicadores que exigem acompanhamento pela gestão.</div>
+        </div>
       </div>
     </div>
+
 
     <!-- ── INDICADORES ── -->
     <div id="page-indicadores" class="page">
       <div class="page-header">
-        <div class="page-title">Indicadores</div>
-        <div class="page-desc">Visualização, filtros e análise por território, equipe e período.</div>
+        <div class="page-title">Indicadores Estratégicos</div>
+        <div class="page-desc">Consulta técnica por departamento da SAPS, tema, natureza do indicador, forma de atualização, fonte e status de validação.</div>
+      </div>
+
+      <div class="two-col">
+        <div class="card chart-card">
+          <div class="card-title"><span>📈</span> Série histórica demonstrativa do indicador selecionado</div>
+          <canvas id="chartIndicadorSerie" height="190"></canvas>
+          <div class="section-note">No protótipo, o gráfico ilustra como a tela poderá apresentar a evolução histórica do indicador com comparação à meta pactuada.</div>
+        </div>
+        <div class="card chart-card">
+          <div class="card-title"><span>📊</span> Comparação territorial do indicador</div>
+          <canvas id="chartIndicadorComparativo" height="190"></canvas>
+          <div class="section-note">A visualização comparativa auxilia a identificar padrões territoriais e apoiar discussões com áreas técnicas e gestão.</div>
+        </div>
       </div>
 
       <div class="card">
-        <div class="ind-filters">
-          <button class="filter-btn active">Todos</button>
-          <button class="filter-btn">Mortalidade</button>
-          <button class="filter-btn">Internações</button>
-          <button class="filter-btn">Cobertura</button>
-          <button class="filter-btn">Equidade</button>
-          <select class="filter-select">
-            <option>🇧🇷 Brasil</option>
-            <option>Norte</option>
-            <option>Nordeste</option>
-            <option>Centro-Oeste</option>
-            <option>Sudeste</option>
-            <option>Sul</option>
+        <div class="ind-filters strategic-filters">
+          <select class="filter-select" id="filtroDepartamento" onchange="aplicarFiltrosIndicadores()">
+            <option value="todos">Todos os departamentos/áreas técnicas</option>
+            <option value="DESF">DESF · Departamento de Saúde da Família e Comunidade</option>
+            <option value="DEPROS">DEPROS · Departamento de Promoção da Saúde</option>
+            <option value="DGCI">DGCI · Departamento de Gestão do Cuidado Integral</option>
+            <option value="DAPS">DAPS · Departamento de Ações Programáticas Estratégicas</option>
+            <option value="GAB/SAPS">Gabinete SAPS · Demandas estratégicas</option>
           </select>
-          <select class="filter-select">
-            <option>Mai/2026</option>
-            <option>Abr/2026</option>
-            <option>Mar/2026</option>
-            <option>Fev/2026</option>
-            <option>Jan/2026</option>
+          <select class="filter-select" id="filtroTema" onchange="aplicarFiltrosIndicadores()">
+            <option value="todos">Todos os temas</option>
+            <option value="Cobertura e acesso">Cobertura e acesso</option>
+            <option value="Condições sensíveis à APS">Condições sensíveis à APS</option>
+            <option value="Saúde materno-infantil">Saúde materno-infantil</option>
+            <option value="Equidade e desigualdades">Equidade e desigualdades</option>
+            <option value="Produção e acompanhamento">Produção e acompanhamento</option>
+            <option value="Qualidade do cuidado">Qualidade do cuidado</option>
           </select>
+          <select class="filter-select" id="filtroNatureza" onchange="aplicarFiltrosIndicadores()">
+            <option value="todos">Todas as naturezas</option>
+            <option value="Estrutura">Estrutura</option>
+            <option value="Processo">Processo</option>
+            <option value="Resultado">Resultado</option>
+          </select>
+          <select class="filter-select" id="filtroAtualizacao" onchange="aplicarFiltrosIndicadores()">
+            <option value="todos">Todas as atualizações</option>
+            <option value="DW">Automática via DW</option>
+            <option value="COMAV">Atualização COMAV</option>
+            <option value="Mista">Mista</option>
+          </select>
+          <select class="filter-select" id="filtroValidacao" onchange="aplicarFiltrosIndicadores()">
+            <option value="todos">Todos os status de validação</option>
+            <option value="Validado pela COMAV">Validado pela COMAV</option>
+            <option value="Em análise técnica">Em análise técnica</option>
+            <option value="Preliminar">Preliminar</option>
+          </select>
+          <select class="filter-select" id="filtroPrioridade" onchange="aplicarFiltrosIndicadores()">
+            <option value="todos">Todas as prioridades</option>
+            <option value="Alta">Prioridade alta</option>
+            <option value="Média">Prioridade média</option>
+            <option value="Rotina">Rotina</option>
+          </select>
+          <button class="btn btn-outline" onclick="limparFiltrosIndicadores()">Limpar filtros</button>
           <button class="btn btn-primary" style="margin-left:auto" onclick="exportarCSV()">⬇ Exportar CSV</button>
+        </div>
+        <div class="validation-note" id="resumoFiltrosIndicadores">Exibindo todos os indicadores estratégicos cadastrados no protótipo.</div>
+        <div class="validation-note" id="indicadoresScopeNote">Escopo territorial aplicado: Brasil completo.</div>
+        <div class="meta-grid" style="margin-bottom:16px;">
+          <div class="meta-card"><strong>Camada de governança</strong><span>Departamento, tema, natureza, prioridade, atualização e validação passam a orientar a leitura dos indicadores.</span></div>
+          <div class="meta-card"><strong>Uso técnico</strong><span>Filtros apoiam a definição de pauta por área responsável e reduzem ruído na análise de indicadores.</span></div>
+          <div class="meta-card"><strong>Produção futura</strong><span>Em produção, cada indicador deve ter dicionário, fórmula, fonte, periodicidade, polaridade e regra de qualidade.</span></div>
         </div>
 
         <table class="ind-table">
@@ -869,11 +1999,13 @@ body {
             <tr>
               <th>Código</th>
               <th>Indicador</th>
+              <th>Área técnica</th>
+              <th>Tema</th>
+              <th>Natureza</th>
               <th>Valor</th>
               <th>Meta</th>
-              <th>Δ Mensal</th>
               <th>Status</th>
-              <th>Fonte</th>
+              <th>Validação</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -886,73 +2018,224 @@ body {
     <!-- ── MAPA ── -->
     <div id="page-mapa" class="page">
       <div class="page-header">
-        <div class="page-title">Mapa Territorial</div>
-        <div class="page-desc">Distribuição dos indicadores por região, UF e município.</div>
+        <div class="page-title">Análise Territorial</div>
+        <div class="page-desc">Leitura territorial dos indicadores por região, UF e município, com apoio à identificação de desigualdades.</div>
       </div>
       <div class="two-col">
         <div class="card" style="grid-column: 1 / -1;">
-          <div class="card-title"><span>🗺️</span> Cobertura de Atenção Básica por Região — Mai/2026</div>
+          <div class="card-title"><span>🗺️</span> <span id="mapMetricTitle">Cobertura de Atenção Básica por Região — Mai/2026</span></div>
           <div class="ind-filters">
-            <select class="filter-select" onchange="atualizarMapa(this.value)">
+            <select class="filter-select" id="mapIndicador" onchange="atualizarMapa(this.value)">
               <option value="cob">Cobertura AB (%)</option>
               <option value="mort_mat">Mortalidade Materna / 100k NV</option>
               <option value="mort_inf">Mortalidade Infantil / 1k NV</option>
               <option value="int_csaps">Internações CSAPS / 10k</option>
             </select>
-            <select class="filter-select">
-              <option>Região</option>
-              <option>UF</option>
+            <select class="filter-select" id="mapFiltroRegiao" onchange="alterarFiltroRegiao(this.value)">
+              <option value="todas">Todas as regiões</option>
+              <option value="Norte">Norte</option>
+              <option value="Nordeste">Nordeste</option>
+              <option value="Centro-Oeste">Centro-Oeste</option>
+              <option value="Sudeste">Sudeste</option>
+              <option value="Sul">Sul</option>
             </select>
-            <button class="btn btn-outline">⬇ Exportar Mapa</button>
+            <select class="filter-select" id="mapFiltroUF" onchange="alterarFiltroUF(this.value)">
+              <option value="todas">Todas as UFs</option>
+            </select>
+            <select class="filter-select" id="mapFiltroMunicipio" onchange="alterarFiltroMunicipio(this.value)">
+              <option value="todos">Municípios da UF</option>
+            </select>
+            <button class="btn btn-outline" onclick="exportarMapaResumo()">⬇ Exportar resumo</button>
           </div>
           <div class="map-container">
-            <svg class="map-svg" viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" id="svgMapa">
-              <!-- Norte -->
-              <polygon id="reg-norte" points="80,30 280,30 310,80 290,140 200,160 100,140 60,100" fill="#4db88a" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Norte','69,2%')"/>
-              <text x="175" y="95" text-anchor="middle" font-size="13" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Norte</text>
-              <text x="175" y="112" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vNorte">69,2%</text>
-
-              <!-- Nordeste -->
-              <polygon id="reg-nordeste" points="290,50 400,40 440,100 420,180 350,210 290,160 300,110" fill="#2d8f65" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Nordeste','58,9%')"/>
-              <text x="370" y="120" text-anchor="middle" font-size="13" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Nordeste</text>
-              <text x="370" y="137" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vNordeste">58,9%</text>
-
-              <!-- Centro-Oeste -->
-              <polygon id="reg-co" points="100,160 200,155 280,165 300,200 280,280 180,300 80,270 70,200" fill="#5b8ed4" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Centro-Oeste','71,4%')"/>
-              <text x="180" y="228" text-anchor="middle" font-size="12" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Centro-Oeste</text>
-              <text x="180" y="244" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vCO">71,4%</text>
-
-              <!-- Sudeste -->
-              <polygon id="reg-sudeste" points="290,200 380,195 420,240 390,310 310,330 270,290 275,240" fill="#1b3f6b" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Sudeste','65,8%')"/>
-              <text x="350" y="265" text-anchor="middle" font-size="13" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Sudeste</text>
-              <text x="350" y="282" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vSudeste">65,8%</text>
-
-              <!-- Sul -->
-              <polygon id="reg-sul" points="200,310 275,295 310,330 290,390 220,400 170,370 165,330" fill="#e6a817" stroke="#fff" stroke-width="2" opacity="0.85" style="cursor:pointer" onclick="cliqueMapa('Sul','74,1%')"/>
-              <text x="240" y="355" text-anchor="middle" font-size="13" font-family="DM Sans,sans-serif" font-weight="700" fill="#fff" pointer-events="none">Sul</text>
-              <text x="240" y="372" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif" fill="#fff" opacity=".85" pointer-events="none" id="vSul">74,1%</text>
-            </svg>
+            <div id="brasilRealMap" class="brasil-real-map" aria-label="Mapa real do Brasil por UF"></div>
 
             <div id="mapaTooltip" style="display:none;position:absolute;background:rgba(28,31,36,.88);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;pointer-events:none;"></div>
 
-            <div class="map-legend">
-              <div class="legend-item"><div class="legend-dot" style="background:#1a6b4a"></div> &gt; 70%</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#4db88a"></div> 65–70%</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#5b8ed4"></div> 60–65%</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#2d8f65"></div> &lt; 60%</div>
-              <div class="legend-item"><div class="legend-dot" style="background:#e6a817"></div> Meta atingida</div>
+            <div class="map-legend" id="mapLegend">
+              <div class="legend-item"><div class="legend-dot" style="background:#1a6b4a"></div> Melhor desempenho</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#4db88a"></div> Faixa superior</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#5b8ed4"></div> Faixa intermediária</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#2d8f65"></div> Faixa inferior</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#e6a817"></div> Destaque territorial</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div> Município selecionado</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#c0392b;border-radius:50%"></div> Município selecionado</div>
             </div>
           </div>
+          <div class="validation-note" id="mapScopeLabel">Escopo atual: Brasil completo.</div>
+          <div class="validation-note">No protótipo, os municípios são demonstrados por pontos georreferenciados. Na versão final, a malha municipal do IBGE/geobr poderá permitir pintura por polígono municipal.</div>
+          <div class="map-meta">
+            <div class="map-meta-item"><strong>Média Brasil</strong><span id="mapMediaBrasil">67,4%</span></div>
+            <div class="map-meta-item"><strong>Região de melhor resultado</strong><span id="mapMelhor">Sul · 74,1%</span></div>
+            <div class="map-meta-item"><strong>Região de maior atenção</strong><span id="mapPior">Nordeste · 58,9%</span></div>
+          </div>
         </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card chart-card">
+          <div class="card-title"><span>📉</span> Tendência do indicador selecionado</div>
+          <canvas id="chartMapaTendencia" height="190"></canvas>
+          <div class="section-note">Série fictícia para demonstrar como o módulo territorial poderá combinar mapa e tendência histórica em uma mesma leitura.</div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span>🏅</span> Ranking territorial da competência</div>
+          <div id="rankingTerritorial" class="ranking-list"></div>
+          <div class="section-note">Os dados abaixo são ilustrativos e demonstram uma possível visualização de ranking por desempenho territorial.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── INTERSECCIONALIDADE ── -->
+    <div id="page-interseccionalidade" class="page">
+      <div class="page-header">
+        <div class="page-title">Monitoramento Interseccional das Desigualdades</div>
+        <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador e território, com comparação entre média geral, maior risco e menor risco.</div>
+      </div>
+
+      <div class="prototype-banner">Módulo demonstrativo. Os valores são fictícios e simulam a lógica de análise interseccional proposta para o MonitoraSAPS.</div>
+
+      <div class="card">
+        <div class="card-title"><span>🧭</span> Seleção da análise</div>
+        <div class="ind-filters strategic-filters">
+          <select class="filter-select" id="interIndicador" onchange="renderInterseccionalidade()">
+            <option value="MORT_MAT">Mortalidade Materna</option>
+            <option value="MORT_INF">Mortalidade Infantil</option>
+            <option value="INT_CSAPS">Internações por CSAPS</option>
+            <option value="COB_AB">Cobertura de Atenção Básica</option>
+            <option value="RACA_COR">Completude do quesito raça/cor</option>
+          </select>
+          <select class="filter-select" id="interTerritorio" onchange="renderInterseccionalidade()">
+            <option>Brasil</option>
+            <option>Região Norte</option>
+            <option>Região Nordeste</option>
+            <option>UF: RJ</option>
+            <option>UF: MA</option>
+            <option>Município: Nova Iguaçu</option>
+            <option>Município: São Gonçalo</option>
+          </select>
+          <select class="filter-select" id="interPeriodo" onchange="renderInterseccionalidade()">
+            <option value="2021-2026">Série 2021–2026</option>
+            <option value="2023-2026">Série 2023–2026</option>
+            <option value="mai2026">Competência Mai/2026</option>
+          </select>
+          <button class="btn btn-primary" onclick="renderInterseccionalidade()">Atualizar leitura</button>
+        </div>
+
+        <div class="inter-note">
+          A análise interseccional permite observar desigualdades que podem ficar ocultas nas médias populacionais, combinando marcadores como raça/cor, gênero, escolaridade, ocupação e território. A proposta é apoiar a identificação de grupos prioritários para análise técnica e tomada de decisão.
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card azul">
+            <div class="stat-label">Índice interseccional demonstrativo</div>
+            <div class="inter-score" id="interScore">2,8x</div>
+            <div class="stat-change neutral">diferença entre estratos extremos</div>
+          </div>
+          <div class="stat-card vermelho">
+            <div class="stat-label">Estratos com maior risco</div>
+            <div class="inter-score" id="interHighCount">4</div>
+            <div class="stat-change down">prioridade para análise técnica</div>
+          </div>
+          <div class="stat-card verde">
+            <div class="stat-label">Variáveis disponíveis</div>
+            <div class="inter-score">5</div>
+            <div class="stat-change neutral">raça/cor, gênero, escolaridade, ocupação e território</div>
+          </div>
+          <div class="stat-card amarelo">
+            <div class="stat-label">Status metodológico</div>
+            <div style="font-weight:800;font-size:18px;margin-top:10px;">Em validação</div>
+            <div class="stat-change neutral">requer pactuação técnica</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inter-grid">
+        <div class="inter-axis-box">
+          <div class="card-title"><span>🧩</span> Eixos interseccionais</div>
+          <div class="inter-axis-row">
+            <label>Raça/cor</label>
+            <select id="interRaca" onchange="renderInterseccionalidade()">
+              <option>Mulheres pretas</option>
+              <option>Mulheres pardas</option>
+              <option>Mulheres brancas</option>
+              <option>População indígena</option>
+              <option>Todos os registros válidos</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Gênero</label>
+            <select id="interGenero" onchange="renderInterseccionalidade()">
+              <option>Mulheres</option>
+              <option>Homens</option>
+              <option>Ignorado</option>
+              <option>Todos</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Escolaridade</label>
+            <select id="interEscolaridade" onchange="renderInterseccionalidade()">
+              <option>Fundamental incompleto</option>
+              <option>Ensino médio</option>
+              <option>Ensino superior</option>
+              <option>Ignorada</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Ocupação</label>
+            <select id="interOcupacao" onchange="renderInterseccionalidade()">
+              <option>Trabalho informal</option>
+              <option>Trabalho formal</option>
+              <option>Desempregada/o</option>
+              <option>Não informado</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Território</label>
+            <select id="interTerrTipo" onchange="renderInterseccionalidade()">
+              <option>Periferia urbana</option>
+              <option>Área rural</option>
+              <option>Capital</option>
+              <option>Interior</option>
+            </select>
+          </div>
+
+          <div class="inter-pills" id="interPills"></div>
+        </div>
+
+        <div class="card chart-card" style="margin-bottom:0;">
+          <div class="card-title"><span>📈</span> Evolução comparada do estrato selecionado</div>
+          <canvas id="interChart" height="210"></canvas>
+          <div class="chart-caption">Compara o estrato interseccional selecionado com a média geral do indicador e com estratos extremos de maior e menor risco.</div>
+        </div>
+      </div>
+
+      <div class="extremes-grid">
+        <div class="extreme-card">
+          <strong>Estrato extremo de maior risco</strong>
+          <span id="highRiskText">—</span>
+        </div>
+        <div class="extreme-card">
+          <strong>Estrato extremo de menor risco</strong>
+          <span id="lowRiskText">—</span>
+        </div>
+      </div>
+
+      <div class="card chart-card" style="margin-top:20px;">
+        <div class="card-title"><span>📈</span> Tendência entre estratos interseccionais — Mai/2026</div>
+        <canvas id="extremeChart" height="160"></canvas>
+        <div class="chart-caption">Leitura em linha para evidenciar a distância entre estratos e facilitar a visualização da tendência relativa entre grupos.</div>
       </div>
     </div>
 
     <!-- ── ALERTAS ── -->
     <div id="page-alertas" class="page">
       <div class="page-header">
-        <div class="page-title">Central de Alertas</div>
-        <div class="page-desc">Alertas automáticos do sistema de monitoramento.</div>
+        <div class="page-title">Central de Alertas Analíticos</div>
+        <div class="page-desc">Alertas derivados da análise dos indicadores, tendências, estratos e variações territoriais. Alertas de carga ficam exclusivamente em Qualidade dos Dados.</div>
       </div>
+      <div class="validation-note">Esta central exibe somente alertas analíticos. Inconsistências de carga, atraso de bases, campos ausentes e falhas de integração ficam no módulo Qualidade dos Dados.</div>
       <div class="stats-grid">
         <div class="stat-card vermelho">
           <div class="stat-top"><div class="stat-label">Críticos</div><div class="stat-icon">🔴</div></div>
@@ -960,11 +2243,11 @@ body {
         </div>
         <div class="stat-card amarelo">
           <div class="stat-top"><div class="stat-label">Atenção</div><div class="stat-icon">🟡</div></div>
-          <div class="stat-value">2</div>
+          <div class="stat-value">1</div>
         </div>
         <div class="stat-card azul">
           <div class="stat-top"><div class="stat-label">Informativos</div><div class="stat-icon">🔵</div></div>
-          <div class="stat-value">4</div>
+          <div class="stat-value">1</div>
         </div>
         <div class="stat-card verde">
           <div class="stat-top"><div class="stat-label">Resolvidos (30d)</div><div class="stat-icon">🟢</div></div>
@@ -972,7 +2255,7 @@ body {
         </div>
       </div>
       <div class="card">
-        <div class="card-title"><span>🔔</span> Todos os Alertas</div>
+        <div class="card-title"><span>🔔</span> Alertas analíticos dos indicadores</div>
         <div class="alert-list">
           <div class="alert-item critico">
             <div class="alert-dot">🔴</div>
@@ -990,22 +2273,6 @@ body {
               <div class="alert-meta">⏱ 31/05/2026 · Indicador: INT_CSAPS · Regiões: Nordeste, Norte</div>
             </div>
           </div>
-          <div class="alert-item atencao">
-            <div class="alert-dot">🟡</div>
-            <div class="alert-text">
-              <strong>Carga de dados incompleta — Base ESF (mai/2026)</strong>
-              3 municípios ainda sem atualização: Codó/MA, Altamira/PA, Marabá/PA. Pode impactar cálculo de cobertura AB regional.
-              <div class="alert-meta">⏱ 30/05/2026 · Módulo: Qualidade de Dados · Responsável: TI/SAPS</div>
-            </div>
-          </div>
-          <div class="alert-item info">
-            <div class="alert-dot">🔵</div>
-            <div class="alert-text">
-              <strong>Nova carga DW disponível — competência Mai/2026</strong>
-              Dados carregados com sucesso em 30/05/2026. 47.823 equipes processadas.
-              <div class="alert-meta">⏱ 30/05/2026 · Módulo: Integração DW</div>
-            </div>
-          </div>
           <div class="alert-item info">
             <div class="alert-dot">🔵</div>
             <div class="alert-text">
@@ -1018,93 +2285,240 @@ body {
       </div>
     </div>
 
+
     <!-- ── IA ── -->
     <div id="page-ia" class="page">
       <div class="page-header">
-        <div class="page-title">Análise Inteligente dos Indicadores</div>
-        <div class="page-desc">Agente de IA para leitura automatizada, alertas e minutas de relatórios.</div>
+        <div class="page-title">Apoio Analítico Automatizado — Simulação</div>
+        <div class="page-desc">Gráficos, leitura técnica preliminar, comparação territorial e síntese operacional para apoio à gestão, com validação obrigatória da COMAV.</div>
       </div>
 
-      <div class="ia-panel">
+      <div class="prototype-banner">Módulo demonstrativo. Todos os dados exibidos são fictícios e simulam o comportamento esperado de um agente de apoio analítico institucional.</div>
+
+      <div class="ia-panel light">
         <div class="ia-panel-header">
           <div>
-            <div class="ia-badge">✦ Agente IA · COMAV</div>
-            <h3 style="margin-top:7px;">Gerar análise automática de indicador</h3>
+            <div class="ia-badge">✦ Apoio analítico · COMAV · Gabinete SAPS</div>
+            <h3 style="margin-top:7px;">Gerar análise simulada do indicador</h3>
           </div>
         </div>
+
         <div class="ia-form">
           <div class="ia-field">
             <label>INDICADOR</label>
-            <select class="ia-select" id="iaIndicador">
-              <option value="cobertura_ab">Cobertura de Atenção Básica</option>
-              <option value="mortalidade_materna">Mortalidade Materna</option>
-              <option value="mortalidade_infantil">Mortalidade Infantil</option>
-              <option value="internacoes_csaps">Internações CSAPS</option>
-              <option value="mortalidade_csaps">Mortalidade por CSAPS</option>
-            </select>
+            <select class="ia-select" id="iaInd" onchange="renderIAAvancada()"></select>
           </div>
           <div class="ia-field">
             <label>TERRITÓRIO</label>
-            <select class="ia-select" id="iaTerritorio">
-              <option value="Brasil">🇧🇷 Brasil</option>
-              <option value="Norte">Região Norte</option>
-              <option value="Nordeste">Região Nordeste</option>
-              <option value="Centro-Oeste">Centro-Oeste</option>
-              <option value="Sudeste">Sudeste</option>
-              <option value="Sul">Sul</option>
+            <select class="ia-select" id="iaTerr" onchange="renderIAAvancada()">
+              <option>Brasil</option>
+              <option>Norte</option>
+              <option>Nordeste</option>
+              <option>Centro-Oeste</option>
+              <option>Sudeste</option>
+              <option>Sul</option>
+              <option>DF</option>
+              <option>BA</option>
+              <option>MA</option>
+              <option>RJ</option>
+              <option>Nova Iguaçu</option>
+              <option>São Gonçalo</option>
             </select>
           </div>
           <div class="ia-field">
-            <label>PERÍODO</label>
-            <select class="ia-select" id="iaPeriodo">
-              <option value="mai/2026">Mai/2026 (última carga)</option>
-              <option value="últimos 3 meses">Últimos 3 meses</option>
-              <option value="2025-2026">2025–2026</option>
-              <option value="2023-2026">Série 2023–2026</option>
+            <label>TIPO DE LEITURA</label>
+            <select class="ia-select" id="iaTipo" onchange="renderIAAvancada()">
+              <option>Situação e tendência</option>
+              <option>Desigualdades e estratos</option>
+              <option>Comparação territorial</option>
+              <option>Recomendações para gestão</option>
             </select>
           </div>
           <div class="ia-field">
             <label>‎</label>
-            <button class="btn-ia" id="btnGerarIA" onclick="gerarAnaliseIA()">
-              <span>✦</span> Gerar análise
+            <button class="btn-ia" id="btnIA" onclick="renderIAAvancada()">
+              <span>✦</span> Atualizar análise
             </button>
           </div>
         </div>
-        <div class="ia-result" id="iaResult"></div>
-        <div class="ia-meta" id="iaMeta" style="display:none">
-          <span>Análise gerada por IA · Revisão obrigatória pela COMAV antes de uso institucional</span>
-          <button class="btn-export" onclick="exportarAnalise()">⬇ Exportar análise</button>
+
+        <div class="validation-note">A análise gerada é uma minuta automatizada e deve ser revisada pela COMAV e pela área técnica responsável antes de qualquer uso institucional, publicação ou encaminhamento externo.</div>
+      </div>
+
+      <div class="ia-advanced-grid">
+        <div class="card chart-card">
+          <div class="card-title"><span>📈</span> Série histórica simulada</div>
+          <canvas id="iaTrend" height="170"></canvas>
+          <div class="chart-caption">Evolução do território selecionado em comparação com a média Brasil e a meta demonstrativa.</div>
+        </div>
+        <div class="card chart-card">
+          <div class="card-title"><span>📊</span> Comparação com pares territoriais</div>
+          <canvas id="iaCompare" height="170"></canvas>
+          <div class="chart-caption">Comparação entre regiões/territórios para indicar posição relativa do território selecionado.</div>
+        </div>
+        <div class="card chart-card">
+          <div class="card-title"><span>🧬</span> Desagregação fictícia</div>
+          <canvas id="iaStrata" height="170"></canvas>
+          <div class="chart-caption">Simulação de leitura por estratos sociais ou marcadores de desigualdade.</div>
         </div>
       </div>
 
       <div class="two-col">
         <div class="card">
-          <div class="card-title"><span>📝</span> Produtos disponíveis</div>
-          <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;">
-            <button class="btn btn-outline" onclick="gerarProduto('boletim')" style="text-align:left;padding:12px 16px;">
-              📄 <strong>Boletim mensal</strong> — Resumo Mai/2026
-            </button>
-            <button class="btn btn-outline" onclick="gerarProduto('executivo')" style="text-align:left;padding:12px 16px;">
-              📊 <strong>Informe executivo</strong> — Principais destaques
-            </button>
-            <button class="btn btn-outline" onclick="gerarProduto('reuniao')" style="text-align:left;padding:12px 16px;">
-              🗓 <strong>Pauta para reunião de monitoramento</strong>
-            </button>
-            <button class="btn btn-outline" onclick="gerarProduto('desigualdade')" style="text-align:left;padding:12px 16px;">
-              ⚖️ <strong>Análise de desigualdades</strong> — Raça/cor, gênero
-            </button>
+          <div class="card-title"><span>🧠</span> Interpretação automatizada</div>
+          <div class="ia-highlight" id="iaText">Selecione um indicador para gerar a análise.</div>
+          <div class="ia-copy-actions">
+            <button class="btn btn-verde" id="copyIA" onclick="copiarAnaliseIAAvancada()">📋 Copiar análise</button>
+            <button class="btn btn-outline" id="downIA" onclick="baixarAnaliseIAAvancada()">⬇ Baixar TXT</button>
           </div>
         </div>
         <div class="card">
-          <div class="card-title"><span>📄</span> Saída gerada</div>
-          <div id="produtoResult" style="font-size:13.5px;color:var(--cinza-med);line-height:1.7;min-height:120px;">
-            Selecione um produto ao lado para gerar o texto automaticamente via IA.
-          </div>
-          <div id="produtoBtns" style="display:none;margin-top:14px;display:flex;gap:8px;">
-            <button class="btn btn-verde" style="font-size:12.5px;" onclick="copiarProduto()">📋 Copiar</button>
-            <button class="btn btn-outline" style="font-size:12.5px;" onclick="exportarProduto()">⬇ Exportar</button>
-          </div>
+          <div class="card-title"><span>📌</span> Síntese operacional sugerida</div>
+          <table class="ia-table">
+            <thead>
+              <tr>
+                <th>Dimensão</th>
+                <th>Leitura fictícia</th>
+                <th>Ação sugerida</th>
+              </tr>
+            </thead>
+            <tbody id="iaSynth"></tbody>
+          </table>
         </div>
+      </div>
+    </div>
+
+
+    <!-- ── RELATÓRIO EXECUTIVO ── -->
+    <div id="page-relatorio" class="page">
+      <div class="page-header">
+        <div class="page-title">Relatório Executivo do Escopo Selecionado</div>
+        <div class="page-desc">Gera uma minuta estratégica para subsidiar o Gabinete da Secretária, o Gabinete do Ministro, a Presidência e demandas de comunicação institucional.</div>
+      </div>
+
+      <div class="prototype-banner">A COMAV está vinculada diretamente ao Gabinete da Secretária da SAPS. Este módulo simula a consolidação de informações estratégicas para gabinetes e demandas de imprensa.</div>
+
+      <div class="module-grid">
+        <div class="module-card"><strong>Gabinete da Secretária</strong><span>Síntese técnica para tomada de decisão e priorização de agendas internas.</span></div>
+        <div class="module-card"><strong>Gabinete do Ministro</strong><span>Informações estratégicas com linguagem objetiva, territorializada e validável.</span></div>
+        <div class="module-card"><strong>Presidência</strong><span>Resumo executivo com foco em cenário, tendência, riscos e entregas.</span></div>
+        <div class="module-card"><strong>Imprensa</strong><span>Pontos-chave com linguagem segura e sem exposição de dados não validados.</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>📝</span> Gerador de relatório</div>
+        <div class="ind-filters strategic-filters">
+          <select class="filter-select" id="relatorioTipo" onchange="gerarRelatorioExecutivo()">
+            <option value="gabinete">Síntese para gabinete</option>
+            <option value="ministro">Subsídio para Gabinete do Ministro</option>
+            <option value="presidencia">Subsídio para Presidência</option>
+            <option value="imprensa">Pontos para imprensa</option>
+          </select>
+          <select class="filter-select" id="relatorioTom" onchange="gerarRelatorioExecutivo()">
+            <option value="tecnico">Técnico-institucional</option>
+            <option value="executivo">Executivo e objetivo</option>
+            <option value="comunicacao">Comunicação pública</option>
+          </select>
+          <button class="btn btn-primary" onclick="gerarRelatorioExecutivo()">Gerar minuta</button>
+          <button class="btn btn-outline" onclick="baixarRelatorioExecutivo()">⬇ Baixar TXT</button>
+        </div>
+        <div class="report-box" id="relatorioExecutivoBox"></div>
+      </div>
+    </div>
+
+    <!-- ── PLANO DE AÇÃO ── -->
+    <div id="page-plano" class="page">
+      <div class="page-header">
+        <div class="page-title">Plano de Ação dos Alertas Analíticos</div>
+        <div class="page-desc">Registro de encaminhamentos, responsáveis e prazos derivados da análise dos indicadores. Alertas de carga permanecem em Qualidade dos Dados.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>✅</span> Encaminhamentos priorizados</div>
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th>Alerta analítico</th>
+              <th>Responsável técnico</th>
+              <th>Ação proposta</th>
+              <th>Prazo</th>
+              <th>Status</th>
+              <th>Produto esperado</th>
+            </tr>
+          </thead>
+          <tbody id="planoAcaoRows">
+            <tr>
+              <td>Mortalidade infantil — Norte</td>
+              <td>DGCI + COMAV/Gabinete SAPS</td>
+              <td>Validar série, comparar territórios extremos e produzir síntese técnica.</td>
+              <td>10/06/2026</td>
+              <td><span class="action-status andamento">Em análise</span></td>
+              <td>Nota executiva para gabinete</td>
+            </tr>
+            <tr>
+              <td>Internações CSAPS — Nordeste</td>
+              <td>DESF + COMAV/Gabinete SAPS</td>
+              <td>Identificar UFs e municípios com pior tendência e comparar com cobertura AB.</td>
+              <td>15/06/2026</td>
+              <td><span class="action-status novo">Novo</span></td>
+              <td>Mapa e ranking territorial</td>
+            </tr>
+            <tr>
+              <td>Desigualdade racial — mortalidade materna</td>
+              <td>DGCI + DEPROS + COMAV/Gabinete SAPS</td>
+              <td>Produzir leitura interseccional com recorte raça/cor e território.</td>
+              <td>18/06/2026</td>
+              <td><span class="action-status novo">Novo</span></td>
+              <td>Síntese estratégica e pontos para comunicação</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── DICIONÁRIO DE INDICADORES ── -->
+    <div id="page-dicionario" class="page">
+      <div class="page-header">
+        <div class="page-title">Dicionário de Indicadores</div>
+        <div class="page-desc">Camada metodológica do sistema: fórmula, fonte, periodicidade, polaridade, departamento responsável e validação pela COMAV/Gabinete SAPS.</div>
+      </div>
+
+      <div class="validation-note">A COMAV não é departamento: atua vinculada ao Gabinete da Secretária da SAPS, monitorando os indicadores estratégicos e consolidando informações para demandas dos gabinetes e da comunicação institucional.</div>
+
+      <div class="card">
+        <div class="card-title"><span>📚</span> Metadados dos indicadores</div>
+        <div class="ind-filters strategic-filters">
+          <div class="dictionary-search"><input id="buscaDicionario" placeholder="Buscar por código, indicador, tema, fonte ou departamento..." oninput="popularDicionarioIndicadores()"></div>
+          <select class="filter-select" id="dicNatureza" onchange="popularDicionarioIndicadores()">
+            <option value="todos">Todas as naturezas</option>
+            <option value="Estrutura">Estrutura</option>
+            <option value="Processo">Processo</option>
+            <option value="Resultado">Resultado</option>
+          </select>
+          <select class="filter-select" id="dicDepartamento" onchange="popularDicionarioIndicadores()">
+            <option value="todos">Todos os departamentos/áreas</option>
+            <option value="DESF">DESF</option>
+            <option value="DEPROS">DEPROS</option>
+            <option value="DGCI">DGCI</option>
+            <option value="DAPS">DAPS</option>
+            <option value="GAB/SAPS">Gabinete SAPS</option>
+          </select>
+        </div>
+        <table class="ind-table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Indicador</th>
+              <th>Área técnica</th>
+              <th>Natureza</th>
+              <th>Fonte</th>
+              <th>Periodicidade</th>
+              <th>Polaridade</th>
+              <th>Validação</th>
+            </tr>
+          </thead>
+          <tbody id="dicionarioIndicadoresRows"></tbody>
+        </table>
       </div>
     </div>
 
@@ -1114,6 +2528,38 @@ body {
         <div class="page-title">Controle de Qualidade dos Dados</div>
         <div class="page-desc">Verificação automática das cargas recebidas. Sinaliza falhas antes da atualização dos painéis.</div>
       </div>
+      <div class="validation-note">Este módulo permite identificar falhas de carga, campos ausentes, duplicidades, valores atípicos e possíveis impactos nos indicadores antes da publicação das informações no painel executivo.</div>
+      <br>
+      <div class="card">
+        <div class="card-title"><span>⚙️</span> Alertas de carga e integração de bases</div>
+        <div class="alert-list">
+          <div class="alert-item atencao">
+            <div class="alert-dot">🟡</div>
+            <div class="alert-text">
+              <strong>Carga de dados incompleta — Base ESF (mai/2026)</strong>
+              3 municípios ainda sem atualização: Codó/MA, Altamira/PA e Marabá/PA. Pode impactar o cálculo de cobertura AB no recorte municipal.
+              <div class="alert-meta">⏱ 30/05/2026 · Tipo: Carga incompleta · Responsável: TI/SAPS · Status: em tratamento</div>
+            </div>
+          </div>
+          <div class="alert-item info">
+            <div class="alert-dot">🔵</div>
+            <div class="alert-text">
+              <strong>Nova carga DW disponível — competência Mai/2026</strong>
+              Dados carregados com sucesso em 30/05/2026. 47.823 equipes processadas e 99,3% de completude geral.
+              <div class="alert-meta">⏱ 30/05/2026 · Tipo: Integração DW · Status: carga processada</div>
+            </div>
+          </div>
+          <div class="alert-item atencao">
+            <div class="alert-dot">🟡</div>
+            <div class="alert-text">
+              <strong>Variação atípica pós-carga — cobertura municipal</strong>
+              Oscilação superior ao esperado em municípios com atualização parcial. Recomenda-se bloquear uso externo até validação da carga.
+              <div class="alert-meta">⏱ 30/05/2026 · Tipo: Regra de qualidade · Impacto: municipal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="qc-grid">
         <div class="qc-card">
           <div class="qc-value" style="color:var(--verde-med)">✓</div>
@@ -1147,6 +2593,25 @@ body {
         </div>
       </div>
       <div class="card">
+        <div class="card-title"><span>🧪</span> Matriz de validação e impacto nos indicadores</div>
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th>Validação</th>
+              <th>Resultado</th>
+              <th>Impacto estimado</th>
+              <th>Encaminhamento</th>
+            </tr>
+          </thead>
+          <tbody id="qualityImpactRows">
+            <tr><td>Completude da carga</td><td><span class="tag tag-verde">99,3%</span></td><td>Baixo impacto nacional</td><td>Manter atualização dos painéis</td></tr>
+            <tr><td>Municípios sem dados</td><td><span class="tag tag-amarelo">3 pendências</span></td><td>Impacto local/municipal</td><td>Registrar ressalva no escopo afetado</td></tr>
+            <tr><td>Variações atípicas</td><td><span class="tag tag-amarelo">1 ocorrência</span></td><td>Requer validação técnica</td><td>Encaminhar para área responsável</td></tr>
+            <tr><td>Duplicidades críticas</td><td><span class="tag tag-verde">0</span></td><td>Sem impacto identificado</td><td>Sem ação adicional</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
         <div class="card-title"><span>⚙️</span> Ocorrências da última carga — Mai/2026</div>
         <div class="alert-list">
           <div class="alert-item atencao">
@@ -1175,14 +2640,21 @@ body {
           </div>
         </div>
       </div>
+
+      <div class="card">
+        <div class="card-title"><span>🧭</span> Impacto da qualidade dos dados na leitura dos indicadores</div>
+        <div class="validation-note">A pendência identificada na base ESF pode impactar parcialmente os indicadores de cobertura em três municípios. Os indicadores nacionais permanecem disponíveis para análise, com ressalva metodológica registrada para acompanhamento da COMAV.</div>
+      </div>
     </div>
 
     <!-- ── AUDITORIA ── -->
     <div id="page-auditoria" class="page">
       <div class="page-header">
-        <div class="page-title">Trilha de Auditoria</div>
-        <div class="page-desc">Registro de todas as alterações realizadas no sistema. Rastreabilidade e governança dos dados.</div>
+        <div class="page-title">Auditoria e Governança</div>
+        <div class="page-desc">Registro das alterações, validações e justificativas para garantir rastreabilidade e controle institucional.</div>
       </div>
+      <div class="validation-note">Todas as alterações manuais realizadas no sistema devem registrar usuário, data, valor anterior, novo valor, justificativa, origem da informação e status de validação.</div>
+      <br>
       <div class="card">
         <div class="ind-filters" style="margin-bottom:16px;">
           <select class="filter-select">
@@ -1294,38 +2766,118 @@ body {
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/br/br-all.js"></script>
 <script>
 // ── DATA ──
 const indicadoresData = [
-  { cod: 'COB_AB', nome: 'Cobertura de Atenção Básica', tipo: 'Cobertura', valor: '67,4%', meta: '70%', delta: '+1,2 p.p.', deltaUp: true, status: 'atencao', fonte: 'SIAB/DW',
-    ficha: { definicao: 'Proporção da população coberta por equipes de AB cadastradas no SCNES.', numerador: 'Pop. coberta por equipes AB', denominador: 'Pop. total estimada', periodicidade: 'Mensal', fonte: 'SCNES/SIAB — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '70%' }},
-  { cod: 'MORT_MAT', nome: 'Mortalidade Materna', tipo: 'Mortalidade', valor: '52,1', meta: '45,0', delta: '±0,0', deltaUp: null, status: 'atencao', fonte: 'SIM/DW',
-    ficha: { definicao: 'Óbitos maternos por 100.000 nascidos vivos.', numerador: 'Óbitos maternos', denominador: '100.000 NV', periodicidade: 'Anual/mensal', fonte: 'SIM — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '45,0' }},
-  { cod: 'MORT_INF', nome: 'Mortalidade Infantil', tipo: 'Mortalidade', valor: '11,8', meta: '10,0', delta: '+1,4 ▲', deltaUp: false, status: 'critico', fonte: 'SIM/DW',
-    ficha: { definicao: 'Óbitos de menores de 1 ano por 1.000 nascidos vivos.', numerador: 'Óbitos < 1 ano', denominador: '1.000 NV', periodicidade: 'Mensal', fonte: 'SIM — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '10,0' }},
-  { cod: 'INT_CSAPS', nome: 'Internações por CSAPS', tipo: 'Internações', valor: '54,3', meta: '50,0', delta: '−2,1', deltaUp: true, status: 'atencao', fonte: 'SIH/DW',
+  { cod: 'COB_AB', nome: 'Cobertura de Atenção Básica', tipo: 'Cobertura', departamento: 'DESF', tema: 'Cobertura e acesso', natureza: 'Estrutura', prioridade: 'Alta', atualizacao: 'DW', valor: '67,4%', meta: '70%', delta: '+1,2 p.p.', deltaUp: true, status: 'atencao', fonte: 'SCNES/SISAB/DW', validacao: 'Validado pela COMAV',
+    ficha: { definicao: 'Proporção da população coberta por equipes de AB cadastradas no SCNES.', numerador: 'Pop. coberta por equipes AB', denominador: 'Pop. total estimada', periodicidade: 'Mensal', fonte: 'SCNES/SISAB — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '70%' }},
+  { cod: 'EQUIPES_ESF', nome: 'Equipes de Saúde da Família homologadas', tipo: 'Cobertura', departamento: 'DESF', tema: 'Cobertura e acesso', natureza: 'Estrutura', prioridade: 'Alta', atualizacao: 'DW', valor: '47.823', meta: '50.000', delta: '+318', deltaUp: true, status: 'ok', fonte: 'SCNES/DW', validacao: 'Validado pela COMAV',
+    ficha: { definicao: 'Número de equipes de Saúde da Família homologadas e com registro ativo.', numerador: 'Equipes homologadas ativas', denominador: 'Não se aplica', periodicidade: 'Mensal', fonte: 'SCNES — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '50.000' }},
+  { cod: 'INT_CSAPS', nome: 'Internações por CSAPS', tipo: 'Internações', departamento: 'GAB/SAPS', tema: 'Condições sensíveis à APS', natureza: 'Resultado', prioridade: 'Alta', atualizacao: 'DW', valor: '54,3', meta: '50,0', delta: '−2,1', deltaUp: true, status: 'atencao', fonte: 'SIH/DW', validacao: 'Validado pela COMAV',
     ficha: { definicao: 'Taxa de internações por condições sensíveis à APS por 10.000 habitantes.', numerador: 'Internações CSAPS', denominador: '10.000 hab.', periodicidade: 'Mensal', fonte: 'SIH — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '50,0' }},
-  { cod: 'MORT_CSAPS', nome: 'Mortalidade por CSAPS', tipo: 'Mortalidade', valor: '38,7', meta: '35,0', delta: '−0,8', deltaUp: true, status: 'ok', fonte: 'SIM/DW',
+  { cod: 'MORT_CSAPS', nome: 'Mortalidade por CSAPS', tipo: 'Mortalidade', departamento: 'GAB/SAPS', tema: 'Condições sensíveis à APS', natureza: 'Resultado', prioridade: 'Média', atualizacao: 'DW', valor: '38,7', meta: '35,0', delta: '−0,8', deltaUp: true, status: 'ok', fonte: 'SIM/DW', validacao: 'Validado pela COMAV',
     ficha: { definicao: 'Taxa de mortalidade por condições sensíveis à APS por 100.000 habitantes.', numerador: 'Óbitos CSAPS', denominador: '100.000 hab.', periodicidade: 'Anual', fonte: 'SIM — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '35,0' }},
+  { cod: 'MORT_MAT', nome: 'Mortalidade Materna', tipo: 'Mortalidade', departamento: 'DGCI', tema: 'Saúde materno-infantil', natureza: 'Resultado', prioridade: 'Alta', atualizacao: 'DW', valor: '52,1', meta: '45,0', delta: '±0,0', deltaUp: null, status: 'atencao', fonte: 'SIM/DW', validacao: 'Validado pela COMAV',
+    ficha: { definicao: 'Óbitos maternos por 100.000 nascidos vivos.', numerador: 'Óbitos maternos', denominador: '100.000 NV', periodicidade: 'Anual/mensal', fonte: 'SIM — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '45,0' }},
+  { cod: 'MORT_INF', nome: 'Mortalidade Infantil', tipo: 'Mortalidade', departamento: 'DGCI', tema: 'Saúde materno-infantil', natureza: 'Resultado', prioridade: 'Alta', atualizacao: 'DW', valor: '11,8', meta: '10,0', delta: '+1,4 ▲', deltaUp: false, status: 'critico', fonte: 'SIM/DW', validacao: 'Em análise técnica',
+    ficha: { definicao: 'Óbitos de menores de 1 ano por 1.000 nascidos vivos.', numerador: 'Óbitos < 1 ano', denominador: '1.000 NV', periodicidade: 'Mensal', fonte: 'SIM — DW SAPS', polaridade: 'Quanto menor, melhor', meta2026: '10,0' }},
+  { cod: 'PICS_AB', nome: 'Oferta de PICS na APS', tipo: 'Promoção da Saúde', departamento: 'DEPROS', tema: 'Produção e acompanhamento', natureza: 'Processo', prioridade: 'Média', atualizacao: 'Mista', valor: '38,5%', meta: '45%', delta: '+2,4 p.p.', deltaUp: true, status: 'atencao', fonte: 'SISAB/área técnica', validacao: 'Preliminar',
+    ficha: { definicao: 'Percentual de municípios com registro de oferta de Práticas Integrativas e Complementares na APS.', numerador: 'Municípios com registro de oferta de PICS', denominador: 'Total de municípios', periodicidade: 'Mensal/Quadrimestral', fonte: 'SISAB e validação técnica', polaridade: 'Quanto maior, melhor', meta2026: '45%' }},
+  { cod: 'PROMO_ATIV', nome: 'Ações de promoção da saúde registradas', tipo: 'Promoção da Saúde', departamento: 'DEPROS', tema: 'Produção e acompanhamento', natureza: 'Processo', prioridade: 'Rotina', atualizacao: 'Mista', valor: '82.140', meta: '90.000', delta: '+4.218', deltaUp: true, status: 'ok', fonte: 'SISAB/COMAV', validacao: 'Preliminar',
+    ficha: { definicao: 'Quantidade de ações coletivas e atividades de promoção da saúde registradas na APS.', numerador: 'Ações registradas', denominador: 'Não se aplica', periodicidade: 'Mensal', fonte: 'SISAB e atualização COMAV', polaridade: 'Quanto maior, melhor', meta2026: '90.000' }},
+  { cod: 'RACA_COR', nome: 'Completude do quesito raça/cor', tipo: 'Equidade', departamento: 'GAB/SAPS', tema: 'Equidade e desigualdades', natureza: 'Processo', prioridade: 'Alta', atualizacao: 'DW', valor: '86,2%', meta: '95%', delta: '+0,9 p.p.', deltaUp: true, status: 'atencao', fonte: 'SISAB/SIM/SINASC', validacao: 'Em análise técnica',
+    ficha: { definicao: 'Percentual de registros com preenchimento válido do quesito raça/cor nas bases selecionadas.', numerador: 'Registros com raça/cor preenchida', denominador: 'Total de registros válidos', periodicidade: 'Mensal', fonte: 'Bases integradas do SUS — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '95%' }},
+  { cod: 'QUAL_DADOS', nome: 'Completude geral da carga de dados', tipo: 'Qualidade dos Dados', departamento: 'GAB/SAPS', tema: 'Qualidade do cuidado', natureza: 'Processo', prioridade: 'Alta', atualizacao: 'DW', valor: '99,3%', meta: '98%', delta: '+0,2 p.p.', deltaUp: true, status: 'ok', fonte: 'DW/COMAV', validacao: 'Validado pela COMAV',
+    ficha: { definicao: 'Percentual de bases carregadas com completude mínima esperada para atualização dos painéis.', numerador: 'Bases/variáveis carregadas sem pendência crítica', denominador: 'Total de bases/variáveis esperadas', periodicidade: 'Mensal', fonte: 'Controle de qualidade DW/COMAV', polaridade: 'Quanto maior, melhor', meta2026: '98%' }},
+  { cod: 'ACOMP_DCNT', nome: 'Acompanhamento de pessoas com DCNT', tipo: 'Cuidado Integral', departamento: 'DAPS', tema: 'Qualidade do cuidado', natureza: 'Processo', prioridade: 'Média', atualizacao: 'COMAV', valor: '61,7%', meta: '70%', delta: '+1,1 p.p.', deltaUp: true, status: 'atencao', fonte: 'Área técnica/COMAV', validacao: 'Preliminar',
+    ficha: { definicao: 'Percentual de pessoas com condições crônicas acompanhadas pela APS conforme critério pactuado.', numerador: 'Pessoas acompanhadas', denominador: 'Pessoas elegíveis', periodicidade: 'Mensal/Quadrimestral', fonte: 'Informação enviada pela área técnica e registrada pela COMAV', polaridade: 'Quanto maior, melhor', meta2026: '70%' }},
+  { cod: 'VIS_DOM', nome: 'Visitas domiciliares registradas', tipo: 'Acompanhamento', departamento: 'DESF', tema: 'Produção e acompanhamento', natureza: 'Processo', prioridade: 'Rotina', atualizacao: 'DW', valor: '4,8 mi', meta: '5,2 mi', delta: '+0,3 mi', deltaUp: true, status: 'ok', fonte: 'SISAB/DW', validacao: 'Validado pela COMAV',
+    ficha: { definicao: 'Total de visitas domiciliares registradas pelas equipes da APS na competência.', numerador: 'Visitas domiciliares registradas', denominador: 'Não se aplica', periodicidade: 'Mensal', fonte: 'SISAB — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '5,2 milhões' }},
 ];
 
-function popularTabelaIndicadores() {
+function getFiltrosIndicadores() {
+  return {
+    departamento: document.getElementById('filtroDepartamento')?.value || 'todos',
+    tema: document.getElementById('filtroTema')?.value || 'todos',
+    natureza: document.getElementById('filtroNatureza')?.value || 'todos',
+    atualizacao: document.getElementById('filtroAtualizacao')?.value || 'todos',
+    validacao: document.getElementById('filtroValidacao')?.value || 'todos',
+    prioridade: document.getElementById('filtroPrioridade')?.value || 'todos'
+  };
+}
+
+function filtrarIndicadores() {
+  const f = getFiltrosIndicadores();
+  return indicadoresData.filter(ind => {
+    const okDepartamento = f.departamento === 'todos' || ind.departamento === f.departamento;
+    const okTema = f.tema === 'todos' || ind.tema === f.tema;
+    const okNatureza = f.natureza === 'todos' || ind.natureza === f.natureza;
+    const okAtualizacao = f.atualizacao === 'todos' || ind.atualizacao === f.atualizacao;
+    const okValidacao = f.validacao === 'todos' || (ind.validacao || 'Preliminar') === f.validacao;
+    const okPrioridade = f.prioridade === 'todos' || ind.prioridade === f.prioridade;
+    return okDepartamento && okTema && okNatureza && okAtualizacao && okValidacao && okPrioridade;
+  });
+}
+
+function tagNatureza(natureza) {
+  if (natureza === 'Estrutura') return 'tag-azul';
+  if (natureza === 'Processo') return 'tag-cinza';
+  return 'tag-verde';
+}
+
+function popularTabelaIndicadores(lista = filtrarIndicadores()) {
   const tbody = document.getElementById('tabelaIndicadores');
-  tbody.innerHTML = indicadoresData.map(ind => `
+  if (!tbody) return;
+
+  if (!lista.length) {
+    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center;color:var(--cinza-med);padding:24px;">Nenhum indicador encontrado para os filtros selecionados.</td></tr>`;
+    atualizarResumoFiltrosIndicadores(lista);
+    return;
+  }
+
+  tbody.innerHTML = lista.map(ind => `
     <tr>
       <td><code style="font-size:11.5px;background:var(--cinza-bg);padding:2px 6px;border-radius:4px;">${ind.cod}</code></td>
-      <td class="ind-name">${ind.nome}<small>${ind.tipo}</small></td>
-      <td><strong>${ind.valor}</strong></td>
+      <td class="ind-name">${ind.nome}<small>${ind.tipo} · ${ind.atualizacao === 'DW' ? 'Automática via DW' : ind.atualizacao === 'COMAV' ? 'Atualização COMAV' : 'Atualização mista'}</small></td>
+      <td><span class="tag tag-azul">${ind.departamento}</span></td>
+      <td style="font-size:12px;color:var(--cinza);">${ind.tema}</td>
+      <td><span class="tag ${tagNatureza(ind.natureza)}">${ind.natureza}</span></td>
+      <td><strong>${ind.valor}</strong><small style="display:block;color:var(--cinza-med);font-size:11px;">Δ ${ind.delta}</small></td>
       <td>${ind.meta}</td>
-      <td style="color:${ind.deltaUp === true ? 'var(--verde-med)' : ind.deltaUp === false ? 'var(--vermelho)' : 'var(--cinza-med)'}; font-weight:500;">${ind.delta}</td>
       <td><span class="tag ${ind.status === 'ok' ? 'tag-verde' : ind.status === 'atencao' ? 'tag-amarelo' : 'tag-vermelho'}">${ind.status === 'ok' ? '✓ OK' : ind.status === 'atencao' ? '⚡ Atenção' : '✗ Crítico'}</span></td>
-      <td style="font-size:12px;color:var(--cinza-med)">${ind.fonte}</td>
+      <td><span class="tag ${ind.validacao?.includes('análise') ? 'tag-amarelo' : ind.validacao?.includes('Preliminar') ? 'tag-cinza' : 'tag-azul'}">${ind.validacao || 'Preliminar'}</span></td>
       <td class="ind-actions">
         <button class="btn-xs" onclick="abrirFicha('${ind.cod}')">📄 Ficha</button>
-        <button class="btn-xs verde" onclick="analisarIA('${ind.cod}')">🤖 IA</button>
+        <button class="btn-xs verde" onclick="analisarIA('${ind.cod}')">🤖 Analisar</button>
       </td>
     </tr>
   `).join('');
+  atualizarResumoFiltrosIndicadores(lista);
+}
+
+function atualizarResumoFiltrosIndicadores(lista = filtrarIndicadores()) {
+  const el = document.getElementById('resumoFiltrosIndicadores');
+  if (!el) return;
+  const total = lista.length;
+  const departamentos = [...new Set(lista.map(i => i.departamento))].length;
+  const temas = [...new Set(lista.map(i => i.tema))].length;
+  const alta = lista.filter(i => i.prioridade === 'Alta').length;
+  const validacao = lista.filter(i => i.validacao === 'Validado pela COMAV').length;
+  el.innerHTML = `Exibindo <strong>${total}</strong> indicador(es), distribuídos em <strong>${departamentos}</strong> departamento(s) e <strong>${temas}</strong> tema(s). Prioridade alta: <strong>${alta}</strong>. Validados pela COMAV: <strong>${validacao}</strong>.`;
+}
+
+function aplicarFiltrosIndicadores() {
+  popularTabelaIndicadores(filtrarIndicadores());
+}
+
+function limparFiltrosIndicadores() {
+  ['filtroDepartamento','filtroTema','filtroNatureza','filtroAtualizacao','filtroValidacao','filtroPrioridade'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = 'todos';
+  });
+  popularTabelaIndicadores(indicadoresData);
 }
 
 // ── NAVEGAÇÃO ──
@@ -1334,45 +2886,126 @@ function goTo(page, btn) {
   document.getElementById('page-' + page).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   if (btn) btn.classList.add('active');
+  setTimeout(inserirBotoesDownloadGraficos, 250);
 }
 
-// ── CHART ──
+
+// ── CHARTS ──
+let chartMapaTendencia = null;
+const chartDefaults = {
+  plugins: {
+    legend: { labels: { font: { family: 'Inter', size: 11 }, boxWidth: 12, usePointStyle: true } },
+    tooltip: { titleFont: { family: 'Inter' }, bodyFont: { family: 'Inter' } }
+  },
+  scales: {
+    x: { ticks: { font: { family: 'Inter', size: 10 } }, grid: { display: false } },
+    y: { ticks: { font: { family: 'Inter', size: 11 } }, grid: { color: '#edf2f7' } }
+  }
+};
+
+
 function criarChart() {
   const ctx = document.getElementById('chartCobertura');
   if (!ctx) return;
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez','Jan','Fev','Mar','Abr','Mai'],
+      labels: ['Jan/25','Mar/25','Mai/25','Jul/25','Set/25','Nov/25','Jan/26','Mar/26','Mai/26'],
       datasets: [{
         label: 'Cobertura AB (%)',
-        data: [64.1,64.3,64.8,65.0,65.4,65.6,65.9,66.1,66.3,66.5,66.7,66.8,66.9,67.0,67.1,67.2,67.4],
+        data: [64.1,64.8,65.4,65.9,66.3,66.7,66.9,67.2,67.4],
         borderColor: '#2d8f65',
-        backgroundColor: 'rgba(45,143,101,.1)',
+        backgroundColor: 'rgba(45,143,101,.12)',
         tension: 0.35,
         fill: true,
         pointRadius: 3,
         pointBackgroundColor: '#2d8f65',
       },{
-        label: 'Meta 2026',
-        data: Array(17).fill(70),
+        label: 'Meta anual',
+        data: Array(9).fill(70),
         borderColor: '#e6a817',
         borderDash: [6,3],
         pointRadius: 0,
         borderWidth: 1.5,
       }]
     },
-    options: {
-      responsive: true,
-      plugins: { legend: { labels: { font: { family: 'DM Sans' }, boxWidth: 12 } } },
-      scales: {
-        y: { min: 60, max: 75, grid: { color: '#f0f0f0' }, ticks: { font: { family: 'DM Sans', size: 11 } } },
-        x: { grid: { display: false }, ticks: { font: { family: 'DM Sans', size: 10 } } }
-      }
-    }
+    options: { responsive: true, ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 60, max: 72 } } }
+  });
+
+  const c2 = document.getElementById('chartSerieCsaps');
+  if (c2) new Chart(c2, {
+    type: 'line',
+    data: {
+      labels: ['Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'],
+      datasets: [{
+        label: 'Internações CSAPS / 10 mil',
+        data: [58.8,58.1,57.3,56.7,56.0,55.5,54.9,54.3],
+        borderColor: '#d9541a',
+        backgroundColor: 'rgba(217,84,26,.12)',
+        tension: 0.32,
+        fill: true,
+        pointRadius: 3
+      },{
+        label: 'Meta',
+        data: Array(8).fill(50),
+        borderColor: '#1b3f6b',
+        borderDash: [5,4],
+        pointRadius: 0,
+        borderWidth: 1.4
+      }]
+    },
+    options: { responsive: true, ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 48, max: 60 } } }
+  });
+
+  const c3 = document.getElementById('chartRegioesCob');
+  if (c3) new Chart(c3, {
+    type: 'bar',
+    data: {
+      labels: ['Norte','Nordeste','Centro-Oeste','Sudeste','Sul'],
+      datasets: [{
+        label: 'Cobertura AB (%)',
+        data: [69.2,58.9,71.4,65.8,74.1],
+        backgroundColor: ['#4db88a','#2d8f65','#5b8ed4','#1b3f6b','#e6a817'],
+        borderRadius: 6,
+        maxBarThickness: 42
+      }]
+    },
+    options: { responsive: true, ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } }, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 50, max: 80 } } }
+  });
+
+  const c4 = document.getElementById('chartTendenciaAtencao');
+  if (c4) new Chart(c4, {
+    type: 'line',
+    data: {
+      labels: ['T1','T2','T3','T4'],
+      datasets: [{ label: 'Mortalidade Materna', data: [55.0,53.8,52.6,52.1], borderColor: '#e6a817', backgroundColor: '#e6a817', tension: 0.3 },
+                 { label: 'Mortalidade Infantil', data: [10.6,10.8,11.1,11.8], borderColor: '#c0392b', backgroundColor: '#c0392b', tension: 0.3 },
+                 { label: 'Internações CSAPS', data: [56.8,55.9,55.1,54.3], borderColor: '#d9541a', backgroundColor: '#d9541a', tension: 0.3 }]
+    },
+    options: { responsive: true, ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y } } }
+  });
+
+  const c5 = document.getElementById('chartIndicadorSerie');
+  if (c5) new Chart(c5, {
+    type: 'line',
+    data: {
+      labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'],
+      datasets: [{ label: 'Indicador selecionado', data: [63.9,64.8,65.7,66.5,67.4], borderColor: '#1b3f6b', backgroundColor: 'rgba(27,63,107,.08)', fill: true, tension: 0.35, pointRadius: 3 },
+                 { label: 'Meta', data: Array(5).fill(70), borderColor: '#e6a817', borderDash: [6,3], pointRadius: 0, borderWidth: 1.4 }]
+    },
+    options: { responsive: true, ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 60, max: 72 } } }
+  });
+
+  const c6 = document.getElementById('chartIndicadorComparativo');
+  if (c6) new Chart(c6, {
+    type: 'bar',
+    data: {
+      labels: ['Brasil','Norte','Nordeste','Centro-Oeste','Sudeste','Sul'],
+      datasets: [{ label: 'Valor na competência', data: [67.4,69.2,58.9,71.4,65.8,74.1], backgroundColor: ['#1b3f6b','#4db88a','#2d8f65','#5b8ed4','#7aa6df','#e6a817'], borderRadius: 6 }]
+    },
+    options: { indexAxis: 'y', responsive: true, ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } }, scales: { x: { ticks: { font: { family: 'Inter', size: 10 } }, grid: { color: '#edf2f7' } }, y: { ticks: { font: { family: 'Inter', size: 11 } }, grid: { display: false } } } }
   });
 }
-
 // ── MINI CHARTS ──
 function criarMiniCharts() {
   const dados = {
@@ -1402,6 +3035,11 @@ function abrirFicha(cod) {
     <dl>
       ${[
         ['Código', ind.cod],
+        ['Área técnica / instância', ind.departamento],
+        ['Tema', ind.tema],
+        ['Natureza', ind.natureza],
+        ['Prioridade', ind.prioridade],
+        ['Forma de atualização', ind.atualizacao === 'DW' ? 'Automática via DW' : ind.atualizacao === 'COMAV' ? 'Atualização COMAV' : 'Mista'],
         ['Tipo', ind.tipo],
         ['Definição', ind.ficha.definicao],
         ['Numerador', ind.ficha.numerador],
@@ -1410,6 +3048,8 @@ function abrirFicha(cod) {
         ['Fonte', ind.ficha.fonte],
         ['Polaridade', ind.ficha.polaridade],
         ['Meta 2026', ind.ficha.meta2026],
+        ['Status de validação', ind.validacao || 'Preliminar'],
+        ['Área responsável', 'COMAV · Gabinete SAPS'],
       ].map(([k,v]) => `<div class="ficha-row"><dt>${k}</dt><dd>${v}</dd></div>`).join('')}
     </dl>
   `;
@@ -1426,34 +3066,578 @@ function analisarIA(cod) {
     goTo('ia', null);
     document.querySelector('[onclick="goTo(\'ia\', this)"]')?.classList.add('active');
     document.querySelectorAll('.nav-item').forEach(n => {
-      if (n.textContent.includes('Análise por IA')) n.classList.add('active');
+      if (n.textContent.includes('Apoio Analítico')) n.classList.add('active');
       else n.classList.remove('active');
     });
   }
 }
 
-// ── MAPA ──
-function cliqueMapa(regiao, valor) {
+// ── MAPA REAL DO BRASIL ──
+const estadosRegiao = {
+  'br-ac': { uf:'AC', nome:'Acre', regiao:'Norte' }, 'br-am': { uf:'AM', nome:'Amazonas', regiao:'Norte' },
+  'br-ap': { uf:'AP', nome:'Amapá', regiao:'Norte' }, 'br-pa': { uf:'PA', nome:'Pará', regiao:'Norte' },
+  'br-ro': { uf:'RO', nome:'Rondônia', regiao:'Norte' }, 'br-rr': { uf:'RR', nome:'Roraima', regiao:'Norte' },
+  'br-to': { uf:'TO', nome:'Tocantins', regiao:'Norte' },
+
+  'br-al': { uf:'AL', nome:'Alagoas', regiao:'Nordeste' }, 'br-ba': { uf:'BA', nome:'Bahia', regiao:'Nordeste' },
+  'br-ce': { uf:'CE', nome:'Ceará', regiao:'Nordeste' }, 'br-ma': { uf:'MA', nome:'Maranhão', regiao:'Nordeste' },
+  'br-pb': { uf:'PB', nome:'Paraíba', regiao:'Nordeste' }, 'br-pe': { uf:'PE', nome:'Pernambuco', regiao:'Nordeste' },
+  'br-pi': { uf:'PI', nome:'Piauí', regiao:'Nordeste' }, 'br-rn': { uf:'RN', nome:'Rio Grande do Norte', regiao:'Nordeste' },
+  'br-se': { uf:'SE', nome:'Sergipe', regiao:'Nordeste' },
+
+  'br-df': { uf:'DF', nome:'Distrito Federal', regiao:'Centro-Oeste' }, 'br-go': { uf:'GO', nome:'Goiás', regiao:'Centro-Oeste' },
+  'br-ms': { uf:'MS', nome:'Mato Grosso do Sul', regiao:'Centro-Oeste' }, 'br-mt': { uf:'MT', nome:'Mato Grosso', regiao:'Centro-Oeste' },
+
+  'br-es': { uf:'ES', nome:'Espírito Santo', regiao:'Sudeste' }, 'br-mg': { uf:'MG', nome:'Minas Gerais', regiao:'Sudeste' },
+  'br-rj': { uf:'RJ', nome:'Rio de Janeiro', regiao:'Sudeste' }, 'br-sp': { uf:'SP', nome:'São Paulo', regiao:'Sudeste' },
+
+  'br-pr': { uf:'PR', nome:'Paraná', regiao:'Sul' }, 'br-rs': { uf:'RS', nome:'Rio Grande do Sul', regiao:'Sul' },
+  'br-sc': { uf:'SC', nome:'Santa Catarina', regiao:'Sul' }
+};
+
+
+const municipiosDemo = {
+  'br-ac': [
+    { id:'ac-rio-branco', nome:'Rio Branco', lon:-67.81, lat:-9.97, valores:{ cob:73.4, mort_mat:61.2, mort_inf:13.1, int_csaps:58.0 } },
+    { id:'ac-cruzeiro-sul', nome:'Cruzeiro do Sul', lon:-72.67, lat:-7.63, valores:{ cob:70.2, mort_mat:65.0, mort_inf:14.4, int_csaps:61.2 } },
+    { id:'ac-sena-madureira', nome:'Sena Madureira', lon:-68.66, lat:-9.06, valores:{ cob:71.8, mort_mat:63.5, mort_inf:13.8, int_csaps:59.9 } }
+  ],
+  'br-am': [
+    { id:'am-manaus', nome:'Manaus', lon:-60.02, lat:-3.10, valores:{ cob:64.3, mort_mat:67.4, mort_inf:14.6, int_csaps:62.1 } },
+    { id:'am-parintins', nome:'Parintins', lon:-56.74, lat:-2.63, valores:{ cob:66.8, mort_mat:64.1, mort_inf:13.8, int_csaps:60.8 } },
+    { id:'am-tabatinga', nome:'Tabatinga', lon:-69.94, lat:-4.25, valores:{ cob:62.7, mort_mat:70.3, mort_inf:15.2, int_csaps:63.4 } }
+  ],
+  'br-pa': [
+    { id:'pa-belem', nome:'Belém', lon:-48.50, lat:-1.45, valores:{ cob:65.1, mort_mat:64.0, mort_inf:13.9, int_csaps:60.2 } },
+    { id:'pa-santarem', nome:'Santarém', lon:-54.70, lat:-2.44, valores:{ cob:68.2, mort_mat:60.8, mort_inf:13.1, int_csaps:58.4 } },
+    { id:'pa-maraba', nome:'Marabá', lon:-49.13, lat:-5.37, valores:{ cob:64.9, mort_mat:66.1, mort_inf:14.5, int_csaps:62.0 } }
+  ],
+  'br-ma': [
+    { id:'ma-sao-luis', nome:'São Luís', lon:-44.30, lat:-2.53, valores:{ cob:55.8, mort_mat:62.4, mort_inf:13.5, int_csaps:66.8 } },
+    { id:'ma-imperatriz', nome:'Imperatriz', lon:-47.49, lat:-5.52, valores:{ cob:57.2, mort_mat:60.9, mort_inf:13.0, int_csaps:64.9 } },
+    { id:'ma-codo', nome:'Codó', lon:-43.89, lat:-4.46, valores:{ cob:54.1, mort_mat:64.2, mort_inf:14.0, int_csaps:67.1 } }
+  ],
+  'br-ba': [
+    { id:'ba-salvador', nome:'Salvador', lon:-38.50, lat:-12.97, valores:{ cob:56.3, mort_mat:59.0, mort_inf:12.8, int_csaps:63.9 } },
+    { id:'ba-feira-santana', nome:'Feira de Santana', lon:-38.97, lat:-12.26, valores:{ cob:58.1, mort_mat:57.8, mort_inf:12.4, int_csaps:62.1 } },
+    { id:'ba-vitoria-conquista', nome:'Vitória da Conquista', lon:-40.84, lat:-14.86, valores:{ cob:60.4, mort_mat:55.9, mort_inf:11.9, int_csaps:61.5 } }
+  ],
+  'br-df': [
+    { id:'df-brasilia', nome:'Brasília', lon:-47.88, lat:-15.79, valores:{ cob:76.4, mort_mat:45.0, mort_inf:10.3, int_csaps:48.8 } },
+    { id:'df-ceilandia', nome:'Ceilândia', lon:-48.10, lat:-15.82, valores:{ cob:74.8, mort_mat:46.2, mort_inf:10.8, int_csaps:49.7 } },
+    { id:'df-planaltina', nome:'Planaltina', lon:-47.61, lat:-15.62, valores:{ cob:77.1, mort_mat:44.5, mort_inf:10.1, int_csaps:48.2 } }
+  ],
+  'br-go': [
+    { id:'go-goiania', nome:'Goiânia', lon:-49.25, lat:-16.68, valores:{ cob:69.8, mort_mat:49.7, mort_inf:10.9, int_csaps:52.0 } },
+    { id:'go-aparecida-goiania', nome:'Aparecida de Goiânia', lon:-49.24, lat:-16.82, valores:{ cob:70.6, mort_mat:48.6, mort_inf:10.6, int_csaps:51.4 } },
+    { id:'go-anapolis', nome:'Anápolis', lon:-48.95, lat:-16.33, valores:{ cob:71.2, mort_mat:47.9, mort_inf:10.4, int_csaps:50.9 } }
+  ],
+  'br-mg': [
+    { id:'mg-belo-horizonte', nome:'Belo Horizonte', lon:-43.94, lat:-19.92, valores:{ cob:67.4, mort_mat:45.6, mort_inf:9.9, int_csaps:50.2 } },
+    { id:'mg-uberlandia', nome:'Uberlândia', lon:-48.28, lat:-18.91, valores:{ cob:68.1, mort_mat:44.8, mort_inf:9.7, int_csaps:49.5 } },
+    { id:'mg-contagem', nome:'Contagem', lon:-44.05, lat:-19.93, valores:{ cob:66.2, mort_mat:46.4, mort_inf:10.2, int_csaps:51.0 } }
+  ],
+  'br-rj': [
+    { id:'rj-rio-janeiro', nome:'Rio de Janeiro', lon:-43.20, lat:-22.91, valores:{ cob:61.9, mort_mat:48.6, mort_inf:10.8, int_csaps:53.5 } },
+    { id:'rj-sao-goncalo', nome:'São Gonçalo', lon:-43.05, lat:-22.83, valores:{ cob:63.4, mort_mat:47.2, mort_inf:10.4, int_csaps:52.1 } },
+    { id:'rj-nova-iguacu', nome:'Nova Iguaçu', lon:-43.45, lat:-22.76, valores:{ cob:62.1, mort_mat:49.0, mort_inf:10.7, int_csaps:53.0 } }
+  ],
+  'br-sp': [
+    { id:'sp-sao-paulo', nome:'São Paulo', lon:-46.63, lat:-23.55, valores:{ cob:64.4, mort_mat:43.0, mort_inf:9.6, int_csaps:48.5 } },
+    { id:'sp-campinas', nome:'Campinas', lon:-47.06, lat:-22.91, valores:{ cob:66.2, mort_mat:41.8, mort_inf:9.1, int_csaps:47.2 } },
+    { id:'sp-santos', nome:'Santos', lon:-46.33, lat:-23.96, valores:{ cob:67.1, mort_mat:40.9, mort_inf:8.9, int_csaps:46.7 } }
+  ],
+  'br-pr': [
+    { id:'pr-curitiba', nome:'Curitiba', lon:-49.27, lat:-25.43, valores:{ cob:74.0, mort_mat:42.7, mort_inf:9.0, int_csaps:47.0 } },
+    { id:'pr-londrina', nome:'Londrina', lon:-51.16, lat:-23.31, valores:{ cob:73.4, mort_mat:43.0, mort_inf:9.2, int_csaps:47.5 } },
+    { id:'pr-maringa', nome:'Maringá', lon:-51.93, lat:-23.42, valores:{ cob:75.1, mort_mat:41.6, mort_inf:8.8, int_csaps:46.8 } }
+  ],
+  'br-rs': [
+    { id:'rs-porto-alegre', nome:'Porto Alegre', lon:-51.23, lat:-30.03, valores:{ cob:74.7, mort_mat:42.6, mort_inf:9.1, int_csaps:47.2 } },
+    { id:'rs-caxias-sul', nome:'Caxias do Sul', lon:-51.18, lat:-29.17, valores:{ cob:75.8, mort_mat:41.9, mort_inf:8.9, int_csaps:46.5 } },
+    { id:'rs-pelotas', nome:'Pelotas', lon:-52.34, lat:-31.77, valores:{ cob:74.2, mort_mat:42.8, mort_inf:9.2, int_csaps:47.6 } }
+  ],
+  'br-sc': [
+    { id:'sc-florianopolis', nome:'Florianópolis', lon:-48.55, lat:-27.59, valores:{ cob:74.8, mort_mat:41.0, mort_inf:8.6, int_csaps:45.6 } },
+    { id:'sc-joinville', nome:'Joinville', lon:-48.85, lat:-26.30, valores:{ cob:73.9, mort_mat:42.0, mort_inf:8.9, int_csaps:46.3 } },
+    { id:'sc-blumenau', nome:'Blumenau', lon:-49.06, lat:-26.92, valores:{ cob:75.2, mort_mat:40.8, mort_inf:8.5, int_csaps:45.4 } }
+  ]
+};
+
+function municipiosDaUF(ufKey) {
+  if (municipiosDemo[ufKey]) return municipiosDemo[ufKey];
+  const meta = estadosRegiao[ufKey];
+  if (!meta) return [];
+  const base = valoresUF.cob.valores[ufKey] || 60;
+  return [
+    { id:`${ufKey}-sede`, nome:`${meta.nome} · Município sede`, lon:-47.9, lat:-15.8, valores:{ cob:base, mort_mat:52.0, mort_inf:11.5, int_csaps:54.0 } },
+    { id:`${ufKey}-interior-1`, nome:`${meta.uf} · Município 2`, lon:-48.5, lat:-16.5, valores:{ cob:base-1.8, mort_mat:54.0, mort_inf:12.0, int_csaps:55.6 } },
+    { id:`${ufKey}-interior-2`, nome:`${meta.uf} · Município 3`, lon:-47.2, lat:-15.2, valores:{ cob:base+1.2, mort_mat:50.5, mort_inf:11.0, int_csaps:52.8 } }
+  ];
+}
+
+
+const valoresUF = {
+  cob: {
+    titulo: 'Cobertura de Atenção Básica por UF — Mai/2026',
+    unidade: '%', maiorMelhor: true, mediaBrasil: '67,4%',
+    tendencia: { labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'], brasil: [66.3,66.6,66.9,67.2,67.4] },
+    valores: {
+      'br-ac':72.1,'br-am':65.7,'br-ap':70.8,'br-pa':66.9,'br-ro':73.0,'br-rr':68.4,'br-to':71.0,
+      'br-al':61.8,'br-ba':57.9,'br-ce':59.4,'br-ma':56.8,'br-pb':62.7,'br-pe':58.2,'br-pi':60.1,'br-rn':59.8,'br-se':61.2,
+      'br-df':76.4,'br-go':70.2,'br-ms':72.6,'br-mt':66.5,
+      'br-es':68.6,'br-mg':66.9,'br-rj':62.7,'br-sp':65.1,
+      'br-pr':73.2,'br-rs':75.0,'br-sc':74.4
+    }
+  },
+  mort_mat: {
+    titulo: 'Mortalidade Materna por UF — Mai/2026',
+    unidade: ' por 100 mil NV', maiorMelhor: false, mediaBrasil: '52,1',
+    tendencia: { labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'], brasil: [54.0,53.4,52.9,52.3,52.1] },
+    valores: {
+      'br-ac':63.0,'br-am':66.5,'br-ap':60.1,'br-pa':62.8,'br-ro':57.7,'br-rr':68.2,'br-to':54.3,
+      'br-al':59.8,'br-ba':58.7,'br-ce':55.2,'br-ma':61.6,'br-pb':54.1,'br-pe':56.3,'br-pi':60.4,'br-rn':52.6,'br-se':53.2,
+      'br-df':45.0,'br-go':49.2,'br-ms':50.1,'br-mt':48.8,
+      'br-es':43.8,'br-mg':45.9,'br-rj':47.6,'br-sp':42.5,
+      'br-pr':43.6,'br-rs':42.1,'br-sc':41.4
+    }
+  },
+  mort_inf: {
+    titulo: 'Mortalidade Infantil por UF — Mai/2026',
+    unidade: ' por mil NV', maiorMelhor: false, mediaBrasil: '11,8',
+    tendencia: { labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'], brasil: [11.1,11.2,11.3,11.5,11.8] },
+    valores: {
+      'br-ac':13.6,'br-am':14.1,'br-ap':13.2,'br-pa':13.8,'br-ro':12.5,'br-rr':14.4,'br-to':11.9,
+      'br-al':12.8,'br-ba':12.6,'br-ce':12.1,'br-ma':13.4,'br-pb':11.7,'br-pe':12.2,'br-pi':13.0,'br-rn':11.4,'br-se':11.8,
+      'br-df':10.3,'br-go':10.8,'br-ms':10.7,'br-mt':11.2,
+      'br-es':9.8,'br-mg':10.0,'br-rj':10.4,'br-sp':9.5,
+      'br-pr':9.3,'br-rs':9.0,'br-sc':8.8
+    }
+  },
+  int_csaps: {
+    titulo: 'Internações por CSAPS por UF — Mai/2026',
+    unidade: ' por 10 mil hab.', maiorMelhor: false, mediaBrasil: '54,3',
+    tendencia: { labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'], brasil: [56.6,55.9,55.3,54.8,54.3] },
+    valores: {
+      'br-ac':59.1,'br-am':61.5,'br-ap':58.2,'br-pa':60.0,'br-ro':56.7,'br-rr':62.1,'br-to':54.9,
+      'br-al':64.8,'br-ba':63.2,'br-ce':62.0,'br-ma':66.1,'br-pb':61.4,'br-pe':63.8,'br-pi':65.4,'br-rn':60.9,'br-se':59.7,
+      'br-df':48.8,'br-go':52.1,'br-ms':51.5,'br-mt':54.4,
+      'br-es':49.9,'br-mg':50.6,'br-rj':52.9,'br-sp':47.8,
+      'br-pr':47.3,'br-rs':46.8,'br-sc':45.9
+    }
+  }
+};
+
+let mapaAtual = 'cob';
+let mapaHighcharts = null;
+let filtroRegiaoMapa = 'todas';
+let filtroUFMapa = 'todas';
+let filtroMunicipioMapa = 'todos';
+
+function formatarValorMapa(valor, unidade) {
+  const v = Number(valor).toFixed(1).replace('.', ',');
+  return unidade === '%' ? `${v}%` : `${v}${unidade}`;
+}
+
+function getMapColor(value, min, max, invert = false) {
+  const palette = invert ? ['#1a6b4a','#4db88a','#5b8ed4','#e6a817','#c0392b'] : ['#cbd5e1','#5b8ed4','#4db88a','#2d8f65','#1a6b4a'];
+  const ratio = (value - min) / ((max - min) || 1);
+  const idx = Math.max(0, Math.min(4, Math.floor(ratio * 5)));
+  return palette[idx];
+}
+
+function popularFiltroUF(regiao = 'todas') {
+  const select = document.getElementById('mapFiltroUF');
+  if (!select) return;
+  const estados = Object.entries(estadosRegiao)
+    .filter(([k, meta]) => regiao === 'todas' || meta.regiao === regiao)
+    .sort((a,b) => a[1].uf.localeCompare(b[1].uf, 'pt-BR'));
+  const atual = filtroUFMapa;
+  select.innerHTML = '<option value="todas">Todas as UFs</option>' + estados.map(([k, meta]) => `<option value="${k}">${meta.uf} · ${meta.nome}</option>`).join('');
+  if ([...select.options].some(opt => opt.value === atual)) select.value = atual;
+  else { select.value = 'todas'; filtroUFMapa = 'todas'; }
+}
+
+function popularFiltroMunicipio(ufKey = 'todas') {
+  const select = document.getElementById('mapFiltroMunicipio');
+  if (!select) return;
+  if (ufKey === 'todas') {
+    select.innerHTML = '<option value="todos">Selecione uma UF</option>';
+    select.disabled = true;
+    filtroMunicipioMapa = 'todos';
+    return;
+  }
+  const municipios = municipiosDaUF(ufKey);
+  select.disabled = false;
+  select.innerHTML = '<option value="todos">Todos os municípios da UF</option>' +
+    municipios.map(m => `<option value="${m.id}">${m.nome}</option>`).join('');
+  if ([...select.options].some(opt => opt.value === filtroMunicipioMapa)) {
+    select.value = filtroMunicipioMapa;
+  } else {
+    filtroMunicipioMapa = 'todos';
+    select.value = 'todos';
+  }
+}
+
+function alterarFiltroMunicipio(valor) {
+  filtroMunicipioMapa = valor;
+  atualizarMapa(mapaAtual);
+}
+
+
+function alterarFiltroRegiao(valor) {
+  filtroRegiaoMapa = valor;
+  filtroUFMapa = 'todas';
+  filtroMunicipioMapa = 'todos';
+  popularFiltroUF(valor);
+  popularFiltroMunicipio('todas');
+  atualizarMapa(mapaAtual);
+}
+
+function alterarFiltroUF(valor) {
+  filtroUFMapa = valor;
+  filtroMunicipioMapa = 'todos';
+  if (valor !== 'todas') {
+    filtroRegiaoMapa = estadosRegiao[valor]?.regiao || 'todas';
+    const selectReg = document.getElementById('mapFiltroRegiao');
+    if (selectReg) selectReg.value = filtroRegiaoMapa;
+    popularFiltroUF(filtroRegiaoMapa);
+    const selectUF = document.getElementById('mapFiltroUF');
+    if (selectUF) selectUF.value = valor;
+    popularFiltroMunicipio(valor);
+  } else {
+    popularFiltroMunicipio('todas');
+  }
+  atualizarMapa(mapaAtual);
+}
+
+function cliqueMapa(regiao) {
+  const serie = valoresUF[mapaAtual];
+  const ufs = Object.entries(estadosRegiao).filter(([key, meta]) => meta.regiao === regiao).map(([key]) => serie.valores[key]);
+  const media = ufs.reduce((a,b)=>a+b,0) / ufs.length;
   const tt = document.getElementById('mapaTooltip');
-  tt.textContent = `${regiao}: ${valor}`;
+  tt.textContent = `${regiao}: ${formatarValorMapa(media, serie.unidade)} (média fictícia das UFs)`;
   tt.style.display = 'block';
   setTimeout(() => { tt.style.display = 'none'; }, 2200);
+  const selectReg = document.getElementById('mapFiltroRegiao');
+  if (selectReg) selectReg.value = regiao;
+  alterarFiltroRegiao(regiao);
 }
-function atualizarMapa() {}
+
+function calcularMediasRegionais(serie) {
+  const grupos = {};
+  Object.entries(estadosRegiao).forEach(([key, meta]) => {
+    if (!grupos[meta.regiao]) grupos[meta.regiao] = [];
+    grupos[meta.regiao].push(serie.valores[key]);
+  });
+  return Object.entries(grupos).map(([regiao, vals]) => ({ regiao, valor: vals.reduce((a,b)=>a+b,0) / vals.length }));
+}
+
+
+function getMunicipioSelecionadoPoint() {
+  if (filtroUFMapa === 'todas' || filtroMunicipioMapa === 'todos') return [];
+  return municipiosDaUF(filtroUFMapa).filter(m => m.id === filtroMunicipioMapa);
+}
+
+function getMunicipiosAtivos() {
+  if (filtroUFMapa === 'todas') return [];
+  const municipios = municipiosDaUF(filtroUFMapa);
+  if (filtroMunicipioMapa === 'todos') return municipios;
+  return municipios.filter(m => m.id === filtroMunicipioMapa);
+}
+
+function getMunicipioSelecionado() {
+  if (filtroUFMapa === 'todas' || filtroMunicipioMapa === 'todos') return null;
+  return municipiosDaUF(filtroUFMapa).find(m => m.id === filtroMunicipioMapa) || null;
+}
+
+function atualizarMapa(tipo='cob') {
+  mapaAtual = tipo;
+  const serie = valoresUF[tipo];
+  if (!serie) return;
+
+  const titleEl = document.getElementById('mapMetricTitle');
+  if (titleEl) titleEl.textContent = serie.titulo;
+
+  const values = Object.values(serie.valores);
+  const min = Math.min(...values), max = Math.max(...values);
+
+  const data = Object.entries(serie.valores).map(([key, valor]) => {
+    const meta = estadosRegiao[key] || {};
+    const pertenceRegiao = filtroRegiaoMapa === 'todas' || meta.regiao === filtroRegiaoMapa;
+    const pertenceUF = filtroUFMapa === 'todas' || key === filtroUFMapa;
+    const municipioSelecionado = filtroMunicipioMapa !== 'todos';
+    const ativo = pertenceRegiao && pertenceUF && !municipioSelecionado;
+
+    let fillColor = ativo ? getMapColor(valor, min, max, !serie.maiorMelhor) : 'rgba(203,213,225,0.45)';
+    let strokeColor = '#ffffff';
+    let strokeWidth = 1.2;
+
+    // Quando o escopo é municipal, a UF fica apenas como base territorial.
+    // O território analisado passa a ser o ponto/halo do município.
+    if (municipioSelecionado && key === filtroUFMapa) {
+      fillColor = 'rgba(226,232,240,0.55)';
+      strokeColor = '#334155';
+      strokeWidth = 2.4;
+    } else if (!municipioSelecionado && key === filtroUFMapa) {
+      strokeColor = '#1c1f24';
+      strokeWidth = 2.2;
+    }
+
+    return {
+      'hc-key': key,
+      value: valor,
+      uf: meta.uf,
+      nome: meta.nome,
+      regiao: meta.regiao,
+      color: fillColor,
+      borderColor: strokeColor,
+      borderWidth: strokeWidth,
+      custom: { ativo, municipioSelecionado }
+    };
+  });
+
+  if (window.Highcharts && Highcharts.maps && Highcharts.maps['countries/br/br-all']) {
+    mapaHighcharts = Highcharts.mapChart('brasilRealMap', {
+      chart: { backgroundColor: 'transparent', spacing: [0,0,0,0] },
+      title: { text: null },
+      mapNavigation: { enabled: true, buttonOptions: { verticalAlign: 'bottom' } },
+      credits: { enabled: false },
+      legend: { enabled: false },
+      tooltip: {
+        useHTML: true,
+        pointFormatter: function() {
+          return `<strong>${this.nome || this.name}</strong><br>UF: ${this.uf}<br>Região: ${this.regiao}<br>Valor: <strong>${formatarValorMapa(this.value, serie.unidade)}</strong>`;
+        }
+      },
+      colorAxis: { visible: false },
+      series: [{
+        mapData: Highcharts.maps['countries/br/br-all'],
+        data: data,
+        joinBy: 'hc-key',
+        name: serie.titulo,
+        borderColor: '#ffffff',
+        borderWidth: 1.2,
+        nullColor: '#eef2f7',
+        states: { hover: { brightness: 0.08, borderColor: '#1c1f24', borderWidth: 1.5 } },
+        dataLabels: {
+          enabled: true,
+          formatter: function() { return this.point.custom?.ativo ? this.point.uf : ''; },
+          style: { fontFamily: 'Inter, sans-serif', fontSize: '9px', fontWeight: '700', textOutline: 'none', color: '#ffffff' }
+        },
+        point: {
+          events: {
+            click: function() {
+              const ufKey = this['hc-key'];
+              const selectReg = document.getElementById('mapFiltroRegiao');
+              const selectUF = document.getElementById('mapFiltroUF');
+              filtroRegiaoMapa = this.regiao;
+              if (selectReg) selectReg.value = this.regiao;
+              popularFiltroUF(this.regiao);
+              filtroUFMapa = ufKey;
+              filtroMunicipioMapa = 'todos';
+              popularFiltroMunicipio(ufKey);
+              if (selectUF) selectUF.value = ufKey;
+              atualizarMapa(mapaAtual);
+            }
+          }
+        }
+      }, {
+        type: 'mappoint',
+        name: 'Município selecionado',
+        enableMouseTracking: false,
+        data: getMunicipioSelecionado() ? [{
+          name: getMunicipioSelecionado().nome,
+          lat: getMunicipioSelecionado().lat,
+          lon: getMunicipioSelecionado().lon,
+          marker: {
+            symbol: 'circle',
+            radius: 18,
+            fillColor: 'rgba(192,57,43,.26)',
+            lineColor: '#c0392b',
+            lineWidth: 3
+          }
+        }] : [],
+        dataLabels: { enabled: false },
+        zIndex: 8
+      }, {
+        type: 'mappoint',
+        name: 'Halo do município selecionado',
+        enableMouseTracking: false,
+        data: getMunicipioSelecionadoPoint().map(m => ({
+          name: m.nome,
+          lat: m.lat,
+          lon: m.lon,
+          marker: {
+            radius: 18,
+            symbol: 'circle',
+            fillColor: 'rgba(192,57,43,0.18)',
+            lineColor: '#c0392b',
+            lineWidth: 2
+          }
+        })),
+        dataLabels: { enabled: false },
+        zIndex: 8
+      }, {
+        type: 'mappoint',
+        name: 'Municípios demonstrativos',
+        data: getMunicipiosAtivos().map(m => ({
+          name: m.nome,
+          municipioId: m.id,
+          lat: m.lat,
+          lon: m.lon,
+          value: m.valores[mapaAtual],
+          marker: {
+            radius: m.id === filtroMunicipioMapa ? 8 : 5,
+            symbol: 'circle',
+            fillColor: m.id === filtroMunicipioMapa ? '#c0392b' : '#1c1f24',
+            lineColor: '#ffffff',
+            lineWidth: m.id === filtroMunicipioMapa ? 2.4 : 1.5
+          }
+        })),
+        tooltip: {
+          pointFormatter: function() {
+            return `<strong>${this.name}</strong><br>Valor: <strong>${formatarValorMapa(this.value, serie.unidade)}</strong>`;
+          }
+        },
+        dataLabels: {
+          enabled: filtroMunicipioMapa !== 'todos',
+          format: '{point.name}',
+          y: -18,
+          style: { fontFamily: 'Inter, sans-serif', fontSize: '11px', fontWeight: '800', textOutline: '2px contrast', color: '#1c1f24' }
+        },
+        point: {
+          events: {
+            click: function() {
+              filtroMunicipioMapa = this.municipioId;
+              const selectMun = document.getElementById('mapFiltroMunicipio');
+              if (selectMun) selectMun.value = this.municipioId;
+              atualizarMapa(mapaAtual);
+            }
+          }
+        },
+        zIndex: 9
+      }]
+    });
+    const selectedPoint = filtroUFMapa !== 'todas' && mapaHighcharts?.series?.[0]?.points?.find(p => p['hc-key'] === filtroUFMapa);
+    if (selectedPoint && mapaHighcharts.mapView && selectedPoint.bounds) {
+      mapaHighcharts.mapView.fitToBounds(selectedPoint.bounds, { padding: 20 });
+    }
+  } else {
+    const mapEl = document.getElementById('brasilRealMap');
+    if (mapEl) mapEl.innerHTML = '<div style="padding:30px;text-align:center;color:#4a5568">Mapa real do Brasil será carregado quando a biblioteca Highcharts Maps estiver disponível.</div>';
+  }
+
+  const scopeLabel = document.getElementById('mapScopeLabel');
+  if (scopeLabel) {
+    if (filtroMunicipioMapa !== 'todos') {
+      const municipio = municipiosDaUF(filtroUFMapa).find(m => m.id === filtroMunicipioMapa);
+      const meta = estadosRegiao[filtroUFMapa];
+      scopeLabel.textContent = `Escopo atual: ${municipio?.nome || 'Município selecionado'} · ${meta?.uf || ''} · Região ${meta?.regiao || ''}. A UF aparece apenas como base cartográfica; o município está destacado pelo ponto vermelho.`;
+    } else if (filtroUFMapa !== 'todas') {
+      const meta = estadosRegiao[filtroUFMapa];
+      scopeLabel.textContent = `Escopo atual: ${meta.nome} (${meta.uf}) · municípios demonstrativos disponíveis.`;
+    } else if (filtroRegiaoMapa !== 'todas') {
+      scopeLabel.textContent = `Escopo atual: Região ${filtroRegiaoMapa}.`;
+    } else {
+      scopeLabel.textContent = 'Escopo atual: Brasil completo.';
+    }
+  }
+
+  let rankingDados = [];
+  if (filtroMunicipioMapa !== 'todos' && filtroUFMapa !== 'todas') {
+    const municipio = municipiosDaUF(filtroUFMapa).find(m => m.id === filtroMunicipioMapa);
+    const meta = estadosRegiao[filtroUFMapa];
+    rankingDados = [{ nome: municipio?.nome || 'Município selecionado', subtitulo: `${meta.uf} · Região ${meta.regiao}`, valor: municipio?.valores[mapaAtual] || 0 }];
+  } else if (filtroUFMapa !== 'todas') {
+    const meta = estadosRegiao[filtroUFMapa];
+    rankingDados = municipiosDaUF(filtroUFMapa)
+      .map(m => ({ nome: m.nome, subtitulo: `${meta.uf} · dado municipal demonstrativo`, valor: m.valores[mapaAtual] }))
+      .sort((a,b) => serie.maiorMelhor ? b.valor-a.valor : a.valor-b.valor);
+  } else if (filtroRegiaoMapa !== 'todas') {
+    rankingDados = Object.entries(estadosRegiao)
+      .filter(([key, meta]) => meta.regiao === filtroRegiaoMapa)
+      .map(([key, meta]) => ({ nome: `${meta.uf} · ${meta.nome}`, subtitulo: `Região ${meta.regiao}`, valor: serie.valores[key] }))
+      .sort((a,b) => serie.maiorMelhor ? b.valor-a.valor : a.valor-b.valor);
+  } else {
+    rankingDados = calcularMediasRegionais(serie)
+      .sort((a,b) => serie.maiorMelhor ? b.valor-a.valor : a.valor-b.valor)
+      .map(item => ({ nome: item.regiao, subtitulo: 'Média das UFs · dado demonstrativo', valor: item.valor }));
+  }
+
+  const melhor = rankingDados[0];
+  const pior = rankingDados[rankingDados.length - 1];
+  document.getElementById('mapMediaBrasil').textContent = serie.mediaBrasil + (serie.unidade === '%' ? '' : serie.unidade);
+  document.getElementById('mapMelhor').textContent = `${melhor.nome} · ${formatarValorMapa(melhor.valor, serie.unidade)}`;
+  document.getElementById('mapPior').textContent = `${pior.nome} · ${formatarValorMapa(pior.valor, serie.unidade)}`;
+
+  const ranking = document.getElementById('rankingTerritorial');
+  if (ranking) {
+    ranking.innerHTML = rankingDados.map((item, idx) => `
+      <div class="ranking-item">
+        <div class="ranking-pos">${idx+1}</div>
+        <div>
+          <div class="ranking-name">${item.nome}</div>
+          <div class="ranking-sub">${item.subtitulo}</div>
+        </div>
+        <div class="ranking-value">${formatarValorMapa(item.valor, serie.unidade)}</div>
+      </div>
+    `).join('');
+  }
+
+  const ctx = document.getElementById('chartMapaTendencia');
+  if (ctx) {
+    if (chartMapaTendencia) chartMapaTendencia.destroy();
+    chartMapaTendencia = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: serie.tendencia.labels,
+        datasets: [{
+          label: filtroMunicipioMapa !== 'todos' ? (municipiosDaUF(filtroUFMapa).find(m => m.id === filtroMunicipioMapa)?.nome || 'Município') : (filtroUFMapa !== 'todas' ? (estadosRegiao[filtroUFMapa]?.uf || 'UF') : (filtroRegiaoMapa !== 'todas' ? filtroRegiaoMapa : 'Brasil')),
+          data: serie.tendencia.brasil,
+          borderColor: '#1b3f6b',
+          backgroundColor: 'rgba(27,63,107,.08)',
+          fill: true,
+          tension: 0.35,
+          pointRadius: 3
+        }]
+      },
+      options: { responsive: true, ...chartDefaults }
+    });
+  }
+}
+
+function exportarMapaResumo() {
+  const serie = valoresUF[mapaAtual];
+  const linhas = [
+    ['Indicador', serie.titulo],
+    ['Filtro Região', filtroRegiaoMapa],
+    ['Filtro UF', filtroUFMapa],
+    ['Filtro Município', filtroMunicipioMapa],
+    ['Média Brasil', serie.mediaBrasil]
+  ];
+
+  const texto = linhas.map(l => l.join(': ')).join('\\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(texto);
+  a.download = 'resumo_mapa_saps.txt';
+  a.click();
+}
 
 // ── EXPORTAR CSV ──
 function exportarCSV() {
-  const rows = [['Código','Indicador','Tipo','Valor','Meta','Variação Mensal','Status','Fonte']];
-  indicadoresData.forEach(i => rows.push([i.cod, i.nome, i.tipo, i.valor, i.meta, i.delta, i.status, i.fonte]));
-  const csv = rows.map(r => r.join(',')).join('\n');
+  const dados = typeof filtrarIndicadores === 'function' ? filtrarIndicadores() : indicadoresData;
+  const rows = [['Código','Indicador','Departamento','Tema','Natureza','Prioridade','Atualização','Valor','Meta','Variação Mensal','Status','Fonte','Validação']];
+  dados.forEach(i => rows.push([i.cod, i.nome, i.departamento, i.tema, i.natureza, i.prioridade, i.atualizacao, i.valor, i.meta, i.delta, i.status, i.fonte, i.validacao]));
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(';')).join('\n');
   const a = document.createElement('a');
   a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  a.download = 'indicadores_saps_mai2026.csv';
+  a.download = 'indicadores_saps_filtrados_mai2026.csv';
   a.click();
 }
 
 // ── IA ANÁLISE ──
-async function gerarAnaliseIA() {
+function gerarAnaliseIA() {
   const indicador = document.getElementById('iaIndicador').value;
   const territorio = document.getElementById('iaTerritorio').value;
   const periodo = document.getElementById('iaPeriodo').value;
@@ -1461,89 +3645,59 @@ async function gerarAnaliseIA() {
   const result = document.getElementById('iaResult');
   const meta = document.getElementById('iaMeta');
 
+  const nomes = {
+    cobertura_ab: 'Cobertura de Atenção Básica',
+    mortalidade_materna: 'Mortalidade Materna',
+    mortalidade_infantil: 'Mortalidade Infantil',
+    internacoes_csaps: 'Internações por Condições Sensíveis à APS',
+    mortalidade_csaps: 'Mortalidade por Condições Sensíveis à APS'
+  };
+
+  const dadosPorInd = {
+    cobertura_ab: { v: '67,4%', meta: '70%', delta: '+1,2 p.p.', tendencia: 'crescimento gradual e consistente', status: 'atenção por ainda não atingir a meta anual' },
+    mortalidade_materna: { v: '52,1 por 100 mil NV', meta: '45,0', delta: 'estabilidade no mês', tendencia: 'queda lenta, com manutenção acima da meta', status: 'atenção para análise técnica e territorial' },
+    mortalidade_infantil: { v: '11,8 por mil NV', meta: '10,0', delta: '+13,5% na Região Norte', tendencia: 'variação desfavorável relevante', status: 'prioridade para análise da gestão' },
+    internacoes_csaps: { v: '54,3 por 10 mil hab.', meta: '50,0', delta: '-2,1 no mês', tendencia: 'redução gradual, ainda acima da meta', status: 'atenção com evolução positiva' },
+    mortalidade_csaps: { v: '38,7 por 100 mil hab.', meta: '35,0', delta: '-0,8 no mês', tendencia: 'redução gradual', status: 'acompanhamento regular' }
+  };
+  const d = dadosPorInd[indicador] || dadosPorInd.cobertura_ab;
+
   btn.disabled = true;
-  btn.innerHTML = '<div class="loading-spinner"></div> Analisando...';
+  btn.innerHTML = '<span class="loading-spinner"></span> Gerando leitura...';
   result.classList.add('visible');
-  result.innerHTML = '<span class="typing">Gerando análise do indicador</span>';
+  result.innerHTML = '<span class="typing">Organizando leitura preliminar para validação da COMAV...</span>';
   meta.style.display = 'none';
 
-  // Dados simulados por indicador
-  const dadosPorInd = {
-    cobertura_ab: { v: '67,4%', meta: '70%', delta: '+1,2 p.p.', hist: '64,1% → 67,4% (jan/2025–mai/2026)', tendencia: 'crescimento constante' },
-    mortalidade_materna: { v: '52,1/100k NV', meta: '45,0', delta: 'estável (±0,1)', hist: '55,2 → 52,1', tendencia: 'queda lenta, meta não atingida' },
-    mortalidade_infantil: { v: '11,8/1k NV', meta: '10,0', delta: '+1,4 (+13,5%)', hist: '10,4 → 11,8', tendencia: 'piora expressiva em mai/2026' },
-    internacoes_csaps: { v: '54,3/10k hab.', meta: '50,0', delta: '−2,1 (−3,7%)', hist: '60,2 → 54,3', tendencia: 'queda consistente' },
-    mortalidade_csaps: { v: '38,7/100k hab.', meta: '35,0', delta: '−0,8', hist: '42,1 → 38,7', tendencia: 'redução gradual' },
-  };
-  const dados = dadosPorInd[indicador] || dadosPorInd['cobertura_ab'];
-
-  const prompt = `Você é um analista sênior de indicadores de saúde da COMAV/SAPS (Coordenação de Monitoramento e Avaliação da Secretaria de Atenção Primária à Saúde do Brasil). Gere uma análise técnica concisa e orientada à gestão.
-
-INDICADOR: ${indicador.replace(/_/g,' ').toUpperCase()}
-TERRITÓRIO: ${territorio}
-PERÍODO: ${periodo}
-VALOR ATUAL: ${dados.v}
-META 2026: ${dados.meta}
-VARIAÇÃO MENSAL: ${dados.delta}
-SÉRIE HISTÓRICA (resumo): ${dados.hist}
-TENDÊNCIA: ${dados.tendencia}
-
-Estruture a análise com: (1) situação atual e comparação com a meta, (2) análise de tendência, (3) possíveis fatores explicativos, (4) pontos de atenção ou alertas, (5) recomendação para a gestão. Seja direto, objetivo, em português brasileiro formal. Máximo 300 palavras.`;
-
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await response.json();
-    const texto = data.content?.map(b => b.text || '').join('') || 'Não foi possível gerar a análise.';
-    result.innerHTML = texto.replace(/\n/g, '<br>');
+  setTimeout(() => {
+    const texto = `<strong>Situação atual</strong><br>${nomes[indicador]} apresenta valor de <strong>${d.v}</strong> em ${territorio}, no período ${periodo}, frente à meta de <strong>${d.meta}</strong>. O status recomendado é de <strong>${d.status}</strong>.<br><br><strong>Tendência observada</strong><br>A série indica ${d.tendencia}, com variação recente de ${d.delta}. A leitura deve considerar a comparação com a média Brasil, a distribuição territorial e a situação da última carga de dados.<br><br><strong>Pontos para análise técnica</strong><br>Recomenda-se verificar diferenças entre regiões, possíveis efeitos de incompletude da base e comportamento em UFs ou municípios com maior variação. Quando disponível, a análise deve ser estratificada por raça/cor, sexo, faixa etária e outros marcadores de desigualdade.<br><br><strong>Encaminhamento sugerido</strong><br>Submeter a leitura à validação da COMAV e, se confirmado o padrão observado, incluir o indicador na pauta da próxima reunião de monitoramento.`;
+    result.innerHTML = texto;
     meta.style.display = 'flex';
-    window._ultimaAnalise = texto;
-  } catch (e) {
-    result.innerHTML = '⚠️ Erro ao conectar com a IA. Verifique a conexão e tente novamente.';
-  }
-  btn.disabled = false;
-  btn.innerHTML = '<span>✦</span> Gerar análise';
+    window._ultimaAnalise = result.innerText;
+    btn.disabled = false;
+    btn.innerHTML = '<span>✦</span> Gerar leitura';
+  }, 700);
 }
 
 // ── PRODUTOS IA ──
-async function gerarProduto(tipo) {
+function gerarProduto(tipo) {
   const el = document.getElementById('produtoResult');
   const btns = document.getElementById('produtoBtns');
-  el.innerHTML = '<span style="color:var(--azul-med)"><div class="loading-spinner" style="border-color:rgba(30,80,163,.2);border-top-color:var(--azul-med);display:inline-block;margin-right:8px;"></div> Gerando com IA...</span>';
+  el.innerHTML = '<span style="color:var(--azul-med)"><div class="loading-spinner" style="border-color:rgba(30,80,163,.2);border-top-color:var(--azul-med);display:inline-block;margin-right:8px;"></div> Gerando minuta demonstrativa...</span>';
   btns.style.display = 'none';
 
-  const prompts = {
-    boletim: 'Gere um boletim mensal conciso (mai/2026) para a SAPS com os principais indicadores: cobertura AB (67,4%, meta 70%), mortalidade materna (52,1, meta 45), mortalidade infantil (11,8, meta 10, ALERTA: piora de 13,5% na região Norte), internações CSAPS (54,3, meta 50). Inclua destaques positivos e pontos de atenção. Tom técnico-institucional, 200-250 palavras.',
-    executivo: 'Gere um informe executivo de 3 parágrafos para o secretário da SAPS com os principais destaques de mai/2026. Priorize o alerta de mortalidade infantil na região Norte, o progresso na cobertura AB e a situação das internações CSAPS. Tom direto e objetivo.',
-    reuniao: 'Gere uma pauta sugerida para reunião de monitoramento da SAPS (jun/2026) com base nos indicadores de mai/2026. Inclua: itens críticos, discussões estratégicas, deliberações propostas. Formato de lista estruturada.',
-    desigualdade: 'Gere uma análise de desigualdades em saúde para a SAPS referente a mai/2026. Considere: mortalidade materna negra (121/100k NV) vs branca (50,4/100k NV), diferenciais regionais Norte vs Sul, e ausência de dados por renda e escolaridade. Inclua recomendações de desagregação. 200-250 palavras.',
+  const produtos = {
+    boletim: `<strong>Boletim mensal — minuta preliminar</strong><br><br>Na competência maio/2026, os indicadores estratégicos da SAPS apontam crescimento gradual da cobertura de Atenção Básica, com alcance de 67,4% no Brasil, ainda abaixo da meta anual de 70%. As internações por condições sensíveis à APS mantêm tendência de redução, embora permaneçam acima do parâmetro definido para acompanhamento. A mortalidade materna apresenta estabilidade e segue em situação de atenção. O principal alerta da competência refere-se à mortalidade infantil na Região Norte, com variação desfavorável relevante. A leitura deve ser validada pela COMAV, considerando a qualidade da carga de dados e as diferenças territoriais observadas.`,
+    executivo: `<strong>Informe executivo — síntese para gestão</strong><br><br>O painel de maio/2026 indica avanço gradual da cobertura de Atenção Básica e redução das internações por condições sensíveis à APS, ainda com necessidade de acompanhamento para alcance das metas. Permanecem em atenção os indicadores materno-infantis, especialmente a mortalidade infantil na Região Norte, que deverá compor a pauta prioritária de monitoramento.<br><br>A carga de dados foi processada com alta completude, mas há pendências pontuais em três municípios. Recomenda-se validar o impacto dessas pendências antes de qualquer encaminhamento externo.`,
+    reuniao: `<strong>Pauta sugerida — reunião de monitoramento</strong><br><br>1. Validar a situação da carga de dados da competência maio/2026.<br>2. Analisar o alerta de mortalidade infantil na Região Norte.<br>3. Verificar a evolução da cobertura de Atenção Básica frente à meta anual.<br>4. Avaliar a tendência das internações por condições sensíveis à APS.<br>5. Definir encaminhamentos com áreas técnicas e responsáveis pelos indicadores em atenção.<br>6. Registrar deliberações e justificativas na trilha de auditoria.`,
+    desigualdade: `<strong>Análise de desigualdades — módulo em evolução</strong><br><br>A análise estratificada dos indicadores deverá priorizar raça/cor, sexo, faixa etária, território e, quando disponível, escolaridade, ocupação, ruralidade e outros marcadores sociais. A proposta é permitir que a gestão identifique desigualdades ocultas nas médias nacionais e oriente respostas para grupos e territórios mais vulnerabilizados. Nesta etapa do protótipo, recomenda-se apresentar o módulo como funcionalidade em desenvolvimento, dependente da qualidade, disponibilidade e padronização das bases.`
   };
 
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompts[tipo] }]
-      })
-    });
-    const data = await response.json();
-    const texto = data.content?.map(b => b.text || '').join('') || 'Erro ao gerar o conteúdo.';
-    el.innerHTML = texto.replace(/\n/g, '<br>');
+  setTimeout(() => {
+    const texto = produtos[tipo] || produtos.executivo;
+    el.innerHTML = texto;
     btns.style.display = 'flex';
-    window._ultimoProduto = texto;
-  } catch(e) {
-    el.innerHTML = '⚠️ Erro ao conectar com a IA.';
-  }
+    window._ultimoProduto = el.innerText;
+  }, 600);
 }
 
 function copiarProduto() {
@@ -1554,7 +3708,7 @@ function exportarAnalise() {
   if (!window._ultimaAnalise) return;
   const a = document.createElement('a');
   a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._ultimaAnalise);
-  a.download = 'analise_ia_saps.txt';
+  a.download = 'leitura_preliminar_saps.txt';
   a.click();
 }
 
@@ -1562,8 +3716,583 @@ function exportarProduto() {
   if (!window._ultimoProduto) return;
   const a = document.createElement('a');
   a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._ultimoProduto);
-  a.download = 'produto_ia_saps.txt';
+  a.download = 'minuta_saps.txt';
   a.click();
+}
+
+
+
+
+// ── FILTROS GLOBAIS DE TERRITÓRIO ──
+let globalScope = { regiao: 'todas', uf: 'todas', municipio: 'todos', competencia: 'Mai/2026' };
+
+function globalMunicipioLabel() {
+  if (globalScope.municipio === 'todos' || globalScope.uf === 'todas') return '';
+  const m = municipiosDaUF(globalScope.uf).find(x => x.id === globalScope.municipio);
+  return m ? m.nome : '';
+}
+
+function globalUFLabel() {
+  if (globalScope.uf === 'todas') return '';
+  const meta = estadosRegiao[globalScope.uf];
+  return meta ? `${meta.uf} · ${meta.nome}` : '';
+}
+
+function globalScopeLabel() {
+  const comp = document.getElementById('globalCompetencia')?.value || globalScope.competencia || 'Mai/2026';
+  if (globalScope.municipio !== 'todos') return `${globalMunicipioLabel()} · ${globalUFLabel()} · ${comp}`;
+  if (globalScope.uf !== 'todas') return `${globalUFLabel()} · Região ${estadosRegiao[globalScope.uf]?.regiao || ''} · ${comp}`;
+  if (globalScope.regiao !== 'todas') return `Região ${globalScope.regiao} · ${comp}`;
+  return `Brasil completo · ${comp}`;
+}
+
+function globalPopularUFs(regiao = 'todas') {
+  const select = document.getElementById('globalUF');
+  if (!select || typeof estadosRegiao === 'undefined') return;
+  const estados = Object.entries(estadosRegiao)
+    .filter(([k, meta]) => regiao === 'todas' || meta.regiao === regiao)
+    .sort((a,b) => a[1].uf.localeCompare(b[1].uf, 'pt-BR'));
+  const atual = globalScope.uf;
+  select.innerHTML = '<option value="todas">Todas as UFs</option>' + estados.map(([k, meta]) => `<option value="${k}">${meta.uf} · ${meta.nome}</option>`).join('');
+  if ([...select.options].some(o => o.value === atual)) select.value = atual;
+  else { select.value = 'todas'; globalScope.uf = 'todas'; }
+}
+
+function globalPopularMunicipios(uf = 'todas') {
+  const select = document.getElementById('globalMunicipio');
+  if (!select) return;
+  if (uf === 'todas') {
+    select.innerHTML = '<option value="todos">Selecione uma UF</option>';
+    select.disabled = true;
+    globalScope.municipio = 'todos';
+    return;
+  }
+  const municipios = municipiosDaUF(uf);
+  select.disabled = false;
+  select.innerHTML = '<option value="todos">Todos os municípios da UF</option>' + municipios.map(m => `<option value="${m.id}">${m.nome}</option>`).join('');
+  if ([...select.options].some(o => o.value === globalScope.municipio)) select.value = globalScope.municipio;
+  else { select.value = 'todos'; globalScope.municipio = 'todos'; }
+}
+
+function globalAlterarRegiao(regiao) {
+  globalScope.regiao = regiao;
+  globalScope.uf = 'todas';
+  globalScope.municipio = 'todos';
+  globalPopularUFs(regiao);
+  globalPopularMunicipios('todas');
+  globalAplicarEscopo();
+}
+
+function globalAlterarUF(uf) {
+  globalScope.uf = uf;
+  globalScope.municipio = 'todos';
+  if (uf !== 'todas') {
+    globalScope.regiao = estadosRegiao[uf]?.regiao || 'todas';
+    const reg = document.getElementById('globalRegiao');
+    if (reg) reg.value = globalScope.regiao;
+    globalPopularUFs(globalScope.regiao);
+    const selUf = document.getElementById('globalUF');
+    if (selUf) selUf.value = uf;
+    globalPopularMunicipios(uf);
+  } else {
+    globalPopularMunicipios('todas');
+  }
+  globalAplicarEscopo();
+}
+
+function globalAlterarMunicipio(municipio) {
+  globalScope.municipio = municipio;
+  globalAplicarEscopo();
+}
+
+function globalLimparEscopo() {
+  globalScope = { regiao: 'todas', uf: 'todas', municipio: 'todos', competencia: 'Mai/2026' };
+  const reg = document.getElementById('globalRegiao');
+  const comp = document.getElementById('globalCompetencia');
+  if (reg) reg.value = 'todas';
+  if (comp) comp.value = 'Mai/2026';
+  globalPopularUFs('todas');
+  globalPopularMunicipios('todas');
+  globalAplicarEscopo();
+}
+
+function globalSincronizarMapa() {
+  const reg = document.getElementById('mapFiltroRegiao');
+  const uf = document.getElementById('mapFiltroUF');
+  const mun = document.getElementById('mapFiltroMunicipio');
+  if (reg) reg.value = globalScope.regiao;
+  if (typeof alterarFiltroRegiao === 'function' && globalScope.regiao !== 'todas') {
+    filtroRegiaoMapa = globalScope.regiao;
+    popularFiltroUF(globalScope.regiao);
+  }
+  if (uf) {
+    filtroUFMapa = globalScope.uf;
+    if (globalScope.uf !== 'todas') {
+      popularFiltroUF(globalScope.regiao);
+      uf.value = globalScope.uf;
+      popularFiltroMunicipio(globalScope.uf);
+    } else {
+      uf.value = 'todas';
+      popularFiltroMunicipio('todas');
+    }
+  }
+  if (mun) {
+    filtroMunicipioMapa = globalScope.municipio;
+    if (globalScope.municipio !== 'todos') mun.value = globalScope.municipio;
+  }
+  if (typeof atualizarMapa === 'function') atualizarMapa(mapaAtual || 'cob');
+}
+
+function globalSincronizarIA() {
+  const iaTerr = document.getElementById('iaTerr');
+  if (!iaTerr) return;
+  let label = 'Brasil';
+  if (globalScope.municipio !== 'todos') label = globalMunicipioLabel();
+  else if (globalScope.uf !== 'todas') label = estadosRegiao[globalScope.uf]?.uf || 'Brasil';
+  else if (globalScope.regiao !== 'todas') label = globalScope.regiao;
+
+  if (![...iaTerr.options].some(o => o.value === label || o.textContent === label)) {
+    iaTerr.insertAdjacentHTML('beforeend', `<option>${label}</option>`);
+  }
+  iaTerr.value = label;
+  if (typeof renderIAAvancada === 'function') renderIAAvancada();
+}
+
+function globalSincronizarInterseccionalidade() {
+  const inter = document.getElementById('interTerritorio');
+  if (!inter) return;
+  let label = 'Brasil';
+  if (globalScope.municipio !== 'todos') label = `Município: ${globalMunicipioLabel()}`;
+  else if (globalScope.uf !== 'todas') label = `UF: ${estadosRegiao[globalScope.uf]?.uf || ''}`;
+  else if (globalScope.regiao !== 'todas') label = `Região ${globalScope.regiao}`;
+
+  if (![...inter.options].some(o => o.value === label || o.textContent === label)) {
+    inter.insertAdjacentHTML('beforeend', `<option>${label}</option>`);
+  }
+  inter.value = label;
+  if (typeof renderInterseccionalidade === 'function') renderInterseccionalidade();
+}
+
+
+function globalScopeLevel() {
+  if (globalScope.municipio !== 'todos') return 'Município';
+  if (globalScope.uf !== 'todas') return 'UF';
+  if (globalScope.regiao !== 'todas') return 'Região';
+  return 'Brasil';
+}
+
+function globalScopeFactor() {
+  if (globalScope.municipio !== 'todos') return 0.82 + (iaHash(globalScope.municipio || '') % 28) / 100;
+  if (globalScope.uf !== 'todas') return 0.88 + (iaHash(globalScope.uf || '') % 20) / 100;
+  if (globalScope.regiao !== 'todas') return 0.92 + (iaHash(globalScope.regiao || '') % 16) / 100;
+  return 1;
+}
+
+function atualizarCardsDashboardPorEscopo() {
+  const factor = globalScopeFactor();
+  const cards = document.querySelectorAll('#page-dashboard .stats-grid .stat-card');
+  const values = [
+    { v: 67.4 * factor, suffix: '%', decimals: 1 },
+    { v: Math.round(47823 * factor), suffix: '', decimals: 0 },
+    { v: 54.3 * (2 - factor), suffix: '', decimals: 1 },
+    { v: 52.1 * (2 - factor), suffix: '', decimals: 1 },
+    { v: globalScopeLevel() === 'Município' ? 1 : globalScopeLevel() === 'UF' ? 2 : 3, suffix: '', decimals: 0 }
+  ];
+  cards.forEach((card, idx) => {
+    const el = card.querySelector('.stat-value');
+    if (!el || !values[idx]) return;
+    const item = values[idx];
+    const val = item.decimals === 0 ? String(item.v.toLocaleString('pt-BR')) : item.v.toFixed(item.decimals).replace('.', ',');
+    el.textContent = val + item.suffix;
+  });
+}
+
+function atualizarResumoExecutivoPorEscopo(label) {
+  const kpiTerr = document.getElementById('kpiTerritorio');
+  const kpiSub = document.getElementById('kpiTerritorioSub');
+  const kpiGran = document.getElementById('kpiGranularidade');
+  const kpiIndicadores = document.getElementById('kpiIndicadores');
+  const healthCarga = document.getElementById('healthCarga');
+  const healthAlertas = document.getElementById('healthAlertas');
+  const cargaSub = document.getElementById('kpiCargaSub');
+
+  if (kpiTerr) kpiTerr.textContent = label.split('·')[0].trim();
+  if (kpiSub) kpiSub.textContent = label;
+  if (kpiGran) kpiGran.textContent = globalScopeLevel();
+  if (kpiIndicadores && typeof indicadoresData !== 'undefined') kpiIndicadores.textContent = indicadoresData.length;
+  if (healthCarga) healthCarga.textContent = globalScope.competencia;
+  if (healthAlertas) healthAlertas.textContent = globalScopeLevel() === 'Município' ? '1 crítico' : 'alertas analíticos';
+  if (cargaSub) cargaSub.textContent = globalScopeLevel() === 'Município' ? 'Carga com leitura municipal demonstrativa' : 'Carga completa com ressalvas pontuais';
+
+  const insights = document.getElementById('executiveInsights');
+  if (insights) {
+    const level = globalScopeLevel();
+    insights.innerHTML = `
+      <div class="insight-item"><div class="insight-bar"></div><div><strong>Escopo em análise: ${level}</strong><span>${label}. A navegação territorial foi sincronizada com mapa, IA, indicadores, interseccionalidade e auditoria.</span></div></div>
+      <div class="insight-item"><div class="insight-bar" style="background:var(--amarelo)"></div><div><strong>Ponto de atenção</strong><span>Indicadores com status de atenção ou crítico devem ser validados com a área responsável antes de qualquer encaminhamento.</span></div></div>
+      <div class="insight-item"><div class="insight-bar" style="background:var(--verde-med)"></div><div><strong>Próximo uso recomendado</strong><span>Gerar leitura no módulo de Apoio Analítico e registrar deliberações na Auditoria e Governança.</span></div></div>
+    `;
+  }
+}
+
+function atualizarQualidadePorEscopo() {
+  const rows = document.getElementById('qualityImpactRows');
+  if (!rows) return;
+  const level = globalScopeLevel();
+  const localImpact = level === 'Município' ? 'Alto impacto no escopo municipal' : level === 'UF' ? 'Impacto moderado no escopo estadual' : 'Baixo impacto nacional';
+  rows.innerHTML = `
+    <tr><td>Completude da carga</td><td><span class="tag tag-verde">99,3%</span></td><td>${localImpact}</td><td>Atualizar painéis com ressalva metodológica</td></tr>
+    <tr><td>Integridade territorial</td><td><span class="tag ${level === 'Município' ? 'tag-amarelo' : 'tag-verde'}">${level}</span></td><td>Granularidade em análise: ${level}</td><td>Conferir malha, código IBGE e competência</td></tr>
+    <tr><td>Variações atípicas</td><td><span class="tag tag-amarelo">1 ocorrência</span></td><td>Requer validação técnica</td><td>Encaminhar à área responsável</td></tr>
+    <tr><td>Duplicidades críticas</td><td><span class="tag tag-verde">0</span></td><td>Sem impacto identificado</td><td>Sem ação adicional</td></tr>
+  `;
+}
+
+function registrarAuditoriaEscopo(label) {
+  const tbody = document.querySelector('#page-auditoria tbody');
+  if (!tbody || tbody.dataset.globalScopeLog === label) return;
+  tbody.dataset.globalScopeLog = label;
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${new Date().toLocaleString('pt-BR')}</td><td>Sistema (automático)</td><td>Escopo territorial</td><td>Aplicado: ${label}</td><td>Sincronização de filtros globais</td><td>Protótipo</td>`;
+  tbody.prepend(tr);
+}
+
+function globalAplicarEscopo() {
+  globalScope.competencia = document.getElementById('globalCompetencia')?.value || globalScope.competencia;
+  const label = globalScopeLabel();
+  const top = document.getElementById('globalScopeText');
+  if (top) top.textContent = label;
+
+  const dash = document.getElementById('dashboardScopeNote');
+  if (dash) dash.innerHTML = `Escopo aplicado ao painel: <strong>${label}</strong>. Os valores dos cards seguem demonstrativos, mas a navegação e as leituras analíticas passam a responder ao território selecionado.`;
+
+  const ind = document.getElementById('indicadoresScopeNote');
+  if (ind) ind.innerHTML = `Escopo territorial aplicado aos indicadores: <strong>${label}</strong>. Em produção, os valores seriam recalculados conforme região, UF, município e competência.`;
+
+  const alerts = document.querySelector('#page-alertas .page-desc');
+  if (alerts) alerts.textContent = `Alertas analíticos dos indicadores para o escopo: ${label}. Alertas de carga ficam em Qualidade dos Dados.`;
+
+  const qual = document.querySelector('#page-qualidade .page-desc');
+  if (qual) qual.textContent = `Verificação da qualidade das bases para o escopo: ${label}.`;
+
+  const aud = document.querySelector('#page-auditoria .page-desc');
+  if (aud) aud.textContent = `Auditoria e rastreabilidade das alterações vinculadas ao escopo: ${label}.`;
+
+  atualizarCardsDashboardPorEscopo();
+  atualizarResumoExecutivoPorEscopo(label);
+  atualizarQualidadePorEscopo();
+  registrarAuditoriaEscopo(label);
+  globalSincronizarMapa();
+  globalSincronizarIA();
+  globalSincronizarInterseccionalidade();
+  if (typeof popularTabelaIndicadores === 'function') popularTabelaIndicadores();
+}
+
+function globalInitEscopo() {
+  globalPopularUFs('todas');
+  globalPopularMunicipios('todas');
+  globalAplicarEscopo();
+}
+
+// ── APOIO ANALÍTICO AVANÇADO ──
+let iaCharts = { trend: null, compare: null, strata: null };
+
+function iaIndicadoresDisponiveis() {
+  return (typeof indicadoresData !== 'undefined' ? indicadoresData : []).map(ind => {
+    const num = parseFloat(String(ind.valor).replace('mi','').replace('.', '').replace(',', '.')) || 0;
+    const meta = parseFloat(String(ind.meta).replace('mi','').replace('.', '').replace(',', '.')) || 0;
+    const unidade = String(ind.valor).includes('%') ? '%' : (ind.nome.includes('Materna') ? '/100k NV' : ind.nome.includes('Infantil') ? '/1k NV' : ind.nome.includes('Internações') ? '/10k hab.' : '');
+    const polaridade = ind.ficha?.polaridade?.includes('menor') ? 'menor' : 'maior';
+    return { ...ind, valorNum: num, metaNum: meta, unidade, polaridade };
+  });
+}
+
+function preencherIndicadoresIA() {
+  const select = document.getElementById('iaInd');
+  if (!select) return;
+  const atual = select.value;
+  select.innerHTML = iaIndicadoresDisponiveis().map(i => `<option value="${i.cod}">${i.nome}</option>`).join('');
+  if ([...select.options].some(o => o.value === atual)) select.value = atual;
+}
+
+function iaHash(s) {
+  return String(s).split('').reduce((a,c) => a + c.charCodeAt(0), 0);
+}
+
+function iaFmt(ind, v) {
+  const valor = Number(v).toFixed(1).replace('.', ',');
+  if (ind.unidade === '%') return `${valor}%`;
+  return `${valor} ${ind.unidade || ''}`.trim();
+}
+
+function iaStatus(ind, v) {
+  const ok = ind.polaridade === 'maior' ? v >= ind.metaNum : v <= ind.metaNum;
+  const near = ind.polaridade === 'maior' ? v >= ind.metaNum * 0.90 : v <= ind.metaNum * 1.15;
+  return ok ? ['OK','favorável'] : near ? ['Atenção','atenção'] : ['Crítico','desfavorável'];
+}
+
+function renderIAAvancada() {
+  preencherIndicadoresIA();
+  const lista = iaIndicadoresDisponiveis();
+  if (!lista.length || !document.getElementById('iaInd')) return;
+
+  const cod = document.getElementById('iaInd').value || lista[0].cod;
+  const ind = lista.find(i => i.cod === cod) || lista[0];
+  const territorio = document.getElementById('iaTerr')?.value || 'Brasil';
+  const tipo = document.getElementById('iaTipo')?.value || 'Situação e tendência';
+  const labels = ['2021','2022','2023','2024','2025','2026'];
+
+  const fatorTerritorial = 0.86 + (iaHash(ind.cod + territorio) % 28) / 100;
+  const serieTerritorio = labels.map((_, j) => +(ind.valorNum * fatorTerritorial * (0.90 + j * 0.028)).toFixed(1));
+  const serieBrasil = labels.map((_, j) => +(ind.valorNum * (0.88 + j * 0.025)).toFixed(1));
+  const ultimo = serieTerritorio[serieTerritorio.length - 1];
+  const anterior = serieTerritorio[serieTerritorio.length - 2];
+  const delta = +(ultimo - anterior).toFixed(1);
+  const status = iaStatus(ind, ultimo);
+  const tendencia = (ind.polaridade === 'maior' ? delta >= 0 : delta <= 0) ? 'favorável' : 'desfavorável';
+
+  const ctxTrend = document.getElementById('iaTrend');
+  if (ctxTrend) {
+    if (iaCharts.trend) iaCharts.trend.destroy();
+    iaCharts.trend = new Chart(ctxTrend, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          { label: territorio, data: serieTerritorio, borderColor: '#d9541a', backgroundColor: 'rgba(217,84,26,.08)', fill: true, tension: .32, pointRadius: 3 },
+          { label: 'Média Brasil', data: serieBrasil, borderColor: '#1b3f6b', borderDash: [6,3], tension: .32, pointRadius: 2 },
+          { label: 'Meta', data: labels.map(() => ind.metaNum), borderColor: '#e6a817', borderDash: [3,3], pointRadius: 0, borderWidth: 1.5 }
+        ]
+      },
+      options: { responsive: true, ...chartDefaults }
+    });
+  }
+
+  const pares = ['Brasil','Norte','Nordeste','Centro-Oeste','Sudeste','Sul'];
+  const valoresPares = pares.map(p => +(ind.valorNum * (0.82 + (iaHash(p + ind.cod) % 46) / 100)).toFixed(1));
+  const ctxCompare = document.getElementById('iaCompare');
+  if (ctxCompare) {
+    if (iaCharts.compare) iaCharts.compare.destroy();
+    iaCharts.compare = new Chart(ctxCompare, {
+      type: 'bar',
+      data: {
+        labels: pares,
+        datasets: [{
+          label: ind.nome,
+          data: valoresPares,
+          backgroundColor: pares.map(p => p === territorio ? '#d9541a' : '#5b8ed4'),
+          borderRadius: 6,
+          maxBarThickness: 42
+        }]
+      },
+      options: { responsive: true, ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } } }
+    });
+  }
+
+  const estratos = tipo.includes('Desigual') ? ['Branca','Preta','Parda','Indígena'] : ['Baixa renda','Média renda','Alta renda','Rural'];
+  const valoresEstratos = estratos.map((e, k) => +(ind.valorNum * (0.78 + k * 0.16 + (iaHash(e + territorio) % 10) / 100)).toFixed(1));
+  const ctxStrata = document.getElementById('iaStrata');
+  if (ctxStrata) {
+    if (iaCharts.strata) iaCharts.strata.destroy();
+    iaCharts.strata = new Chart(ctxStrata, {
+      type: 'bar',
+      data: {
+        labels: estratos,
+        datasets: [{
+          label: ind.nome,
+          data: valoresEstratos,
+          backgroundColor: ['#2e5fa3','#d9541a','#2d8f65','#e6a817'],
+          borderRadius: 6,
+          maxBarThickness: 44
+        }]
+      },
+      options: { responsive: true, ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } } }
+    });
+  }
+
+  const maiorEstrato = estratos[valoresEstratos.indexOf(Math.max(...valoresEstratos))];
+  const posRelativa = valoresPares.filter(v => ind.polaridade === 'maior' ? v > ultimo : v < ultimo).length + 1;
+
+  const textos = {
+    'Situação e tendência': `Em <b>${territorio}</b>, o indicador <b>${ind.nome}</b> registra <b>${iaFmt(ind, ultimo)}</b> em 2026. A variação fictícia frente a 2025 é de <b>${String(delta).replace('.', ',')} ${ind.unidade}</b>, com tendência <b>${tendencia}</b> e status <b>${status[0]}</b>.`,
+    'Desigualdades e estratos': `A leitura simulada identifica maior concentração no estrato <b>${maiorEstrato}</b>. Recomenda-se aprofundar a análise por raça/cor, renda per capita, ruralidade, gênero e faixa etária antes de qualquer conclusão institucional.`,
+    'Comparação territorial': `Na comparação com pares territoriais, <b>${territorio}</b> ocupa a posição relativa <b>${posRelativa}</b> entre os territórios apresentados. A leitura deve considerar a polaridade do indicador: <b>${ind.polaridade === 'maior' ? 'quanto maior, melhor' : 'quanto menor, melhor'}</b>.`,
+    'Recomendações para gestão': `Recomenda-se verificar a completude da base, comparar unidades extremas, estratificar vulnerabilidades e pactuar respostas com a área técnica responsável, especialmente quando houver distância relevante em relação à meta.`
+  };
+
+  const iaText = document.getElementById('iaText');
+  if (iaText) {
+    iaText.innerHTML = `<b>Análise simulada do apoio analítico:</b> ${textos[tipo]}<br><br><b>Leitura institucional sugerida:</b> esta informação deve ser tratada como minuta preliminar, sujeita à validação técnica da COMAV e do departamento responsável.`;
+  }
+
+  const iaSynth = document.getElementById('iaSynth');
+  if (iaSynth) {
+    iaSynth.innerHTML = [
+      ['Situação atual', `${iaFmt(ind, ultimo)} · ${status[0]}`, 'Monitorar na próxima competência'],
+      ['Tendência', `Trajetória ${tendencia}`, 'Comparar com série histórica e meta'],
+      ['Equidade', `Maior diferença: ${maiorEstrato}`, 'Priorizar estratificação por vulnerabilidades'],
+      ['Gestão', `Meta demonstrativa: ${iaFmt(ind, ind.metaNum)}`, 'Pactuar encaminhamento com área responsável']
+    ].map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+  }
+
+  window._analiseIAAvancada = (document.getElementById('iaText')?.innerText || '') + '\\n\\n' + (document.getElementById('iaSynth')?.innerText || '');
+  setTimeout(inserirBotoesDownloadGraficos, 100);
+}
+
+function copiarAnaliseIAAvancada() {
+  if (navigator.clipboard) navigator.clipboard.writeText(window._analiseIAAvancada || '');
+}
+
+function baixarAnaliseIAAvancada() {
+  const a = document.createElement('a');
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._analiseIAAvancada || 'Análise IA simulada');
+  a.download = 'analise_ia_saps_simulada.txt';
+  a.click();
+}
+
+// ── INTERSECCIONALIDADE ──
+const interLabels = ['2021','2022','2023','2024','2025','2026'];
+let interCharts = { linha: null, extremos: null };
+
+const interIndicadoresConfig = {
+  MORT_MAT: { nome: 'Mortalidade Materna', unidade: ' por 100 mil NV', base: 52.1, polaridade: 'menor' },
+  MORT_INF: { nome: 'Mortalidade Infantil', unidade: ' por mil NV', base: 11.8, polaridade: 'menor' },
+  INT_CSAPS: { nome: 'Internações por CSAPS', unidade: ' por 10 mil hab.', base: 54.3, polaridade: 'menor' },
+  COB_AB: { nome: 'Cobertura de Atenção Básica', unidade: '%', base: 67.4, polaridade: 'maior' },
+  RACA_COR: { nome: 'Completude do quesito raça/cor', unidade: '%', base: 86.2, polaridade: 'maior' }
+};
+
+function interGetValue(id) {
+  return document.getElementById(id)?.value || '';
+}
+
+function interFmt(value, unidade) {
+  const v = Number(value).toFixed(1).replace('.', ',');
+  return unidade === '%' ? `${v}%` : `${v}${unidade}`;
+}
+
+function interRiskFactor() {
+  const raca = interGetValue('interRaca');
+  const escolaridade = interGetValue('interEscolaridade');
+  const ocupacao = interGetValue('interOcupacao');
+  const territorio = interGetValue('interTerrTipo');
+
+  let fator = 1;
+  if (raca.includes('pretas') || raca.includes('indígena')) fator += 0.38;
+  if (raca.includes('pardas')) fator += 0.22;
+  if (escolaridade.includes('Fundamental')) fator += 0.28;
+  if (ocupacao.includes('informal') || ocupacao.includes('Desempregada')) fator += 0.22;
+  if (territorio.includes('Periferia') || territorio.includes('rural')) fator += 0.20;
+  return fator;
+}
+
+function renderInterseccionalidade() {
+  if (!document.getElementById('page-interseccionalidade')) return;
+
+  const cod = interGetValue('interIndicador') || 'MORT_MAT';
+  const cfg = interIndicadoresConfig[cod] || interIndicadoresConfig.MORT_MAT;
+  const fator = interRiskFactor();
+  const maiorRisco = cfg.polaridade === 'menor' ? cfg.base * fator : cfg.base / Math.max(1.05, fator - 0.25);
+  const menorRisco = cfg.polaridade === 'menor' ? cfg.base * 0.62 : Math.min(99, cfg.base * 1.13);
+  const media = cfg.base;
+
+  const raca = interGetValue('interRaca');
+  const genero = interGetValue('interGenero');
+  const escolaridade = interGetValue('interEscolaridade');
+  const ocupacao = interGetValue('interOcupacao');
+  const territorio = interGetValue('interTerrTipo');
+
+  const pills = document.getElementById('interPills');
+  if (pills) {
+    pills.innerHTML = [
+      `Raça/cor: ${raca}`,
+      `Gênero: ${genero}`,
+      `Escolaridade: ${escolaridade}`,
+      `Ocupação: ${ocupacao}`,
+      `Território: ${territorio}`
+    ].map(t => `<span class="inter-pill">${t}</span>`).join('');
+  }
+
+  const score = document.getElementById('interScore');
+  if (score) {
+    const razao = cfg.polaridade === 'menor' ? maiorRisco / Math.max(1, menorRisco) : menorRisco / Math.max(1, maiorRisco);
+    score.textContent = `${razao.toFixed(1).replace('.', ',')}x`;
+  }
+
+  const highCount = document.getElementById('interHighCount');
+  if (highCount) highCount.textContent = fator >= 1.85 ? '5' : fator >= 1.55 ? '4' : '3';
+
+  const high = document.getElementById('highRiskText');
+  if (high) high.textContent = `${raca}, ${genero.toLowerCase()}, ${escolaridade.toLowerCase()}, ${ocupacao.toLowerCase()} e ${territorio.toLowerCase()} — ${interFmt(maiorRisco, cfg.unidade)} na simulação.`;
+
+  const low = document.getElementById('lowRiskText');
+  if (low) low.textContent = `Estrato de referência com menor acúmulo de vulnerabilidades — ${interFmt(menorRisco, cfg.unidade)} na simulação.`;
+
+  const serieMedia = interLabels.map((_, i) => +(media * (0.88 + i * 0.025)).toFixed(1));
+  const serieSelecionada = interLabels.map((_, i) => +(maiorRisco * (0.82 + i * 0.035)).toFixed(1));
+  const serieMenor = interLabels.map((_, i) => +(menorRisco * (0.90 + i * 0.018)).toFixed(1));
+
+  const ctx = document.getElementById('interChart');
+  if (ctx) {
+    if (interCharts.linha) interCharts.linha.destroy();
+    interCharts.linha = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: interLabels,
+        datasets: [
+          { label: 'Estrato selecionado', data: serieSelecionada, borderColor: '#d9541a', backgroundColor: 'rgba(217,84,26,.08)', fill: true, tension: .32, pointRadius: 3 },
+          { label: 'Média geral', data: serieMedia, borderColor: '#1b3f6b', borderDash: [6,3], tension: .32, pointRadius: 2 },
+          { label: 'Estrato de referência', data: serieMenor, borderColor: '#2d8f65', tension: .32, pointRadius: 2 }
+        ]
+      },
+      options: { responsive: true, ...chartDefaults }
+    });
+  }
+
+  const ctx2 = document.getElementById('extremeChart');
+  if (ctx2) {
+    if (interCharts.extremos) interCharts.extremos.destroy();
+    const labels = [
+      'Maior risco',
+      'Estrato selecionado',
+      'Média geral',
+      'Menor risco'
+    ];
+    const valores = [
+      +(maiorRisco * 1.08).toFixed(1),
+      +maiorRisco.toFixed(1),
+      +media.toFixed(1),
+      +menorRisco.toFixed(1)
+    ];
+    interCharts.extremos = new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: cfg.nome,
+          data: valores,
+          borderColor: '#d9541a',
+          backgroundColor: 'rgba(217,84,26,.08)',
+          pointBackgroundColor: ['#c0392b','#d9541a','#5b8ed4','#2d8f65'],
+          pointBorderColor: '#ffffff',
+          pointBorderWidth: 2,
+          pointRadius: 5,
+          pointHoverRadius: 6,
+          fill: false,
+          tension: .28
+        }]
+      },
+      options: {
+        responsive: true,
+        ...chartDefaults,
+        plugins: {
+          ...chartDefaults.plugins,
+          legend: { display: false }
+        }
+      }
+    });
+  }
+  setTimeout(inserirBotoesDownloadGraficos, 100);
 }
 
 // ── FILTROS DE INDICADORES ──
@@ -1578,11 +4307,243 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 const d = new Date();
 document.getElementById('dataAtual').textContent = d.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' });
 
+
+// ── DOWNLOAD DE GRÁFICOS ──
+const nomesGraficos = {
+  chartCobertura: 'painel_cobertura_ab',
+  chartSerieCsaps: 'painel_serie_internacoes_csaps',
+  chartRegioesCob: 'painel_comparativo_regional_cobertura',
+  chartTendenciaAtencao: 'painel_tendencia_indicadores_atencao',
+  chartIndicadorSerie: 'indicadores_serie_historica',
+  chartIndicadorComparativo: 'indicadores_comparacao_territorial',
+  chartMapaTendencia: 'mapa_tendencia_indicador',
+  interChart: 'interseccionalidade_evolucao_comparada',
+  extremeChart: 'interseccionalidade_estratos_extremos',
+  iaTrend: 'ia_serie_historica',
+  iaCompare: 'ia_comparacao_pares',
+  iaStrata: 'ia_desagregacao_ficticia'
+};
+
+function nomeArquivoSeguro(nome) {
+  return String(nome || 'grafico')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\w\-]+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_|_$/g, '')
+    .toLowerCase();
+}
+
+function mostrarToastDownload(msg) {
+  let toast = document.getElementById('downloadToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'downloadToast';
+    toast.className = 'download-toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.classList.add('visible');
+  clearTimeout(window._downloadToastTimer);
+  window._downloadToastTimer = setTimeout(() => toast.classList.remove('visible'), 2500);
+}
+
+function baixarCanvasComoPNG(canvas, nome) {
+  if (!canvas) return false;
+  const link = document.createElement('a');
+  link.download = `${nomeArquivoSeguro(nome)}.png`;
+  link.href = canvas.toDataURL('image/png', 1.0);
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  return true;
+}
+
+function baixarGrafico(id, nomePersonalizado) {
+  const canvas = document.getElementById(id);
+  if (!canvas) {
+    mostrarToastDownload('Gráfico não encontrado nesta tela.');
+    return;
+  }
+  const nome = nomePersonalizado || nomesGraficos[id] || id;
+  baixarCanvasComoPNG(canvas, nome);
+  mostrarToastDownload(`Download iniciado: ${nome}.png`);
+}
+
+function baixarMapaBrasilSVG() {
+  if (!window.mapaHighcharts || !mapaHighcharts.getSVG) {
+    mostrarToastDownload('O mapa ainda não está carregado.');
+    return false;
+  }
+  const svg = mapaHighcharts.getSVG({
+    chart: { backgroundColor: '#ffffff' },
+    title: { text: null },
+    credits: { enabled: false }
+  });
+  const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `mapa_brasil_${nomeArquivoSeguro(globalScopeLabel ? globalScopeLabel() : 'saps')}.svg`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  return true;
+}
+
+function baixarTodosGraficos() {
+  const canvases = Array.from(document.querySelectorAll('canvas'))
+    .filter(canvas => canvas.offsetParent !== null || canvas.width > 0);
+
+  if (!canvases.length && !window.mapaHighcharts) {
+    mostrarToastDownload('Nenhum gráfico disponível para download.');
+    return;
+  }
+
+  let total = 0;
+  canvases.forEach((canvas, index) => {
+    const id = canvas.id || `grafico_${index + 1}`;
+    const nome = nomesGraficos[id] || id || `grafico_${index + 1}`;
+    setTimeout(() => {
+      baixarCanvasComoPNG(canvas, nome);
+    }, index * 250);
+    total += 1;
+  });
+
+  if (window.mapaHighcharts) {
+    setTimeout(() => baixarMapaBrasilSVG(), (canvases.length + 1) * 250);
+    total += 1;
+  }
+
+  mostrarToastDownload(`Iniciando download de ${total} arquivo(s) de gráficos.`);
+}
+
+function inserirBotoesDownloadGraficos() {
+  document.querySelectorAll('canvas').forEach(canvas => {
+    if (!canvas.id) return;
+    const card = canvas.closest('.card, .chart-card');
+    if (!card || card.querySelector(`[data-download-chart="${canvas.id}"]`)) return;
+
+    const tools = document.createElement('div');
+    tools.className = 'chart-tools';
+    tools.setAttribute('data-download-chart', canvas.id);
+    tools.innerHTML = `<button class="chart-download-btn" type="button" onclick="baixarGrafico('${canvas.id}')">⬇ PNG</button>`;
+
+    const title = card.querySelector('.card-title');
+    if (title && title.nextSibling) {
+      title.insertAdjacentElement('afterend', tools);
+    } else {
+      card.prepend(tools);
+    }
+  });
+
+  const mapaCard = document.getElementById('brasilRealMap')?.closest('.card');
+  if (mapaCard && !mapaCard.querySelector('[data-download-chart="mapaBrasil"]')) {
+    const tools = document.createElement('div');
+    tools.className = 'chart-tools';
+    tools.setAttribute('data-download-chart', 'mapaBrasil');
+    tools.innerHTML = `<button class="chart-download-btn" type="button" onclick="baixarMapaBrasilSVG()">⬇ SVG do mapa</button>`;
+    const title = mapaCard.querySelector('.card-title');
+    if (title) title.insertAdjacentElement('afterend', tools);
+    else mapaCard.prepend(tools);
+  }
+}
+
+
+// ── DICIONÁRIO, PLANO DE AÇÃO E RELATÓRIO EXECUTIVO ──
+function popularDicionarioIndicadores() {
+  const tbody = document.getElementById('dicionarioIndicadoresRows');
+  if (!tbody || typeof indicadoresData === 'undefined') return;
+
+  const busca = (document.getElementById('buscaDicionario')?.value || '').toLowerCase();
+  const natureza = document.getElementById('dicNatureza')?.value || 'todos';
+  const departamento = document.getElementById('dicDepartamento')?.value || 'todos';
+
+  const dados = indicadoresData.filter(ind => {
+    const texto = `${ind.cod} ${ind.nome} ${ind.tema} ${ind.fonte} ${ind.departamento}`.toLowerCase();
+    const okBusca = !busca || texto.includes(busca);
+    const okNatureza = natureza === 'todos' || ind.natureza === natureza;
+    const okDep = departamento === 'todos' || ind.departamento === departamento;
+    return okBusca && okNatureza && okDep;
+  });
+
+  tbody.innerHTML = dados.map(ind => `
+    <tr>
+      <td><code style="font-size:11.5px;background:var(--cinza-bg);padding:2px 6px;border-radius:4px;">${ind.cod}</code></td>
+      <td class="ind-name">${ind.nome}<small>${ind.tema}</small></td>
+      <td><span class="tag tag-azul">${ind.departamento}</span></td>
+      <td><span class="tag ${tagNatureza ? tagNatureza(ind.natureza) : 'tag-cinza'}">${ind.natureza}</span></td>
+      <td style="font-size:12px;color:var(--cinza-med)">${ind.fonte}</td>
+      <td>${ind.ficha?.periodicidade || 'A definir'}</td>
+      <td>${ind.ficha?.polaridade || 'A definir'}</td>
+      <td><span class="tag ${ind.validacao?.includes('análise') ? 'tag-amarelo' : ind.validacao?.includes('Preliminar') ? 'tag-cinza' : 'tag-azul'}">${ind.validacao || 'Preliminar'}</span></td>
+    </tr>
+  `).join('') || `<tr><td colspan="8" style="text-align:center;color:var(--cinza-med);padding:24px;">Nenhum indicador encontrado.</td></tr>`;
+}
+
+function gerarRelatorioExecutivo() {
+  const box = document.getElementById('relatorioExecutivoBox');
+  if (!box) return;
+
+  const tipo = document.getElementById('relatorioTipo')?.value || 'gabinete';
+  const tom = document.getElementById('relatorioTom')?.value || 'tecnico';
+  const escopo = typeof globalScopeLabel === 'function' ? globalScopeLabel() : 'Brasil completo · Mai/2026';
+
+  const titulo = {
+    gabinete: 'Síntese para Gabinete da Secretária',
+    ministro: 'Subsídio para Gabinete do Ministro',
+    presidencia: 'Subsídio para Presidência',
+    imprensa: 'Pontos para Imprensa'
+  }[tipo] || 'Relatório Executivo';
+
+  const linguagem = {
+    tecnico: 'linguagem técnico-institucional',
+    executivo: 'linguagem executiva e objetiva',
+    comunicacao: 'linguagem de comunicação pública'
+  }[tom];
+
+  const texto = `
+    <h3>${titulo}</h3>
+    <p><strong>Escopo:</strong> ${escopo}</p>
+    <p><strong>Finalidade:</strong> consolidar informações estratégicas monitoradas pela COMAV, vinculada ao Gabinete da Secretária da SAPS, para subsidiar demandas do gabinete da secretária, do gabinete do ministro, da Presidência e da comunicação institucional.</p>
+
+    <h4>1. Leitura analítica do cenário</h4>
+    <p>Os dados simulados indicam avanço da cobertura de Atenção Básica, redução gradual das internações por condições sensíveis à APS e manutenção de atenção para indicadores materno-infantis. A leitura deve priorizar tendência, comparação territorial e identificação de grupos ou territórios com maior distância em relação à meta.</p>
+
+    <h4>2. Pontos de atenção para decisão</h4>
+    <p>O principal alerta analítico permanece associado à mortalidade infantil, com necessidade de leitura territorial, análise da série histórica e comparação com indicadores de acesso e qualidade do cuidado. As internações por CSAPS seguem como indicador sensível para acompanhamento da efetividade da APS.</p>
+
+    <h4>3. Encaminhamento sugerido</h4>
+    <p>Recomenda-se gerar análise complementar no módulo de Apoio Analítico, validar a leitura com a área técnica responsável e registrar os encaminhamentos no Plano de Ação dos Alertas Analíticos.</p>
+
+    <h4>4. Observação sobre uso institucional</h4>
+    <p>Esta minuta utiliza ${linguagem} e deve ser revisada pela COMAV/Gabinete SAPS antes de qualquer encaminhamento externo ou uso em demanda de imprensa.</p>
+  `;
+  box.innerHTML = texto;
+  window._relatorioExecutivo = box.innerText;
+}
+
+function baixarRelatorioExecutivo() {
+  if (!window._relatorioExecutivo) gerarRelatorioExecutivo();
+  const a = document.createElement('a');
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._relatorioExecutivo || '');
+  a.download = 'relatorio_executivo_saps_comav.txt';
+  a.click();
+}
+
 // ── INIT ──
 window.addEventListener('load', () => {
   popularTabelaIndicadores();
   criarChart();
   criarMiniCharts();
+  popularFiltroUF('todas');
+  popularFiltroMunicipio('todas');
+  atualizarMapa('cob');
+  globalInitEscopo();
+  renderInterseccionalidade();
+  preencherIndicadoresIA();
+  renderIAAvancada();
+  setTimeout(inserirBotoesDownloadGraficos, 500);
 });
 </script>
 </body>
