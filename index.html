@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MonitoraSAPS — Sistema de Monitoramento Estratégico da SAPS</title>
+<title>Sistema de Monitoramento SAPS — COMAV</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Public+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -2491,6 +2490,28 @@ body.presentation-mode .presentation-exit {
   }
 }
 
+
+/* ── FIX DE BOOT VISUAL ── */
+body:not(.interface-ready) .nav-icon,
+body:not(.interface-ready) .stat-icon,
+body:not(.interface-ready) .alert-dot,
+body:not(.interface-ready) .card-title > span:first-child {
+  opacity: .45;
+}
+body.interface-ready .nav-icon,
+body.interface-ready .stat-icon,
+body.interface-ready .alert-dot,
+body.interface-ready .card-title > span:first-child {
+  opacity: 1;
+}
+.nav-icon svg,
+.title-icon svg,
+.stat-icon svg,
+.alert-dot svg,
+.btn-svg-icon svg {
+  display: block;
+}
+
 </style>
 </head>
 <body>
@@ -2500,7 +2521,7 @@ body.presentation-mode .presentation-exit {
   <div class="topbar-left">
     <div class="topbar-logo">MonitoraSAPS</div>
     <div class="topbar-sep"></div>
-    <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da SAPS</div>
+    <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da APS</div>
   </div>
   <div class="topbar-right">
     <span class="badge-comav">COMAV · Gabinete SAPS</span>
@@ -2596,7 +2617,7 @@ body.presentation-mode .presentation-exit {
     </div>
     <div class="sidebar-divider"></div>
     <div class="sidebar-footer">
-      Competência analisada: <strong>Mai/2026</strong><br>
+      Última carga: <strong>Mai/2026</strong><br>
       Protótipo para validação · COMAV · Gabinete SAPS
     </div>
   </nav>
@@ -2609,7 +2630,7 @@ body.presentation-mode .presentation-exit {
     <div id="page-dashboard" class="page active">
       <div class="page-header">
         <div class="page-title">Painel Executivo — Competência Mai/2026</div>
-        <div class="page-desc">Leitura executiva dos principais indicadores estratégicos da SAPS, com alertas analíticos, tendências, comparação territorial e subsídios para tomada de decisão.</div>
+        <div class="page-desc">Leitura executiva dos principais indicadores, alertas analíticos, qualidade dos dados e tendências para apoio à decisão.</div>
       </div>
 
       <div class="prototype-banner">Protótipo demonstrativo para validação da gestão. Os valores são simulados e demonstram a atuação da COMAV como instância vinculada ao Gabinete da Secretária da SAPS para monitoramento estratégico dos indicadores.</div>
@@ -2624,7 +2645,7 @@ body.presentation-mode .presentation-exit {
             Na competência maio/2026, o sistema sinaliza crescimento da cobertura de Atenção Básica, redução gradual das internações por condições sensíveis à APS e manutenção de indicadores materno-infantis em situação de atenção. A leitura executiva destaca os principais movimentos analíticos observados na competência, com foco em tendência, comparação territorial e identificação de prioridades para acompanhamento técnico.
           </div>
           <div class="exec-summary-actions">
-            <span class="institutional-pill">✓ Dados consolidados na competência</span>
+            <span class="institutional-pill">✓ Atualização via DW</span>
             <span class="institutional-pill">✓ Validação COMAV</span>
             <span class="institutional-pill">✓ Alertas automatizados</span>
             <span class="institutional-pill">✓ Auditoria e rastreabilidade</span>
@@ -2635,8 +2656,8 @@ body.presentation-mode .presentation-exit {
         <div class="exec-decision-card">
           <div>
             <small>Prioridade analítica para gestão</small>
-            <strong>2 alertas analíticos</strong>
-            <span>1 crítico e 1 em atenção. Foco analítico: mortalidade infantil e internações por condições sensíveis à APS, com encaminhamento técnico orientado por território.</span>
+            <strong>2 alertas</strong>
+            <span>1 crítico e 1 em atenção. Principal foco: mortalidade infantil e internações por condições sensíveis à APS, com encaminhamento técnico orientado por território.</span>
           </div>
           <div class="exec-action-list">
             <div>1. Priorizar leitura materno-infantil no território selecionado.</div>
@@ -2663,16 +2684,16 @@ body.presentation-mode .presentation-exit {
           <span>Com metadados institucionais</span>
         </div>
         <div class="kpi-card">
-          <small>Segurança da leitura analítica</small>
+          <small>Confiabilidade da carga</small>
           <strong id="kpiConfiabilidade">99,3%</strong>
-          <span id="kpiAnáliseSub">Indicadores consolidados para análise</span>
+          <span id="kpiCargaSub">Carga completa com ressalvas pontuais</span>
         </div>
       </div>
 
       <div class="stats-grid exec-primary-kpis">
         <div class="stat-card verde destaque">
           <div class="stat-top">
-            <div class="stat-label">Cobertura da Atenção Básica</div>
+            <div class="stat-label">Cobertura AB</div>
             <div class="stat-icon">🏥</div>
           </div>
           <div class="stat-value">67,4%</div>
@@ -2688,7 +2709,7 @@ body.presentation-mode .presentation-exit {
         </div>
         <div class="stat-card laranja">
           <div class="stat-top">
-            <div class="stat-label">Internações por CSAPS / 10 mil hab.</div>
+            <div class="stat-label">Internações CSAPS / 10k</div>
             <div class="stat-icon">🏨</div>
           </div>
           <div class="stat-value">54,3</div>
@@ -2696,7 +2717,7 @@ body.presentation-mode .presentation-exit {
         </div>
         <div class="stat-card amarelo">
           <div class="stat-top">
-            <div class="stat-label">Mortalidade materna / 100 mil NV</div>
+            <div class="stat-label">Mortalidade materna / 100k</div>
             <div class="stat-icon">🩺</div>
           </div>
           <div class="stat-value">52,1</div>
@@ -2704,7 +2725,7 @@ body.presentation-mode .presentation-exit {
         </div>
         <div class="stat-card vermelho">
           <div class="stat-top">
-            <div class="stat-label">Alertas analíticos ativos</div>
+            <div class="stat-label">Alertas ativos</div>
             <div class="stat-icon">⚠️</div>
           </div>
           <div class="stat-value">2</div>
@@ -2715,8 +2736,8 @@ body.presentation-mode .presentation-exit {
       <div class="status-strip">
         <div class="status-item"><strong>Indicadores acompanhados</strong><span>12</span></div>
         <div class="status-item"><strong>Indicadores em atenção</strong><span>3</span></div>
-        <div class="status-item"><strong>Competência analisada</strong><span id="healthAnálise">Mai/2026</span></div>
-        <div class="status-item"><strong>Consistência analítica geral</strong><span>99,3%</span></div>
+        <div class="status-item"><strong>Última carga DW</strong><span id="healthCarga">Mai/2026</span></div>
+        <div class="status-item"><strong>Completude geral</strong><span>99,3%</span></div>
       </div>
 
       <div class="exec-evidence-grid">
@@ -2750,20 +2771,20 @@ body.presentation-mode .presentation-exit {
             <div class="card-title"><span>🛡️</span> Saúde da informação</div>
             <div class="exec-quality-mini">
               <div class="health-item"><strong>Validação</strong><span>COMAV</span></div>
-              <div class="health-item"><strong>Consistência analítica</strong><span>99,3%</span></div>
-              <div class="health-item"><strong>Pendências de análise</strong><span>ver módulo</span></div>
+              <div class="health-item"><strong>Completude</strong><span>99,3%</span></div>
+              <div class="health-item"><strong>Pendências de carga</strong><span>ver módulo</span></div>
               <div class="health-item"><strong>Duplicidades críticas</strong><span>0</span></div>
             </div>
             <div class="decision-strip">
               <span class="decision-chip">Rastreabilidade ativa</span>
               <span class="decision-chip">Controle de qualidade</span>
-              <span class="decision-chip">Validação técnica quando necessário</span>
+              <span class="decision-chip">Consulta em Qualidade dos Dados</span>
             </div>
           </div>
         </div>
 
         <div class="card chart-card exec-main-chart">
-          <div class="card-title"><span>📊</span> Tendência principal — Cobertura da Atenção Básica (%)</div>
+          <div class="card-title"><span>📊</span> Tendência principal — Cobertura AB (%)</div>
           <canvas id="chartCobertura" height="210"></canvas>
           <div class="chart-caption">Gráfico principal do painel executivo. Mostra a evolução da cobertura e a distância em relação à meta anual.</div>
         </div>
@@ -2794,7 +2815,7 @@ body.presentation-mode .presentation-exit {
             </thead>
             <tbody>
               <tr>
-                <td class="ind-name">Cobertura da Atenção Básica<small>Percentual de cobertura no escopo</small></td>
+                <td class="ind-name">Cobertura AB<small>Percentual de cobertura no escopo</small></td>
                 <td><strong>67,4%</strong></td>
                 <td>70%</td>
                 <td><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:96%;background:var(--verde-med)"></div></div></td>
@@ -2837,7 +2858,7 @@ body.presentation-mode .presentation-exit {
           <div class="chart-caption">Tendência de redução gradual, ainda acima da meta de acompanhamento.</div>
         </div>
         <div class="card chart-card">
-          <div class="card-title"><span>🗺️</span> Comparativo regional — Cobertura da Atenção Básica</div>
+          <div class="card-title"><span>🗺️</span> Comparativo regional — Cobertura AB</div>
           <canvas id="chartRegioesCob" height="175"></canvas>
           <div class="chart-caption">Comparação rápida entre regiões para priorização territorial.</div>
         </div>
@@ -2873,12 +2894,12 @@ body.presentation-mode .presentation-exit {
       <div class="card">
         <div class="ind-filters strategic-filters">
           <select class="filter-select" id="filtroDepartamento" onchange="aplicarFiltrosIndicadores()">
-            <option value="todos">Todas as áreas técnicas/instâncias técnicas</option>
+            <option value="todos">Todos os departamentos/áreas técnicas</option>
             <option value="DESF">DESF · Departamento de Saúde da Família e Comunidade</option>
             <option value="DEPROS">DEPROS · Departamento de Promoção da Saúde</option>
             <option value="DGCI">DGCI · Departamento de Gestão do Cuidado Integral</option>
             <option value="DAPS">DAPS · Departamento de Ações Programáticas Estratégicas</option>
-            <option value="GAB/SAPS">COMAV · Gabinete SAPS</option>
+            <option value="GAB/SAPS">Gabinete SAPS · Demandas estratégicas</option>
           </select>
           <select class="filter-select" id="filtroTema" onchange="aplicarFiltrosIndicadores()">
             <option value="todos">Todos os temas</option>
@@ -2953,13 +2974,13 @@ body.presentation-mode .presentation-exit {
       </div>
       <div class="two-col">
         <div class="card" style="grid-column: 1 / -1;">
-          <div class="card-title"><span>🗺️</span> <span id="mapMetricTitle">Cobertura da Atenção Básica por Região — Mai/2026</span></div>
+          <div class="card-title"><span>🗺️</span> <span id="mapMetricTitle">Cobertura de Atenção Básica por Região — Mai/2026</span></div>
           <div class="ind-filters">
             <select class="filter-select" id="mapIndicador" onchange="atualizarMapa(this.value)">
-              <option value="cob">Cobertura da Atenção Básica (%)</option>
-              <option value="mort_mat">Mortalidade materna / 100 mil NV NV</option>
+              <option value="cob">Cobertura AB (%)</option>
+              <option value="mort_mat">Mortalidade Materna / 100k NV</option>
               <option value="mort_inf">Mortalidade Infantil / 1k NV</option>
-              <option value="int_csaps">Internações por CSAPS / 10 mil hab.</option>
+              <option value="int_csaps">Internações CSAPS / 10k</option>
             </select>
             <select class="filter-select" id="mapFiltroRegiao" onchange="alterarFiltroRegiao(this.value)">
               <option value="todas">Todas as regiões</option>
@@ -3033,7 +3054,7 @@ body.presentation-mode .presentation-exit {
             <option value="MORT_MAT">Mortalidade Materna</option>
             <option value="MORT_INF">Mortalidade Infantil</option>
             <option value="INT_CSAPS">Internações por CSAPS</option>
-            <option value="COB_AB">Cobertura da Atenção Básica</option>
+            <option value="COB_AB">Cobertura de Atenção Básica</option>
             <option value="RACA_COR">Completude do quesito raça/cor</option>
           </select>
           <select class="filter-select" id="interTerritorio" onchange="renderInterseccionalidade()">
@@ -3326,7 +3347,7 @@ body.presentation-mode .presentation-exit {
         <div class="page-desc">Gera uma minuta estratégica para subsidiar o Gabinete da Secretária, o Gabinete do Ministro, a Presidência e demandas de comunicação institucional.</div>
       </div>
 
-      <div class="prototype-banner">A COMAV é vinculada diretamente ao Gabinete da Secretária da SAPS e atua no monitoramento estratégico dos indicadores da Atenção Primária à Saúde, subsidiando demandas do Gabinete da Secretária, do Gabinete do Ministro, da Presidência e da comunicação institucional.</div>
+      <div class="prototype-banner">A COMAV está vinculada diretamente ao Gabinete da Secretária da SAPS. Este módulo simula a consolidação de informações estratégicas para gabinetes e demandas de imprensa.</div>
 
       <div class="module-grid">
         <div class="module-card"><strong>Gabinete da Secretária</strong><span>Síntese técnica para tomada de decisão e priorização de agendas internas.</span></div>
@@ -3348,10 +3369,10 @@ body.presentation-mode .presentation-exit {
             <div class="filter-field">
               <label>Produto</label>
               <select class="filter-select" id="relatorioTipo" onchange="gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
-                <option value="gabinete">Síntese para Gabinete da Secretária</option>
+                <option value="gabinete">Síntese para gabinete</option>
                 <option value="ministro">Subsídio para Gabinete do Ministro</option>
-                <option value="presidencia">Subsídio estratégico para Presidência</option>
-                <option value="imprensa">Subsídios para imprensa</option>
+                <option value="presidencia">Subsídio para Presidência</option>
+                <option value="imprensa">Pontos para imprensa</option>
               </select>
             </div>
             <div class="filter-field">
@@ -3384,14 +3405,14 @@ body.presentation-mode .presentation-exit {
           </div>
           <div class="filter-group-grid">
             <div class="filter-field">
-              <label>Área técnica / instância</label>
+              <label>Departamento/área</label>
               <select class="filter-select" id="relatorioFiltroDepartamento" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
-                <option value="todos">Todas as áreas técnicas/instâncias</option>
+                <option value="todos">Todos os departamentos/áreas</option>
                 <option value="DESF">DESF</option>
                 <option value="DEPROS">DEPROS</option>
                 <option value="DGCI">DGCI</option>
                 <option value="DAPS">DAPS</option>
-                <option value="GAB/SAPS">COMAV · Gabinete SAPS</option>
+                <option value="GAB/SAPS">Gabinete SAPS / COMAV</option>
               </select>
             </div>
             <div class="filter-field">
@@ -3535,7 +3556,7 @@ body.presentation-mode .presentation-exit {
         <div class="page-desc">Camada metodológica do sistema: fórmula, fonte, periodicidade, polaridade, departamento responsável e validação pela COMAV/Gabinete SAPS.</div>
       </div>
 
-      <div class="validation-note">A COMAV é vinculada diretamente ao Gabinete da Secretária da SAPS e atua no monitoramento estratégico dos indicadores da Atenção Primária à Saúde, subsidiando demandas do Gabinete da Secretária, do Gabinete do Ministro, da Presidência e da comunicação institucional.</div>
+      <div class="validation-note">A COMAV não é departamento: atua vinculada ao Gabinete da Secretária da SAPS, monitorando os indicadores estratégicos e consolidando informações para demandas dos gabinetes e da comunicação institucional.</div>
 
       <div class="card">
         <div class="card-title"><span>📚</span> Metadados dos indicadores</div>
@@ -3548,7 +3569,7 @@ body.presentation-mode .presentation-exit {
             <option value="Resultado">Resultado</option>
           </select>
           <select class="filter-select" id="dicDepartamento" onchange="popularDicionarioIndicadores()">
-            <option value="todos">Todas as áreas técnicas/instâncias</option>
+            <option value="todos">Todos os departamentos/áreas</option>
             <option value="DESF">DESF</option>
             <option value="DEPROS">DEPROS</option>
             <option value="DGCI">DGCI</option>
@@ -3640,7 +3661,7 @@ body.presentation-mode .presentation-exit {
         </div>
         <div class="qc-card">
           <div class="qc-value" style="color:var(--verde-med)">99,3%</div>
-          <div class="qc-label">Consistência analítica</div>
+          <div class="qc-label">Completude geral</div>
           <div class="qc-status"><span class="tag tag-verde">Meta: ≥ 98%</span></div>
         </div>
       </div>
@@ -3817,13 +3838,20 @@ body.presentation-mode .presentation-exit {
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js">
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', iniciarMonitoraSAPS);
+window.addEventListener('load', () => {
+  setTimeout(iniciarMonitoraSAPS, 120);
+});
+
+</script>
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/mapdata/countries/br/br-all.js"></script>
 <script>
 // ── DATA ──
 const indicadoresData = [
-  { cod: 'COB_AB', nome: 'Cobertura da Atenção Básica', tipo: 'Cobertura', departamento: 'DESF', tema: 'Cobertura e acesso', natureza: 'Estrutura', prioridade: 'Alta', atualizacao: 'DW', valor: '67,4%', meta: '70%', delta: '+1,2 p.p.', deltaUp: true, status: 'atencao', fonte: 'SCNES/SISAB/DW', validacao: 'Validado pela COMAV',
+  { cod: 'COB_AB', nome: 'Cobertura de Atenção Básica', tipo: 'Cobertura', departamento: 'DESF', tema: 'Cobertura e acesso', natureza: 'Estrutura', prioridade: 'Alta', atualizacao: 'DW', valor: '67,4%', meta: '70%', delta: '+1,2 p.p.', deltaUp: true, status: 'atencao', fonte: 'SCNES/SISAB/DW', validacao: 'Validado pela COMAV',
     ficha: { definicao: 'Proporção da população coberta por equipes de AB cadastradas no SCNES.', numerador: 'Pop. coberta por equipes AB', denominador: 'Pop. total estimada', periodicidade: 'Mensal', fonte: 'SCNES/SISAB — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '70%' }},
   { cod: 'EQUIPES_ESF', nome: 'Equipes de Saúde da Família homologadas', tipo: 'Cobertura', departamento: 'DESF', tema: 'Cobertura e acesso', natureza: 'Estrutura', prioridade: 'Alta', atualizacao: 'DW', valor: '47.823', meta: '50.000', delta: '+318', deltaUp: true, status: 'ok', fonte: 'SCNES/DW', validacao: 'Validado pela COMAV',
     ficha: { definicao: 'Número de equipes de Saúde da Família homologadas e com registro ativo.', numerador: 'Equipes homologadas ativas', denominador: 'Não se aplica', periodicidade: 'Mensal', fonte: 'SCNES — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '50.000' }},
@@ -3841,7 +3869,7 @@ const indicadoresData = [
     ficha: { definicao: 'Quantidade de ações coletivas e atividades de promoção da saúde registradas na APS.', numerador: 'Ações registradas', denominador: 'Não se aplica', periodicidade: 'Mensal', fonte: 'SISAB e atualização COMAV', polaridade: 'Quanto maior, melhor', meta2026: '90.000' }},
   { cod: 'RACA_COR', nome: 'Completude do quesito raça/cor', tipo: 'Equidade', departamento: 'GAB/SAPS', tema: 'Equidade e desigualdades', natureza: 'Processo', prioridade: 'Alta', atualizacao: 'DW', valor: '86,2%', meta: '95%', delta: '+0,9 p.p.', deltaUp: true, status: 'atencao', fonte: 'SISAB/SIM/SINASC', validacao: 'Em análise técnica',
     ficha: { definicao: 'Percentual de registros com preenchimento válido do quesito raça/cor nas bases selecionadas.', numerador: 'Registros com raça/cor preenchida', denominador: 'Total de registros válidos', periodicidade: 'Mensal', fonte: 'Bases integradas do SUS — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '95%' }},
-  { cod: 'QUAL_DADOS', nome: 'Consistência analítica da carga de dados', tipo: 'Qualidade dos Dados', departamento: 'GAB/SAPS', tema: 'Qualidade do cuidado', natureza: 'Processo', prioridade: 'Alta', atualizacao: 'DW', valor: '99,3%', meta: '98%', delta: '+0,2 p.p.', deltaUp: true, status: 'ok', fonte: 'DW/COMAV', validacao: 'Validado pela COMAV',
+  { cod: 'QUAL_DADOS', nome: 'Completude geral da carga de dados', tipo: 'Qualidade dos Dados', departamento: 'GAB/SAPS', tema: 'Qualidade do cuidado', natureza: 'Processo', prioridade: 'Alta', atualizacao: 'DW', valor: '99,3%', meta: '98%', delta: '+0,2 p.p.', deltaUp: true, status: 'ok', fonte: 'DW/COMAV', validacao: 'Validado pela COMAV',
     ficha: { definicao: 'Percentual de bases carregadas com completude mínima esperada para atualização dos painéis.', numerador: 'Bases/variáveis carregadas sem pendência crítica', denominador: 'Total de bases/variáveis esperadas', periodicidade: 'Mensal', fonte: 'Controle de qualidade DW/COMAV', polaridade: 'Quanto maior, melhor', meta2026: '98%' }},
   { cod: 'ACOMP_DCNT', nome: 'Acompanhamento de pessoas com DCNT', tipo: 'Cuidado Integral', departamento: 'DAPS', tema: 'Qualidade do cuidado', natureza: 'Processo', prioridade: 'Média', atualizacao: 'COMAV', valor: '61,7%', meta: '70%', delta: '+1,1 p.p.', deltaUp: true, status: 'atencao', fonte: 'Área técnica/COMAV', validacao: 'Preliminar',
     ficha: { definicao: 'Percentual de pessoas com condições crônicas acompanhadas pela APS conforme critério pactuado.', numerador: 'Pessoas acompanhadas', denominador: 'Pessoas elegíveis', periodicidade: 'Mensal/Quadrimestral', fonte: 'Informação enviada pela área técnica e registrada pela COMAV', polaridade: 'Quanto maior, melhor', meta2026: '70%' }},
@@ -3935,12 +3963,14 @@ function limparFiltrosIndicadores() {
 // ── NAVEGAÇÃO ──
 function goTo(page, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + page).classList.add('active');
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   if (btn) btn.classList.add('active');
-  setTimeout(inserirBotoesDownloadGraficos, 180);
-  setTimeout(atualizarInterfaceModulo, 220);
-  setTimeout(renomearBotoesDownload, 260);
+
+  setTimeout(bootVisualCompleto, 60);
+  setTimeout(bootVisualCompleto, 220);
 }
 
 
@@ -3966,7 +3996,7 @@ function criarChart() {
     data: {
       labels: ['Jan/25','Mar/25','Mai/25','Jul/25','Set/25','Nov/25','Jan/26','Mar/26','Mai/26'],
       datasets: [{
-        label: 'Cobertura da Atenção Básica (%)',
+        label: 'Cobertura AB (%)',
         data: [64.1,64.8,65.4,65.9,66.3,66.7,66.9,67.2,67.4],
         borderColor: '#2d8f65',
         backgroundColor: 'rgba(45,143,101,.12)',
@@ -4017,7 +4047,7 @@ function criarChart() {
     data: {
       labels: ['Norte','Nordeste','Centro-Oeste','Sudeste','Sul'],
       datasets: [{
-        label: 'Cobertura da Atenção Básica (%)',
+        label: 'Cobertura AB (%)',
         data: [69.2,58.9,71.4,65.8,74.1],
         backgroundColor: ['#4db88a','#2d8f65','#5b8ed4','#1b3f6b','#e6a817'],
         borderRadius: 6,
@@ -4233,7 +4263,7 @@ function municipiosDaUF(ufKey) {
 
 const valoresUF = {
   cob: {
-    titulo: 'Cobertura da Atenção Básica por UF — Mai/2026',
+    titulo: 'Cobertura de Atenção Básica por UF — Mai/2026',
     unidade: '%', maiorMelhor: true, mediaBrasil: '67,4%',
     tendencia: { labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'], brasil: [66.3,66.6,66.9,67.2,67.4] },
     valores: {
@@ -4700,7 +4730,7 @@ function gerarAnaliseIA() {
   const meta = document.getElementById('iaMeta');
 
   const nomes = {
-    cobertura_ab: 'Cobertura da Atenção Básica',
+    cobertura_ab: 'Cobertura de Atenção Básica',
     mortalidade_materna: 'Mortalidade Materna',
     mortalidade_infantil: 'Mortalidade Infantil',
     internacoes_csaps: 'Internações por Condições Sensíveis à APS',
@@ -4976,7 +5006,7 @@ function atualizarResumoExecutivoPorEscopo(label) {
   if (kpiIndicadores && typeof indicadoresData !== 'undefined') kpiIndicadores.textContent = indicadoresData.length;
   if (healthCarga) healthCarga.textContent = globalScope.competencia;
   if (healthAlertas) healthAlertas.textContent = globalScopeLevel() === 'Município' ? '1 crítico' : 'alertas analíticos';
-  if (cargaSub) cargaSub.textContent = globalScopeLevel() === 'Município' ? 'Leitura municipal consolidada' : 'Indicadores consolidados para análise';
+  if (cargaSub) cargaSub.textContent = globalScopeLevel() === 'Município' ? 'Carga com leitura municipal demonstrativa' : 'Carga completa com ressalvas pontuais';
 
   const insights = document.getElementById('executiveInsights');
   if (insights) {
@@ -5213,7 +5243,7 @@ const interIndicadoresConfig = {
   MORT_MAT: { nome: 'Mortalidade Materna', unidade: ' por 100 mil NV', base: 52.1, polaridade: 'menor' },
   MORT_INF: { nome: 'Mortalidade Infantil', unidade: ' por mil NV', base: 11.8, polaridade: 'menor' },
   INT_CSAPS: { nome: 'Internações por CSAPS', unidade: ' por 10 mil hab.', base: 54.3, polaridade: 'menor' },
-  COB_AB: { nome: 'Cobertura da Atenção Básica', unidade: '%', base: 67.4, polaridade: 'maior' },
+  COB_AB: { nome: 'Cobertura de Atenção Básica', unidade: '%', base: 67.4, polaridade: 'maior' },
   RACA_COR: { nome: 'Completude do quesito raça/cor', unidade: '%', base: 86.2, polaridade: 'maior' }
 };
 
@@ -5536,6 +5566,8 @@ function inserirBotoesDownloadGraficos() {
 
 
 // ── DICIONÁRIO, PLANO DE AÇÃO E RELATÓRIO EXECUTIVO ──
+setTimeout(bootVisualCompleto, 40);
+
 function popularDicionarioIndicadores() {
   const tbody = document.getElementById('dicionarioIndicadoresRows');
   if (!tbody || typeof indicadoresData === 'undefined') return;
@@ -5740,8 +5772,8 @@ function gerarRelatorioExecutivo() {
   const titulo = {
     gabinete: 'Síntese para Gabinete da Secretária',
     ministro: 'Subsídio para Gabinete do Ministro',
-    presidencia: 'Subsídio estratégico para Presidência',
-    imprensa: 'Subsídios para imprensa'
+    presidencia: 'Subsídio para Presidência',
+    imprensa: 'Pontos para Imprensa'
   }[tipo] || 'Relatório Executivo';
 
   const linguagem = {
@@ -5768,7 +5800,7 @@ function gerarRelatorioExecutivo() {
     <h3>${titulo}</h3>
     <p><strong>Escopo:</strong> ${escopo}</p>
     <p><strong>Indicadores selecionados:</strong> ${selecionados.length} indicador(es), contemplando os seguintes temas: ${temas}.</p>
-    <p><strong>Filtros aplicados:</strong> área técnica/instância: ${filtrosRelatorio.departamento}; natureza: ${filtrosRelatorio.natureza}; prioridade: ${filtrosRelatorio.prioridade}; período: ${filtrosRelatorio.periodo}.</p>
+    <p><strong>Filtros aplicados:</strong> área/departamento: ${filtrosRelatorio.departamento}; natureza: ${filtrosRelatorio.natureza}; prioridade: ${filtrosRelatorio.prioridade}; período: ${filtrosRelatorio.periodo}.</p>
     <p><strong>Finalidade:</strong> consolidar informações estratégicas monitoradas pela COMAV, vinculada ao Gabinete da Secretária da SAPS, para subsidiar demandas do gabinete da secretária, do gabinete do ministro, da Presidência e da comunicação institucional.</p>
 
     <h4>1. Indicadores incluídos na minuta</h4>
@@ -5792,7 +5824,7 @@ function gerarRelatorioExecutivo() {
 Escopo: ${escopo}
 Indicadores selecionados: ${selecionados.length}
 Temas: ${temas}
-Filtros aplicados: área técnica/instância ${filtrosRelatorio.departamento}; natureza ${filtrosRelatorio.natureza}; prioridade ${filtrosRelatorio.prioridade}; período ${filtrosRelatorio.periodo}
+Filtros aplicados: área/departamento ${filtrosRelatorio.departamento}; natureza ${filtrosRelatorio.natureza}; prioridade ${filtrosRelatorio.prioridade}; período ${filtrosRelatorio.periodo}
 
 1. Indicadores incluídos:
 ${indicadoresTexto || '- Nenhum indicador selecionado.'}
@@ -6005,15 +6037,15 @@ function aplicarIconesFiltrosHierarquicos(){
 }
 
 function aplicarIdentidadeVisualModerna(){
-  modernizarTopo();
-  aplicarIconesSidebar();
-  aplicarIconesTitulos();
-  aplicarIconesStats();
-  aplicarIconesAlertas();
-  substituirEmojisRemanescentesPorSVG();
-  aplicarIconesFiltrosHierarquicos();
-  aplicarTextoBotoes();
-  renomearBotoesDownload();
+  if (typeof modernizarTopo === 'function') modernizarTopo();
+  if (typeof aplicarIconesSidebar === 'function') aplicarIconesSidebar();
+  if (typeof aplicarIconesTitulos === 'function') aplicarIconesTitulos();
+  if (typeof aplicarIconesStats === 'function') aplicarIconesStats();
+  if (typeof aplicarIconesAlertas === 'function') aplicarIconesAlertas();
+  if (typeof substituirEmojisRemanescentesPorSVG === 'function') substituirEmojisRemanescentesPorSVG();
+  if (typeof aplicarIconesFiltrosHierarquicos === 'function') aplicarIconesFiltrosHierarquicos();
+  if (typeof aplicarTextoBotoes === 'function') aplicarTextoBotoes();
+  if (typeof renomearBotoesDownload === 'function') renomearBotoesDownload();
 }
 
 
@@ -6168,20 +6200,78 @@ function atualizarInterfaceModulo(){
   aplicarIdentidadeVisualModerna();
 }
 
-// ── INIT ──
-window.addEventListener('load', () => {
-  popularTabelaIndicadores();
-  criarChart();
-  criarMiniCharts();
-  popularFiltroUF('todas');
-  popularFiltroMunicipio('todas');
-  atualizarMapa('cob');
-  globalInitEscopo();
-  renderInterseccionalidade();
-  preencherIndicadoresIA();
-  renderIAAvancada();
-  setTimeout(inserirBotoesDownloadGraficos, 500);
-});
+
+// ── BOOT VISUAL SEGURO ──
+function safeCall(fnName) {
+  try {
+    if (typeof window[fnName] === 'function') {
+      window[fnName]();
+    }
+  } catch (e) {
+    console.warn(`Falha controlada em ${fnName}:`, e);
+  }
+}
+
+function bootVisualCompleto() {
+  safeCall('aplicarIdentidadeVisualModerna');
+  safeCall('criarOuAtualizarCabecalhoModulo');
+  safeCall('atualizarChipsFiltrosAtivos');
+  safeCall('inserirBotoesDownloadGraficos');
+  safeCall('renomearBotoesDownload');
+
+  document.body.classList.add('interface-ready');
+}
+
+function bootDadosSistema() {
+  [
+    'popularTabelaIndicadores',
+    'criarChart',
+    'criarMiniCharts'
+  ].forEach(safeCall);
+
+  try {
+    if (typeof popularFiltroUF === 'function') popularFiltroUF('todas');
+    if (typeof popularFiltroMunicipio === 'function') popularFiltroMunicipio('todas');
+    if (typeof atualizarMapa === 'function') atualizarMapa('cob');
+  } catch (e) {
+    console.warn('Falha controlada em filtros/mapa:', e);
+  }
+
+  [
+    'globalInitEscopo',
+    'renderInterseccionalidade',
+    'preencherIndicadoresIA',
+    'renderIAAvancada',
+    'popularDicionarioIndicadores',
+    'popularIndicadoresRelatorio',
+    'gerarRelatorioExecutivo'
+  ].forEach(safeCall);
+
+  try {
+    if (typeof popularRelatorioUFs === 'function') popularRelatorioUFs('todas');
+    if (typeof popularRelatorioMunicipios === 'function') popularRelatorioMunicipios('todas');
+  } catch (e) {
+    console.warn('Falha controlada em filtros do relatório:', e);
+  }
+}
+
+function iniciarMonitoraSAPS() {
+  bootVisualCompleto();
+
+  // Segunda passagem para elementos já presentes no DOM.
+  setTimeout(bootVisualCompleto, 80);
+
+  // Dados e gráficos podem criar novos elementos; depois reaplicamos visual.
+  setTimeout(() => {
+    bootDadosSistema();
+    bootVisualCompleto();
+  }, 220);
+
+  setTimeout(bootVisualCompleto, 650);
+  setTimeout(bootVisualCompleto, 1200);
+}
+
+
 </script>
 <button id="sairApresentacao" class="btn btn-primary presentation-exit" onclick="alternarModoApresentacao(false)">Sair da apresentação</button>
 </body>
