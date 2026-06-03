@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -2662,44 +2663,33 @@ body.perfil-comav .usuario-only {display:none!important;}
 @media (max-width:1050px){.change-management-layout{grid-template-columns:1fr;}}
 
 
-/* ── CORREÇÃO DO AVISO DE PERFIL NO CABEÇALHO DO MÓDULO ── */
-.module-sticky-header {
-  overflow: visible;
-  margin-bottom: 22px !important;
+/* ── AJUSTES DOS FILTROS DE INTERSECCIONALIDADE ── */
+.inter-axis-box {
+  max-height: 680px;
+  overflow-y: auto;
 }
-.module-sticky-profile {
-  margin-top: 12px;
-  border: 1px solid rgba(79,143,224,.18);
-  background: linear-gradient(135deg, rgba(79,143,224,.08), rgba(46,163,114,.07));
-  border-radius: 14px;
-  padding: 11px 13px;
-  display: flex;
+.inter-axis-row {
   align-items: flex-start;
-  gap: 9px;
-  color: #405770;
-  font-size: 12.6px;
-  line-height: 1.5;
-  width: 100%;
-  position: relative;
-  z-index: 1;
 }
-.module-sticky-profile .title-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--brand-700, #1b4f8a);
-  flex: 0 0 auto;
-  margin-top: 1px;
+.inter-axis-row label {
+  line-height: 1.25;
+  max-width: 135px;
 }
-.profile-notice-global {
-  display: none !important;
+.inter-axis-row select {
+  max-width: 210px;
+  min-width: 180px;
 }
-body.presentation-mode .module-sticky-profile {
-  display: none !important;
-}
-@media (max-width: 760px) {
-  .module-sticky-profile {
-    font-size: 12px;
-    padding: 10px;
+@media (max-width: 980px) {
+  .inter-axis-box {
+    max-height: none;
+    overflow-y: visible;
+  }
+  .inter-axis-row label {
+    max-width: none;
+  }
+  .inter-axis-row select {
+    max-width: none;
+    width: 100%;
   }
 }
 
@@ -3237,7 +3227,7 @@ body.presentation-mode .module-sticky-profile {
     <div id="page-interseccionalidade" class="page">
       <div class="page-header">
         <div class="page-title">Monitoramento Interseccional das Desigualdades</div>
-        <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador e território, com comparação entre média geral, maior risco e menor risco.</div>
+        <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador, considerando marcadores sociais, populacionais e de vulnerabilidade.</div>
       </div>
 
       <div class="prototype-banner">Módulo demonstrativo. Os valores são fictícios e simulam a lógica de análise interseccional proposta para o MonitoraSAPS.</div>
@@ -3252,15 +3242,6 @@ body.presentation-mode .module-sticky-profile {
             <option value="COB_AB">Cobertura de Atenção Básica</option>
             <option value="RACA_COR">Completude do quesito raça/cor</option>
           </select>
-          <select class="filter-select" id="interTerritorio" onchange="renderInterseccionalidade()">
-            <option>Brasil</option>
-            <option>Região Norte</option>
-            <option>Região Nordeste</option>
-            <option>UF: RJ</option>
-            <option>UF: MA</option>
-            <option>Município: Nova Iguaçu</option>
-            <option>Município: São Gonçalo</option>
-          </select>
           <select class="filter-select" id="interPeriodo" onchange="renderInterseccionalidade()">
             <option value="2021-2026">Série 2021–2026</option>
             <option value="2023-2026">Série 2023–2026</option>
@@ -3270,7 +3251,7 @@ body.presentation-mode .module-sticky-profile {
         </div>
 
         <div class="inter-note">
-          A análise interseccional permite observar desigualdades que podem ficar ocultas nas médias populacionais, combinando marcadores como raça/cor, gênero, escolaridade, ocupação e território. A proposta é apoiar a identificação de grupos prioritários para análise técnica e tomada de decisão.
+          A análise interseccional permite observar desigualdades que podem ficar ocultas nas médias populacionais, combinando marcadores como raça/cor, sexo, povo ou comunidade tradicional, faixa etária, escolaridade, deficiência, orientação sexual, identidade de sexo, situação de rua e situação no mercado de trabalho. A proposta é apoiar a identificação de grupos prioritários para análise técnica e tomada de decisão.
         </div>
 
         <div class="stats-grid">
@@ -3286,8 +3267,8 @@ body.presentation-mode .module-sticky-profile {
           </div>
           <div class="stat-card verde">
             <div class="stat-label">Variáveis disponíveis</div>
-            <div class="inter-score">5</div>
-            <div class="stat-change neutral">raça/cor, gênero, escolaridade, ocupação e território</div>
+            <div class="inter-score">10</div>
+            <div class="stat-change neutral">marcadores sociais, populacionais e de vulnerabilidade</div>
           </div>
           <div class="stat-card amarelo">
             <div class="stat-label">Status metodológico</div>
@@ -3303,47 +3284,106 @@ body.presentation-mode .module-sticky-profile {
           <div class="inter-axis-row">
             <label>Raça/cor</label>
             <select id="interRaca" onchange="renderInterseccionalidade()">
-              <option>Mulheres pretas</option>
-              <option>Mulheres pardas</option>
-              <option>Mulheres brancas</option>
-              <option>População indígena</option>
+              <option>Preta</option>
+              <option>Parda</option>
+              <option>Branca</option>
+              <option>Indígena</option>
+              <option>Amarela</option>
+              <option>Não informada</option>
               <option>Todos os registros válidos</option>
             </select>
           </div>
           <div class="inter-axis-row">
-            <label>Gênero</label>
-            <select id="interGenero" onchange="renderInterseccionalidade()">
-              <option>Mulheres</option>
-              <option>Homens</option>
+            <label>Sexo</label>
+            <select id="interSexo" onchange="renderInterseccionalidade()">
+              <option>Feminino</option>
+              <option>Masculino</option>
               <option>Ignorado</option>
               <option>Todos</option>
             </select>
           </div>
           <div class="inter-axis-row">
-            <label>Escolaridade</label>
-            <select id="interEscolaridade" onchange="renderInterseccionalidade()">
-              <option>Fundamental incompleto</option>
-              <option>Ensino médio</option>
-              <option>Ensino superior</option>
-              <option>Ignorada</option>
+            <label>Povo ou comunidade tradicional</label>
+            <select id="interPct" onchange="renderInterseccionalidade()">
+              <option>Não informado</option>
+              <option>Quilombola</option>
+              <option>Indígena</option>
+              <option>Ribeirinha</option>
+              <option>Cigana</option>
+              <option>Povos de terreiro</option>
+              <option>Outro povo ou comunidade tradicional</option>
             </select>
           </div>
           <div class="inter-axis-row">
-            <label>Ocupação</label>
-            <select id="interOcupacao" onchange="renderInterseccionalidade()">
+            <label>Faixa etária</label>
+            <select id="interFaixaEtaria" onchange="renderInterseccionalidade()">
+              <option>0 a 5 anos</option>
+              <option>6 a 14 anos</option>
+              <option>15 a 29 anos</option>
+              <option>30 a 59 anos</option>
+              <option>60 anos ou mais</option>
+              <option>Todas</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Escolaridade</label>
+            <select id="interEscolaridade" onchange="renderInterseccionalidade()">
+              <option>Sem instrução</option>
+              <option>Ensino fundamental incompleto</option>
+              <option>Ensino fundamental completo</option>
+              <option>Ensino médio</option>
+              <option>Ensino superior</option>
+              <option>Não informada</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Pessoa com deficiência</label>
+            <select id="interDeficiencia" onchange="renderInterseccionalidade()">
+              <option>Não informada</option>
+              <option>Sim</option>
+              <option>Não</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Orientação sexual</label>
+            <select id="interOrientacao" onchange="renderInterseccionalidade()">
+              <option>Não informada</option>
+              <option>Heterossexual</option>
+              <option>Gay</option>
+              <option>Lésbica</option>
+              <option>Bissexual</option>
+              <option>Outra orientação sexual</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Identidade de sexo</label>
+            <select id="interIdentidadeGenero" onchange="renderInterseccionalidade()">
+              <option>Não informada</option>
+              <option>Mulher cissexo</option>
+              <option>Homem cissexo</option>
+              <option>Mulher trans</option>
+              <option>Homem trans</option>
+              <option>Pessoa travesti</option>
+              <option>Pessoa não binária</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Pessoa em situação de rua</label>
+            <select id="interRua" onchange="renderInterseccionalidade()">
+              <option>Não informada</option>
+              <option>Sim</option>
+              <option>Não</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Situação no mercado de trabalho</label>
+            <select id="interMercadoTrabalho" onchange="renderInterseccionalidade()">
               <option>Trabalho informal</option>
               <option>Trabalho formal</option>
               <option>Desempregada/o</option>
-              <option>Não informado</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Território</label>
-            <select id="interTerrTipo" onchange="renderInterseccionalidade()">
-              <option>Periferia urbana</option>
-              <option>Área rural</option>
-              <option>Capital</option>
-              <option>Interior</option>
+              <option>Trabalho doméstico</option>
+              <option>Aposentada/o</option>
+              <option>Não informada</option>
             </select>
           </div>
 
@@ -5026,7 +5066,7 @@ function gerarProduto(tipo) {
     boletim: `<strong>Boletim mensal — minuta preliminar</strong><br><br>Na competência maio/2026, os indicadores estratégicos da SAPS apontam crescimento gradual da cobertura de Atenção Básica, com alcance de 67,4% no Brasil, ainda abaixo da meta anual de 70%. As internações por condições sensíveis à APS mantêm tendência de redução, embora permaneçam acima do parâmetro definido para acompanhamento. A mortalidade materna apresenta estabilidade e segue em situação de atenção. O principal alerta da competência refere-se à mortalidade infantil na Região Norte, com variação desfavorável relevante. A leitura deve ser validada pela COMAV, considerando a qualidade da carga de dados e as diferenças territoriais observadas.`,
     executivo: `<strong>Informe executivo — síntese para gestão</strong><br><br>O painel de maio/2026 indica avanço gradual da cobertura de Atenção Básica e redução das internações por condições sensíveis à APS, ainda com necessidade de acompanhamento para alcance das metas. Permanecem em atenção os indicadores materno-infantis, especialmente a mortalidade infantil na Região Norte, que deverá compor a pauta prioritária de monitoramento.<br><br>A carga de dados foi processada com alta completude, mas há pendências pontuais em três municípios. Recomenda-se validar o impacto dessas pendências antes de qualquer encaminhamento externo.`,
     reuniao: `<strong>Pauta sugerida — reunião de monitoramento</strong><br><br>1. Validar a situação da carga de dados da competência maio/2026.<br>2. Analisar o alerta de mortalidade infantil na Região Norte.<br>3. Verificar a evolução da cobertura de Atenção Básica frente à meta anual.<br>4. Avaliar a tendência das internações por condições sensíveis à APS.<br>5. Definir encaminhamentos com áreas técnicas e responsáveis pelos indicadores em atenção.<br>6. Registrar deliberações e justificativas na trilha de auditoria.`,
-    desigualdade: `<strong>Análise de desigualdades — módulo em evolução</strong><br><br>A análise estratificada dos indicadores deverá priorizar raça/cor, sexo, faixa etária, território e, quando disponível, escolaridade, ocupação, ruralidade e outros marcadores sociais. A proposta é permitir que a gestão identifique desigualdades ocultas nas médias nacionais e oriente respostas para grupos e territórios mais vulnerabilizados. Nesta etapa do protótipo, recomenda-se apresentar o módulo como funcionalidade em desenvolvimento, dependente da qualidade, disponibilidade e padronização das bases.`
+    desigualdade: `<strong>Análise de desigualdades — módulo em evolução</strong><br><br>A análise estratificada dos indicadores deverá priorizar raça/cor, sexo, faixa etária, território e, quando disponível, escolaridade, situação no mercado de trabalho, ruralidade e outros marcadores sociais. A proposta é permitir que a gestão identifique desigualdades ocultas nas médias nacionais e oriente respostas para grupos e territórios mais vulnerabilizados. Nesta etapa do protótipo, recomenda-se apresentar o módulo como funcionalidade em desenvolvimento, dependente da qualidade, disponibilidade e padronização das bases.`
   };
 
   setTimeout(() => {
@@ -5453,7 +5493,7 @@ function renderIAAvancada() {
 
   const textos = {
     'Situação e tendência': `Em <b>${territorio}</b>, o indicador <b>${ind.nome}</b> registra <b>${iaFmt(ind, ultimo)}</b> em 2026. A variação fictícia frente a 2025 é de <b>${String(delta).replace('.', ',')} ${ind.unidade}</b>, com tendência <b>${tendencia}</b> e status <b>${status[0]}</b>.`,
-    'Desigualdades e estratos': `A leitura simulada identifica maior concentração no estrato <b>${maiorEstrato}</b>. Recomenda-se aprofundar a análise por raça/cor, renda per capita, ruralidade, gênero e faixa etária antes de qualquer conclusão institucional.`,
+    'Desigualdades e estratos': `A leitura simulada identifica maior concentração no estrato <b>${maiorEstrato}</b>. Recomenda-se aprofundar a análise por raça/cor, renda per capita, ruralidade, sexo e faixa etária antes de qualquer conclusão institucional.`,
     'Comparação territorial': `Na comparação com pares territoriais, <b>${territorio}</b> ocupa a posição relativa <b>${posRelativa}</b> entre os territórios apresentados. A leitura deve considerar a polaridade do indicador: <b>${ind.polaridade === 'maior' ? 'quanto maior, melhor' : 'quanto menor, melhor'}</b>.`,
     'Recomendações para gestão': `Recomenda-se verificar a completude da base, comparar unidades extremas, estratificar vulnerabilidades e pactuar respostas com a área técnica responsável, especialmente quando houver distância relevante em relação à meta.`
   };
@@ -5512,15 +5552,27 @@ function interFmt(value, unidade) {
 function interRiskFactor() {
   const raca = interGetValue('interRaca');
   const escolaridade = interGetValue('interEscolaridade');
-  const ocupacao = interGetValue('interOcupacao');
-  const territorio = interGetValue('interTerrTipo');
+  const mercado = interGetValue('interMercadoTrabalho');
+  const pct = interGetValue('interPct');
+  const faixa = interGetValue('interFaixaEtaria');
+  const deficiencia = interGetValue('interDeficiencia');
+  const orientacao = interGetValue('interOrientacao');
+  const identidade = interGetValue('interIdentidadeGenero');
+  const rua = interGetValue('interRua');
 
   let fator = 1;
-  if (raca.includes('pretas') || raca.includes('indígena')) fator += 0.38;
-  if (raca.includes('pardas')) fator += 0.22;
-  if (escolaridade.includes('Fundamental')) fator += 0.28;
-  if (ocupacao.includes('informal') || ocupacao.includes('Desempregada')) fator += 0.22;
-  if (territorio.includes('Periferia') || territorio.includes('rural')) fator += 0.20;
+  if (['Preta','Indígena'].some(v => raca.includes(v))) fator += 0.38;
+  if (raca.includes('Parda')) fator += 0.22;
+  if (raca.includes('Não informada')) fator += 0.10;
+  if (escolaridade.includes('Sem instrução') || escolaridade.includes('fundamental incompleto')) fator += 0.28;
+  if (mercado.includes('informal') || mercado.includes('Desempregada')) fator += 0.22;
+  if (mercado.includes('doméstico')) fator += 0.14;
+  if (!pct.includes('Não informado')) fator += 0.18;
+  if (faixa.includes('0 a 5') || faixa.includes('60 anos')) fator += 0.12;
+  if (deficiencia === 'Sim') fator += 0.18;
+  if (!orientacao.includes('Não informada') && !orientacao.includes('Heterossexual')) fator += 0.10;
+  if (!identidade.includes('Não informada') && !identidade.includes('cissexo')) fator += 0.14;
+  if (rua === 'Sim') fator += 0.30;
   return fator;
 }
 
@@ -5535,19 +5587,29 @@ function renderInterseccionalidade() {
   const media = cfg.base;
 
   const raca = interGetValue('interRaca');
-  const genero = interGetValue('interGenero');
+  const sexo = interGetValue('interSexo');
+  const pct = interGetValue('interPct');
+  const faixaEtaria = interGetValue('interFaixaEtaria');
   const escolaridade = interGetValue('interEscolaridade');
-  const ocupacao = interGetValue('interOcupacao');
-  const territorio = interGetValue('interTerrTipo');
+  const deficiencia = interGetValue('interDeficiencia');
+  const orientacao = interGetValue('interOrientacao');
+  const identidadeGenero = interGetValue('interIdentidadeGenero');
+  const rua = interGetValue('interRua');
+  const mercado = interGetValue('interMercadoTrabalho');
 
   const pills = document.getElementById('interPills');
   if (pills) {
     pills.innerHTML = [
       `Raça/cor: ${raca}`,
-      `Gênero: ${genero}`,
+      `Sexo: ${sexo}`,
+      `Povo/comunidade tradicional: ${pct}`,
+      `Faixa etária: ${faixaEtaria}`,
       `Escolaridade: ${escolaridade}`,
-      `Ocupação: ${ocupacao}`,
-      `Território: ${territorio}`
+      `Pessoa com deficiência: ${deficiencia}`,
+      `Orientação sexual: ${orientacao}`,
+      `Identidade de sexo: ${identidadeGenero}`,
+      `Pessoa em situação de rua: ${rua}`,
+      `Situação no mercado de trabalho: ${mercado}`
     ].map(t => `<span class="inter-pill">${t}</span>`).join('');
   }
 
@@ -5558,10 +5620,10 @@ function renderInterseccionalidade() {
   }
 
   const highCount = document.getElementById('interHighCount');
-  if (highCount) highCount.textContent = fator >= 1.85 ? '5' : fator >= 1.55 ? '4' : '3';
+  if (highCount) highCount.textContent = fator >= 2.30 ? '8' : fator >= 1.85 ? '6' : fator >= 1.55 ? '4' : '3';
 
   const high = document.getElementById('highRiskText');
-  if (high) high.textContent = `${raca}, ${genero.toLowerCase()}, ${escolaridade.toLowerCase()}, ${ocupacao.toLowerCase()} e ${territorio.toLowerCase()} — ${interFmt(maiorRisco, cfg.unidade)} na simulação.`;
+  if (high) high.textContent = `${raca}, sexo ${sexo.toLowerCase()}, ${pct.toLowerCase()}, ${faixaEtaria.toLowerCase()}, ${escolaridade.toLowerCase()}, deficiência: ${deficiencia.toLowerCase()}, orientação sexual: ${orientacao.toLowerCase()}, identidade de sexo: ${identidadeGenero.toLowerCase()}, situação de rua: ${rua.toLowerCase()}, mercado de trabalho: ${mercado.toLowerCase()} — ${interFmt(maiorRisco, cfg.unidade)} na simulação.`;
 
   const low = document.getElementById('lowRiskText');
   if (low) low.textContent = `Estrato de referência com menor acúmulo de vulnerabilidades — ${interFmt(menorRisco, cfg.unidade)} na simulação.`;
@@ -6372,8 +6434,6 @@ function alterarPerfilSistema(perfil) {
   }
 
   aplicarPermissoesPerfil();
-  criarOuAtualizarCabecalhoModulo();
-  atualizarAvisoPerfil();
 
   const paginaAtual = getPaginaAtivaId ? getPaginaAtivaId() : 'dashboard';
   if (!perfilPodeAcessar(paginaAtual)) {
@@ -6412,21 +6472,18 @@ function aplicarPermissoesPerfil() {
   atualizarAvisoPerfil();
 }
 
-
-function getAvisoPerfilHTML() {
-  if (typeof perfilSistemaAtual !== 'undefined' && perfilSistemaAtual === 'usuario') {
-    return `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV/Gabinete SAPS.</div>`;
-  }
-  return `<span class="title-icon">${svgIcon('shield')}</span><div><strong>Perfil COMAV/Gabinete SAPS:</strong> visão completa de gestão estratégica, governança, qualidade, auditoria, relatórios e acompanhamento dos pedidos de alteração de dados.</div>`;
-}
-
 function atualizarAvisoPerfil() {
-  // O aviso de perfil agora fica dentro do cabeçalho do módulo para evitar sobreposição visual.
   document.querySelectorAll('.profile-notice-global').forEach(el => el.remove());
-  const box = document.querySelector('.page.active .module-sticky-profile');
-  if (box && typeof getAvisoPerfilHTML === 'function') {
-    box.innerHTML = getAvisoPerfilHTML();
-  }
+  const page = document.querySelector('.page.active');
+  if (!page) return;
+
+  const notice = document.createElement('div');
+  notice.className = 'profile-notice profile-notice-global';
+  notice.innerHTML = perfilSistemaAtual === 'usuario'
+    ? `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV.</div>`;
+
+  const header = page.querySelector('.module-sticky-header') || page.querySelector('.page-header');
+  if (header && header.nextSibling) header.insertAdjacentElement('afterend', notice);
 }
 
 function popularSolicitacaoUsuario() {
@@ -6555,8 +6612,9 @@ function getChipsGlobais(){
 
   if (page === 'interseccionalidade') {
     chips.push(['Indicador', valorSelectTexto('interIndicador'), '']);
-    chips.push(['Território', valorSelectTexto('interTerritorio'), '']);
     chips.push(['Período', valorSelectTexto('interPeriodo'), '']);
+    chips.push(['Raça/cor', valorSelectTexto('interRaca'), 'muted']);
+    chips.push(['Sexo', valorSelectTexto('interSexo'), 'muted']);
   }
 
   return chips.filter(c => c[1] && !String(c[1]).includes('undefined'));
@@ -6576,8 +6634,6 @@ function criarOuAtualizarCabecalhoModulo(){
     page.insertBefore(header, page.firstElementChild?.nextSibling || page.firstChild);
   }
 
-  const avisoPerfil = typeof getAvisoPerfilHTML === 'function' ? getAvisoPerfilHTML() : '';
-
   header.innerHTML = `
     <div class="module-sticky-main">
       <div class="module-sticky-title"><span class="title-icon">${svgIcon(icon)}</span><span>${titulo}</span></div>
@@ -6587,7 +6643,6 @@ function criarOuAtualizarCabecalhoModulo(){
       </div>
     </div>
     <div class="active-filter-row" id="activeFilterChips"></div>
-    <div class="module-sticky-profile">${avisoPerfil}</div>
   `;
   atualizarChipsFiltrosAtivos();
   aplicarTextoBotoes();
