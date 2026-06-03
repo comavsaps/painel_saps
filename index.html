@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -2488,6 +2489,22 @@ body.presentation-mode .presentation-exit {
   .presentation-toggle {
     width: 100%;
   }
+}
+
+
+/* ── FIX DE INICIALIZAÇÃO VISUAL ── */
+.nav-icon:empty,
+.title-icon:empty,
+.stat-icon:empty,
+.alert-dot:empty {
+  opacity: 0;
+}
+.nav-icon svg,
+.title-icon svg,
+.stat-icon svg,
+.alert-dot svg,
+.btn-svg-icon svg {
+  display: block;
 }
 
 </style>
@@ -5531,6 +5548,9 @@ function inserirBotoesDownloadGraficos() {
     if (title) title.insertAdjacentElement('afterend', tools);
     else mapaCard.prepend(tools);
   }
+
+  renomearBotoesDownload();
+  aplicarIdentidadeVisualModerna();
 }
 
 
@@ -6004,15 +6024,15 @@ function aplicarIconesFiltrosHierarquicos(){
 }
 
 function aplicarIdentidadeVisualModerna(){
-  modernizarTopo();
-  aplicarIconesSidebar();
-  aplicarIconesTitulos();
-  aplicarIconesStats();
-  aplicarIconesAlertas();
-  substituirEmojisRemanescentesPorSVG();
-  aplicarIconesFiltrosHierarquicos();
-  aplicarTextoBotoes();
-  renomearBotoesDownload();
+  if (typeof modernizarTopo === 'function') modernizarTopo();
+  if (typeof aplicarIconesSidebar === 'function') aplicarIconesSidebar();
+  if (typeof aplicarIconesTitulos === 'function') aplicarIconesTitulos();
+  if (typeof aplicarIconesStats === 'function') aplicarIconesStats();
+  if (typeof aplicarIconesAlertas === 'function') aplicarIconesAlertas();
+  if (typeof substituirEmojisRemanescentesPorSVG === 'function') substituirEmojisRemanescentesPorSVG();
+  if (typeof aplicarIconesFiltrosHierarquicos === 'function') aplicarIconesFiltrosHierarquicos();
+  if (typeof aplicarTextoBotoes === 'function') aplicarTextoBotoes();
+  if (typeof renomearBotoesDownload === 'function') renomearBotoesDownload();
 }
 
 
@@ -6168,6 +6188,24 @@ function atualizarInterfaceModulo(){
 }
 
 // ── INIT ──
+function inicializarInterfaceVisual() {
+  try {
+    aplicarIdentidadeVisualModerna();
+    criarOuAtualizarCabecalhoModulo();
+    atualizarChipsFiltrosAtivos();
+    inserirBotoesDownloadGraficos();
+    renomearBotoesDownload();
+  } catch (e) {
+    console.warn('Ajuste visual inicial ainda não disponível:', e);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Aplica SVGs e cabeçalho assim que o DOM estiver pronto,
+  // sem esperar o carregamento de bibliotecas externas, mapas ou fontes.
+  setTimeout(inicializarInterfaceVisual, 50);
+});
+
 window.addEventListener('load', () => {
   popularTabelaIndicadores();
   criarChart();
@@ -6179,7 +6217,15 @@ window.addEventListener('load', () => {
   renderInterseccionalidade();
   preencherIndicadoresIA();
   renderIAAvancada();
-  setTimeout(inserirBotoesDownloadGraficos, 500);
+  popularDicionarioIndicadores();
+  popularRelatorioUFs('todas');
+  popularRelatorioMunicipios('todas');
+  popularIndicadoresRelatorio();
+  gerarRelatorioExecutivo();
+
+  setTimeout(inserirBotoesDownloadGraficos, 300);
+  setTimeout(inicializarInterfaceVisual, 450);
+  setTimeout(atualizarInterfaceModulo, 650);
 });
 </script>
 <button id="sairApresentacao" class="btn btn-primary presentation-exit" onclick="alternarModoApresentacao(false)">Sair da apresentação</button>
