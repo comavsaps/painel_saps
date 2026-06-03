@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema de Monitoramento SAPS — COMAV</title>
+<title>MonitoraSAPS — Sistema de Monitoramento Estratégico da SAPS</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Public+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -2521,7 +2522,7 @@ body.interface-ready .card-title > span:first-child {
   <div class="topbar-left">
     <div class="topbar-logo">MonitoraSAPS</div>
     <div class="topbar-sep"></div>
-    <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da APS</div>
+    <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da SAPS</div>
   </div>
   <div class="topbar-right">
     <span class="badge-comav">COMAV · Gabinete SAPS</span>
@@ -3838,14 +3839,7 @@ body.interface-ready .card-title > span:first-child {
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js">
-// ── INIT ──
-document.addEventListener('DOMContentLoaded', iniciarMonitoraSAPS);
-window.addEventListener('load', () => {
-  setTimeout(iniciarMonitoraSAPS, 120);
-});
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/mapdata/countries/br/br-all.js"></script>
 <script>
@@ -5562,11 +5556,13 @@ function inserirBotoesDownloadGraficos() {
     if (title) title.insertAdjacentElement('afterend', tools);
     else mapaCard.prepend(tools);
   }
+
+  if (typeof aplicarTextoBotoes === 'function') aplicarTextoBotoes();
+  if (typeof renomearBotoesDownload === 'function') renomearBotoesDownload();
 }
 
 
 // ── DICIONÁRIO, PLANO DE AÇÃO E RELATÓRIO EXECUTIVO ──
-setTimeout(bootVisualCompleto, 40);
 
 function popularDicionarioIndicadores() {
   const tbody = document.getElementById('dicionarioIndicadoresRows');
@@ -6271,6 +6267,13 @@ function iniciarMonitoraSAPS() {
   setTimeout(bootVisualCompleto, 1200);
 }
 
+
+
+// ── INIT CORRIGIDO ──
+document.addEventListener('DOMContentLoaded', iniciarMonitoraSAPS);
+window.addEventListener('load', () => {
+  setTimeout(iniciarMonitoraSAPS, 120);
+});
 
 </script>
 <button id="sairApresentacao" class="btn btn-primary presentation-exit" onclick="alternarModoApresentacao(false)">Sair da apresentação</button>
