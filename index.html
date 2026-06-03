@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -3071,12 +3069,6 @@ body.perfil-comav .usuario-only {display:none!important;}
             <option value="Produção e acompanhamento">Produção e acompanhamento</option>
             <option value="Qualidade do cuidado">Qualidade do cuidado</option>
           </select>
-          <select class="filter-select" id="filtroNatureza" onchange="aplicarFiltrosIndicadores()">
-            <option value="todos">Todas as naturezas</option>
-            <option value="Estrutura">Estrutura</option>
-            <option value="Processo">Processo</option>
-            <option value="Resultado">Resultado</option>
-          </select>
           <select class="filter-select" id="filtroAtualizacao" onchange="aplicarFiltrosIndicadores()">
             <option value="todos">Todas as atualizações</option>
             <option value="DW">Automática via DW</option>
@@ -3588,24 +3580,6 @@ body.perfil-comav .usuario-only {display:none!important;}
                 <option value="Qualidade do cuidado">Qualidade do cuidado</option>
               </select>
             </div>
-            <div class="filter-field">
-              <label>Natureza</label>
-              <select class="filter-select" id="relatorioFiltroNatureza" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
-                <option value="todos">Todas as naturezas</option>
-                <option value="Estrutura">Estrutura</option>
-                <option value="Processo">Processo</option>
-                <option value="Resultado">Resultado</option>
-              </select>
-            </div>
-            <div class="filter-field">
-              <label>Prioridade</label>
-              <select class="filter-select" id="relatorioFiltroPrioridade" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
-                <option value="todos">Todas as prioridades</option>
-                <option value="Alta">Prioridade alta</option>
-                <option value="Média">Prioridade média</option>
-                <option value="Rotina">Rotina</option>
-              </select>
-            </div>
           </div>
         </div>
 
@@ -3723,12 +3697,6 @@ body.perfil-comav .usuario-only {display:none!important;}
         <div class="card-title"><span>📚</span> Metadados dos indicadores</div>
         <div class="ind-filters strategic-filters">
           <div class="dictionary-search"><input id="buscaDicionario" placeholder="Buscar por código, indicador, tema, fonte ou departamento..." oninput="popularDicionarioIndicadores()"></div>
-          <select class="filter-select" id="dicNatureza" onchange="popularDicionarioIndicadores()">
-            <option value="todos">Todas as naturezas</option>
-            <option value="Estrutura">Estrutura</option>
-            <option value="Processo">Processo</option>
-            <option value="Resultado">Resultado</option>
-          </select>
           <select class="filter-select" id="dicDepartamento" onchange="popularDicionarioIndicadores()">
             <option value="todos">Todos os departamentos/áreas</option>
             <option value="DESF">DESF</option>
