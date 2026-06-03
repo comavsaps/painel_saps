@@ -6376,8 +6376,7 @@ function atualizarAvisoPerfil() {
   const notice = document.createElement('div');
   notice.className = 'profile-notice profile-notice-global';
   notice.innerHTML = perfilSistemaAtual === 'usuario'
-    ? `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV.</div>`
-    : `<span class="title-icon">${svgIcon('shield')}</span><div><strong>Perfil COMAV:</strong> visão completa de gestão estratégica, governança, qualidade, auditoria, relatórios e acompanhamento das solicitações.</div>`;
+    ? `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV.</div>`;
 
   const header = page.querySelector('.module-sticky-header') || page.querySelector('.page-header');
   if (header && header.nextSibling) header.insertAdjacentElement('afterend', notice);
