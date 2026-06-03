@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -2513,9 +2512,137 @@ body.interface-ready .card-title > span:first-child {
   display: block;
 }
 
+
+/* ── PERFIS DE ACESSO ── */
+.profile-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid rgba(219,231,243,.95);
+  border-radius: 999px;
+  padding: 4px 5px 4px 12px;
+  box-shadow: 0 6px 18px rgba(20,42,74,.06);
+}
+.profile-switcher label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  font-weight: 800;
+  color: #607891;
+  white-space: nowrap;
+}
+.profile-switcher select {
+  border: none;
+  background: var(--brand-100, #edf5ff);
+  color: var(--brand-800, #12365f);
+  border-radius: 999px;
+  padding: 7px 28px 7px 10px;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  outline: none;
+  cursor: pointer;
+}
+.profile-notice {
+  border: 1px solid rgba(79,143,224,.18);
+  background: linear-gradient(135deg, rgba(79,143,224,.09), rgba(46,163,114,.07));
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #405770;
+  font-size: 12.8px;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+.profile-notice .title-icon {
+  width: 19px;
+  height: 19px;
+  color: var(--brand-700, #1b4f8a);
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+body.perfil-usuario [data-access="comav"] {
+  display: none !important;
+}
+body.perfil-comav [data-access="usuario"] {
+  display: none !important;
+}
+body.perfil-usuario .comav-only {
+  display: none !important;
+}
+body.perfil-comav .usuario-only {
+  display: none !important;
+}
+.request-form-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.request-form-grid .full { grid-column:1 / -1; }
+.request-form-grid input,
+.request-form-grid select,
+.request-form-grid textarea {
+  width:100%;
+  border:1.5px solid rgba(219,231,243,.95);
+  border-radius:14px;
+  min-height:42px;
+  padding:10px 12px;
+  font-family:Inter,sans-serif;
+  color:#2e4764;
+  background:#fff;
+}
+.request-form-grid textarea {
+  min-height:110px;
+  resize:vertical;
+}
+.request-status-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.request-status-card {
+  background: #fff;
+  border: 1px solid rgba(219,231,243,.95);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 8px 22px rgba(20,42,74,.05);
+}
+.request-status-card small {
+  display:block;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  font-weight:800;
+  color:#7088a3;
+  margin-bottom:6px;
+}
+.request-status-card strong {
+  display:block;
+  font-family:'Public Sans',sans-serif;
+  font-size:24px;
+  color:var(--brand-900,#0f2743);
+}
+@media (max-width: 760px) {
+  .profile-switcher {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .profile-switcher select {
+    flex: 1;
+  }
+  .request-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .request-form-grid .full { grid-column:auto; }
+}
+
 </style>
 </head>
-<body>
+<body class="perfil-comav">
 
 <!-- TOPBAR -->
 <header class="topbar">
@@ -2525,11 +2652,18 @@ body.interface-ready .card-title > span:first-child {
     <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da SAPS</div>
   </div>
   <div class="topbar-right">
-    <span class="badge-comav">COMAV · Gabinete SAPS</span>
+    <div class="profile-switcher">
+      <label for="perfilUsuarioSistema">Visualizar como</label>
+      <select id="perfilUsuarioSistema" onchange="alterarPerfilSistema(this.value)">
+        <option value="comav">COMAV/Gabinete SAPS</option>
+        <option value="usuario">Usuário SAPS</option>
+      </select>
+    </div>
+    <span class="badge-comav" id="perfilBadge">COMAV · Gabinete SAPS</span>
     <span class="topbar-date" id="dataAtual"></span>
     <div class="topbar-user">
-      <div class="avatar">JM</div>
-      <span style="opacity:.8;font-size:12.5px;">João M.</span>
+      <div class="avatar" id="perfilAvatar">CG</div>
+      <span id="perfilUsuarioNome" style="opacity:.8;font-size:12.5px;">Gestão COMAV</span>
     </div>
   </div>
 </header>
@@ -2572,54 +2706,57 @@ body.interface-ready .card-title > span:first-child {
   <nav class="sidebar">
     <div class="sidebar-section">
       <div class="sidebar-label">Painel</div>
-      <button class="nav-item active" onclick="goTo('dashboard', this)">
+      <button class="nav-item active" data-page="dashboard" data-access="all" onclick="goTo('dashboard', this)">
         <span class="nav-icon">📊</span> Painel Executivo
       </button>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Monitoramento</div>
-      <button class="nav-item" onclick="goTo('indicadores', this)">
+      <button class="nav-item" data-page="indicadores" data-access="all" onclick="goTo('indicadores', this)">
         <span class="nav-icon">📈</span> Indicadores Estratégicos
       </button>
-      <button class="nav-item" onclick="goTo('mapa', this)">
+      <button class="nav-item" data-page="mapa" data-access="all" onclick="goTo('mapa', this)">
         <span class="nav-icon">🗺️</span> Análise Territorial
       </button>
-      <button class="nav-item" onclick="goTo('interseccionalidade', this)">
+      <button class="nav-item" data-page="interseccionalidade" data-access="all" onclick="goTo('interseccionalidade', this)">
         <span class="nav-icon">🧩</span> Interseccionalidade
       </button>
-      <button class="nav-item" onclick="goTo('alertas', this)">
+      <button class="nav-item" data-page="alertas" data-access="all" onclick="goTo('alertas', this)">
         <span class="nav-icon">🔔</span> Central de Alertas
         <span style="margin-left:auto;background:var(--vermelho);color:#fff;border-radius:10px;font-size:10px;padding:1px 6px;font-weight:700;">2</span>
       </button>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Apoio à decisão</div>
-      <button class="nav-item" onclick="goTo('ia', this)">
+      <button class="nav-item" data-page="ia" data-access="all" onclick="goTo('ia', this)">
         <span class="nav-icon">🤖</span> Apoio Analítico
       </button>
-      <button class="nav-item" onclick="goTo('relatorio', this)">
+      <button class="nav-item" data-page="relatorio" data-access="all" onclick="goTo('relatorio', this)">
         <span class="nav-icon">🗂️</span> Relatório Executivo
       </button>
-      <button class="nav-item" onclick="goTo('plano', this)">
+      <button class="nav-item" data-page="solicitacoes" data-access="usuario" onclick="goTo('solicitacoes', this)">
+        <span class="nav-icon">📨</span> Solicitações de Dados
+      </button>
+      <button class="nav-item" data-page="plano" data-access="comav" onclick="goTo('plano', this)">
         <span class="nav-icon">✅</span> Plano de Ação
       </button>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Gestão</div>
-      <button class="nav-item" onclick="goTo('dicionario', this)">
+      <button class="nav-item" data-page="dicionario" data-access="all" onclick="goTo('dicionario', this)">
         <span class="nav-icon">📚</span> Dicionário de Indicadores
       </button>
-      <button class="nav-item" onclick="goTo('qualidade', this)">
+      <button class="nav-item" data-page="qualidade" data-access="comav" onclick="goTo('qualidade', this)">
         <span class="nav-icon">✅</span> Qualidade dos Dados
       </button>
-      <button class="nav-item" onclick="goTo('auditoria', this)">
+      <button class="nav-item" data-page="auditoria" data-access="comav" onclick="goTo('auditoria', this)">
         <span class="nav-icon">📋</span> Auditoria e Governança
       </button>
     </div>
     <div class="sidebar-divider"></div>
     <div class="sidebar-footer">
-      Última carga: <strong>Mai/2026</strong><br>
-      Protótipo para validação · COMAV · Gabinete SAPS
+      Competência analisada: <strong>Mai/2026</strong><br>
+      Protótipo para validação · MonitoraSAPS
     </div>
   </nav>
 
@@ -3501,7 +3638,7 @@ body.interface-ready .card-title > span:first-child {
     </div>
 
     <!-- ── PLANO DE AÇÃO ── -->
-    <div id="page-plano" class="page">
+    <div id="page-plano" class="page comav-only">
       <div class="page-header">
         <div class="page-title">Plano de Ação dos Alertas Analíticos</div>
         <div class="page-desc">Registro de encaminhamentos, responsáveis e prazos derivados da análise dos indicadores. Alertas de carga permanecem em Qualidade dos Dados.</div>
@@ -3596,8 +3733,137 @@ body.interface-ready .card-title > span:first-child {
       </div>
     </div>
 
+
+    <!-- ── SOLICITAÇÕES DE DADOS ── -->
+    <div id="page-solicitacoes" class="page usuario-only">
+      <div class="page-header">
+        <div class="page-title">Solicitações de Dados</div>
+        <div class="page-desc">Área destinada ao Usuário SAPS para solicitar alteração, qualificação ou revisão de dados. A solicitação não altera automaticamente o sistema; ela segue para avaliação da COMAV/Gabinete SAPS.</div>
+      </div>
+
+      <div class="profile-notice">
+        <span class="title-icon"></span>
+        <div><strong>Perfil Usuário SAPS:</strong> este perfil permite visualizar indicadores, gerar relatórios de análise e registrar solicitações de alteração ou qualificação de dados. Módulos de gestão interna, auditoria e qualidade dos dados são restritos à COMAV/Gabinete SAPS.</div>
+      </div>
+
+      <div class="request-status-grid">
+        <div class="request-status-card"><small>Solicitações abertas</small><strong id="reqAbertas">3</strong></div>
+        <div class="request-status-card"><small>Em análise COMAV</small><strong id="reqAnalise">2</strong></div>
+        <div class="request-status-card"><small>Respondidas</small><strong id="reqRespondidas">1</strong></div>
+        <div class="request-status-card"><small>Tempo médio demonstrativo</small><strong>5 dias</strong></div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title"><span>📨</span> Nova solicitação</div>
+          <div class="request-form-grid">
+            <div class="filter-field">
+              <label>Área solicitante</label>
+              <select id="solArea">
+                <option>DESF</option>
+                <option>DEPROS</option>
+                <option>DGCI</option>
+                <option>DAPS</option>
+                <option>Outra área SAPS</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>Indicador</label>
+              <select id="solIndicador"></select>
+            </div>
+            <div class="filter-field">
+              <label>Tipo de solicitação</label>
+              <select id="solTipo">
+                <option>Revisão de valor do indicador</option>
+                <option>Correção de metadado</option>
+                <option>Inclusão de observação técnica</option>
+                <option>Revisão de fórmula ou fonte</option>
+                <option>Atualização de recorte territorial</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>Prioridade</label>
+              <select id="solPrioridade">
+                <option>Rotina</option>
+                <option>Média</option>
+                <option>Alta</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>Competência</label>
+              <input id="solCompetencia" value="Mai/2026">
+            </div>
+            <div class="filter-field">
+              <label>Território</label>
+              <input id="solTerritorio" value="Brasil">
+            </div>
+            <div class="filter-field full">
+              <label>Justificativa técnica</label>
+              <textarea id="solJustificativa" placeholder="Descreva a inconsistência observada, a necessidade de qualificação do dado ou a justificativa técnica da solicitação."></textarea>
+            </div>
+          </div>
+          <div class="ia-copy-actions">
+            <button class="btn btn-primary" onclick="registrarSolicitacaoUsuario()">Registrar solicitação</button>
+            <button class="btn btn-outline" onclick="limparSolicitacaoUsuario()">Limpar formulário</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span>📋</span> Orientações para solicitação</div>
+          <div class="alert-list">
+            <div class="alert-item info">
+              <div class="alert-dot">🔵</div>
+              <div class="alert-text"><strong>Quando solicitar</strong>Use esta função quando a área identificar necessidade de revisar valor, metadado, fórmula, fonte, território ou observação técnica de um indicador.</div>
+            </div>
+            <div class="alert-item atencao">
+              <div class="alert-dot">🟡</div>
+              <div class="alert-text"><strong>Fluxo de avaliação</strong>A solicitação é encaminhada para análise da COMAV/Gabinete SAPS e pode demandar validação junto à área responsável pela informação.</div>
+            </div>
+            <div class="alert-item ok">
+              <div class="alert-dot">🟢</div>
+              <div class="alert-text"><strong>Uso analítico</strong>O Usuário SAPS pode continuar visualizando indicadores e gerando relatórios enquanto a solicitação está em análise.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>📋</span> Minhas solicitações</div>
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Área</th>
+              <th>Indicador</th>
+              <th>Tipo</th>
+              <th>Prioridade</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="solicitacoesUsuarioRows">
+            <tr>
+              <td>03/06/2026</td>
+              <td>DGCI</td>
+              <td>MORT_INF</td>
+              <td>Inclusão de observação técnica</td>
+              <td><span class="tag tag-amarelo">Média</span></td>
+              <td><span class="tag tag-azul">Em análise COMAV</span></td>
+            </tr>
+            <tr>
+              <td>02/06/2026</td>
+              <td>DESF</td>
+              <td>COB_AB</td>
+              <td>Atualização de recorte territorial</td>
+              <td><span class="tag tag-cinza">Rotina</span></td>
+              <td><span class="tag tag-verde">Respondida</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- ── QUALIDADE ── -->
-    <div id="page-qualidade" class="page">
+    <div id="page-qualidade" class="page comav-only">
       <div class="page-header">
         <div class="page-title">Controle de Qualidade dos Dados</div>
         <div class="page-desc">Verificação automática das cargas recebidas. Sinaliza falhas antes da atualização dos painéis.</div>
@@ -3722,7 +3988,7 @@ body.interface-ready .card-title > span:first-child {
     </div>
 
     <!-- ── AUDITORIA ── -->
-    <div id="page-auditoria" class="page">
+    <div id="page-auditoria" class="page comav-only">
       <div class="page-header">
         <div class="page-title">Auditoria e Governança</div>
         <div class="page-desc">Registro das alterações, validações e justificativas para garantir rastreabilidade e controle institucional.</div>
@@ -3956,6 +4222,12 @@ function limparFiltrosIndicadores() {
 
 // ── NAVEGAÇÃO ──
 function goTo(page, btn) {
+  if (typeof perfilPodeAcessar === 'function' && !perfilPodeAcessar(page)) {
+    mostrarToastDownload('Funcionalidade restrita à COMAV/Gabinete SAPS.');
+    page = 'dashboard';
+    btn = document.querySelector('.nav-item[data-page="dashboard"]');
+  }
+
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById('page-' + page);
   if (target) target.classList.add('active');
@@ -3963,8 +4235,11 @@ function goTo(page, btn) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   if (btn) btn.classList.add('active');
 
+  if (typeof popularSolicitacaoUsuario === 'function') popularSolicitacaoUsuario();
+
   setTimeout(bootVisualCompleto, 60);
   setTimeout(bootVisualCompleto, 220);
+  setTimeout(aplicarPermissoesPerfil, 260);
 }
 
 
@@ -5888,6 +6163,7 @@ function aplicarIconesSidebar(){
     alertas:'bell',
     ia:'brain',
     relatorio:'report',
+    solicitacoes:'report',
     plano:'plan',
     dicionario:'book',
     qualidade:'shield',
@@ -5989,7 +6265,7 @@ function substituirEmojisRemanescentesPorSVG(){
   const replacements = [
     { selector: '.nav-icon', map: {
       '📊':'dashboard','📈':'indicators','🗺️':'map','🧩':'intersection','🔔':'bell',
-      '🤖':'brain','🗂️':'report','✅':'plan','📚':'book','📋':'history'
+      '🤖':'brain','🗂️':'report','📨':'report','✅':'plan','📚':'book','📋':'history'
     }},
     { selector: '.stat-icon', map: {
       '🏥':'hospital','👥':'users','🏨':'line','🩺':'target','⚠️':'warning',
@@ -6058,6 +6334,144 @@ function renomearBotoesDownload() {
 }
 
 
+
+// ── PERFIS DE ACESSO ──
+let perfilSistemaAtual = 'comav';
+
+const paginasPorPerfil = {
+  comav: ['dashboard','indicadores','mapa','interseccionalidade','alertas','ia','relatorio','plano','dicionario','qualidade','auditoria'],
+  usuario: ['dashboard','indicadores','mapa','interseccionalidade','alertas','ia','relatorio','dicionario','solicitacoes']
+};
+
+function perfilPodeAcessar(page) {
+  return (paginasPorPerfil[perfilSistemaAtual] || paginasPorPerfil.comav).includes(page);
+}
+
+function alterarPerfilSistema(perfil) {
+  perfilSistemaAtual = perfil === 'usuario' ? 'usuario' : 'comav';
+  document.body.classList.toggle('perfil-usuario', perfilSistemaAtual === 'usuario');
+  document.body.classList.toggle('perfil-comav', perfilSistemaAtual === 'comav');
+
+  const badge = document.getElementById('perfilBadge');
+  const avatar = document.getElementById('perfilAvatar');
+  const nome = document.getElementById('perfilUsuarioNome');
+  const select = document.getElementById('perfilUsuarioSistema');
+
+  if (select) select.value = perfilSistemaAtual;
+
+  if (perfilSistemaAtual === 'usuario') {
+    if (badge) badge.textContent = 'Usuário SAPS · Visualização analítica';
+    if (avatar) avatar.textContent = 'US';
+    if (nome) nome.textContent = 'Usuário SAPS';
+  } else {
+    if (badge) badge.textContent = 'COMAV · Gabinete SAPS';
+    if (avatar) avatar.textContent = 'CG';
+    if (nome) nome.textContent = 'Gestão COMAV';
+  }
+
+  aplicarPermissoesPerfil();
+
+  const paginaAtual = getPaginaAtivaId ? getPaginaAtivaId() : 'dashboard';
+  if (!perfilPodeAcessar(paginaAtual)) {
+    const destino = perfilSistemaAtual === 'usuario' ? 'dashboard' : 'dashboard';
+    const btn = document.querySelector(`.nav-item[data-page="${destino}"]`);
+    goTo(destino, btn);
+  } else {
+    setTimeout(bootVisualCompleto, 80);
+  }
+}
+
+function aplicarPermissoesPerfil() {
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    const access = btn.dataset.access || 'all';
+    const page = btn.dataset.page || '';
+    const show = access === 'all' || access === perfilSistemaAtual;
+    btn.style.display = show ? '' : 'none';
+
+    const section = btn.closest('.sidebar-section');
+    if (section) section.dataset.needsRefresh = '1';
+  });
+
+  document.querySelectorAll('.sidebar-section').forEach(section => {
+    const buttons = Array.from(section.querySelectorAll('.nav-item'));
+    const anyVisible = buttons.some(b => b.style.display !== 'none');
+    section.style.display = anyVisible ? '' : 'none';
+  });
+
+  const footer = document.querySelector('.sidebar-footer');
+  if (footer) {
+    footer.innerHTML = perfilSistemaAtual === 'usuario'
+      ? 'Perfil: <strong>Usuário SAPS</strong><br>Visualização analítica e solicitações'
+      : 'Perfil: <strong>COMAV/Gabinete SAPS</strong><br>Gestão estratégica do sistema';
+  }
+
+  atualizarAvisoPerfil();
+}
+
+function atualizarAvisoPerfil() {
+  document.querySelectorAll('.profile-notice-global').forEach(el => el.remove());
+  const page = document.querySelector('.page.active');
+  if (!page) return;
+
+  const notice = document.createElement('div');
+  notice.className = 'profile-notice profile-notice-global';
+  notice.innerHTML = perfilSistemaAtual === 'usuario'
+    ? `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV/Gabinete SAPS.</div>`
+    : `<span class="title-icon">${svgIcon('shield')}</span><div><strong>Perfil COMAV/Gabinete SAPS:</strong> visão completa de gestão estratégica, governança, qualidade, auditoria, relatórios e acompanhamento das solicitações.</div>`;
+
+  const header = page.querySelector('.module-sticky-header') || page.querySelector('.page-header');
+  if (header && header.nextSibling) header.insertAdjacentElement('afterend', notice);
+}
+
+function popularSolicitacaoUsuario() {
+  const select = document.getElementById('solIndicador');
+  if (!select || typeof indicadoresData === 'undefined') return;
+  const current = select.value;
+  select.innerHTML = indicadoresData.map(ind => `<option value="${ind.cod}">${ind.cod} · ${ind.nome}</option>`).join('');
+  if ([...select.options].some(o => o.value === current)) select.value = current;
+}
+
+function registrarSolicitacaoUsuario() {
+  const rows = document.getElementById('solicitacoesUsuarioRows');
+  if (!rows) return;
+
+  const area = document.getElementById('solArea')?.value || 'Área SAPS';
+  const indicador = document.getElementById('solIndicador')?.value || 'Indicador';
+  const tipo = document.getElementById('solTipo')?.value || 'Solicitação';
+  const prioridade = document.getElementById('solPrioridade')?.value || 'Rotina';
+  const data = new Date().toLocaleDateString('pt-BR');
+  const tag = prioridade === 'Alta' ? 'tag-vermelho' : prioridade === 'Média' ? 'tag-amarelo' : 'tag-cinza';
+
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${data}</td>
+    <td>${area}</td>
+    <td>${indicador}</td>
+    <td>${tipo}</td>
+    <td><span class="tag ${tag}">${prioridade}</span></td>
+    <td><span class="tag tag-azul">Enviada à COMAV</span></td>
+  `;
+  rows.prepend(tr);
+
+  const abertas = document.getElementById('reqAbertas');
+  if (abertas) abertas.textContent = String((parseInt(abertas.textContent) || 0) + 1);
+
+  mostrarToastDownload('Solicitação enviada para avaliação da COMAV/Gabinete SAPS.');
+  limparSolicitacaoUsuario();
+}
+
+function limparSolicitacaoUsuario() {
+  ['solJustificativa'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const pr = document.getElementById('solPrioridade');
+  if (pr) pr.value = 'Rotina';
+  const tipo = document.getElementById('solTipo');
+  if (tipo) tipo.selectedIndex = 0;
+}
+
+
 // ── CABEÇALHOS DE MÓDULO, FILTROS ATIVOS E MODO APRESENTAÇÃO ──
 function getPaginaAtivaId(){
   const page = document.querySelector('.page.active');
@@ -6075,6 +6489,7 @@ function getTituloModulo(pageId){
     relatorio: ['Relatório Executivo', 'report'],
     plano: ['Plano de Ação', 'plan'],
     dicionario: ['Dicionário de Indicadores', 'book'],
+    solicitacoes: ['Solicitações de Dados', 'report'],
     qualidade: ['Qualidade dos Dados', 'shield'],
     auditoria: ['Auditoria e Governança', 'history']
   };
@@ -6214,6 +6629,7 @@ function bootVisualCompleto() {
   safeCall('atualizarChipsFiltrosAtivos');
   safeCall('inserirBotoesDownloadGraficos');
   safeCall('renomearBotoesDownload');
+  if (typeof aplicarPermissoesPerfil === 'function') aplicarPermissoesPerfil();
 
   document.body.classList.add('interface-ready');
 }
@@ -6240,7 +6656,8 @@ function bootDadosSistema() {
     'renderIAAvancada',
     'popularDicionarioIndicadores',
     'popularIndicadoresRelatorio',
-    'gerarRelatorioExecutivo'
+    'gerarRelatorioExecutivo',
+    'popularSolicitacaoUsuario'
   ].forEach(safeCall);
 
   try {
