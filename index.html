@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -2660,6 +2661,48 @@ body.perfil-comav .usuario-only {
 body.perfil-usuario .comav-only {display:none!important;}
 body.perfil-comav .usuario-only {display:none!important;}
 @media (max-width:1050px){.change-management-layout{grid-template-columns:1fr;}}
+
+
+/* ── CORREÇÃO DO AVISO DE PERFIL NO CABEÇALHO DO MÓDULO ── */
+.module-sticky-header {
+  overflow: visible;
+  margin-bottom: 22px !important;
+}
+.module-sticky-profile {
+  margin-top: 12px;
+  border: 1px solid rgba(79,143,224,.18);
+  background: linear-gradient(135deg, rgba(79,143,224,.08), rgba(46,163,114,.07));
+  border-radius: 14px;
+  padding: 11px 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #405770;
+  font-size: 12.6px;
+  line-height: 1.5;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.module-sticky-profile .title-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-700, #1b4f8a);
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+.profile-notice-global {
+  display: none !important;
+}
+body.presentation-mode .module-sticky-profile {
+  display: none !important;
+}
+@media (max-width: 760px) {
+  .module-sticky-profile {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
 
 </style>
 </head>
@@ -6330,6 +6373,8 @@ function alterarPerfilSistema(perfil) {
   }
 
   aplicarPermissoesPerfil();
+  criarOuAtualizarCabecalhoModulo();
+  atualizarAvisoPerfil();
 
   const paginaAtual = getPaginaAtivaId ? getPaginaAtivaId() : 'dashboard';
   if (!perfilPodeAcessar(paginaAtual)) {
@@ -6368,18 +6413,21 @@ function aplicarPermissoesPerfil() {
   atualizarAvisoPerfil();
 }
 
+
+function getAvisoPerfilHTML() {
+  if (typeof perfilSistemaAtual !== 'undefined' && perfilSistemaAtual === 'usuario') {
+    return `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV/Gabinete SAPS.</div>`;
+  }
+  return `<span class="title-icon">${svgIcon('shield')}</span><div><strong>Perfil COMAV/Gabinete SAPS:</strong> visão completa de gestão estratégica, governança, qualidade, auditoria, relatórios e acompanhamento dos pedidos de alteração de dados.</div>`;
+}
+
 function atualizarAvisoPerfil() {
+  // O aviso de perfil agora fica dentro do cabeçalho do módulo para evitar sobreposição visual.
   document.querySelectorAll('.profile-notice-global').forEach(el => el.remove());
-  const page = document.querySelector('.page.active');
-  if (!page) return;
-
-  const notice = document.createElement('div');
-  notice.className = 'profile-notice profile-notice-global';
-  notice.innerHTML = perfilSistemaAtual === 'usuario'
-    ? `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV.</div>`;
-
-  const header = page.querySelector('.module-sticky-header') || page.querySelector('.page-header');
-  if (header && header.nextSibling) header.insertAdjacentElement('afterend', notice);
+  const box = document.querySelector('.page.active .module-sticky-profile');
+  if (box && typeof getAvisoPerfilHTML === 'function') {
+    box.innerHTML = getAvisoPerfilHTML();
+  }
 }
 
 function popularSolicitacaoUsuario() {
@@ -6529,6 +6577,8 @@ function criarOuAtualizarCabecalhoModulo(){
     page.insertBefore(header, page.firstElementChild?.nextSibling || page.firstChild);
   }
 
+  const avisoPerfil = typeof getAvisoPerfilHTML === 'function' ? getAvisoPerfilHTML() : '';
+
   header.innerHTML = `
     <div class="module-sticky-main">
       <div class="module-sticky-title"><span class="title-icon">${svgIcon(icon)}</span><span>${titulo}</span></div>
@@ -6538,6 +6588,7 @@ function criarOuAtualizarCabecalhoModulo(){
       </div>
     </div>
     <div class="active-filter-row" id="activeFilterChips"></div>
+    <div class="module-sticky-profile">${avisoPerfil}</div>
   `;
   atualizarChipsFiltrosAtivos();
   aplicarTextoBotoes();
