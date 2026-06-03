@@ -1561,6 +1561,935 @@ button:focus, select:focus, input:focus {
   font-family: 'Inter', sans-serif;
 }
 
+
+/* ── FILTROS DO RELATÓRIO EXECUTIVO ── */
+.report-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.report-indicator-panel {
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio);
+  padding: 14px;
+  background: var(--cinza-bg);
+  margin: 12px 0 16px;
+}
+.report-indicator-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.report-indicator-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.report-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 10px 11px;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  background: #fff;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.report-check:hover {
+  border-color: rgba(46,95,163,.35);
+  background: #f8fbff;
+}
+.report-check input {
+  margin-top: 2px;
+}
+.report-check strong {
+  display: block;
+  font-size: 12.5px;
+  color: var(--cinza-escuro);
+  margin-bottom: 2px;
+}
+.report-check span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--cinza-med);
+  line-height: 1.35;
+}
+.report-selected-summary {
+  font-size: 12.5px;
+  color: var(--cinza);
+  background: #fff;
+  border: 1px solid var(--cinza-claro);
+  border-radius: var(--raio-pequeno);
+  padding: 10px 12px;
+  margin-top: 10px;
+}
+.report-selected-summary strong {
+  color: var(--azul);
+}
+
+
+/* ── IDENTIDADE VISUAL MODERNA ── */
+:root{
+  --brand-900:#0f2743;
+  --brand-800:#12365f;
+  --brand-700:#1b4f8a;
+  --brand-600:#2f6fbd;
+  --brand-500:#4f8fe0;
+  --brand-100:#edf5ff;
+  --mint-700:#1f8a61;
+  --mint-600:#2ea372;
+  --mint-100:#ebfaf3;
+  --surface-0:#ffffff;
+  --surface-1:#f8fbfe;
+  --surface-2:#f2f7fb;
+  --line-soft:#dbe7f3;
+  --shadow-soft:0 10px 30px rgba(20,42,74,.08);
+  --shadow-medium:0 14px 36px rgba(20,42,74,.12);
+  --grad-primary:linear-gradient(135deg, var(--brand-700) 0%, var(--brand-500) 100%);
+  --grad-mint:linear-gradient(135deg, var(--mint-700) 0%, var(--mint-600) 100%);
+}
+
+body{
+  background:
+    radial-gradient(circle at top right, rgba(79,143,224,.10), transparent 22%),
+    radial-gradient(circle at bottom left, rgba(46,163,114,.09), transparent 24%),
+    linear-gradient(180deg, #f7fbff 0%, #f4f8fc 100%);
+  color:#1f2f46;
+}
+.topbar{
+  background:rgba(255,255,255,.88);
+  color:#21314a;
+  border-bottom:1px solid rgba(219,231,243,.9);
+  box-shadow:0 8px 30px rgba(20,42,74,.06);
+}
+.topbar-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--brand-900);
+  letter-spacing:-.02em;
+}
+.brand-mark{
+  width:34px;height:34px;border-radius:12px;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--grad-primary);
+  box-shadow:0 10px 24px rgba(47,111,189,.25);
+}
+.brand-mark svg{width:18px;height:18px;color:#fff}
+.topbar-subtitle{color:#58708d}
+.topbar-user{
+  background:#fff;border:1px solid var(--line-soft);border-radius:999px;
+  padding:4px 10px 4px 4px; box-shadow:var(--shadow-soft);
+}
+.avatar{
+  background:var(--grad-primary)!important;
+  color:#fff!important;
+  box-shadow:0 8px 18px rgba(47,111,189,.25);
+}
+.badge-comav{
+  background:linear-gradient(135deg, rgba(79,143,224,.12), rgba(46,163,114,.12));
+  color:var(--brand-800);
+  border:1px solid rgba(79,143,224,.18);
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:700;
+}
+
+.sidebar{
+  background:rgba(255,255,255,.84);
+  border-right:1px solid rgba(219,231,243,.8);
+  backdrop-filter:blur(14px);
+}
+.sidebar-label{
+  color:#6d829d;
+  font-size:11px;
+  letter-spacing:.12em;
+}
+.nav-item{
+  border:1px solid transparent;
+  background:transparent;
+  color:#36506d;
+  padding:10px 12px;
+  transition:all .18s ease;
+}
+.nav-item:hover{
+  background:#f5f9fd;
+  border-color:#e4edf7;
+  color:var(--brand-800);
+  transform:translateX(2px);
+}
+.nav-item.active{
+  background:linear-gradient(135deg, rgba(79,143,224,.12), rgba(46,163,114,.10));
+  border-color:rgba(79,143,224,.18);
+  color:var(--brand-900);
+  box-shadow:0 8px 24px rgba(20,42,74,.06);
+}
+.nav-icon, .title-icon, .stat-icon, .alert-dot{
+  width:18px;height:18px; display:inline-flex; align-items:center; justify-content:center;
+  color:currentColor; flex:0 0 auto;
+}
+.nav-icon svg, .title-icon svg, .stat-icon svg, .alert-dot svg{width:100%;height:100%}
+.card, .stat-card, .qc-card, .kpi-card, .module-card, .meta-card, .exec-summary-card, .exec-decision-card{
+  border:1px solid rgba(219,231,243,.9);
+  box-shadow:var(--shadow-soft);
+}
+.card{background:rgba(255,255,255,.9)}
+.card-title{
+  color:var(--brand-900);
+  gap:10px;
+  letter-spacing:-.01em;
+}
+.card-title .title-icon{
+  width:20px;height:20px;color:var(--brand-700);
+}
+.prototype-banner, .validation-note{
+  border-radius:14px;
+  border:1px solid rgba(79,143,224,.12);
+  background:linear-gradient(135deg, rgba(79,143,224,.08), rgba(46,163,114,.07));
+  color:#405770;
+}
+.institutional-pill, .decision-chip, .scope-chip{
+  border:1px solid rgba(79,143,224,.14);
+  background:#fff;
+  color:#43617f;
+  box-shadow:0 4px 12px rgba(20,42,74,.04);
+}
+
+.btn, .btn-ia, .btn-xs, .chart-download-btn{
+  position:relative;
+  border-radius:14px!important;
+  font-weight:700!important;
+  letter-spacing:-.01em;
+  border:1px solid rgba(219,231,243,.95)!important;
+  box-shadow:0 8px 20px rgba(20,42,74,.08);
+  transition:all .18s ease!important;
+}
+.btn:hover, .btn-ia:hover, .btn-xs:hover, .chart-download-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 12px 26px rgba(20,42,74,.12);
+}
+.btn-primary, .btn-ia{
+  background:var(--grad-primary)!important;
+  color:#fff!important;
+  border-color:transparent!important;
+}
+.btn-verde{
+  background:var(--grad-mint)!important;
+  color:#fff!important;
+  border-color:transparent!important;
+}
+.btn-outline, .chart-download-btn{
+  background:#fff!important;
+  color:var(--brand-800)!important;
+}
+.btn-outline:hover, .chart-download-btn:hover{
+  background:var(--brand-100)!important;
+}
+.btn-xs{
+  background:#fff;
+  color:var(--brand-800);
+  padding:6px 11px!important;
+  font-size:12px!important;
+}
+.btn-xs.verde{
+  background:rgba(46,163,114,.1)!important;
+  color:var(--mint-700)!important;
+  border-color:rgba(46,163,114,.18)!important;
+}
+
+.filter-select, .global-filter-controls select, .ia-select, .ia-input, .report-filter-grid select, .dictionary-search input{
+  appearance:none;
+  background:
+    linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+  border:1.5px solid rgba(219,231,243,.95)!important;
+  color:#2e4764!important;
+  border-radius:14px!important;
+  min-height:42px;
+  padding:10px 38px 10px 12px!important;
+  box-shadow:0 4px 14px rgba(20,42,74,.04);
+}
+select.filter-select, .global-filter-controls select, .ia-select, .report-filter-grid select{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%235d7694' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 12px center;
+  background-size:18px 18px;
+}
+.filter-select:focus, .global-filter-controls select:focus, .ia-select:focus, .ia-input:focus, .dictionary-search input:focus{
+  border-color:rgba(79,143,224,.55)!important;
+  box-shadow:0 0 0 4px rgba(79,143,224,.12), 0 8px 18px rgba(20,42,74,.06)!important;
+}
+.chart-tools{margin-bottom:10px}
+.chart-download-btn{padding:7px 11px!important}
+
+.stat-card{
+  overflow:hidden;
+  position:relative;
+}
+.stat-card::after{
+  content:"";
+  position:absolute; right:-30px; top:-30px; width:100px; height:100px; border-radius:50%;
+  background:rgba(255,255,255,.10);
+}
+.stat-icon{
+  width:38px;height:38px;border-radius:12px;
+  background:rgba(255,255,255,.18); color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
+}
+.stat-top{align-items:flex-start}
+.alert-item{
+  border:1px solid rgba(219,231,243,.9);
+  background:#fff;
+}
+.alert-item .alert-dot{
+  width:32px;height:32px;border-radius:10px;
+  background:#f6f9fc;
+}
+.alert-item.critico .alert-dot{background:#fff1ef;color:#c84d3d}
+.alert-item.atencao .alert-dot{background:#fff9e9;color:#b78708}
+.alert-item.info .alert-dot{background:#eef5ff;color:#2f6fbd}
+
+.topbar-right{gap:12px}
+.global-filterbar{
+  background:rgba(255,255,255,.88);
+  border-bottom:1px solid rgba(219,231,243,.85);
+  backdrop-filter:blur(14px);
+}
+.global-filter-title strong{color:#5d7694}
+.global-filter-title span{color:var(--brand-900)}
+
+.report-check, .health-item, .inter-axis-row, .extreme-card, .ia-highlight, .report-indicator-panel, .report-selected-summary{
+  border-color:rgba(219,231,243,.95)!important;
+  box-shadow:0 4px 14px rgba(20,42,74,.04);
+}
+.ind-table thead th, .audit-table thead th, .ia-table th{
+  color:#68809a;
+  border-bottom-color:#e4edf7;
+}
+.progress-bar-bg{
+  background:#edf4fb;
+}
+.progress-bar-fill{
+  border-radius:999px;
+}
+
+
+/* ── RESPONSIVIDADE GLOBAL ── */
+html {
+  min-width: 0;
+}
+body {
+  overflow-x: hidden;
+}
+img, svg, canvas {
+  max-width: 100%;
+}
+.main {
+  width: 100%;
+}
+.card, .stat-card, .kpi-card, .module-card, .exec-summary-card, .exec-decision-card {
+  min-width: 0;
+}
+.ind-table, .audit-table, .ia-table {
+  min-width: 760px;
+}
+.card:has(.ind-table),
+.card:has(.audit-table),
+.card:has(.ia-table) {
+  overflow-x: auto;
+}
+.report-filter-grid,
+.global-filter-controls,
+.ind-filters,
+.strategic-filters {
+  min-width: 0;
+}
+.report-filter-grid select,
+.global-filter-controls select,
+.ind-filters select,
+.strategic-filters select,
+.filter-select {
+  min-width: 0;
+}
+.chart-card {
+  overflow: hidden;
+}
+.chart-card canvas {
+  max-height: 420px;
+}
+.chart-tools {
+  flex-wrap: wrap;
+}
+.chart-download-btn {
+  min-width: 86px;
+  justify-content: center;
+}
+
+/* Até notebooks médios */
+@media (max-width: 1360px) {
+  .main {
+    padding: 24px;
+  }
+  .exec-primary-kpis {
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+  }
+  .exec-secondary-charts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .report-filter-grid {
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+  }
+}
+
+/* Tablets e telas pequenas */
+@media (max-width: 1080px) {
+  .topbar {
+    height: auto;
+    min-height: 56px;
+    padding: 10px 16px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .topbar-left,
+  .topbar-right {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .topbar-subtitle {
+    display: none;
+  }
+  .topbar-sep {
+    display: none;
+  }
+  .global-filterbar {
+    position: static;
+    padding: 14px 16px;
+    align-items: stretch;
+  }
+  .global-filter-title {
+    min-width: 0;
+  }
+  .global-filter-controls {
+    justify-content: flex-start;
+  }
+  .global-filter-controls select,
+  .global-filter-controls button {
+    flex: 1 1 180px;
+  }
+  .app-body {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 10px 12px;
+    border-right: none;
+    border-bottom: 1px solid rgba(219,231,243,.9);
+    position: sticky;
+    top: 0;
+    z-index: 80;
+  }
+  .sidebar-section {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    margin: 0 10px 0 0;
+    flex: 0 0 auto;
+  }
+  .sidebar-label,
+  .sidebar-divider,
+  .sidebar-footer {
+    display: none;
+  }
+  .nav-item {
+    width: auto;
+    white-space: nowrap;
+    margin-bottom: 0;
+    padding: 9px 12px;
+  }
+  .nav-item.active::before {
+    display: none;
+  }
+  .main {
+    padding: 20px 16px;
+  }
+  .page-title {
+    font-size: 22px;
+  }
+  .exec-top-layout,
+  .exec-evidence-grid,
+  .insight-grid,
+  .inter-grid,
+  .two-col {
+    grid-template-columns: 1fr !important;
+  }
+  .exec-primary-kpis,
+  .stats-grid,
+  .kpi-row,
+  .status-strip,
+  .module-grid,
+  .meta-grid,
+  .qc-grid,
+  .health-grid,
+  .exec-quality-mini,
+  .extremes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .exec-secondary-charts,
+  .ia-advanced-grid,
+  .chart-grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+  .report-filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .report-indicator-list {
+    grid-template-columns: 1fr;
+    max-height: 320px;
+  }
+  .map-container {
+    min-height: 520px;
+    padding: 12px;
+  }
+  .brasil-real-map {
+    height: 500px;
+    min-height: 440px;
+  }
+}
+
+/* Celulares grandes */
+@media (max-width: 760px) {
+  .topbar {
+    align-items: flex-start;
+  }
+  .topbar-logo {
+    font-size: 15px;
+  }
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+  }
+  .badge-comav,
+  .topbar-date,
+  .topbar-user span {
+    font-size: 11px !important;
+  }
+  .global-filter-controls {
+    gap: 7px;
+  }
+  .global-filter-controls select,
+  .global-filter-controls button,
+  .filter-select,
+  .btn {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+  .sidebar {
+    gap: 6px;
+  }
+  .nav-item {
+    font-size: 12.5px;
+    padding: 8px 10px;
+  }
+  .nav-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .main {
+    padding: 16px 12px;
+  }
+  .page-header {
+    margin-bottom: 16px;
+  }
+  .page-title {
+    font-size: 20px;
+  }
+  .page-desc {
+    font-size: 13px;
+  }
+  .exec-summary-card,
+  .exec-decision-card,
+  .card {
+    padding: 16px;
+  }
+  .exec-summary-title {
+    font-size: 20px;
+  }
+  .exec-decision-card strong {
+    font-size: 28px;
+  }
+  .exec-primary-kpis,
+  .stats-grid,
+  .kpi-row,
+  .status-strip,
+  .module-grid,
+  .meta-grid,
+  .qc-grid,
+  .health-grid,
+  .exec-quality-mini,
+  .extremes-grid,
+  .report-filter-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .stat-card {
+    padding: 16px;
+    min-height: auto !important;
+  }
+  .stat-value {
+    font-size: 26px;
+  }
+  .exec-primary-kpis .stat-card.destaque .stat-value {
+    font-size: 31px;
+  }
+  .ind-filters,
+  .strategic-filters,
+  .report-indicator-actions,
+  .ia-copy-actions,
+  .exec-summary-actions,
+  .decision-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ind-filters button,
+  .strategic-filters button,
+  .report-indicator-actions button,
+  .ia-copy-actions button {
+    width: 100%;
+  }
+  .inter-axis-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inter-axis-row select {
+    max-width: none;
+    width: 100%;
+  }
+  .chart-tools {
+    justify-content: stretch;
+    margin-top: 0;
+  }
+  .chart-download-btn {
+    width: 100%;
+  }
+  .map-container {
+    min-height: 430px;
+  }
+  .brasil-real-map {
+    height: 420px;
+    min-height: 380px;
+  }
+  .map-meta {
+    grid-template-columns: 1fr;
+  }
+  .modal {
+    width: calc(100% - 24px);
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  .ficha-row {
+    flex-direction: column;
+    gap: 3px;
+  }
+  .ficha-row dt {
+    min-width: 0;
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 420px) {
+  .topbar {
+    padding: 8px 10px;
+  }
+  .topbar-right {
+    width: 100%;
+  }
+  .badge-comav {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .avatar {
+    width: 26px;
+    height: 26px;
+  }
+  .global-filterbar {
+    padding: 12px 10px;
+  }
+  .main {
+    padding: 12px 10px;
+  }
+  .page-title {
+    font-size: 18px;
+  }
+  .card-title {
+    font-size: 14px;
+  }
+  .stat-top {
+    gap: 10px;
+  }
+  .stat-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .report-box {
+    padding: 14px;
+    font-size: 13px;
+  }
+  .ind-table,
+  .audit-table,
+  .ia-table {
+    min-width: 680px;
+  }
+  .brasil-real-map {
+    height: 360px;
+    min-height: 330px;
+  }
+}
+
+
+/* ── CORREÇÃO FINAL SVG/RESPONSIVO ── */
+.nav-icon svg,
+.title-icon svg,
+.stat-icon svg,
+.alert-dot svg,
+.btn-svg-icon svg {
+  display:block;
+}
+.btn .nav-icon,
+.btn-ia .nav-icon,
+.btn-xs .nav-icon,
+.chart-download-btn .nav-icon {
+  margin-right:6px;
+}
+.btn,
+.btn-ia,
+.btn-xs,
+.chart-download-btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+
+
+/* ── CAMADA FINAL: HIERARQUIA, APRESENTAÇÃO E FILTROS ATIVOS ── */
+.module-sticky-header {
+  position: sticky;
+  top: 118px;
+  z-index: 70;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(219,231,243,.9);
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin: -6px 0 20px;
+  box-shadow: 0 10px 28px rgba(20,42,74,.07);
+  backdrop-filter: blur(14px);
+}
+.module-sticky-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.module-sticky-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--brand-900, #0f2743);
+}
+.module-sticky-title .title-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--brand-700, #1b4f8a);
+}
+.module-sticky-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: flex-end;
+}
+.active-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(79,143,224,.18);
+  background: linear-gradient(135deg, rgba(79,143,224,.10), rgba(46,163,114,.08));
+  color: #274968;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 11.5px;
+  font-weight: 750;
+  box-shadow: 0 4px 14px rgba(20,42,74,.04);
+}
+.filter-chip.muted {
+  background: #fff;
+  color: #607891;
+  border-color: rgba(219,231,243,.95);
+}
+.filter-chip.critical {
+  background: #fff1ef;
+  color: #a83225;
+  border-color: rgba(192,57,43,.18);
+}
+.filter-group-panel {
+  border: 1px solid rgba(219,231,243,.95);
+  background: rgba(255,255,255,.84);
+  border-radius: 18px;
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 22px rgba(20,42,74,.05);
+}
+.filter-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.filter-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--brand-900, #0f2743);
+}
+.filter-group-title .title-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-700, #1b4f8a);
+}
+.filter-group-subtitle {
+  font-size: 11.5px;
+  color: #6b819a;
+}
+.filter-group-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 10px;
+}
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.filter-field label {
+  font-size: 10.8px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  font-weight: 800;
+  color: #7088a3;
+  padding-left: 2px;
+}
+.presentation-toggle {
+  white-space: nowrap;
+}
+body.presentation-mode .topbar,
+body.presentation-mode .global-filterbar,
+body.presentation-mode .sidebar,
+body.presentation-mode .module-sticky-header .module-sticky-meta,
+body.presentation-mode .module-sticky-header .active-filter-row,
+body.presentation-mode .chart-tools,
+body.presentation-mode .ind-filters,
+body.presentation-mode .report-filter-grid,
+body.presentation-mode .report-indicator-panel,
+body.presentation-mode .filter-group-panel:not(.presentation-keep) {
+  display: none !important;
+}
+body.presentation-mode .app-body {
+  display: block;
+}
+body.presentation-mode .main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px;
+}
+body.presentation-mode .page:not(.active) {
+  display: none !important;
+}
+body.presentation-mode .page-header {
+  text-align: center;
+}
+body.presentation-mode .module-sticky-header {
+  position: static;
+  text-align: center;
+  margin-bottom: 22px;
+}
+body.presentation-mode .card,
+body.presentation-mode .stat-card,
+body.presentation-mode .exec-summary-card,
+body.presentation-mode .exec-decision-card {
+  box-shadow: 0 10px 28px rgba(20,42,74,.08);
+}
+.presentation-exit {
+  display: none;
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 900;
+}
+body.presentation-mode .presentation-exit {
+  display: inline-flex;
+}
+.loading-flash {
+  animation: flashUpdate .65s ease;
+}
+@keyframes flashUpdate {
+  0% { box-shadow: 0 0 0 0 rgba(79,143,224,.22); transform: translateY(-1px); }
+  100% { box-shadow: var(--shadow-soft, 0 10px 30px rgba(20,42,74,.08)); transform: translateY(0); }
+}
+@media (max-width: 1080px) {
+  .module-sticky-header {
+    position: static;
+  }
+  .module-sticky-main {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .module-sticky-meta {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 760px) {
+  .module-sticky-header {
+    padding: 12px;
+    border-radius: 14px;
+  }
+  .filter-group-grid {
+    grid-template-columns: 1fr;
+  }
+  .filter-chip {
+    width: 100%;
+    justify-content: center;
+  }
+  .module-sticky-meta {
+    width: 100%;
+  }
+  .presentation-toggle {
+    width: 100%;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1570,7 +2499,7 @@ button:focus, select:focus, input:focus {
   <div class="topbar-left">
     <div class="topbar-logo">MonitoraSAPS</div>
     <div class="topbar-sep"></div>
-    <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da SAPS</div>
+    <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da APS</div>
   </div>
   <div class="topbar-right">
     <span class="badge-comav">COMAV · Gabinete SAPS</span>
@@ -1682,7 +2611,7 @@ button:focus, select:focus, input:focus {
         <div class="page-desc">Leitura executiva dos principais indicadores, alertas analíticos, qualidade dos dados e tendências para apoio à decisão.</div>
       </div>
 
-      <div class="prototype-banner">Protótipo demonstrativo. Os valores são simulados e demonstram monitoramento estratégico dos indicadores.</div>
+      <div class="prototype-banner">Protótipo demonstrativo para validação da gestão. Os valores são simulados e demonstram a atuação da COMAV como instância vinculada ao Gabinete da Secretária da SAPS para monitoramento estratégico dos indicadores.</div>
 
       <div class="validation-note" id="dashboardScopeNote">Escopo aplicado: Brasil completo · Mai/2026.</div>
 
@@ -2223,9 +3152,9 @@ button:focus, select:focus, input:focus {
       </div>
 
       <div class="card chart-card" style="margin-top:20px;">
-        <div class="card-title"><span>📈</span> Tendência entre estratos interseccionais — Mai/2026</div>
+        <div class="card-title"><span>📈</span> Evolução comparada entre estratos interseccionais</div>
         <canvas id="extremeChart" height="160"></canvas>
-        <div class="chart-caption">Leitura em linha para evidenciar a distância entre estratos e facilitar a visualização da tendência relativa entre grupos.</div>
+        <div class="chart-caption">Compara a evolução temporal de diferentes estratos interseccionais, permitindo visualizar distância, tendência e persistência das desigualdades ao longo da série.</div>
       </div>
     </div>
 
@@ -2293,7 +3222,7 @@ button:focus, select:focus, input:focus {
         <div class="page-desc">Gráficos, leitura técnica preliminar, comparação territorial e síntese operacional para apoio à gestão, com validação obrigatória da COMAV.</div>
       </div>
 
-      <div class="prototype-banner">Módulo demonstrativo. Todos os dados exibidos são fictícios e simulam o comportamento esperado de um agente de apoio analítico institucional.</div>
+      <div class="prototype-banner">Módulo demonstrativo inspirado no modelo anexado. Todos os dados exibidos são fictícios e simulam o comportamento esperado de um agente de apoio analítico institucional.</div>
 
       <div class="ia-panel light">
         <div class="ia-panel-header">
@@ -2407,21 +3336,143 @@ button:focus, select:focus, input:focus {
 
       <div class="card">
         <div class="card-title"><span>📝</span> Gerador de relatório</div>
-        <div class="ind-filters strategic-filters">
-          <select class="filter-select" id="relatorioTipo" onchange="gerarRelatorioExecutivo()">
-            <option value="gabinete">Síntese para gabinete</option>
-            <option value="ministro">Subsídio para Gabinete do Ministro</option>
-            <option value="presidencia">Subsídio para Presidência</option>
-            <option value="imprensa">Pontos para imprensa</option>
-          </select>
-          <select class="filter-select" id="relatorioTom" onchange="gerarRelatorioExecutivo()">
-            <option value="tecnico">Técnico-institucional</option>
-            <option value="executivo">Executivo e objetivo</option>
-            <option value="comunicacao">Comunicação pública</option>
-          </select>
-          <button class="btn btn-primary" onclick="gerarRelatorioExecutivo()">Gerar minuta</button>
-          <button class="btn btn-outline" onclick="baixarRelatorioExecutivo()">⬇ Baixar TXT</button>
+        <div class="filter-group-panel">
+          <div class="filter-group-header">
+            <div>
+              <div class="filter-group-title"><span class="title-icon"></span> Destino e linguagem do relatório</div>
+              <div class="filter-group-subtitle">Define o público, o tom e a finalidade da minuta.</div>
+            </div>
+          </div>
+          <div class="filter-group-grid">
+            <div class="filter-field">
+              <label>Produto</label>
+              <select class="filter-select" id="relatorioTipo" onchange="gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
+                <option value="gabinete">Síntese para gabinete</option>
+                <option value="ministro">Subsídio para Gabinete do Ministro</option>
+                <option value="presidencia">Subsídio para Presidência</option>
+                <option value="imprensa">Pontos para imprensa</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>Tom</label>
+              <select class="filter-select" id="relatorioTom" onchange="gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
+                <option value="tecnico">Técnico-institucional</option>
+                <option value="executivo">Executivo e objetivo</option>
+                <option value="comunicacao">Comunicação pública</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>Período</label>
+              <select class="filter-select" id="relatorioFiltroPeriodo" onchange="gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
+                <option value="Mai/2026">Mai/2026</option>
+                <option value="Abr/2026">Abr/2026</option>
+                <option value="Mar/2026">Mar/2026</option>
+                <option value="1º quadrimestre/2026">1º quadrimestre/2026</option>
+                <option value="2025-2026">Série 2025–2026</option>
+              </select>
+            </div>
+          </div>
         </div>
+
+        <div class="filter-group-panel">
+          <div class="filter-group-header">
+            <div>
+              <div class="filter-group-title"><span class="title-icon"></span> Recorte institucional</div>
+              <div class="filter-group-subtitle">Hierarquiza a seleção por área, tema, natureza e prioridade.</div>
+            </div>
+          </div>
+          <div class="filter-group-grid">
+            <div class="filter-field">
+              <label>Departamento/área</label>
+              <select class="filter-select" id="relatorioFiltroDepartamento" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
+                <option value="todos">Todos os departamentos/áreas</option>
+                <option value="DESF">DESF</option>
+                <option value="DEPROS">DEPROS</option>
+                <option value="DGCI">DGCI</option>
+                <option value="DAPS">DAPS</option>
+                <option value="GAB/SAPS">Gabinete SAPS / COMAV</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>Tema</label>
+              <select class="filter-select" id="relatorioFiltroTema" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
+                <option value="todos">Todos os temas</option>
+                <option value="Cobertura e acesso">Cobertura e acesso</option>
+                <option value="Condições sensíveis à APS">Condições sensíveis à APS</option>
+                <option value="Saúde materno-infantil">Saúde materno-infantil</option>
+                <option value="Equidade e desigualdades">Equidade e desigualdades</option>
+                <option value="Produção e acompanhamento">Produção e acompanhamento</option>
+                <option value="Qualidade do cuidado">Qualidade do cuidado</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>Natureza</label>
+              <select class="filter-select" id="relatorioFiltroNatureza" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
+                <option value="todos">Todas as naturezas</option>
+                <option value="Estrutura">Estrutura</option>
+                <option value="Processo">Processo</option>
+                <option value="Resultado">Resultado</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>Prioridade</label>
+              <select class="filter-select" id="relatorioFiltroPrioridade" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
+                <option value="todos">Todas as prioridades</option>
+                <option value="Alta">Prioridade alta</option>
+                <option value="Média">Prioridade média</option>
+                <option value="Rotina">Rotina</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group-panel">
+          <div class="filter-group-header">
+            <div>
+              <div class="filter-group-title"><span class="title-icon"></span> Recorte territorial</div>
+              <div class="filter-group-subtitle">A seleção segue a hierarquia Região → UF → Município.</div>
+            </div>
+          </div>
+          <div class="filter-group-grid">
+            <div class="filter-field">
+              <label>Região</label>
+              <select class="filter-select" id="relatorioFiltroRegiao" onchange="alterarRelatorioRegiao(this.value); atualizarChipsFiltrosAtivos();">
+                <option value="todas">Todas as regiões</option>
+                <option value="Norte">Norte</option>
+                <option value="Nordeste">Nordeste</option>
+                <option value="Centro-Oeste">Centro-Oeste</option>
+                <option value="Sudeste">Sudeste</option>
+                <option value="Sul">Sul</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>UF</label>
+              <select class="filter-select" id="relatorioFiltroUF" onchange="alterarRelatorioUF(this.value); atualizarChipsFiltrosAtivos();">
+                <option value="todas">Todas as UFs</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label>Município</label>
+              <select class="filter-select" id="relatorioFiltroMunicipio" onchange="relatorioScope.municipio=this.value; gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
+                <option value="todos">Municípios da UF</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-indicator-panel">
+          <div class="card-title" style="margin-bottom:10px;"><span>🎯</span> Indicadores que entrarão no relatório</div>
+          <div class="report-indicator-actions">
+            <button class="btn btn-outline" onclick="selecionarIndicadoresRelatorio('todos')">Selecionar todos</button>
+            <button class="btn btn-outline" onclick="selecionarIndicadoresRelatorio('alta')">Selecionar prioridade alta</button>
+            <button class="btn btn-outline" onclick="selecionarIndicadoresRelatorio('limpar')">Limpar seleção</button>
+            <button class="btn btn-primary" onclick="gerarRelatorioExecutivo()">Gerar minuta</button>
+            <button class="btn btn-outline" onclick="baixarRelatorioExecutivo()">⬇ Baixar TXT</button>
+          </div>
+          <div class="report-indicator-list" id="relatorioIndicadoresList"></div>
+          <div class="report-selected-summary" id="relatorioIndicadoresResumo">Nenhum indicador selecionado.</div>
+        </div>
+
         <div class="report-box" id="relatorioExecutivoBox"></div>
       </div>
     </div>
@@ -2886,7 +3937,9 @@ function goTo(page, btn) {
   document.getElementById('page-' + page).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   if (btn) btn.classList.add('active');
-  setTimeout(inserirBotoesDownloadGraficos, 250);
+  setTimeout(inserirBotoesDownloadGraficos, 180);
+  setTimeout(atualizarInterfaceModulo, 220);
+  setTimeout(renomearBotoesDownload, 260);
 }
 
 
@@ -3985,6 +5038,7 @@ function globalAplicarEscopo() {
   globalSincronizarMapa();
   globalSincronizarIA();
   globalSincronizarInterseccionalidade();
+  atualizarChipsFiltrosAtivos();
   if (typeof popularTabelaIndicadores === 'function') popularTabelaIndicadores();
 }
 
@@ -4252,42 +5306,72 @@ function renderInterseccionalidade() {
   const ctx2 = document.getElementById('extremeChart');
   if (ctx2) {
     if (interCharts.extremos) interCharts.extremos.destroy();
-    const labels = [
-      'Maior risco',
-      'Estrato selecionado',
-      'Média geral',
-      'Menor risco'
-    ];
-    const valores = [
-      +(maiorRisco * 1.08).toFixed(1),
-      +maiorRisco.toFixed(1),
-      +media.toFixed(1),
-      +menorRisco.toFixed(1)
-    ];
+
+    const serieMaiorRisco = interLabels.map((_, i) => +(maiorRisco * (0.82 + i * 0.045)).toFixed(1));
+    const serieSelecionado = interLabels.map((_, i) => +(maiorRisco * (0.78 + i * 0.040)).toFixed(1));
+    const serieMediaGeral = interLabels.map((_, i) => +(media * (0.88 + i * 0.025)).toFixed(1));
+    const serieMenorRisco = interLabels.map((_, i) => +(menorRisco * (0.92 + i * 0.018)).toFixed(1));
+
     interCharts.extremos = new Chart(ctx2, {
       type: 'line',
       data: {
-        labels,
-        datasets: [{
-          label: cfg.nome,
-          data: valores,
-          borderColor: '#d9541a',
-          backgroundColor: 'rgba(217,84,26,.08)',
-          pointBackgroundColor: ['#c0392b','#d9541a','#5b8ed4','#2d8f65'],
-          pointBorderColor: '#ffffff',
-          pointBorderWidth: 2,
-          pointRadius: 5,
-          pointHoverRadius: 6,
-          fill: false,
-          tension: .28
-        }]
+        labels: interLabels,
+        datasets: [
+          {
+            label: 'Estrato de maior risco',
+            data: serieMaiorRisco,
+            borderColor: '#c0392b',
+            backgroundColor: 'rgba(192,57,43,.08)',
+            fill: false,
+            tension: .32,
+            pointRadius: 3,
+            borderWidth: 2.5
+          },
+          {
+            label: 'Estrato selecionado',
+            data: serieSelecionado,
+            borderColor: '#d9541a',
+            backgroundColor: 'rgba(217,84,26,.08)',
+            fill: false,
+            tension: .32,
+            pointRadius: 3,
+            borderWidth: 2.5
+          },
+          {
+            label: 'Média geral',
+            data: serieMediaGeral,
+            borderColor: '#1b3f6b',
+            borderDash: [6, 3],
+            fill: false,
+            tension: .32,
+            pointRadius: 2,
+            borderWidth: 2
+          },
+          {
+            label: 'Estrato de menor risco',
+            data: serieMenorRisco,
+            borderColor: '#2d8f65',
+            backgroundColor: 'rgba(45,143,101,.08)',
+            fill: false,
+            tension: .32,
+            pointRadius: 3,
+            borderWidth: 2.5
+          }
+        ]
       },
       options: {
         responsive: true,
         ...chartDefaults,
         plugins: {
           ...chartDefaults.plugins,
-          legend: { display: false }
+          legend: {
+            position: 'bottom',
+            labels: {
+              font: { family: 'Inter', size: 11 },
+              usePointStyle: true,
+              boxWidth: 10
+            }
+          }
         }
       }
     });
@@ -4318,7 +5402,7 @@ const nomesGraficos = {
   chartIndicadorComparativo: 'indicadores_comparacao_territorial',
   chartMapaTendencia: 'mapa_tendencia_indicador',
   interChart: 'interseccionalidade_evolucao_comparada',
-  extremeChart: 'interseccionalidade_estratos_extremos',
+  extremeChart: 'interseccionalidade_evolucao_comparada_estratos',
   iaTrend: 'ia_serie_historica',
   iaCompare: 'ia_comparacao_pares',
   iaStrata: 'ia_desagregacao_ficticia'
@@ -4427,7 +5511,7 @@ function inserirBotoesDownloadGraficos() {
     const tools = document.createElement('div');
     tools.className = 'chart-tools';
     tools.setAttribute('data-download-chart', canvas.id);
-    tools.innerHTML = `<button class="chart-download-btn" type="button" onclick="baixarGrafico('${canvas.id}')">⬇ PNG</button>`;
+    tools.innerHTML = `<button class="chart-download-btn" type="button" onclick="baixarGrafico('${canvas.id}')">Baixar</button>`;
 
     const title = card.querySelector('.card-title');
     if (title && title.nextSibling) {
@@ -4442,7 +5526,7 @@ function inserirBotoesDownloadGraficos() {
     const tools = document.createElement('div');
     tools.className = 'chart-tools';
     tools.setAttribute('data-download-chart', 'mapaBrasil');
-    tools.innerHTML = `<button class="chart-download-btn" type="button" onclick="baixarMapaBrasilSVG()">⬇ SVG do mapa</button>`;
+    tools.innerHTML = `<button class="chart-download-btn" type="button" onclick="baixarMapaBrasilSVG()">Baixar mapa</button>`;
     const title = mapaCard.querySelector('.card-title');
     if (title) title.insertAdjacentElement('afterend', tools);
     else mapaCard.prepend(tools);
@@ -4481,13 +5565,176 @@ function popularDicionarioIndicadores() {
   `).join('') || `<tr><td colspan="8" style="text-align:center;color:var(--cinza-med);padding:24px;">Nenhum indicador encontrado.</td></tr>`;
 }
 
+let relatorioScope = { regiao: 'todas', uf: 'todas', municipio: 'todos' };
+
+function popularRelatorioUFs(regiao = 'todas') {
+  const select = document.getElementById('relatorioFiltroUF');
+  if (!select || typeof estadosRegiao === 'undefined') return;
+  const estados = Object.entries(estadosRegiao)
+    .filter(([k, meta]) => regiao === 'todas' || meta.regiao === regiao)
+    .sort((a,b) => a[1].uf.localeCompare(b[1].uf, 'pt-BR'));
+
+  const atual = relatorioScope.uf;
+  select.innerHTML = '<option value="todas">Todas as UFs</option>' +
+    estados.map(([k, meta]) => `<option value="${k}">${meta.uf} · ${meta.nome}</option>`).join('');
+
+  if ([...select.options].some(o => o.value === atual)) select.value = atual;
+  else { select.value = 'todas'; relatorioScope.uf = 'todas'; }
+}
+
+function popularRelatorioMunicipios(uf = 'todas') {
+  const select = document.getElementById('relatorioFiltroMunicipio');
+  if (!select) return;
+  if (uf === 'todas') {
+    select.innerHTML = '<option value="todos">Selecione uma UF</option>';
+    select.disabled = true;
+    relatorioScope.municipio = 'todos';
+    return;
+  }
+
+  const municipios = municipiosDaUF(uf);
+  select.disabled = false;
+  select.innerHTML = '<option value="todos">Todos os municípios da UF</option>' +
+    municipios.map(m => `<option value="${m.id}">${m.nome}</option>`).join('');
+
+  if ([...select.options].some(o => o.value === relatorioScope.municipio)) select.value = relatorioScope.municipio;
+  else { select.value = 'todos'; relatorioScope.municipio = 'todos'; }
+}
+
+function alterarRelatorioRegiao(regiao) {
+  relatorioScope.regiao = regiao;
+  relatorioScope.uf = 'todas';
+  relatorioScope.municipio = 'todos';
+  popularRelatorioUFs(regiao);
+  popularRelatorioMunicipios('todas');
+  gerarRelatorioExecutivo();
+  atualizarChipsFiltrosAtivos();
+}
+
+function alterarRelatorioUF(uf) {
+  relatorioScope.uf = uf;
+  relatorioScope.municipio = 'todos';
+  if (uf !== 'todas') {
+    relatorioScope.regiao = estadosRegiao[uf]?.regiao || 'todas';
+    const reg = document.getElementById('relatorioFiltroRegiao');
+    if (reg) reg.value = relatorioScope.regiao;
+    popularRelatorioUFs(relatorioScope.regiao);
+    const selUf = document.getElementById('relatorioFiltroUF');
+    if (selUf) selUf.value = uf;
+    popularRelatorioMunicipios(uf);
+  } else {
+    popularRelatorioMunicipios('todas');
+  }
+  gerarRelatorioExecutivo();
+  atualizarChipsFiltrosAtivos();
+}
+
+function getRelatorioEscopoLabel() {
+  const periodo = document.getElementById('relatorioFiltroPeriodo')?.value || 'Mai/2026';
+
+  if (relatorioScope.municipio !== 'todos' && relatorioScope.uf !== 'todas') {
+    const municipio = municipiosDaUF(relatorioScope.uf).find(m => m.id === relatorioScope.municipio);
+    const meta = estadosRegiao[relatorioScope.uf];
+    return `${municipio?.nome || 'Município selecionado'} · ${meta?.uf || ''} · Região ${meta?.regiao || ''} · ${periodo}`;
+  }
+
+  if (relatorioScope.uf !== 'todas') {
+    const meta = estadosRegiao[relatorioScope.uf];
+    return `${meta?.uf || ''} · ${meta?.nome || ''} · Região ${meta?.regiao || ''} · ${periodo}`;
+  }
+
+  if (relatorioScope.regiao !== 'todas') {
+    return `Região ${relatorioScope.regiao} · ${periodo}`;
+  }
+
+  return `Brasil completo · ${periodo}`;
+}
+
+function getRelatorioFiltrosInstitucionais() {
+  return {
+    departamento: document.getElementById('relatorioFiltroDepartamento')?.value || 'todos',
+    tema: document.getElementById('relatorioFiltroTema')?.value || 'todos',
+    natureza: document.getElementById('relatorioFiltroNatureza')?.value || 'todos',
+    prioridade: document.getElementById('relatorioFiltroPrioridade')?.value || 'todos',
+    periodo: document.getElementById('relatorioFiltroPeriodo')?.value || 'Mai/2026'
+  };
+}
+
+function getIndicadoresRelatorioFiltrados() {
+  if (typeof indicadoresData === 'undefined') return [];
+  const filtros = getRelatorioFiltrosInstitucionais();
+
+  return indicadoresData.filter(ind => {
+    const okDepartamento = filtros.departamento === 'todos' || ind.departamento === filtros.departamento;
+    const okTema = filtros.tema === 'todos' || ind.tema === filtros.tema;
+    const okNatureza = filtros.natureza === 'todos' || ind.natureza === filtros.natureza;
+    const okPrioridade = filtros.prioridade === 'todos' || ind.prioridade === filtros.prioridade;
+    return okDepartamento && okTema && okNatureza && okPrioridade;
+  });
+}
+
+function getIndicadoresRelatorioSelecionados() {
+  const checks = Array.from(document.querySelectorAll('.relatorio-ind-check:checked'));
+  const codigos = checks.map(c => c.value);
+  if (!codigos.length && typeof indicadoresData !== 'undefined') {
+    return indicadoresData.filter(ind => ind.prioridade === 'Alta').slice(0, 4);
+  }
+  return (indicadoresData || []).filter(ind => codigos.includes(ind.cod));
+}
+
+function atualizarResumoIndicadoresRelatorio() {
+  const el = document.getElementById('relatorioIndicadoresResumo');
+  if (!el) return;
+  const selecionados = getIndicadoresRelatorioSelecionados();
+  const temas = [...new Set(selecionados.map(i => i.tema))];
+  const altas = selecionados.filter(i => i.prioridade === 'Alta').length;
+  el.innerHTML = `Selecionados: <strong>${selecionados.length}</strong> indicador(es). Temas: <strong>${temas.length || 0}</strong>. Prioridade alta: <strong>${altas}</strong>.`;
+}
+
+function popularIndicadoresRelatorio() {
+  const box = document.getElementById('relatorioIndicadoresList');
+  if (!box || typeof indicadoresData === 'undefined') return;
+
+  const dados = getIndicadoresRelatorioFiltrados();
+  const selecionadosAtuais = new Set(Array.from(document.querySelectorAll('.relatorio-ind-check:checked')).map(c => c.value));
+
+  box.innerHTML = dados.map(ind => {
+    const checked = selecionadosAtuais.has(ind.cod) || (!selecionadosAtuais.size && ind.prioridade === 'Alta');
+    return `
+      <label class="report-check">
+        <input type="checkbox" class="relatorio-ind-check" value="${ind.cod}" ${checked ? 'checked' : ''} onchange="atualizarResumoIndicadoresRelatorio(); gerarRelatorioExecutivo();">
+        <div>
+          <strong>${ind.nome}</strong>
+          <span>${ind.cod} · ${ind.tema} · ${ind.natureza} · ${ind.prioridade}</span>
+        </div>
+      </label>
+    `;
+  }).join('') || `<div class="validation-note">Nenhum indicador encontrado para os filtros selecionados.</div>`;
+
+  atualizarResumoIndicadoresRelatorio();
+}
+
+function selecionarIndicadoresRelatorio(modo) {
+  const checks = Array.from(document.querySelectorAll('.relatorio-ind-check'));
+  checks.forEach(c => {
+    const ind = (indicadoresData || []).find(i => i.cod === c.value);
+    if (modo === 'todos') c.checked = true;
+    if (modo === 'limpar') c.checked = false;
+    if (modo === 'alta') c.checked = ind?.prioridade === 'Alta';
+  });
+  atualizarResumoIndicadoresRelatorio();
+  gerarRelatorioExecutivo();
+}
+
 function gerarRelatorioExecutivo() {
   const box = document.getElementById('relatorioExecutivoBox');
   if (!box) return;
 
   const tipo = document.getElementById('relatorioTipo')?.value || 'gabinete';
   const tom = document.getElementById('relatorioTom')?.value || 'tecnico';
-  const escopo = typeof globalScopeLabel === 'function' ? globalScopeLabel() : 'Brasil completo · Mai/2026';
+  const escopo = getRelatorioEscopoLabel();
+  const filtrosRelatorio = getRelatorioFiltrosInstitucionais();
+  const selecionados = getIndicadoresRelatorioSelecionados();
 
   const titulo = {
     gabinete: 'Síntese para Gabinete da Secretária',
@@ -4502,25 +5749,61 @@ function gerarRelatorioExecutivo() {
     comunicacao: 'linguagem de comunicação pública'
   }[tom];
 
+  const indicadoresLista = selecionados.map(ind => {
+    const status = ind.status === 'critico' ? 'crítico' : ind.status === 'atencao' ? 'em atenção' : 'favorável';
+    return `<li><strong>${ind.nome}</strong> (${ind.cod}) — valor ${ind.valor}, meta ${ind.meta}, status ${status}, tema ${ind.tema}.</li>`;
+  }).join('');
+
+  const indicadoresTexto = selecionados.map(ind => {
+    const status = ind.status === 'critico' ? 'crítico' : ind.status === 'atencao' ? 'em atenção' : 'favorável';
+    return `- ${ind.nome} (${ind.cod}): valor ${ind.valor}; meta ${ind.meta}; status ${status}; tema ${ind.tema}.`;
+  }).join('\n');
+
+  const qtdCriticos = selecionados.filter(i => i.status === 'critico').length;
+  const qtdAtencao = selecionados.filter(i => i.status === 'atencao').length;
+  const temas = [...new Set(selecionados.map(i => i.tema))].join(', ') || 'não informado';
+
   const texto = `
     <h3>${titulo}</h3>
     <p><strong>Escopo:</strong> ${escopo}</p>
+    <p><strong>Indicadores selecionados:</strong> ${selecionados.length} indicador(es), contemplando os seguintes temas: ${temas}.</p>
+    <p><strong>Filtros aplicados:</strong> área/departamento: ${filtrosRelatorio.departamento}; natureza: ${filtrosRelatorio.natureza}; prioridade: ${filtrosRelatorio.prioridade}; período: ${filtrosRelatorio.periodo}.</p>
     <p><strong>Finalidade:</strong> consolidar informações estratégicas monitoradas pela COMAV, vinculada ao Gabinete da Secretária da SAPS, para subsidiar demandas do gabinete da secretária, do gabinete do ministro, da Presidência e da comunicação institucional.</p>
 
-    <h4>1. Leitura analítica do cenário</h4>
-    <p>Os dados simulados indicam avanço da cobertura de Atenção Básica, redução gradual das internações por condições sensíveis à APS e manutenção de atenção para indicadores materno-infantis. A leitura deve priorizar tendência, comparação territorial e identificação de grupos ou territórios com maior distância em relação à meta.</p>
+    <h4>1. Indicadores incluídos na minuta</h4>
+    <ul>${indicadoresLista || '<li>Nenhum indicador selecionado. Selecione pelo menos um indicador para compor o relatório.</li>'}</ul>
 
-    <h4>2. Pontos de atenção para decisão</h4>
-    <p>O principal alerta analítico permanece associado à mortalidade infantil, com necessidade de leitura territorial, análise da série histórica e comparação com indicadores de acesso e qualidade do cuidado. As internações por CSAPS seguem como indicador sensível para acompanhamento da efetividade da APS.</p>
+    <h4>2. Leitura analítica do cenário</h4>
+    <p>A seleção apresenta ${qtdCriticos} indicador(es) em situação crítica e ${qtdAtencao} em atenção. A leitura deve priorizar tendência, comparação territorial, distância em relação à meta e identificação de territórios ou estratos com pior desempenho relativo.</p>
 
-    <h4>3. Encaminhamento sugerido</h4>
-    <p>Recomenda-se gerar análise complementar no módulo de Apoio Analítico, validar a leitura com a área técnica responsável e registrar os encaminhamentos no Plano de Ação dos Alertas Analíticos.</p>
+    <h4>3. Pontos de atenção para decisão</h4>
+    <p>Os indicadores selecionados orientam a construção da pauta estratégica do escopo territorial. Recomenda-se validar a leitura com a área técnica responsável, observando natureza do indicador, fonte, periodicidade e polaridade.</p>
 
-    <h4>4. Observação sobre uso institucional</h4>
+    <h4>4. Encaminhamento sugerido</h4>
+    <p>Recomenda-se gerar análise complementar no módulo de Apoio Analítico, comparar territórios no mapa e registrar os encaminhamentos no Plano de Ação dos Alertas Analíticos.</p>
+
+    <h4>5. Observação sobre uso institucional</h4>
     <p>Esta minuta utiliza ${linguagem} e deve ser revisada pela COMAV/Gabinete SAPS antes de qualquer encaminhamento externo ou uso em demanda de imprensa.</p>
   `;
   box.innerHTML = texto;
-  window._relatorioExecutivo = box.innerText;
+
+  window._relatorioExecutivo = `${titulo}
+Escopo: ${escopo}
+Indicadores selecionados: ${selecionados.length}
+Temas: ${temas}
+Filtros aplicados: área/departamento ${filtrosRelatorio.departamento}; natureza ${filtrosRelatorio.natureza}; prioridade ${filtrosRelatorio.prioridade}; período ${filtrosRelatorio.periodo}
+
+1. Indicadores incluídos:
+${indicadoresTexto || '- Nenhum indicador selecionado.'}
+
+2. Leitura analítica:
+A seleção apresenta ${qtdCriticos} indicador(es) em situação crítica e ${qtdAtencao} em atenção. A leitura deve priorizar tendência, comparação territorial, distância em relação à meta e identificação de territórios ou estratos com pior desempenho relativo.
+
+3. Encaminhamento sugerido:
+Gerar análise complementar no módulo de Apoio Analítico, comparar territórios no mapa e registrar encaminhamentos no Plano de Ação dos Alertas Analíticos.
+
+Observação:
+Esta minuta utiliza ${linguagem} e deve ser revisada pela COMAV/Gabinete SAPS antes de uso externo.`;
 }
 
 function baixarRelatorioExecutivo() {
@@ -4529,6 +5812,359 @@ function baixarRelatorioExecutivo() {
   a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._relatorioExecutivo || '');
   a.download = 'relatorio_executivo_saps_comav.txt';
   a.click();
+}
+
+
+// ── IDENTIDADE VISUAL SVG ──
+function svgIcon(name){
+  const icons = {
+    brand:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 18h16"/><path d="M7 18V8l5-3 5 3v10"/><path d="M9.5 12h5"/></svg>`,
+    dashboard:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg>`,
+    indicators:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16"/><path d="M7 16V8"/><path d="M12 16V5"/><path d="M17 16v-4"/></svg>`,
+    map:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 7 6-3 6 3 6-3v13l-6 3-6-3-6 3z"/><path d="M9 4v13"/><path d="M15 7v13"/></svg>`,
+    intersection:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>`,
+    bell:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17H4a1 1 0 0 1-.8-1.6A8.9 8.9 0 0 0 5 10a7 7 0 1 1 14 0c0 2 .7 3.9 1.8 5.4A1 1 0 0 1 20 17h-5"/><path d="M9 17a3 3 0 0 0 6 0"/></svg>`,
+    spark:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 1.9 4.7L19 9.6l-4.1 3.1 1.4 5.1L12 15l-4.3 2.8 1.4-5.1L5 9.6l5.1-1.9z"/></svg>`,
+    report:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/><path d="M9 9h2"/></svg>`,
+    plan:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
+    book:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+    shield:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6z"/><path d="m9.5 12 1.7 1.7 3.3-3.4"/></svg>`,
+    history:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 3v6h6"/><path d="M12 7v5l3 3"/></svg>`,
+    users:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6"/><path d="M23 11h-6"/></svg>`,
+    hospital:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V7a2 2 0 0 1 2-2h6v16"/><path d="M13 21V3h6a2 2 0 0 1 2 2v16"/><path d="M9 9h.01"/><path d="M9 13h.01"/><path d="M9 17h.01"/><path d="M15 7h4"/><path d="M17 5v4"/></svg>`,
+    line:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-7"/></svg>`,
+    compare:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3H5a2 2 0 0 0-2 2v5"/><path d="M14 21h5a2 2 0 0 0 2-2v-5"/><path d="M21 10V5a2 2 0 0 0-2-2h-5"/><path d="M3 14v5a2 2 0 0 0 2 2h5"/><path d="m8 8 8 8"/><path d="m16 8-8 8"/></svg>`,
+    brain:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 3a3.5 3.5 0 0 0-3.5 3.5v.5A3 3 0 0 0 3 10v1a3 3 0 0 0 1.5 2.6 3.5 3.5 0 0 0 4 5.4c1.2 1.2 2.7 2 4.5 2"/><path d="M15.5 3A3.5 3.5 0 0 1 19 6.5v.5A3 3 0 0 1 21 10v1a3 3 0 0 1-1.5 2.6 3.5 3.5 0 0 1-4 5.4c-1.2 1.2-2.7 2-4.5 2"/><path d="M12 6v12"/><path d="M8 8h2"/><path d="M14 8h2"/><path d="M8 12h2"/><path d="M14 12h2"/></svg>`,
+    target:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m2 12 2 0"/><path d="m20 12 2 0"/></svg>`,
+    database:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v8c0 1.7 3.6 3 8 3s8-1.3 8-3v-8"/></svg>`,
+    info:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`,
+    warning:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`
+  };
+  return icons[name] || icons.info;
+}
+
+function modernizarTopo(){
+  const logo = document.querySelector('.topbar-logo');
+  if (logo && !logo.querySelector('.brand-mark')) {
+    logo.innerHTML = `<span class="brand-mark">${svgIcon('brand')}</span><span>MonitoraSAPS</span>`;
+  }
+}
+
+function aplicarIconesSidebar(){
+  const map = {
+    dashboard:'dashboard',
+    indicadores:'indicators',
+    mapa:'map',
+    interseccionalidade:'intersection',
+    alertas:'bell',
+    ia:'brain',
+    relatorio:'report',
+    plano:'plan',
+    dicionario:'book',
+    qualidade:'shield',
+    auditoria:'history'
+  };
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    const match = btn.getAttribute('onclick')?.match(/goTo\('([^']+)'/);
+    const page = match ? match[1] : '';
+    const icon = btn.querySelector('.nav-icon');
+    if (icon) icon.innerHTML = svgIcon(map[page] || 'info');
+  });
+}
+
+function escolherIconePorTitulo(text){
+  const t = (text || '').toLowerCase();
+  if (t.includes('alerta')) return 'bell';
+  if (t.includes('qualidade') || t.includes('saúde da informação') || t.includes('validação')) return 'shield';
+  if (t.includes('relatório') || t.includes('gerador')) return 'report';
+  if (t.includes('plano') || t.includes('encaminhamento')) return 'plan';
+  if (t.includes('dicionário') || t.includes('metadados')) return 'book';
+  if (t.includes('intersecc')) return 'intersection';
+  if (t.includes('evolução') || t.includes('série') || t.includes('tendência')) return 'line';
+  if (t.includes('compar') || t.includes('ranking')) return 'compare';
+  if (t.includes('apoio analítico') || t.includes('interpretação') || t.includes('leitura executiva')) return 'brain';
+  if (t.includes('indicador')) return 'indicators';
+  if (t.includes('mapa')) return 'map';
+  if (t.includes('auditoria')) return 'history';
+  if (t.includes('saúde materno') || t.includes('cuidado')) return 'hospital';
+  if (t.includes('ação') || t.includes('prioridade')) return 'target';
+  if (t.includes('dados') || t.includes('carga') || t.includes('base')) return 'database';
+  return 'info';
+}
+
+function aplicarIconesTitulos(){
+  document.querySelectorAll('.card-title').forEach(title => {
+    const first = title.querySelector('span');
+    if (!first) return;
+    const name = escolherIconePorTitulo(title.textContent);
+    first.classList.add('title-icon');
+    first.innerHTML = svgIcon(name);
+  });
+}
+
+function aplicarIconesStats(){
+  document.querySelectorAll('.stat-card').forEach(card => {
+    const label = card.querySelector('.stat-label')?.textContent || '';
+    const icon = card.querySelector('.stat-icon');
+    if (!icon) return;
+    let name = 'indicators';
+    const l = label.toLowerCase();
+    if (l.includes('cobertura')) name = 'hospital';
+    else if (l.includes('equipes')) name = 'users';
+    else if (l.includes('internações')) name = 'line';
+    else if (l.includes('mortalidade')) name = 'target';
+    else if (l.includes('alerta')) name = 'warning';
+    else if (l.includes('completude') || l.includes('confiabilidade')) name = 'shield';
+    icon.innerHTML = svgIcon(name);
+  });
+}
+
+function aplicarIconesAlertas(){
+  document.querySelectorAll('.alert-item').forEach(item => {
+    const dot = item.querySelector('.alert-dot');
+    if (!dot) return;
+    if (item.classList.contains('critico')) dot.innerHTML = svgIcon('warning');
+    else if (item.classList.contains('atencao')) dot.innerHTML = svgIcon('bell');
+    else dot.innerHTML = svgIcon('info');
+  });
+}
+
+function aplicarTextoBotoes(){
+  document.querySelectorAll('.btn, .btn-ia, .btn-xs, .chart-download-btn').forEach(btn => {
+    const rawText = btn.textContent
+      .replace(/[⬇📋✦🤖📄]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    const lower = rawText.toLowerCase();
+    let iconName = '';
+
+    if (lower.includes('baixar') || lower.includes('download') || lower.includes('exportar')) iconName = 'report';
+    else if (lower.includes('copiar')) iconName = 'report';
+    else if (lower.includes('analisar') || lower.includes('atualizar análise')) iconName = 'brain';
+    else if (lower.includes('ficha')) iconName = 'book';
+    else if (lower.includes('limpar')) iconName = 'history';
+    else if (lower.includes('selecionar')) iconName = 'target';
+    else if (lower.includes('gerar')) iconName = 'spark';
+
+    if (iconName) {
+      btn.innerHTML = `<span class="nav-icon btn-svg-icon" style="width:16px;height:16px">${svgIcon(iconName)}</span><span>${rawText}</span>`;
+    } else {
+      btn.textContent = rawText;
+    }
+  });
+}
+
+
+function substituirEmojisRemanescentesPorSVG(){
+  const replacements = [
+    { selector: '.nav-icon', map: {
+      '📊':'dashboard','📈':'indicators','🗺️':'map','🧩':'intersection','🔔':'bell',
+      '🤖':'brain','🗂️':'report','✅':'plan','📚':'book','📋':'history'
+    }},
+    { selector: '.stat-icon', map: {
+      '🏥':'hospital','👥':'users','🏨':'line','🩺':'target','⚠️':'warning',
+      '🔴':'warning','🟡':'bell','🔵':'info','🟢':'shield'
+    }},
+    { selector: '.alert-dot', map: {
+      '🔴':'warning','🟡':'bell','🔵':'info','🟢':'shield'
+    }},
+    { selector: '.card-title span:first-child', map: {
+      '🔔':'bell','🛡️':'shield','📊':'dashboard','📈':'line','🗺️':'map','🧠':'brain',
+      '📌':'target','🧭':'map','🧩':'intersection','📋':'history','📄':'report',
+      '🤖':'brain','✅':'plan','📚':'book','📝':'report','🎯':'target','⚙️':'database',
+      '🧪':'shield','📎':'report','🗂️':'report'
+    }}
+  ];
+
+  replacements.forEach(group => {
+    document.querySelectorAll(group.selector).forEach(el => {
+      const txt = el.textContent.trim();
+      const iconName = group.map[txt];
+      if (iconName) {
+        if (group.selector.includes('card-title')) el.classList.add('title-icon');
+        el.innerHTML = svgIcon(iconName);
+      }
+    });
+  });
+}
+
+
+function aplicarIconesFiltrosHierarquicos(){
+  document.querySelectorAll('.filter-group-title').forEach(title => {
+    const icon = title.querySelector('.title-icon');
+    if (!icon) return;
+    const txt = title.textContent.toLowerCase();
+    let name = 'info';
+    if (txt.includes('destino')) name = 'report';
+    else if (txt.includes('institucional')) name = 'book';
+    else if (txt.includes('territorial')) name = 'map';
+    icon.innerHTML = svgIcon(name);
+  });
+}
+
+function aplicarIdentidadeVisualModerna(){
+  modernizarTopo();
+  aplicarIconesSidebar();
+  aplicarIconesTitulos();
+  aplicarIconesStats();
+  aplicarIconesAlertas();
+  substituirEmojisRemanescentesPorSVG();
+  aplicarIconesFiltrosHierarquicos();
+  aplicarTextoBotoes();
+  renomearBotoesDownload();
+}
+
+
+function renomearBotoesDownload() {
+  document.querySelectorAll('.chart-download-btn').forEach(btn => {
+    const txt = btn.textContent.trim().toLowerCase();
+    if (txt === 'png' || txt.includes('png')) {
+      btn.textContent = 'Baixar';
+    }
+    if (txt.includes('svg do mapa')) {
+      btn.textContent = 'Baixar mapa';
+    }
+  });
+}
+
+
+// ── CABEÇALHOS DE MÓDULO, FILTROS ATIVOS E MODO APRESENTAÇÃO ──
+function getPaginaAtivaId(){
+  const page = document.querySelector('.page.active');
+  return page ? page.id.replace('page-', '') : 'dashboard';
+}
+
+function getTituloModulo(pageId){
+  const map = {
+    dashboard: ['Painel Executivo', 'dashboard'],
+    indicadores: ['Indicadores Estratégicos', 'indicators'],
+    mapa: ['Análise Territorial', 'map'],
+    interseccionalidade: ['Interseccionalidade', 'intersection'],
+    alertas: ['Central de Alertas Analíticos', 'bell'],
+    ia: ['Apoio Analítico', 'brain'],
+    relatorio: ['Relatório Executivo', 'report'],
+    plano: ['Plano de Ação', 'plan'],
+    dicionario: ['Dicionário de Indicadores', 'book'],
+    qualidade: ['Qualidade dos Dados', 'shield'],
+    auditoria: ['Auditoria e Governança', 'history']
+  };
+  return map[pageId] || ['Módulo', 'info'];
+}
+
+function valorSelectTexto(id){
+  const el = document.getElementById(id);
+  if (!el) return '';
+  return el.options?.[el.selectedIndex]?.textContent?.trim() || el.value || '';
+}
+
+function getChipsGlobais(){
+  const chips = [];
+  const escopo = document.getElementById('globalScopeText')?.textContent || 'Brasil completo · Mai/2026';
+  chips.push(['Escopo', escopo, '']);
+  const page = getPaginaAtivaId();
+
+  if (page === 'relatorio') {
+    chips.push(['Produto', valorSelectTexto('relatorioTipo'), '']);
+    chips.push(['Área', valorSelectTexto('relatorioFiltroDepartamento'), 'muted']);
+    chips.push(['Tema', valorSelectTexto('relatorioFiltroTema'), 'muted']);
+    chips.push(['Natureza', valorSelectTexto('relatorioFiltroNatureza'), 'muted']);
+    chips.push(['Prioridade', valorSelectTexto('relatorioFiltroPrioridade'), valorSelectTexto('relatorioFiltroPrioridade').includes('Alta') ? 'critical' : 'muted']);
+    chips.push(['Período', valorSelectTexto('relatorioFiltroPeriodo'), '']);
+    if (typeof getRelatorioEscopoLabel === 'function') chips.push(['Recorte do relatório', getRelatorioEscopoLabel(), '']);
+  }
+
+  if (page === 'indicadores') {
+    chips.push(['Área', valorSelectTexto('filtroDepartamento'), 'muted']);
+    chips.push(['Tema', valorSelectTexto('filtroTema'), 'muted']);
+    chips.push(['Natureza', valorSelectTexto('filtroNatureza'), 'muted']);
+    chips.push(['Validação', valorSelectTexto('filtroValidacao'), 'muted']);
+  }
+
+  if (page === 'mapa') {
+    chips.push(['Indicador', valorSelectTexto('mapIndicador'), '']);
+    chips.push(['Região', valorSelectTexto('mapFiltroRegiao'), 'muted']);
+    chips.push(['UF', valorSelectTexto('mapFiltroUF'), 'muted']);
+    chips.push(['Município', valorSelectTexto('mapFiltroMunicipio'), 'muted']);
+  }
+
+  if (page === 'ia') {
+    chips.push(['Indicador', valorSelectTexto('iaInd'), '']);
+    chips.push(['Território', valorSelectTexto('iaTerr'), '']);
+    chips.push(['Leitura', valorSelectTexto('iaTipo'), 'muted']);
+  }
+
+  if (page === 'interseccionalidade') {
+    chips.push(['Indicador', valorSelectTexto('interIndicador'), '']);
+    chips.push(['Território', valorSelectTexto('interTerritorio'), '']);
+    chips.push(['Período', valorSelectTexto('interPeriodo'), '']);
+  }
+
+  return chips.filter(c => c[1] && !String(c[1]).includes('undefined'));
+}
+
+function criarOuAtualizarCabecalhoModulo(){
+  const page = document.querySelector('.page.active');
+  if (!page) return;
+
+  const pageId = getPaginaAtivaId();
+  const [titulo, icon] = getTituloModulo(pageId);
+  let header = page.querySelector(':scope > .module-sticky-header');
+
+  if (!header) {
+    header = document.createElement('div');
+    header.className = 'module-sticky-header';
+    page.insertBefore(header, page.firstElementChild?.nextSibling || page.firstChild);
+  }
+
+  header.innerHTML = `
+    <div class="module-sticky-main">
+      <div class="module-sticky-title"><span class="title-icon">${svgIcon(icon)}</span><span>${titulo}</span></div>
+      <div class="module-sticky-meta">
+        <button class="btn btn-outline presentation-toggle" onclick="alternarModoApresentacao()">Modo apresentação</button>
+        <button class="btn btn-outline" onclick="baixarTodosGraficos()">Baixar gráficos</button>
+      </div>
+    </div>
+    <div class="active-filter-row" id="activeFilterChips"></div>
+  `;
+  atualizarChipsFiltrosAtivos();
+  aplicarTextoBotoes();
+}
+
+function atualizarChipsFiltrosAtivos(){
+  const row = document.querySelector('.page.active #activeFilterChips');
+  if (!row) return;
+  const chips = getChipsGlobais();
+  row.innerHTML = chips.map(([label, value, cls]) => `<span class="filter-chip ${cls || ''}"><strong>${label}:</strong> ${value}</span>`).join('');
+}
+
+function alternarModoApresentacao(force){
+  const shouldEnable = typeof force === 'boolean' ? force : !document.body.classList.contains('presentation-mode');
+  document.body.classList.toggle('presentation-mode', shouldEnable);
+  setTimeout(() => {
+    criarOuAtualizarCabecalhoModulo();
+    inserirBotoesDownloadGraficos();
+    aplicarIdentidadeVisualModerna();
+  }, 120);
+}
+
+function destacarAtualizacaoVisual(){
+  const page = document.querySelector('.page.active');
+  if (!page) return;
+  const targets = page.querySelectorAll('.card, .stat-card, .exec-summary-card, .exec-decision-card');
+  targets.forEach((el, idx) => {
+    if (idx > 4) return;
+    el.classList.remove('loading-flash');
+    void el.offsetWidth;
+    el.classList.add('loading-flash');
+  });
+}
+
+function atualizarInterfaceModulo(){
+  criarOuAtualizarCabecalhoModulo();
+  atualizarChipsFiltrosAtivos();
+  destacarAtualizacaoVisual();
+  aplicarIdentidadeVisualModerna();
 }
 
 // ── INIT ──
@@ -4546,5 +6182,6 @@ window.addEventListener('load', () => {
   setTimeout(inserirBotoesDownloadGraficos, 500);
 });
 </script>
+<button id="sairApresentacao" class="btn btn-primary presentation-exit" onclick="alternarModoApresentacao(false)">Sair da apresentação</button>
 </body>
 </html>
