@@ -2513,6 +2513,374 @@ body.interface-ready .card-title > span:first-child {
   display: block;
 }
 
+
+/* ── VISÃO DAS ÁREAS TÉCNICAS ── */
+.area-hero {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+.area-profile-card {
+  background: linear-gradient(135deg, #ffffff 0%, #eef5ff 54%, #edf9f3 100%);
+  border: 1px solid rgba(219,231,243,.95);
+  border-left: 6px solid var(--brand-700, #1b4f8a);
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow-soft, 0 10px 30px rgba(20,42,74,.08));
+}
+.area-profile-kicker {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--brand-700, #1b4f8a);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.area-profile-title {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--brand-900, #0f2743);
+  margin-bottom: 8px;
+}
+.area-profile-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #405770;
+}
+.area-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px;
+}
+.area-quick-card {
+  background: #fff;
+  border: 1px solid rgba(219,231,243,.95);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 8px 22px rgba(20,42,74,.05);
+}
+.area-quick-card strong {
+  display: block;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 22px;
+  color: var(--brand-900, #0f2743);
+  margin-bottom: 4px;
+}
+.area-quick-card span {
+  font-size: 12px;
+  color: #647b94;
+  line-height: 1.4;
+}
+.area-view-layout {
+  display: grid;
+  grid-template-columns: 330px minmax(0,1fr);
+  gap: 18px;
+  align-items: start;
+}
+.area-side-panel {
+  position: sticky;
+  top: 136px;
+}
+.area-selector-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.area-selector {
+  width: 100%;
+  border: 1px solid rgba(219,231,243,.95);
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: all .18s ease;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.area-selector:hover {
+  transform: translateX(2px);
+  border-color: rgba(79,143,224,.28);
+  background: #f8fbff;
+}
+.area-selector.active {
+  border-color: rgba(79,143,224,.45);
+  background: linear-gradient(135deg, rgba(79,143,224,.12), rgba(46,163,114,.08));
+  box-shadow: 0 8px 22px rgba(20,42,74,.07);
+}
+.area-selector-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: var(--brand-100, #edf5ff);
+  color: var(--brand-700, #1b4f8a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.area-selector-icon svg {
+  width: 19px;
+  height: 19px;
+}
+.area-selector strong {
+  display: block;
+  font-size: 13px;
+  color: var(--brand-900, #0f2743);
+}
+.area-selector span {
+  display: block;
+  font-size: 11.5px;
+  color: #6a8097;
+  margin-top: 2px;
+}
+.area-workspace {
+  min-width: 0;
+}
+.area-context-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+.area-objective {
+  background: #fff;
+  border: 1px solid rgba(219,231,243,.95);
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-soft, 0 10px 30px rgba(20,42,74,.08));
+  margin-bottom: 16px;
+}
+.area-objective h3 {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 18px;
+  color: var(--brand-900, #0f2743);
+  margin-bottom: 8px;
+}
+.area-objective p {
+  font-size: 13.5px;
+  color: #405770;
+  line-height: 1.6;
+}
+.area-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.area-mini-kpi {
+  background: #fff;
+  border: 1px solid rgba(219,231,243,.95);
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 8px 22px rgba(20,42,74,.05);
+}
+.area-mini-kpi small {
+  display: block;
+  color: #7088a3;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.area-mini-kpi strong {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 24px;
+  color: var(--brand-900, #0f2743);
+}
+.area-mini-kpi span {
+  display: block;
+  font-size: 12px;
+  color: #647b94;
+  margin-top: 5px;
+}
+.area-analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.area-action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.area-action-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  border: 1px solid rgba(219,231,243,.95);
+  border-radius: 14px;
+  padding: 11px 12px;
+  background: #fff;
+}
+.area-action-index {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-100, #edf5ff);
+  color: var(--brand-700, #1b4f8a);
+  font-size: 12px;
+  font-weight: 800;
+}
+.area-action-item strong {
+  font-size: 13px;
+  color: var(--brand-900, #0f2743);
+}
+.area-action-item span {
+  display: block;
+  font-size: 12px;
+  color: #647b94;
+  margin-top: 3px;
+  line-height: 1.45;
+}
+.area-policy-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.area-policy-table th {
+  text-align: left;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: #7088a3;
+  padding: 8px 10px;
+  border-bottom: 2px solid #e4edf7;
+}
+.area-policy-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e4edf7;
+  vertical-align: top;
+}
+.area-policy-table tr:last-child td {
+  border-bottom: none;
+}
+.area-empty {
+  color: #6a8097;
+  font-size: 13px;
+  padding: 14px;
+  border: 1px dashed #d9e5f1;
+  border-radius: 14px;
+  background: #fbfdff;
+}
+@media (max-width: 1120px) {
+  .area-hero,
+  .area-view-layout,
+  .area-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+  .area-side-panel {
+    position: static;
+  }
+}
+@media (max-width: 760px) {
+  .area-quick-grid,
+  .area-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ── PERFIL DAS ÁREAS TÉCNICAS / DEMAIS USUÁRIOS SAPS ── */
+.user-permission-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.permission-card {
+  background:#fff;
+  border:1px solid rgba(219,231,243,.95);
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 8px 22px rgba(20,42,74,.05);
+}
+.permission-card strong {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13.5px;
+  color:var(--brand-900,#0f2743);
+  margin-bottom:5px;
+}
+.permission-card span {
+  font-size:12px;
+  line-height:1.45;
+  color:#647b94;
+}
+.request-form-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.request-form-grid .full {
+  grid-column:1 / -1;
+}
+.request-form-grid textarea {
+  width:100%;
+  min-height:92px;
+  resize:vertical;
+  border:1.5px solid rgba(219,231,243,.95);
+  border-radius:14px;
+  padding:10px 12px;
+  font-family:Inter,sans-serif;
+  color:#2e4764;
+  background:#fff;
+}
+.request-form-grid input,
+.request-form-grid select {
+  width:100%;
+  border:1.5px solid rgba(219,231,243,.95);
+  border-radius:14px;
+  min-height:42px;
+  padding:10px 12px;
+  font-family:Inter,sans-serif;
+  color:#2e4764;
+  background:#fff;
+}
+.user-scope-note {
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  background:linear-gradient(135deg,rgba(79,143,224,.08),rgba(46,163,114,.07));
+  border:1px solid rgba(79,143,224,.14);
+  border-radius:16px;
+  padding:13px 14px;
+  font-size:12.8px;
+  color:#405770;
+  line-height:1.55;
+  margin-bottom:16px;
+}
+.user-scope-note .title-icon {
+  width:19px;
+  height:19px;
+  color:var(--brand-700,#1b4f8a);
+  flex:0 0 auto;
+  margin-top:1px;
+}
+.user-actions-row {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+@media (max-width: 900px) {
+  .user-permission-grid,
+  .request-form-grid {
+    grid-template-columns:1fr;
+  }
+  .request-form-grid .full {
+    grid-column:auto;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2586,6 +2954,9 @@ body.interface-ready .card-title > span:first-child {
       </button>
       <button class="nav-item" onclick="goTo('interseccionalidade', this)">
         <span class="nav-icon">🧩</span> Interseccionalidade
+      </button>
+      <button class="nav-item" onclick="goTo('areas', this)">
+        <span class="nav-icon">🏛️</span> Áreas Técnicas
       </button>
       <button class="nav-item" onclick="goTo('alertas', this)">
         <span class="nav-icon">🔔</span> Central de Alertas
@@ -3180,6 +3551,209 @@ body.interface-ready .card-title > span:first-child {
         <div class="chart-caption">Compara a evolução temporal de diferentes estratos interseccionais, permitindo visualizar distância, tendência e persistência das desigualdades ao longo da série.</div>
       </div>
     </div>
+
+
+    <!-- ── VISÃO DAS ÁREAS TÉCNICAS ── -->
+    <div id="page-areas" class="page">
+      <div class="page-header">
+        <div class="page-title">Perfil das Áreas Técnicas</div>
+        <div class="page-desc">Perfil destinado aos demais usuários da SAPS, permitindo visualizar indicadores, gerar relatórios de análise e solicitar alterações de dados quando necessário.</div>
+      </div>
+
+      <div class="prototype-banner">Esta tela simula o perfil dos demais usuários da SAPS. As áreas técnicas podem solicitar acesso para consultar indicadores relacionados às suas políticas, gerar relatórios de análise e solicitar alteração ou qualificação de dados quando identificarem necessidade técnica.</div>
+
+      <div class="area-hero">
+        <div class="area-profile-card">
+          <div class="area-profile-kicker">Perfil dos demais usuários da SAPS</div>
+          <div class="area-profile-title">Acesso objetivo para visualizar, analisar e solicitar qualificação de dados</div>
+          <div class="area-profile-text">
+            A proposta é oferecer às áreas técnicas uma experiência mais simples e direcionada. O usuário da área não administra o sistema: ele consulta os indicadores vinculados à sua política, gera relatórios de análise e, quando necessário, solicita à COMAV/Gabinete SAPS a alteração, qualificação ou revisão de dados.
+          </div>
+          <div class="user-permission-grid">
+            <div class="permission-card"><strong><span class="title-icon"></span> Visualizar</strong><span>Consultar indicadores, tendência, meta, território e status analítico.</span></div>
+            <div class="permission-card"><strong><span class="title-icon"></span> Gerar relatórios</strong><span>Produzir minutas de análise por área, política, território e período.</span></div>
+            <div class="permission-card"><strong><span class="title-icon"></span> Solicitar alteração</strong><span>Registrar pedido de revisão ou qualificação de dados para avaliação da COMAV.</span></div>
+          </div>
+        </div>
+        <div class="area-quick-grid">
+          <div class="area-quick-card"><strong id="areaQtdIndicadores">—</strong><span>indicadores disponíveis para consulta</span></div>
+          <div class="area-quick-card"><strong id="areaQtdAlertas">—</strong><span>alertas analíticos relacionados</span></div>
+          <div class="area-quick-card"><strong id="areaQtdPrioridade">—</strong><span>indicadores priorizados pela área</span></div>
+          <div class="area-quick-card"><strong id="areaStatusGeral">—</strong><span>status analítico consolidado</span></div>
+        </div>
+      </div>
+
+      <div class="area-view-layout">
+        <div class="area-side-panel">
+          <div class="card">
+            <div class="card-title"><span>📚</span> Selecionar perfil/área</div>
+            <div class="area-selector-list" id="areaSelectorList"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title"><span>🧭</span> Filtros de consulta</div>
+            <div class="filter-group-grid">
+              <div class="filter-field">
+                <label>Território</label>
+                <select class="filter-select" id="areaFiltroTerritorio" onchange="renderAreaView()">
+                  <option>Brasil</option>
+                  <option>Região Norte</option>
+                  <option>Região Nordeste</option>
+                  <option>Região Sudeste</option>
+                  <option>UF: RJ</option>
+                  <option>UF: MA</option>
+                  <option>Município: São Gonçalo</option>
+                  <option>Município: Nova Iguaçu</option>
+                </select>
+              </div>
+              <div class="filter-field">
+                <label>Período</label>
+                <select class="filter-select" id="areaFiltroPeriodo" onchange="renderAreaView()">
+                  <option>Mai/2026</option>
+                  <option>1º quadrimestre/2026</option>
+                  <option>Série 2025–2026</option>
+                </select>
+              </div>
+              <div class="filter-field">
+                <label>Prioridade</label>
+                <select class="filter-select" id="areaFiltroPrioridade" onchange="renderAreaView()">
+                  <option value="todas">Todas</option>
+                  <option value="Alta">Alta</option>
+                  <option value="Média">Média</option>
+                  <option value="Rotina">Rotina</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="area-workspace">
+          <div class="area-context-strip" id="areaContextChips"></div>
+
+          <div class="area-objective">
+            <h3 id="areaTitulo">Área técnica</h3>
+            <p id="areaObjetivo">Selecione uma área para visualizar seus indicadores e encaminhamentos.</p>
+          </div>
+
+          <div class="area-dashboard-grid">
+            <div class="area-mini-kpi">
+              <small>Indicador em destaque</small>
+              <strong id="areaIndicadorDestaque">—</strong>
+              <span id="areaIndicadorDestaqueSub">—</span>
+            </div>
+            <div class="area-mini-kpi">
+              <small>Distância da meta</small>
+              <strong id="areaDistanciaMeta">—</strong>
+              <span>leitura demonstrativa</span>
+            </div>
+            <div class="area-mini-kpi">
+              <small>Tendência</small>
+              <strong id="areaTendencia">—</strong>
+              <span>comparação com competência anterior</span>
+            </div>
+          </div>
+
+          <div class="area-analysis-grid">
+            <div class="card chart-card">
+              <div class="card-title"><span>📈</span> Evolução dos indicadores da área</div>
+              <canvas id="areaTrendChart" height="190"></canvas>
+              <div class="chart-caption">Série demonstrativa com os indicadores que a área pode visualizar para apoiar sua análise técnica.</div>
+            </div>
+
+            <div class="card">
+              <div class="card-title"><span>✅</span> Ações disponíveis para a área</div>
+              <div class="area-action-list" id="areaActionList"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title"><span>📌</span> Indicadores disponíveis para consulta</div>
+            <table class="area-policy-table">
+              <thead>
+                <tr>
+                  <th>Indicador</th>
+                  <th>Tema</th>
+                  <th>Natureza</th>
+                  <th>Valor</th>
+                  <th>Meta</th>
+                  <th>Status</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody id="areaIndicatorsRows"></tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="card-title"><span>📄</span> Solicitação de alteração ou qualificação de dados</div>
+            <div class="user-scope-note"><span class="title-icon"></span><div>Este formulário simula o fluxo para que áreas técnicas solicitem revisão de dados. A solicitação não altera automaticamente o indicador; ela gera um pedido para avaliação técnica da COMAV/Gabinete SAPS.</div></div>
+            <div class="request-form-grid">
+              <div class="filter-field">
+                <label>Indicador</label>
+                <select id="solicitacaoIndicador"></select>
+              </div>
+              <div class="filter-field">
+                <label>Tipo de solicitação</label>
+                <select id="solicitacaoTipo">
+                  <option>Revisão de valor do indicador</option>
+                  <option>Correção de metadado</option>
+                  <option>Inclusão de observação técnica</option>
+                  <option>Revisão de fórmula ou fonte</option>
+                  <option>Atualização de recorte territorial</option>
+                </select>
+              </div>
+              <div class="filter-field">
+                <label>Competência</label>
+                <input id="solicitacaoCompetencia" value="Mai/2026">
+              </div>
+              <div class="filter-field">
+                <label>Prioridade</label>
+                <select id="solicitacaoPrioridade">
+                  <option>Rotina</option>
+                  <option>Média</option>
+                  <option>Alta</option>
+                </select>
+              </div>
+              <div class="filter-field full">
+                <label>Justificativa técnica</label>
+                <textarea id="solicitacaoJustificativa" placeholder="Descreva o motivo da solicitação, a inconsistência observada ou a justificativa técnica para revisão."></textarea>
+              </div>
+            </div>
+            <div class="user-actions-row">
+              <button class="btn btn-primary" onclick="registrarSolicitacaoArea()">Registrar solicitação</button>
+              <button class="btn btn-outline" onclick="limparSolicitacaoArea()">Limpar formulário</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title"><span>📋</span> Minhas solicitações</div>
+            <table class="audit-table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Área</th>
+                  <th>Indicador</th>
+                  <th>Tipo</th>
+                  <th>Prioridade</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="areaSolicitacoesRows">
+                <tr>
+                  <td>03/06/2026</td>
+                  <td>DGCI</td>
+                  <td>MORT_INF</td>
+                  <td>Inclusão de observação técnica</td>
+                  <td><span class="tag tag-amarelo">Média</span></td>
+                  <td><span class="tag tag-azul">Em análise COMAV</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- ── ALERTAS ── -->
     <div id="page-alertas" class="page">
@@ -5989,7 +6563,7 @@ function substituirEmojisRemanescentesPorSVG(){
   const replacements = [
     { selector: '.nav-icon', map: {
       '📊':'dashboard','📈':'indicators','🗺️':'map','🧩':'intersection','🔔':'bell',
-      '🤖':'brain','🗂️':'report','✅':'plan','📚':'book','📋':'history'
+      '🤖':'brain','🗂️':'report','✅':'plan','📚':'book','📋':'history','🏛️':'book'
     }},
     { selector: '.stat-icon', map: {
       '🏥':'hospital','👥':'users','🏨':'line','🩺':'target','⚠️':'warning',
@@ -6058,6 +6632,264 @@ function renomearBotoesDownload() {
 }
 
 
+
+// ── VISÃO DAS ÁREAS TÉCNICAS ──
+let areaSelecionada = 'DGCI';
+let areaTrendChart = null;
+
+const areasTecnicasConfig = {
+  'DESF': {
+    nome: 'DESF',
+    subtitulo: 'Saúde da Família e acesso',
+    objetivo: 'Consultar indicadores relacionados à Saúde da Família, acesso, equipes e produção territorial, gerando análises e solicitações de revisão quando necessário.',
+    foco: ['Cobertura e acesso', 'Produção e acompanhamento'],
+    acoes: [
+      ['Visualizar indicadores da política', 'Consultar os indicadores vinculados à área, com recorte territorial e período selecionado.'],
+      ['Gerar relatório de análise', 'Produzir minuta técnica com os indicadores selecionados para apoiar discussão da área.'],
+      ['Solicitar qualificação de dados', 'Registrar pedido de revisão, observação ou ajuste para avaliação da COMAV/Gabinete SAPS.']
+    ]
+  },
+  'DEPROS': {
+    nome: 'DEPROS',
+    subtitulo: 'Promoção da saúde e equidade',
+    objetivo: 'Consultar indicadores de promoção da saúde, práticas integrativas, equidade e estratégias territoriais, com apoio à análise e ao registro de observações técnicas.',
+    foco: ['Produção e acompanhamento', 'Equidade e desigualdades'],
+    acoes: [
+      ['Visualizar indicadores da política', 'Consultar indicadores vinculados à área e comparar recortes territoriais.'],
+      ['Gerar relatório de análise', 'Produzir síntese da leitura técnica da área por território, período e prioridade.'],
+      ['Solicitar qualificação de dados', 'Registrar inconsistência, observação técnica ou necessidade de ajuste em indicador.']
+    ]
+  },
+  'DGCI': {
+    nome: 'DGCI',
+    subtitulo: 'Cuidado integral e materno-infantil',
+    objetivo: 'Consultar indicadores do cuidado integral, com foco em saúde materno-infantil, condições crônicas e qualidade do cuidado, apoiando análises da área técnica.',
+    foco: ['Saúde materno-infantil', 'Qualidade do cuidado'],
+    acoes: [
+      ['Visualizar indicadores da política', 'Consultar os indicadores da política com foco em tendência, meta e território.'],
+      ['Gerar relatório de análise', 'Produzir relatório com leitura por indicador, território e período.'],
+      ['Solicitar qualificação de dados', 'Registrar pedido de revisão ou inclusão de observação técnica para avaliação da COMAV.']
+    ]
+  },
+  'DAPS': {
+    nome: 'DAPS',
+    subtitulo: 'Ações programáticas estratégicas',
+    objetivo: 'Consultar indicadores programáticos relacionados ao acompanhamento de grupos, condições e linhas de cuidado estratégicas.',
+    foco: ['Qualidade do cuidado', 'Produção e acompanhamento'],
+    acoes: [
+      ['Visualizar indicadores da política', 'Consultar indicadores programáticos, tendência e distância em relação à meta.'],
+      ['Gerar relatório de análise', 'Gerar síntese objetiva com recorte territorial e indicadores selecionados.'],
+      ['Solicitar qualificação de dados', 'Solicitar alteração ou qualificação de dados para avaliação da COMAV/Gabinete SAPS.']
+    ]
+  },
+  'GAB/SAPS': {
+    nome: 'COMAV · Gabinete SAPS',
+    subtitulo: 'Monitoramento estratégico integrado',
+    objetivo: 'Visualizar a consolidação estratégica dos indicadores da SAPS, mantendo a referência do perfil COMAV/Gabinete SAPS.',
+    foco: ['Cobertura e acesso', 'Saúde materno-infantil', 'Condições sensíveis à APS', 'Equidade e desigualdades'],
+    acoes: [
+      ['Consolidar visão estratégica', 'Selecionar indicadores prioritários para síntese executiva e relatório.'],
+      ['Produzir subsídio de gabinete', 'Gerar relatório executivo conforme território, período e pauta.'],
+      ['Orientar comunicação institucional', 'Separar achados validados, pontos de atenção e mensagens seguras para imprensa.']
+    ]
+  }
+};
+
+function getIndicadoresArea() {
+  const config = areasTecnicasConfig[areaSelecionada] || areasTecnicasConfig['DGCI'];
+  const prioridade = document.getElementById('areaFiltroPrioridade')?.value || 'todas';
+
+  return (indicadoresData || []).filter(ind => {
+    const areaMatch = ind.departamento === areaSelecionada || config.foco.includes(ind.tema);
+    const prioridadeMatch = prioridade === 'todas' || ind.prioridade === prioridade;
+    return areaMatch && prioridadeMatch;
+  });
+}
+
+function popularAreaSelector() {
+  const box = document.getElementById('areaSelectorList');
+  if (!box) return;
+
+  box.innerHTML = Object.entries(areasTecnicasConfig).map(([key, area]) => `
+    <button class="area-selector ${key === areaSelecionada ? 'active' : ''}" onclick="selecionarAreaTecnica('${key}')">
+      <span class="area-selector-icon">${svgIcon(key === 'GAB/SAPS' ? 'dashboard' : key === 'DGCI' ? 'hospital' : key === 'DEPROS' ? 'intersection' : key === 'DAPS' ? 'target' : 'users')}</span>
+      <span><strong>${area.nome}</strong><span>${area.subtitulo}</span></span>
+    </button>
+  `).join('');
+}
+
+function selecionarAreaTecnica(area) {
+  areaSelecionada = area;
+  popularAreaSelector();
+  renderAreaView();
+}
+
+function areaStatusTag(status) {
+  if (status === 'critico') return '<span class="tag tag-vermelho">Crítico</span>';
+  if (status === 'atencao') return '<span class="tag tag-amarelo">Atenção</span>';
+  return '<span class="tag tag-verde">Favorável</span>';
+}
+
+function renderAreaView() {
+  if (!document.getElementById('page-areas')) return;
+
+  const area = areasTecnicasConfig[areaSelecionada] || areasTecnicasConfig['DGCI'];
+  const dados = getIndicadoresArea();
+  const territorio = document.getElementById('areaFiltroTerritorio')?.value || 'Brasil';
+  const periodo = document.getElementById('areaFiltroPeriodo')?.value || 'Mai/2026';
+
+  document.getElementById('areaTitulo').textContent = `${area.nome} — ${area.subtitulo}`;
+  document.getElementById('areaObjetivo').textContent = area.objetivo;
+
+  const criticos = dados.filter(i => i.status === 'critico').length;
+  const atencao = dados.filter(i => i.status === 'atencao').length;
+  const alta = dados.filter(i => i.prioridade === 'Alta').length;
+
+  document.getElementById('areaQtdIndicadores').textContent = dados.length;
+  document.getElementById('areaQtdAlertas').textContent = criticos + atencao;
+  document.getElementById('areaQtdPrioridade').textContent = alta;
+  document.getElementById('areaStatusGeral').textContent = criticos ? 'Crítico' : atencao ? 'Atenção' : 'Favorável';
+
+  const destaque = dados.find(i => i.status === 'critico') || dados.find(i => i.status === 'atencao') || dados[0];
+  document.getElementById('areaIndicadorDestaque').textContent = destaque ? destaque.cod : '—';
+  document.getElementById('areaIndicadorDestaqueSub').textContent = destaque ? destaque.nome : 'Sem indicador selecionado';
+  document.getElementById('areaDistanciaMeta').textContent = destaque ? `${destaque.valor} / ${destaque.meta}` : '—';
+  document.getElementById('areaTendencia').textContent = destaque ? (destaque.deltaUp === false ? 'Desfavorável' : 'Favorável') : '—';
+
+  const chips = document.getElementById('areaContextChips');
+  if (chips) {
+    chips.innerHTML = [
+      ['Área', area.nome],
+      ['Território', territorio],
+      ['Período', periodo],
+      ['Indicadores', dados.length],
+      ['Prioridade alta', alta]
+    ].map(([l,v]) => `<span class="filter-chip"><strong>${l}:</strong> ${v}</span>`).join('');
+  }
+
+  const rows = document.getElementById('areaIndicatorsRows');
+  if (rows) {
+    rows.innerHTML = dados.map(ind => `
+      <tr>
+        <td class="ind-name">${ind.nome}<small>${ind.cod}</small></td>
+        <td>${ind.tema}</td>
+        <td><span class="tag ${tagNatureza(ind.natureza)}">${ind.natureza}</span></td>
+        <td><strong>${ind.valor}</strong></td>
+        <td>${ind.meta}</td>
+        <td>${areaStatusTag(ind.status)}</td>
+        <td><button class="btn-xs" onclick="abrirFicha('${ind.cod}')">Ficha</button></td>
+      </tr>
+    `).join('') || `<tr><td colspan="7"><div class="area-empty">Nenhum indicador encontrado para a área e os filtros selecionados.</div></td></tr>`;
+  }
+
+  const actionList = document.getElementById('areaActionList');
+  if (actionList) {
+    actionList.innerHTML = area.acoes.map((a, idx) => `
+      <div class="area-action-item">
+        <span class="area-action-index">${idx + 1}</span>
+        <div><strong>${a[0]}</strong><span>${a[1]}</span></div>
+      </div>
+    `).join('');
+  }
+
+  popularSolicitacaoIndicadores(dados);
+  renderAreaTrendChart(dados);
+  setTimeout(() => {
+    inserirBotoesDownloadGraficos();
+    aplicarIdentidadeVisualModerna();
+  }, 120);
+}
+
+
+function popularSolicitacaoIndicadores(dados) {
+  const select = document.getElementById('solicitacaoIndicador');
+  if (!select) return;
+  const current = select.value;
+  select.innerHTML = (dados || getIndicadoresArea()).map(ind => `<option value="${ind.cod}">${ind.cod} · ${ind.nome}</option>`).join('');
+  if ([...select.options].some(o => o.value === current)) select.value = current;
+}
+
+function registrarSolicitacaoArea() {
+  const rows = document.getElementById('areaSolicitacoesRows');
+  if (!rows) return;
+
+  const indicador = document.getElementById('solicitacaoIndicador')?.value || 'Indicador não selecionado';
+  const tipo = document.getElementById('solicitacaoTipo')?.value || 'Solicitação';
+  const prioridade = document.getElementById('solicitacaoPrioridade')?.value || 'Rotina';
+  const area = areasTecnicasConfig[areaSelecionada]?.nome || areaSelecionada;
+  const data = new Date().toLocaleDateString('pt-BR');
+
+  const prioridadeTag = prioridade === 'Alta' ? 'tag-vermelho' : prioridade === 'Média' ? 'tag-amarelo' : 'tag-cinza';
+
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${data}</td>
+    <td>${area}</td>
+    <td>${indicador}</td>
+    <td>${tipo}</td>
+    <td><span class="tag ${prioridadeTag}">${prioridade}</span></td>
+    <td><span class="tag tag-azul">Enviada à COMAV</span></td>
+  `;
+  rows.prepend(tr);
+  mostrarToastDownload('Solicitação registrada para avaliação da COMAV/Gabinete SAPS.');
+  limparSolicitacaoArea(false);
+}
+
+function limparSolicitacaoArea(clearIndicator = true) {
+  const justificativa = document.getElementById('solicitacaoJustificativa');
+  if (justificativa) justificativa.value = '';
+  const prioridade = document.getElementById('solicitacaoPrioridade');
+  if (prioridade) prioridade.value = 'Rotina';
+  const tipo = document.getElementById('solicitacaoTipo');
+  if (tipo) tipo.selectedIndex = 0;
+  if (clearIndicator) {
+    const indicador = document.getElementById('solicitacaoIndicador');
+    if (indicador) indicador.selectedIndex = 0;
+  }
+}
+
+
+function renderAreaTrendChart(dados) {
+  const ctx = document.getElementById('areaTrendChart');
+  if (!ctx || typeof Chart === 'undefined') return;
+  if (areaTrendChart) areaTrendChart.destroy();
+
+  const labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'];
+  const selecionados = dados.slice(0, 4);
+  const cores = ['#1b4f8a', '#2ea372', '#d9541a', '#c0392b'];
+
+  areaTrendChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: selecionados.map((ind, idx) => {
+        const base = parseFloat(String(ind.valor).replace('.', '').replace(',', '.')) || (60 + idx * 4);
+        return {
+          label: ind.cod,
+          data: labels.map((_, i) => +(base * (0.88 + i * 0.035 + idx * 0.015)).toFixed(1)),
+          borderColor: cores[idx % cores.length],
+          backgroundColor: 'rgba(79,143,224,.08)',
+          tension: .32,
+          pointRadius: 3,
+          borderWidth: 2.3
+        };
+      })
+    },
+    options: {
+      responsive: true,
+      ...chartDefaults,
+      plugins: {
+        ...chartDefaults.plugins,
+        legend: {
+          position: 'bottom',
+          labels: { usePointStyle: true, boxWidth: 10, font: { family: 'Inter', size: 11 } }
+        }
+      }
+    }
+  });
+}
+
+
 // ── CABEÇALHOS DE MÓDULO, FILTROS ATIVOS E MODO APRESENTAÇÃO ──
 function getPaginaAtivaId(){
   const page = document.querySelector('.page.active');
@@ -6070,6 +6902,7 @@ function getTituloModulo(pageId){
     indicadores: ['Indicadores Estratégicos', 'indicators'],
     mapa: ['Análise Territorial', 'map'],
     interseccionalidade: ['Interseccionalidade', 'intersection'],
+    areas: ['Perfil das Áreas Técnicas', 'users'],
     alertas: ['Central de Alertas Analíticos', 'bell'],
     ia: ['Apoio Analítico', 'brain'],
     relatorio: ['Relatório Executivo', 'report'],
@@ -6240,12 +7073,16 @@ function bootDadosSistema() {
     'renderIAAvancada',
     'popularDicionarioIndicadores',
     'popularIndicadoresRelatorio',
-    'gerarRelatorioExecutivo'
+    'gerarRelatorioExecutivo',
+    'popularAreaSelector',
+    'renderAreaView'
   ].forEach(safeCall);
 
   try {
     if (typeof popularRelatorioUFs === 'function') popularRelatorioUFs('todas');
     if (typeof popularRelatorioMunicipios === 'function') popularRelatorioMunicipios('todas');
+    if (typeof popularAreaSelector === 'function') popularAreaSelector();
+    if (typeof renderAreaView === 'function') renderAreaView();
   } catch (e) {
     console.warn('Falha controlada em filtros do relatório:', e);
   }
