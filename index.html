@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -2678,7 +2676,7 @@ body.perfil-comav .usuario-only {display:none!important;}
     <div class="profile-switcher">
       <label for="perfilUsuarioSistema">Visualizar como</label>
       <select id="perfilUsuarioSistema" onchange="alterarPerfilSistema(this.value)">
-        <option value="comav">COMAV</option>
+        <option value="comav">COMAV/Gabinete SAPS</option>
         <option value="usuario">Usuário SAPS</option>
       </select>
     </div>
@@ -2757,9 +2755,6 @@ body.perfil-comav .usuario-only {display:none!important;}
       <button class="nav-item" data-page="relatorio" data-access="all" onclick="goTo('relatorio', this)">
         <span class="nav-icon">🗂️</span> Relatório Executivo
       </button>
-      <button class="nav-item" data-page="solicitacoes" data-access="all" onclick="goTo('solicitacoes', this)">
-        <span class="nav-icon">📨</span> Alteração de Dados
-      </button>
       <button class="nav-item" data-page="plano" data-access="comav" onclick="goTo('plano', this)">
         <span class="nav-icon">✅</span> Plano de Ação
       </button>
@@ -2774,6 +2769,9 @@ body.perfil-comav .usuario-only {display:none!important;}
       </button>
       <button class="nav-item" data-page="auditoria" data-access="comav" onclick="goTo('auditoria', this)">
         <span class="nav-icon">📋</span> Auditoria e Governança
+      </button>
+      <button class="nav-item" data-page="solicitacoes" data-access="all" onclick="goTo('solicitacoes', this)">
+        <span class="nav-icon">📨</span> Alteração de Dados
       </button>
     </div>
     <div class="sidebar-divider"></div>
@@ -3347,7 +3345,6 @@ body.perfil-comav .usuario-only {display:none!important;}
         <div class="page-title">Central de Alertas Analíticos</div>
         <div class="page-desc">Alertas derivados da análise dos indicadores, tendências, estratos e variações territoriais. Alertas de carga ficam exclusivamente em Qualidade dos Dados.</div>
       </div>
-      <div class="validation-note">Esta central exibe somente alertas analíticos. Inconsistências de carga, atraso de bases, campos ausentes e falhas de integração ficam no módulo Qualidade dos Dados.</div>
       <div class="stats-grid">
         <div class="stat-card vermelho">
           <div class="stat-top"><div class="stat-label">Críticos</div><div class="stat-icon">🔴</div></div>
@@ -3518,7 +3515,7 @@ body.perfil-comav .usuario-only {display:none!important;}
       </div>
 
       <div class="card">
-        <div class="card-title"><span>📝</span> Gerador de relatório</div>
+        <div class="card-title"><span>📝</span> Relatório</div>
         <div class="filter-group-panel">
           <div class="filter-group-header">
             <div>
@@ -3528,13 +3525,6 @@ body.perfil-comav .usuario-only {display:none!important;}
           </div>
           <div class="filter-group-grid">
             <div class="filter-field">
-              <label>Produto</label>
-              <select class="filter-select" id="relatorioTipo" onchange="gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
-                <option value="gabinete">Síntese para gabinete</option>
-                <option value="ministro">Subsídio para Gabinete do Ministro</option>
-                <option value="presidencia">Subsídio para Presidência</option>
-                <option value="imprensa">Pontos para imprensa</option>
-              </select>
             </div>
             <div class="filter-field">
               <label>Tom</label>
@@ -3556,8 +3546,6 @@ body.perfil-comav .usuario-only {display:none!important;}
             </div>
           </div>
         </div>
-
-        <div class="filter-group-panel">
           <div class="filter-group-header">
             <div>
               <div class="filter-group-title"><span class="title-icon"></span> Recorte institucional</div>
@@ -3573,8 +3561,7 @@ body.perfil-comav .usuario-only {display:none!important;}
                 <option value="DEPROS">DEPROS</option>
                 <option value="DGCI">DGCI</option>
                 <option value="DAPS">DAPS</option>
-                <option value="GAB/SAPS">Gabinete SAPS / COMAV</option>
-              </select>
+               </select>
             </div>
             <div class="filter-field">
               <label>Tema</label>
@@ -3586,24 +3573,6 @@ body.perfil-comav .usuario-only {display:none!important;}
                 <option value="Equidade e desigualdades">Equidade e desigualdades</option>
                 <option value="Produção e acompanhamento">Produção e acompanhamento</option>
                 <option value="Qualidade do cuidado">Qualidade do cuidado</option>
-              </select>
-            </div>
-            <div class="filter-field">
-              <label>Natureza</label>
-              <select class="filter-select" id="relatorioFiltroNatureza" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
-                <option value="todos">Todas as naturezas</option>
-                <option value="Estrutura">Estrutura</option>
-                <option value="Processo">Processo</option>
-                <option value="Resultado">Resultado</option>
-              </select>
-            </div>
-            <div class="filter-field">
-              <label>Prioridade</label>
-              <select class="filter-select" id="relatorioFiltroPrioridade" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
-                <option value="todos">Todas as prioridades</option>
-                <option value="Alta">Prioridade alta</option>
-                <option value="Média">Prioridade média</option>
-                <option value="Rotina">Rotina</option>
               </select>
             </div>
           </div>
@@ -3647,7 +3616,6 @@ body.perfil-comav .usuario-only {display:none!important;}
           <div class="card-title" style="margin-bottom:10px;"><span>🎯</span> Indicadores que entrarão no relatório</div>
           <div class="report-indicator-actions">
             <button class="btn btn-outline" onclick="selecionarIndicadoresRelatorio('todos')">Selecionar todos</button>
-            <button class="btn btn-outline" onclick="selecionarIndicadoresRelatorio('alta')">Selecionar prioridade alta</button>
             <button class="btn btn-outline" onclick="selecionarIndicadoresRelatorio('limpar')">Limpar seleção</button>
             <button class="btn btn-primary" onclick="gerarRelatorioExecutivo()">Gerar minuta</button>
             <button class="btn btn-outline" onclick="baixarRelatorioExecutivo()">⬇ Baixar TXT</button>
@@ -3683,7 +3651,7 @@ body.perfil-comav .usuario-only {display:none!important;}
           <tbody id="planoAcaoRows">
             <tr>
               <td>Mortalidade infantil — Norte</td>
-              <td>DGCI + COMAV</td>
+              <td>DGCI + COMAV/Gabinete SAPS</td>
               <td>Validar série, comparar territórios extremos e produzir síntese técnica.</td>
               <td>10/06/2026</td>
               <td><span class="action-status andamento">Em análise</span></td>
@@ -3691,7 +3659,7 @@ body.perfil-comav .usuario-only {display:none!important;}
             </tr>
             <tr>
               <td>Internações CSAPS — Nordeste</td>
-              <td>DESF + COMAV</td>
+              <td>DESF + COMAV/Gabinete SAPS</td>
               <td>Identificar UFs e municípios com pior tendência e comparar com cobertura AB.</td>
               <td>15/06/2026</td>
               <td><span class="action-status novo">Novo</span></td>
@@ -3699,7 +3667,7 @@ body.perfil-comav .usuario-only {display:none!important;}
             </tr>
             <tr>
               <td>Desigualdade racial — mortalidade materna</td>
-              <td>DGCI + DEPROS</td>
+              <td>DGCI + DEPROS + COMAV/Gabinete SAPS</td>
               <td>Produzir leitura interseccional com recorte raça/cor e território.</td>
               <td>18/06/2026</td>
               <td><span class="action-status novo">Novo</span></td>
@@ -3714,7 +3682,7 @@ body.perfil-comav .usuario-only {display:none!important;}
     <div id="page-dicionario" class="page">
       <div class="page-header">
         <div class="page-title">Dicionário de Indicadores</div>
-        <div class="page-desc">Camada metodológica do sistema: fórmula, fonte, periodicidade, polaridade, departamento responsável e validação pela COMAV/SAPS.</div>
+        <div class="page-desc">Camada metodológica do sistema: fórmula, fonte, periodicidade, polaridade, departamento responsável e validação pela COMAV/Gabinete SAPS.</div>
       </div>
 
       <div class="validation-note">A COMAV não é departamento: atua vinculada ao Gabinete da Secretária da SAPS, monitorando os indicadores estratégicos e consolidando informações para demandas dos gabinetes e da comunicação institucional.</div>
@@ -3723,12 +3691,6 @@ body.perfil-comav .usuario-only {display:none!important;}
         <div class="card-title"><span>📚</span> Metadados dos indicadores</div>
         <div class="ind-filters strategic-filters">
           <div class="dictionary-search"><input id="buscaDicionario" placeholder="Buscar por código, indicador, tema, fonte ou departamento..." oninput="popularDicionarioIndicadores()"></div>
-          <select class="filter-select" id="dicNatureza" onchange="popularDicionarioIndicadores()">
-            <option value="todos">Todas as naturezas</option>
-            <option value="Estrutura">Estrutura</option>
-            <option value="Processo">Processo</option>
-            <option value="Resultado">Resultado</option>
-          </select>
           <select class="filter-select" id="dicDepartamento" onchange="popularDicionarioIndicadores()">
             <option value="todos">Todos os departamentos/áreas</option>
             <option value="DESF">DESF</option>
@@ -3768,12 +3730,12 @@ body.perfil-comav .usuario-only {display:none!important;}
 
       <div class="profile-notice usuario-only">
         <span class="title-icon"></span>
-        <div><strong>Perfil Usuário SAPS:</strong> registre pedidos de alteração, qualificação ou revisão de dados. O pedido não altera automaticamente o sistema; ele segue para avaliação da COMAV/SAPS.</div>
+        <div><strong>Perfil Usuário SAPS:</strong> registre pedidos de alteração, qualificação ou revisão de dados. O pedido não altera automaticamente o sistema; ele segue para avaliação da COMAV/Gabinete SAPS.</div>
       </div>
 
       <div class="profile-notice comav-only">
         <span class="title-icon"></span>
-        <div><strong>Perfil COMAV:</strong> visualize os pedidos enviados pelas áreas, analise prioridade, registre encaminhamento e acompanhe o status de tratamento das alterações de dados.</div>
+        <div><strong>Perfil COMAV/Gabinete SAPS:</strong> visualize os pedidos enviados pelas áreas, analise prioridade, registre encaminhamento e acompanhe o status de tratamento das alterações de dados.</div>
       </div>
 
       <div class="change-profile-grid">
@@ -3790,8 +3752,7 @@ body.perfil-comav .usuario-only {display:none!important;}
             <div class="request-form-grid">
               <div class="filter-field"><label>Área solicitante</label><select id="solArea"><option>DESF</option><option>DEPROS</option><option>DGCI</option><option>DAPS</option><option>Outra área SAPS</option></select></div>
               <div class="filter-field"><label>Indicador</label><select id="solIndicador"></select></div>
-              <div class="filter-field"><label>Tipo de alteração</label><select id="solTipo"><option>Revisão de valor do indicador</option><option>Correção de metadado</option><option>Inclusão de observação técnica</option><option>Revisão de fórmula ou fonte</option><option>Atualização de recorte territorial</option></select></div>
-              <div class="filter-field"><label>Prioridade</label><select id="solPrioridade"><option>Rotina</option><option>Média</option><option>Alta</option></select></div>
+              <div class="filter-field"><label>Tipo de alteração</label><select id="solTipo"><option>Revisão de valor do indicador<option></select></div>
               <div class="filter-field"><label>Competência</label><input id="solCompetencia" value="Mai/2026"></div>
               <div class="filter-field"><label>Território</label><input id="solTerritorio" value="Brasil"></div>
               <div class="filter-field full"><label>Justificativa técnica</label><textarea id="solJustificativa" placeholder="Descreva a inconsistência observada, a necessidade de qualificação do dado ou a justificativa técnica do pedido."></textarea></div>
@@ -3802,7 +3763,7 @@ body.perfil-comav .usuario-only {display:none!important;}
             <div class="card-title"><span>📋</span> Orientações para pedido de alteração</div>
             <div class="alert-list">
               <div class="alert-item info"><div class="alert-dot">🔵</div><div class="alert-text"><strong>Quando registrar</strong>Use esta função quando a área identificar necessidade de revisar valor, metadado, fórmula, fonte, território ou observação técnica de um indicador.</div></div>
-              <div class="alert-item atencao"><div class="alert-dot">🟡</div><div class="alert-text"><strong>Fluxo de avaliação</strong>O pedido é encaminhado para análise da COMAV/SAPS e pode demandar validação junto à área responsável pela informação.</div></div>
+              <div class="alert-item atencao"><div class="alert-dot">🟡</div><div class="alert-text"><strong>Fluxo de avaliação</strong>O pedido é encaminhado para análise da COMAV/Gabinete SAPS e pode demandar validação junto à área responsável pela informação.</div></div>
               <div class="alert-item ok"><div class="alert-dot">🟢</div><div class="alert-text"><strong>Uso analítico</strong>O Usuário SAPS pode continuar visualizando indicadores e gerando relatórios enquanto o pedido está em análise.</div></div>
             </div>
           </div>
@@ -4197,7 +4158,7 @@ function limparFiltrosIndicadores() {
 // ── NAVEGAÇÃO ──
 function goTo(page, btn) {
   if (typeof perfilPodeAcessar === 'function' && !perfilPodeAcessar(page)) {
-    mostrarToastDownload('Funcionalidade restrita à COMAV.');
+    mostrarToastDownload('Funcionalidade restrita à COMAV/Gabinete SAPS.');
     page = 'dashboard';
     btn = document.querySelector('.nav-item[data-page="dashboard"]');
   }
@@ -6061,7 +6022,7 @@ function gerarRelatorioExecutivo() {
     <p>Recomenda-se gerar análise complementar no módulo de Apoio Analítico, comparar territórios no mapa e registrar os encaminhamentos no Plano de Ação dos Alertas Analíticos.</p>
 
     <h4>5. Observação sobre uso institucional</h4>
-    <p>Esta minuta utiliza ${linguagem} e deve ser revisada pela COMAV/SAPS antes de qualquer encaminhamento externo ou uso em demanda de imprensa.</p>
+    <p>Esta minuta utiliza ${linguagem} e deve ser revisada pela COMAV/Gabinete SAPS antes de qualquer encaminhamento externo ou uso em demanda de imprensa.</p>
   `;
   box.innerHTML = texto;
 
@@ -6081,7 +6042,7 @@ A seleção apresenta ${qtdCriticos} indicador(es) em situação crítica e ${qt
 Gerar análise complementar no módulo de Apoio Analítico, comparar territórios no mapa e registrar encaminhamentos no Plano de Ação dos Alertas Analíticos.
 
 Observação:
-Esta minuta utiliza ${linguagem} e deve ser revisada pela COMAV/SAPS antes de uso externo.`;
+Esta minuta utiliza ${linguagem} e deve ser revisada pela COMAV/Gabinete SAPS antes de uso externo.`;
 }
 
 function baixarRelatorioExecutivo() {
@@ -6394,7 +6355,7 @@ function aplicarPermissoesPerfil() {
   if (footer) {
     footer.innerHTML = perfilSistemaAtual === 'usuario'
       ? 'Perfil: <strong>Usuário SAPS</strong><br>Visualização analítica e solicitações'
-      : 'Perfil: <strong>COMAV</strong><br>Gestão estratégica do sistema';
+      : 'Perfil: <strong>COMAV/Gabinete SAPS</strong><br>Gestão estratégica do sistema';
   }
 
   atualizarAvisoPerfil();
@@ -6408,8 +6369,8 @@ function atualizarAvisoPerfil() {
   const notice = document.createElement('div');
   notice.className = 'profile-notice profile-notice-global';
   notice.innerHTML = perfilSistemaAtual === 'usuario'
-    ? `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV.</div>`
-    : `<span class="title-icon">${svgIcon('shield')}</span><div><strong>Perfil COMAV:</strong> visão completa de gestão estratégica, governança, qualidade, auditoria, relatórios e acompanhamento das solicitações.</div>`;
+    ? `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV/Gabinete SAPS.</div>`
+    : `<span class="title-icon">${svgIcon('shield')}</span><div><strong>Perfil COMAV/Gabinete SAPS:</strong> visão completa de gestão estratégica, governança, qualidade, auditoria, relatórios e acompanhamento das solicitações.</div>`;
 
   const header = page.querySelector('.module-sticky-header') || page.querySelector('.page-header');
   if (header && header.nextSibling) header.insertAdjacentElement('afterend', notice);
@@ -6457,7 +6418,7 @@ function registrarSolicitacaoUsuario() {
   const abertas = document.getElementById('reqAbertas');
   if (abertas) abertas.textContent = String((parseInt(abertas.textContent) || 0) + 1);
 
-  mostrarToastDownload('Pedido de alteração enviado para avaliação da COMAV/SAPS.');
+  mostrarToastDownload('Pedido de alteração enviado para avaliação da COMAV/Gabinete SAPS.');
   limparSolicitacaoUsuario();
 }
 
