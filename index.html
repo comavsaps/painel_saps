@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -2640,6 +2642,27 @@ body.perfil-comav .usuario-only {
   .request-form-grid .full { grid-column:auto; }
 }
 
+
+/* ── ALTERAÇÃO DE DADOS: VISÃO COMAV E USUÁRIO SAPS ── */
+.change-profile-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:18px;}
+.change-card {background:#fff;border:1px solid rgba(219,231,243,.95);border-radius:16px;padding:14px;box-shadow:0 8px 22px rgba(20,42,74,.05);}
+.change-card small {display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:800;color:#7088a3;margin-bottom:6px;}
+.change-card strong {display:block;font-family:'Public Sans',sans-serif;font-size:24px;color:var(--brand-900,#0f2743);}
+.change-card span {display:block;margin-top:4px;font-size:12px;color:#647b94;}
+.change-management-layout {display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start;}
+.change-detail-box {border:1px solid rgba(219,231,243,.95);border-radius:16px;background:#fff;padding:14px;min-height:220px;}
+.change-detail-box h3 {font-family:'Public Sans',sans-serif;font-size:16px;color:var(--brand-900,#0f2743);margin-bottom:8px;}
+.change-detail-box p {color:#405770;font-size:13px;line-height:1.6;margin-bottom:10px;}
+.change-workflow {display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 4px;}
+.workflow-step {border:1px solid rgba(79,143,224,.18);background:linear-gradient(135deg,rgba(79,143,224,.08),rgba(46,163,114,.06));color:#274968;border-radius:999px;padding:5px 9px;font-size:11.5px;font-weight:800;}
+.change-actions {display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.change-tabs {display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.change-tab {border:1px solid rgba(219,231,243,.95);background:#fff;color:#36506d;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800;cursor:pointer;}
+.change-tab.active {background:var(--brand-100,#edf5ff);color:var(--brand-800,#12365f);border-color:rgba(79,143,224,.25);}
+body.perfil-usuario .comav-only {display:none!important;}
+body.perfil-comav .usuario-only {display:none!important;}
+@media (max-width:1050px){.change-management-layout{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body class="perfil-comav">
@@ -2734,8 +2757,8 @@ body.perfil-comav .usuario-only {
       <button class="nav-item" data-page="relatorio" data-access="all" onclick="goTo('relatorio', this)">
         <span class="nav-icon">🗂️</span> Relatório Executivo
       </button>
-      <button class="nav-item" data-page="solicitacoes" data-access="usuario" onclick="goTo('solicitacoes', this)">
-        <span class="nav-icon">📨</span> Solicitações de Dados
+      <button class="nav-item" data-page="solicitacoes" data-access="all" onclick="goTo('solicitacoes', this)">
+        <span class="nav-icon">📨</span> Alteração de Dados
       </button>
       <button class="nav-item" data-page="plano" data-access="comav" onclick="goTo('plano', this)">
         <span class="nav-icon">✅</span> Plano de Ação
@@ -3735,132 +3758,83 @@ body.perfil-comav .usuario-only {
 
 
     <!-- ── SOLICITAÇÕES DE DADOS ── -->
-    <div id="page-solicitacoes" class="page usuario-only">
+    
+    <!-- ── ALTERAÇÃO DE DADOS ── -->
+    <div id="page-solicitacoes" class="page">
       <div class="page-header">
-        <div class="page-title">Solicitações de Dados</div>
-        <div class="page-desc">Área destinada ao Usuário SAPS para solicitar alteração, qualificação ou revisão de dados. A solicitação não altera automaticamente o sistema; ela segue para avaliação da COMAV/Gabinete SAPS.</div>
+        <div class="page-title">Alteração de Dados</div>
+        <div class="page-desc">Módulo para registro, acompanhamento e análise de pedidos de alteração, qualificação ou revisão de dados.</div>
       </div>
 
-      <div class="profile-notice">
+      <div class="profile-notice usuario-only">
         <span class="title-icon"></span>
-        <div><strong>Perfil Usuário SAPS:</strong> este perfil permite visualizar indicadores, gerar relatórios de análise e registrar solicitações de alteração ou qualificação de dados. Módulos de gestão interna, auditoria e qualidade dos dados são restritos à COMAV/Gabinete SAPS.</div>
+        <div><strong>Perfil Usuário SAPS:</strong> registre pedidos de alteração, qualificação ou revisão de dados. O pedido não altera automaticamente o sistema; ele segue para avaliação da COMAV/Gabinete SAPS.</div>
       </div>
 
-      <div class="request-status-grid">
-        <div class="request-status-card"><small>Solicitações abertas</small><strong id="reqAbertas">3</strong></div>
-        <div class="request-status-card"><small>Em análise COMAV</small><strong id="reqAnalise">2</strong></div>
-        <div class="request-status-card"><small>Respondidas</small><strong id="reqRespondidas">1</strong></div>
-        <div class="request-status-card"><small>Tempo médio demonstrativo</small><strong>5 dias</strong></div>
+      <div class="profile-notice comav-only">
+        <span class="title-icon"></span>
+        <div><strong>Perfil COMAV/Gabinete SAPS:</strong> visualize os pedidos enviados pelas áreas, analise prioridade, registre encaminhamento e acompanhe o status de tratamento das alterações de dados.</div>
       </div>
 
-      <div class="two-col">
-        <div class="card">
-          <div class="card-title"><span>📨</span> Nova solicitação</div>
-          <div class="request-form-grid">
-            <div class="filter-field">
-              <label>Área solicitante</label>
-              <select id="solArea">
-                <option>DESF</option>
-                <option>DEPROS</option>
-                <option>DGCI</option>
-                <option>DAPS</option>
-                <option>Outra área SAPS</option>
-              </select>
+      <div class="change-profile-grid">
+        <div class="change-card"><small>Pedidos abertos</small><strong id="reqAbertas">4</strong><span>aguardando triagem</span></div>
+        <div class="change-card"><small>Em análise COMAV</small><strong id="reqAnalise">3</strong><span>em avaliação técnica</span></div>
+        <div class="change-card"><small>Respondidos</small><strong id="reqRespondidas">2</strong><span>com retorno registrado</span></div>
+        <div class="change-card"><small>Prioridade alta</small><strong id="reqAlta">1</strong><span>requer avaliação breve</span></div>
+      </div>
+
+      <div class="usuario-only">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-title"><span>📨</span> Novo pedido de alteração</div>
+            <div class="request-form-grid">
+              <div class="filter-field"><label>Área solicitante</label><select id="solArea"><option>DESF</option><option>DEPROS</option><option>DGCI</option><option>DAPS</option><option>Outra área SAPS</option></select></div>
+              <div class="filter-field"><label>Indicador</label><select id="solIndicador"></select></div>
+              <div class="filter-field"><label>Tipo de alteração</label><select id="solTipo"><option>Revisão de valor do indicador</option><option>Correção de metadado</option><option>Inclusão de observação técnica</option><option>Revisão de fórmula ou fonte</option><option>Atualização de recorte territorial</option></select></div>
+              <div class="filter-field"><label>Prioridade</label><select id="solPrioridade"><option>Rotina</option><option>Média</option><option>Alta</option></select></div>
+              <div class="filter-field"><label>Competência</label><input id="solCompetencia" value="Mai/2026"></div>
+              <div class="filter-field"><label>Território</label><input id="solTerritorio" value="Brasil"></div>
+              <div class="filter-field full"><label>Justificativa técnica</label><textarea id="solJustificativa" placeholder="Descreva a inconsistência observada, a necessidade de qualificação do dado ou a justificativa técnica do pedido."></textarea></div>
             </div>
-            <div class="filter-field">
-              <label>Indicador</label>
-              <select id="solIndicador"></select>
-            </div>
-            <div class="filter-field">
-              <label>Tipo de solicitação</label>
-              <select id="solTipo">
-                <option>Revisão de valor do indicador</option>
-                <option>Correção de metadado</option>
-                <option>Inclusão de observação técnica</option>
-                <option>Revisão de fórmula ou fonte</option>
-                <option>Atualização de recorte territorial</option>
-              </select>
-            </div>
-            <div class="filter-field">
-              <label>Prioridade</label>
-              <select id="solPrioridade">
-                <option>Rotina</option>
-                <option>Média</option>
-                <option>Alta</option>
-              </select>
-            </div>
-            <div class="filter-field">
-              <label>Competência</label>
-              <input id="solCompetencia" value="Mai/2026">
-            </div>
-            <div class="filter-field">
-              <label>Território</label>
-              <input id="solTerritorio" value="Brasil">
-            </div>
-            <div class="filter-field full">
-              <label>Justificativa técnica</label>
-              <textarea id="solJustificativa" placeholder="Descreva a inconsistência observada, a necessidade de qualificação do dado ou a justificativa técnica da solicitação."></textarea>
-            </div>
+            <div class="ia-copy-actions"><button class="btn btn-primary" onclick="registrarSolicitacaoUsuario()">Registrar pedido</button><button class="btn btn-outline" onclick="limparSolicitacaoUsuario()">Limpar formulário</button></div>
           </div>
-          <div class="ia-copy-actions">
-            <button class="btn btn-primary" onclick="registrarSolicitacaoUsuario()">Registrar solicitação</button>
-            <button class="btn btn-outline" onclick="limparSolicitacaoUsuario()">Limpar formulário</button>
+          <div class="card">
+            <div class="card-title"><span>📋</span> Orientações para pedido de alteração</div>
+            <div class="alert-list">
+              <div class="alert-item info"><div class="alert-dot">🔵</div><div class="alert-text"><strong>Quando registrar</strong>Use esta função quando a área identificar necessidade de revisar valor, metadado, fórmula, fonte, território ou observação técnica de um indicador.</div></div>
+              <div class="alert-item atencao"><div class="alert-dot">🟡</div><div class="alert-text"><strong>Fluxo de avaliação</strong>O pedido é encaminhado para análise da COMAV/Gabinete SAPS e pode demandar validação junto à área responsável pela informação.</div></div>
+              <div class="alert-item ok"><div class="alert-dot">🟢</div><div class="alert-text"><strong>Uso analítico</strong>O Usuário SAPS pode continuar visualizando indicadores e gerando relatórios enquanto o pedido está em análise.</div></div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="card">
-          <div class="card-title"><span>📋</span> Orientações para solicitação</div>
-          <div class="alert-list">
-            <div class="alert-item info">
-              <div class="alert-dot">🔵</div>
-              <div class="alert-text"><strong>Quando solicitar</strong>Use esta função quando a área identificar necessidade de revisar valor, metadado, fórmula, fonte, território ou observação técnica de um indicador.</div>
+      <div class="comav-only">
+        <div class="change-management-layout">
+          <div class="card">
+            <div class="card-title"><span>📋</span> Pedidos recebidos das áreas</div>
+            <div class="change-tabs"><button class="change-tab active" onclick="filtrarAlteracoesComav('todos', this)">Todos</button><button class="change-tab" onclick="filtrarAlteracoesComav('novo', this)">Novos</button><button class="change-tab" onclick="filtrarAlteracoesComav('analise', this)">Em análise</button><button class="change-tab" onclick="filtrarAlteracoesComav('respondido', this)">Respondidos</button></div>
+            <table class="audit-table"><thead><tr><th>Data</th><th>Área</th><th>Indicador</th><th>Tipo</th><th>Prioridade</th><th>Status</th><th>Ação</th></tr></thead><tbody id="alteracoesComavRows"></tbody></table>
+          </div>
+          <div class="card">
+            <div class="card-title"><span>🛡️</span> Análise COMAV</div>
+            <div class="change-detail-box" id="alteracaoDetalheBox"><h3>Selecione um pedido</h3><p>Ao selecionar um pedido recebido, a COMAV poderá visualizar a justificativa técnica, avaliar prioridade e registrar o encaminhamento.</p><div class="change-workflow"><span class="workflow-step">Recebido</span><span class="workflow-step">Triagem COMAV</span><span class="workflow-step">Validação técnica</span><span class="workflow-step">Resposta à área</span></div></div>
+            <div class="request-form-grid">
+              <div class="filter-field"><label>Status do pedido</label><select id="comavStatusAlteracao"><option>Em análise COMAV</option><option>Encaminhado à área responsável</option><option>Respondido</option><option>Indeferido tecnicamente</option></select></div>
+              <div class="filter-field"><label>Prioridade COMAV</label><select id="comavPrioridadeAlteracao"><option>Rotina</option><option>Média</option><option>Alta</option></select></div>
+              <div class="filter-field full"><label>Encaminhamento registrado</label><textarea id="comavEncaminhamentoAlteracao" placeholder="Registre a análise, encaminhamento ou retorno técnico da COMAV."></textarea></div>
             </div>
-            <div class="alert-item atencao">
-              <div class="alert-dot">🟡</div>
-              <div class="alert-text"><strong>Fluxo de avaliação</strong>A solicitação é encaminhada para análise da COMAV/Gabinete SAPS e pode demandar validação junto à área responsável pela informação.</div>
-            </div>
-            <div class="alert-item ok">
-              <div class="alert-dot">🟢</div>
-              <div class="alert-text"><strong>Uso analítico</strong>O Usuário SAPS pode continuar visualizando indicadores e gerando relatórios enquanto a solicitação está em análise.</div>
-            </div>
+            <div class="change-actions"><button class="btn btn-primary" onclick="registrarAnaliseComavAlteracao()">Registrar análise</button><button class="btn btn-outline" onclick="baixarRelatorioAlteracoesComav()">Baixar resumo</button></div>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-title"><span>📋</span> Minhas solicitações</div>
-        <table class="audit-table">
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Área</th>
-              <th>Indicador</th>
-              <th>Tipo</th>
-              <th>Prioridade</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="solicitacoesUsuarioRows">
-            <tr>
-              <td>03/06/2026</td>
-              <td>DGCI</td>
-              <td>MORT_INF</td>
-              <td>Inclusão de observação técnica</td>
-              <td><span class="tag tag-amarelo">Média</span></td>
-              <td><span class="tag tag-azul">Em análise COMAV</span></td>
-            </tr>
-            <tr>
-              <td>02/06/2026</td>
-              <td>DESF</td>
-              <td>COB_AB</td>
-              <td>Atualização de recorte territorial</td>
-              <td><span class="tag tag-cinza">Rotina</span></td>
-              <td><span class="tag tag-verde">Respondida</span></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card-title"><span>📋</span> Histórico de pedidos de alteração</div>
+        <table class="audit-table"><thead><tr><th>Data</th><th>Área</th><th>Indicador</th><th>Tipo</th><th>Prioridade</th><th>Status</th></tr></thead><tbody id="solicitacoesUsuarioRows"><tr><td>03/06/2026</td><td>DGCI</td><td>MORT_INF</td><td>Inclusão de observação técnica</td><td><span class="tag tag-amarelo">Média</span></td><td><span class="tag tag-azul">Em análise COMAV</span></td></tr><tr><td>02/06/2026</td><td>DESF</td><td>COB_AB</td><td>Atualização de recorte territorial</td><td><span class="tag tag-cinza">Rotina</span></td><td><span class="tag tag-verde">Respondido</span></td></tr></tbody></table>
       </div>
     </div>
+
 
     <!-- ── QUALIDADE ── -->
     <div id="page-qualidade" class="page comav-only">
@@ -6335,11 +6309,29 @@ function renomearBotoesDownload() {
 
 
 
+
+// ── ALTERAÇÃO DE DADOS: COMAV E USUÁRIO SAPS ──
+let alteracaoSelecionadaComav = null;
+let filtroAlteracoesComav = 'todos';
+const alteracoesDadosDemo = [
+  {id:'ALT-2026-001',data:'03/06/2026',area:'DGCI',indicador:'MORT_INF',tipo:'Inclusão de observação técnica',prioridade:'Média',status:'analise',justificativa:'Área solicita inclusão de observação técnica sobre variação territorial da mortalidade infantil no período analisado.',territorio:'Região Norte',competencia:'Mai/2026'},
+  {id:'ALT-2026-002',data:'02/06/2026',area:'DESF',indicador:'COB_AB',tipo:'Atualização de recorte territorial',prioridade:'Rotina',status:'respondido',justificativa:'Solicitada qualificação do recorte territorial para análise de cobertura da Atenção Básica.',territorio:'UF: RJ',competencia:'Mai/2026'},
+  {id:'ALT-2026-003',data:'01/06/2026',area:'DEPROS',indicador:'EQUID_RACA',tipo:'Revisão de metadado',prioridade:'Alta',status:'novo',justificativa:'Área solicita revisão do metadado de recorte raça/cor para alinhamento metodológico da análise de equidade.',territorio:'Brasil',competencia:'1º quadrimestre/2026'},
+  {id:'ALT-2026-004',data:'30/05/2026',area:'DAPS',indicador:'HIPER_ACOMP',tipo:'Revisão de fórmula ou fonte',prioridade:'Média',status:'analise',justificativa:'Solicitação de conferência da fórmula utilizada no acompanhamento de pessoas hipertensas.',territorio:'Região Nordeste',competencia:'Mai/2026'}
+];
+function tagPrioridadeAlteracao(p){return p==='Alta'?'tag-vermelho':p==='Média'?'tag-amarelo':'tag-cinza';}
+function labelStatusAlteracao(s){const m={novo:['Novo','tag-azul'],analise:['Em análise COMAV','tag-amarelo'],respondido:['Respondido','tag-verde'],encaminhado:['Encaminhado','tag-azul'],indeferido:['Indeferido tecnicamente','tag-cinza']};return m[s]||m.analise;}
+function renderAlteracoesComav(){const tbody=document.getElementById('alteracoesComavRows'); if(!tbody) return; const dados=alteracoesDadosDemo.filter(x=>filtroAlteracoesComav==='todos'||x.status===filtroAlteracoesComav); tbody.innerHTML=dados.map(item=>{const [sl,st]=labelStatusAlteracao(item.status); return `<tr><td>${item.data}</td><td>${item.area}</td><td><strong>${item.indicador}</strong></td><td>${item.tipo}</td><td><span class="tag ${tagPrioridadeAlteracao(item.prioridade)}">${item.prioridade}</span></td><td><span class="tag ${st}">${sl}</span></td><td><button class="btn-xs" onclick="selecionarAlteracaoComav('${item.id}')">Analisar</button></td></tr>`}).join('')||`<tr><td colspan="7" style="color:var(--cinza-med);padding:18px;">Nenhum pedido encontrado para o filtro selecionado.</td></tr>`;}
+function filtrarAlteracoesComav(filtro,btn){filtroAlteracoesComav=filtro;document.querySelectorAll('.change-tab').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active'); renderAlteracoesComav();}
+function selecionarAlteracaoComav(id){const item=alteracoesDadosDemo.find(x=>x.id===id); if(!item) return; alteracaoSelecionadaComav=item; const [sl]=labelStatusAlteracao(item.status); const box=document.getElementById('alteracaoDetalheBox'); if(box){box.innerHTML=`<h3>${item.id} · ${item.indicador}</h3><p><strong>Área solicitante:</strong> ${item.area}</p><p><strong>Tipo de alteração:</strong> ${item.tipo}</p><p><strong>Território/competência:</strong> ${item.territorio} · ${item.competencia}</p><p><strong>Justificativa técnica:</strong> ${item.justificativa}</p><div class="change-workflow"><span class="workflow-step">Status: ${sl}</span><span class="workflow-step">Prioridade: ${item.prioridade}</span><span class="workflow-step">Avaliação COMAV</span></div>`;} const ps=document.getElementById('comavPrioridadeAlteracao'); if(ps) ps.value=item.prioridade;}
+function registrarAnaliseComavAlteracao(){if(!alteracaoSelecionadaComav){mostrarToastDownload('Selecione um pedido para registrar análise.'); return;} const status=document.getElementById('comavStatusAlteracao')?.value||'Em análise COMAV'; const prioridade=document.getElementById('comavPrioridadeAlteracao')?.value||alteracaoSelecionadaComav.prioridade; alteracaoSelecionadaComav.prioridade=prioridade; if(status.includes('Respondido')) alteracaoSelecionadaComav.status='respondido'; else if(status.includes('Encaminhado')) alteracaoSelecionadaComav.status='encaminhado'; else if(status.includes('Indeferido')) alteracaoSelecionadaComav.status='indeferido'; else alteracaoSelecionadaComav.status='analise'; renderAlteracoesComav(); selecionarAlteracaoComav(alteracaoSelecionadaComav.id); const rows=document.getElementById('solicitacoesUsuarioRows'); if(rows){rows.insertAdjacentHTML('afterbegin',`<tr><td>${new Date().toLocaleDateString('pt-BR')}</td><td>${alteracaoSelecionadaComav.area}</td><td>${alteracaoSelecionadaComav.indicador}</td><td>${alteracaoSelecionadaComav.tipo}</td><td><span class="tag ${tagPrioridadeAlteracao(prioridade)}">${prioridade}</span></td><td><span class="tag tag-azul">${status}</span></td></tr>`);} mostrarToastDownload('Análise da COMAV registrada no módulo Alteração de Dados.');}
+function baixarRelatorioAlteracoesComav(){const resumo=alteracoesDadosDemo.map(item=>{const [sl]=labelStatusAlteracao(item.status); return `${item.id} | ${item.data} | ${item.area} | ${item.indicador} | ${item.tipo} | ${item.prioridade} | ${sl}`;}).join('\n'); const a=document.createElement('a'); a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(`Alteração de Dados — Resumo COMAV\n\n${resumo}`); a.download='alteracao_de_dados_comav.txt'; a.click();}
+
 // ── PERFIS DE ACESSO ──
 let perfilSistemaAtual = 'comav';
 
 const paginasPorPerfil = {
-  comav: ['dashboard','indicadores','mapa','interseccionalidade','alertas','ia','relatorio','plano','dicionario','qualidade','auditoria'],
+  comav: ['dashboard','indicadores','mapa','interseccionalidade','alertas','ia','relatorio','plano','dicionario','qualidade','auditoria','solicitacoes'],
   usuario: ['dashboard','indicadores','mapa','interseccionalidade','alertas','ia','relatorio','dicionario','solicitacoes']
 };
 
@@ -6452,11 +6444,20 @@ function registrarSolicitacaoUsuario() {
     <td><span class="tag tag-azul">Enviada à COMAV</span></td>
   `;
   rows.prepend(tr);
+  if (typeof alteracoesDadosDemo !== 'undefined') {
+    alteracoesDadosDemo.unshift({
+      id: 'ALT-' + new Date().getTime(), data, area, indicador, tipo, prioridade,
+      status: 'novo', justificativa: document.getElementById('solJustificativa')?.value || 'Pedido registrado pelo Usuário SAPS.',
+      territorio: document.getElementById('solTerritorio')?.value || 'Brasil', competencia: document.getElementById('solCompetencia')?.value || 'Mai/2026'
+    });
+    if (typeof renderAlteracoesComav === 'function') renderAlteracoesComav();
+  }
+
 
   const abertas = document.getElementById('reqAbertas');
   if (abertas) abertas.textContent = String((parseInt(abertas.textContent) || 0) + 1);
 
-  mostrarToastDownload('Solicitação enviada para avaliação da COMAV/Gabinete SAPS.');
+  mostrarToastDownload('Pedido de alteração enviado para avaliação da COMAV/Gabinete SAPS.');
   limparSolicitacaoUsuario();
 }
 
@@ -6489,7 +6490,7 @@ function getTituloModulo(pageId){
     relatorio: ['Relatório Executivo', 'report'],
     plano: ['Plano de Ação', 'plan'],
     dicionario: ['Dicionário de Indicadores', 'book'],
-    solicitacoes: ['Solicitações de Dados', 'report'],
+    solicitacoes: ['Alteração de Dados', 'report'],
     qualidade: ['Qualidade dos Dados', 'shield'],
     auditoria: ['Auditoria e Governança', 'history']
   };
@@ -6657,7 +6658,8 @@ function bootDadosSistema() {
     'popularDicionarioIndicadores',
     'popularIndicadoresRelatorio',
     'gerarRelatorioExecutivo',
-    'popularSolicitacaoUsuario'
+    'popularSolicitacaoUsuario',
+    'renderAlteracoesComav'
   ].forEach(safeCall);
 
   try {
