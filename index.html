@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -2661,277 +2664,6 @@ body.perfil-usuario .comav-only {display:none!important;}
 body.perfil-comav .usuario-only {display:none!important;}
 @media (max-width:1050px){.change-management-layout{grid-template-columns:1fr;}}
 
-
-/* ── MENU RESPONSIVO APRIMORADO ── */
-.mobile-menu-toggle {
-  display: none;
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(219,231,243,.95);
-  background: #fff;
-  border-radius: 12px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 4px;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(20,42,74,.08);
-}
-.mobile-menu-toggle span {
-  width: 18px;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--brand-800, #12365f);
-  transition: transform .18s ease, opacity .18s ease;
-}
-body.mobile-menu-open .mobile-menu-toggle span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-}
-body.mobile-menu-open .mobile-menu-toggle span:nth-child(2) {
-  opacity: 0;
-}
-body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
-}
-.mobile-menu-backdrop {
-  display: none;
-}
-.sidebar-mobile-head {
-  display: none;
-}
-.sidebar-close {
-  border: none;
-  background: #f3f7fb;
-  color: var(--brand-800, #12365f);
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-}
-.sidebar .nav-item {
-  min-height: 42px;
-}
-
-/* tablets e celulares: menu em drawer lateral */
-@media (max-width: 1080px) {
-  .mobile-menu-toggle {
-    display: inline-flex;
-    flex: 0 0 auto;
-  }
-
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 150;
-  }
-
-  .topbar-left {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .topbar-logo {
-    min-width: 0;
-  }
-
-  .topbar-right {
-    width: 100%;
-    align-items: stretch;
-  }
-
-  .profile-switcher,
-  .badge-comav,
-  .topbar-user {
-    max-width: 100%;
-  }
-
-  .app-body {
-    display: block;
-  }
-
-  .mobile-menu-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 30, 48, .38);
-    backdrop-filter: blur(2px);
-    z-index: 119;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .2s ease;
-  }
-
-  body.mobile-menu-open .mobile-menu-backdrop {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .sidebar {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: min(86vw, 340px) !important;
-    height: 100dvh;
-    z-index: 130;
-    transform: translateX(-105%);
-    transition: transform .22s ease;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 12px 12px 18px !important;
-    border-right: 1px solid rgba(219,231,243,.95) !important;
-    border-bottom: none !important;
-    box-shadow: 20px 0 60px rgba(20,42,74,.22);
-    background: rgba(255,255,255,.96) !important;
-    backdrop-filter: blur(16px);
-    flex-direction: column !important;
-  }
-
-  body.mobile-menu-open .sidebar {
-    transform: translateX(0);
-  }
-
-  .sidebar-mobile-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 8px 6px 14px;
-    margin-bottom: 6px;
-    border-bottom: 1px solid rgba(219,231,243,.9);
-  }
-
-  .sidebar-mobile-head strong {
-    display: block;
-    font-family: 'Public Sans', sans-serif;
-    color: var(--brand-900, #0f2743);
-    font-size: 16px;
-  }
-
-  .sidebar-mobile-head span {
-    display: block;
-    color: #7088a3;
-    font-size: 12px;
-    margin-top: 2px;
-  }
-
-  .sidebar-section {
-    display: block !important;
-    padding: 0 2px 10px !important;
-    margin: 10px 0 0 !important;
-    flex: initial !important;
-  }
-
-  .sidebar-label {
-    display: block !important;
-    padding: 0 8px;
-    margin: 12px 0 6px;
-  }
-
-  .sidebar-divider {
-    display: block !important;
-    margin: 8px 6px !important;
-  }
-
-  .sidebar-footer {
-    display: block !important;
-    margin-top: 12px;
-    border-top: 1px solid rgba(219,231,243,.9);
-    padding: 14px 8px 4px;
-  }
-
-  .nav-item {
-    width: 100% !important;
-    white-space: normal !important;
-    margin-bottom: 5px !important;
-    padding: 11px 12px !important;
-    border-radius: 14px !important;
-    justify-content: flex-start;
-  }
-
-  .nav-item.active::before {
-    display: none !important;
-  }
-
-  .nav-icon {
-    width: 22px !important;
-    height: 22px !important;
-  }
-
-  .main {
-    width: 100%;
-  }
-
-  body.mobile-menu-open {
-    overflow: hidden;
-  }
-}
-
-/* celulares pequenos: topo mais organizado */
-@media (max-width: 560px) {
-  .topbar {
-    padding: 10px 12px;
-  }
-
-  .topbar-left {
-    gap: 10px;
-  }
-
-  .topbar-logo {
-    font-size: 15px;
-  }
-
-  .topbar-right {
-    gap: 8px;
-  }
-
-  .profile-switcher {
-    border-radius: 14px;
-    padding: 8px 10px;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
-  }
-
-  .profile-switcher label {
-    font-size: 10px;
-  }
-
-  .profile-switcher select {
-    width: 100%;
-  }
-
-  .badge-comav {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .topbar-date {
-    display: none;
-  }
-
-  .topbar-user {
-    justify-content: center;
-  }
-
-  .global-filterbar {
-    padding: 12px;
-  }
-
-  .global-filter-controls {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 100%;
-  }
-
-  .global-filter-controls select,
-  .global-filter-controls button {
-    width: 100%;
-  }
-}
-
 </style>
 </head>
 <body class="perfil-comav">
@@ -2939,9 +2671,6 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
 <!-- TOPBAR -->
 <header class="topbar">
   <div class="topbar-left">
-    <button class="mobile-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" onclick="toggleMobileMenu()">
-      <span></span><span></span><span></span>
-    </button>
     <div class="topbar-logo">MonitoraSAPS</div>
     <div class="topbar-sep"></div>
     <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da SAPS</div>
@@ -2995,18 +2724,10 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
 </div>
 
 <!-- BODY -->
-<div class="mobile-menu-backdrop" onclick="closeMobileMenu()" aria-hidden="true"></div>
 <div class="app-body">
 
   <!-- SIDEBAR -->
-  <nav class="sidebar" id="sidebarMenu" aria-label="Menu principal">
-    <div class="sidebar-mobile-head">
-      <div>
-        <strong>MonitoraSAPS</strong>
-        <span>Menu principal</span>
-      </div>
-      <button class="sidebar-close" type="button" onclick="closeMobileMenu()" aria-label="Fechar menu">×</button>
-    </div>
+  <nav class="sidebar">
     <div class="sidebar-section">
       <div class="sidebar-label">Painel</div>
       <button class="nav-item active" data-page="dashboard" data-access="all" onclick="goTo('dashboard', this)">
@@ -3059,7 +2780,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
     <div class="sidebar-divider"></div>
     <div class="sidebar-footer">
       Competência analisada: <strong>Mai/2026</strong><br>
-      Protótipo para validação · MonitoraSAPS
+      MonitoraSAPS · Sistema de Monitoramento Estratégico da SAPS
     </div>
   </nav>
 
@@ -3073,10 +2794,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
         <div class="page-title">Painel Executivo — Competência Mai/2026</div>
         <div class="page-desc">Leitura executiva dos principais indicadores, alertas analíticos, qualidade dos dados e tendências para apoio à decisão.</div>
       </div>
-
-      <div class="prototype-banner">Protótipo demonstrativo para validação da gestão. Os valores são simulados e demonstram a atuação da COMAV como instância vinculada ao Gabinete da Secretária da SAPS para monitoramento estratégico dos indicadores.</div>
-
-      <div class="validation-note" id="dashboardScopeNote">Escopo aplicado: Brasil completo · Mai/2026.</div>
+<div class="validation-note" id="dashboardScopeNote">Escopo aplicado: Brasil completo · Mai/2026.</div>
 
       <div class="exec-top-layout">
         <div class="exec-summary-card">
@@ -3127,7 +2845,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
         <div class="kpi-card">
           <small>Confiabilidade da carga</small>
           <strong id="kpiConfiabilidade">99,3%</strong>
-          <span id="kpiCargaSub">Carga completa com ressalvas pontuais</span>
+          <span id="kpiCargaSub">Indicadores consolidados para análise</span>
         </div>
       </div>
 
@@ -3177,7 +2895,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
       <div class="status-strip">
         <div class="status-item"><strong>Indicadores acompanhados</strong><span>12</span></div>
         <div class="status-item"><strong>Indicadores em atenção</strong><span>3</span></div>
-        <div class="status-item"><strong>Última carga DW</strong><span id="healthCarga">Mai/2026</span></div>
+        <div class="status-item"><strong>Competência analisada DW</strong><span id="healthCarga">Mai/2026</span></div>
         <div class="status-item"><strong>Completude geral</strong><span>99,3%</span></div>
       </div>
 
@@ -3236,7 +2954,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
           <div class="card-title"><span>🧠</span> Leitura executiva automatizada do escopo</div>
           <div class="insight-list" id="executiveInsights">
             <div class="insight-item"><div class="insight-bar"></div><div><strong>Integração territorial</strong><span>Os filtros globais orientam painel, mapa, indicadores, IA, interseccionalidade, qualidade e auditoria.</span></div></div>
-            <div class="insight-item"><div class="insight-bar" style="background:var(--amarelo)"></div><div><strong>Atenção metodológica</strong><span>Valores são fictícios, mas a lógica de governança e análise por granularidade está estruturada.</span></div></div>
+            <div class="insight-item"><div class="insight-bar" style="background:var(--amarelo)"></div><div><strong>Atenção metodológica</strong><span>Valores são referenciais, mas a lógica de governança e análise por granularidade está estruturada.</span></div></div>
             <div class="insight-item"><div class="insight-bar" style="background:var(--verde-med)"></div><div><strong>Uso esperado</strong><span>Subsidiar reuniões de monitoramento, priorização de territórios e validação técnica das áreas responsáveis.</span></div></div>
           </div>
         </div>
@@ -3321,9 +3039,9 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
 
       <div class="two-col">
         <div class="card chart-card">
-          <div class="card-title"><span>📈</span> Série histórica demonstrativa do indicador selecionado</div>
+          <div class="card-title"><span>📈</span> Série histórica do indicador selecionado</div>
           <canvas id="chartIndicadorSerie" height="190"></canvas>
-          <div class="section-note">No protótipo, o gráfico ilustra como a tela poderá apresentar a evolução histórica do indicador com comparação à meta pactuada.</div>
+          <div class="section-note">O gráfico apresenta a evolução histórica do indicador com comparação à meta pactuada.</div>
         </div>
         <div class="card chart-card">
           <div class="card-title"><span>📊</span> Comparação territorial do indicador</div>
@@ -3378,7 +3096,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
           <button class="btn btn-outline" onclick="limparFiltrosIndicadores()">Limpar filtros</button>
           <button class="btn btn-primary" style="margin-left:auto" onclick="exportarCSV()">⬇ Exportar CSV</button>
         </div>
-        <div class="validation-note" id="resumoFiltrosIndicadores">Exibindo todos os indicadores estratégicos cadastrados no protótipo.</div>
+        <div class="validation-note" id="resumoFiltrosIndicadores">Exibindo todos os indicadores estratégicos cadastrados no sistema.</div>
         <div class="validation-note" id="indicadoresScopeNote">Escopo territorial aplicado: Brasil completo.</div>
         <div class="meta-grid" style="margin-bottom:16px;">
           <div class="meta-card"><strong>Camada de governança</strong><span>Departamento, tema, natureza, prioridade, atualização e validação passam a orientar a leitura dos indicadores.</span></div>
@@ -3455,7 +3173,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
             </div>
           </div>
           <div class="validation-note" id="mapScopeLabel">Escopo atual: Brasil completo.</div>
-          <div class="validation-note">No protótipo, os municípios são demonstrados por pontos georreferenciados. Na versão final, a malha municipal do IBGE/geobr poderá permitir pintura por polígono municipal.</div>
+          <div class="validation-note">Os municípios são apresentados por pontos georreferenciados para apoiar a leitura territorial.</div>
           <div class="map-meta">
             <div class="map-meta-item"><strong>Média Brasil</strong><span id="mapMediaBrasil">67,4%</span></div>
             <div class="map-meta-item"><strong>Região de melhor resultado</strong><span id="mapMelhor">Sul · 74,1%</span></div>
@@ -3468,7 +3186,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
         <div class="card chart-card">
           <div class="card-title"><span>📉</span> Tendência do indicador selecionado</div>
           <canvas id="chartMapaTendencia" height="190"></canvas>
-          <div class="section-note">Série fictícia para demonstrar como o módulo territorial poderá combinar mapa e tendência histórica em uma mesma leitura.</div>
+          <div class="section-note">Série referencial para demonstrar como o módulo territorial poderá combinar mapa e tendência histórica em uma mesma leitura.</div>
         </div>
         <div class="card">
           <div class="card-title"><span>🏅</span> Ranking territorial da competência</div>
@@ -3483,12 +3201,9 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
     <div id="page-interseccionalidade" class="page">
       <div class="page-header">
         <div class="page-title">Monitoramento Interseccional das Desigualdades</div>
-        <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador e território, com comparação entre média geral, maior risco e menor risco.</div>
+        <div class="page-desc">Leitura de referência de estratos interseccionais por indicador e território, com comparação entre média geral, maior risco e menor risco.</div>
       </div>
-
-      <div class="prototype-banner">Módulo demonstrativo. Os valores são fictícios e simulam a lógica de análise interseccional proposta para o MonitoraSAPS.</div>
-
-      <div class="card">
+<div class="card">
         <div class="card-title"><span>🧭</span> Seleção da análise</div>
         <div class="ind-filters strategic-filters">
           <select class="filter-select" id="interIndicador" onchange="renderInterseccionalidade()">
@@ -3521,7 +3236,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
 
         <div class="stats-grid">
           <div class="stat-card azul">
-            <div class="stat-label">Índice interseccional demonstrativo</div>
+            <div class="stat-label">Índice interseccional</div>
             <div class="inter-score" id="interScore">2,8x</div>
             <div class="stat-change neutral">diferença entre estratos extremos</div>
           </div>
@@ -3681,17 +3396,14 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
     <!-- ── IA ── -->
     <div id="page-ia" class="page">
       <div class="page-header">
-        <div class="page-title">Apoio Analítico Automatizado — Simulação</div>
+        <div class="page-title">Apoio Analítico Automatizado</div>
         <div class="page-desc">Gráficos, leitura técnica preliminar, comparação territorial e síntese operacional para apoio à gestão, com validação obrigatória da COMAV.</div>
       </div>
-
-      <div class="prototype-banner">Módulo demonstrativo inspirado no modelo anexado. Todos os dados exibidos são fictícios e simulam o comportamento esperado de um agente de apoio analítico institucional.</div>
-
-      <div class="ia-panel light">
+<div class="ia-panel light">
         <div class="ia-panel-header">
           <div>
             <div class="ia-badge">✦ Apoio analítico · COMAV · Gabinete SAPS</div>
-            <h3 style="margin-top:7px;">Gerar análise simulada do indicador</h3>
+            <h3 style="margin-top:7px;">Gerar análise do indicador</h3>
           </div>
         </div>
 
@@ -3739,9 +3451,9 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
 
       <div class="ia-advanced-grid">
         <div class="card chart-card">
-          <div class="card-title"><span>📈</span> Série histórica simulada</div>
+          <div class="card-title"><span>📈</span> Série histórica analítica</div>
           <canvas id="iaTrend" height="170"></canvas>
-          <div class="chart-caption">Evolução do território selecionado em comparação com a média Brasil e a meta demonstrativa.</div>
+          <div class="chart-caption">Evolução do território selecionado em comparação com a média Brasil e a meta de referência.</div>
         </div>
         <div class="card chart-card">
           <div class="card-title"><span>📊</span> Comparação com pares territoriais</div>
@@ -3749,9 +3461,9 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
           <div class="chart-caption">Comparação entre regiões/territórios para indicar posição relativa do território selecionado.</div>
         </div>
         <div class="card chart-card">
-          <div class="card-title"><span>🧬</span> Desagregação fictícia</div>
+          <div class="card-title"><span>🧬</span> Desagregação referencial</div>
           <canvas id="iaStrata" height="170"></canvas>
-          <div class="chart-caption">Simulação de leitura por estratos sociais ou marcadores de desigualdade.</div>
+          <div class="chart-caption">Análise de leitura por estratos sociais ou marcadores de desigualdade.</div>
         </div>
       </div>
 
@@ -3770,7 +3482,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
             <thead>
               <tr>
                 <th>Dimensão</th>
-                <th>Leitura fictícia</th>
+                <th>Leitura referencial</th>
                 <th>Ação sugerida</th>
               </tr>
             </thead>
@@ -3787,10 +3499,7 @@ body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
         <div class="page-title">Relatório Executivo do Escopo Selecionado</div>
         <div class="page-desc">Gera uma minuta estratégica para subsidiar o Gabinete da Secretária, o Gabinete do Ministro, a Presidência e demandas de comunicação institucional.</div>
       </div>
-
-      <div class="prototype-banner">A COMAV está vinculada diretamente ao Gabinete da Secretária da SAPS. Este módulo simula a consolidação de informações estratégicas para gabinetes e demandas de imprensa.</div>
-
-      <div class="module-grid">
+<div class="module-grid">
         <div class="module-card"><strong>Gabinete da Secretária</strong><span>Síntese técnica para tomada de decisão e priorização de agendas internas.</span></div>
         <div class="module-card"><strong>Gabinete do Ministro</strong><span>Informações estratégicas com linguagem objetiva, territorializada e validável.</span></div>
         <div class="module-card"><strong>Presidência</strong><span>Resumo executivo com foco em cenário, tendência, riscos e entregas.</span></div>
@@ -4490,7 +4199,6 @@ function goTo(page, btn) {
   if (btn) btn.classList.add('active');
 
   if (typeof popularSolicitacaoUsuario === 'function') popularSolicitacaoUsuario();
-  if (typeof closeMobileMenu === 'function') closeMobileMenu();
 
   setTimeout(bootVisualCompleto, 60);
   setTimeout(bootVisualCompleto, 220);
@@ -4924,7 +4632,7 @@ function cliqueMapa(regiao) {
   const ufs = Object.entries(estadosRegiao).filter(([key, meta]) => meta.regiao === regiao).map(([key]) => serie.valores[key]);
   const media = ufs.reduce((a,b)=>a+b,0) / ufs.length;
   const tt = document.getElementById('mapaTooltip');
-  tt.textContent = `${regiao}: ${formatarValorMapa(media, serie.unidade)} (média fictícia das UFs)`;
+  tt.textContent = `${regiao}: ${formatarValorMapa(media, serie.unidade)} (média referencial das UFs)`;
   tt.style.display = 'block';
   setTimeout(() => { tt.style.display = 'none'; }, 2200);
   const selectReg = document.getElementById('mapFiltroRegiao');
@@ -5088,7 +4796,7 @@ function atualizarMapa(tipo='cob') {
         zIndex: 8
       }, {
         type: 'mappoint',
-        name: 'Municípios demonstrativos',
+        name: 'Municípios disponíveis',
         data: getMunicipiosAtivos().map(m => ({
           name: m.nome,
           municipioId: m.id,
@@ -5144,7 +4852,7 @@ function atualizarMapa(tipo='cob') {
       scopeLabel.textContent = `Escopo atual: ${municipio?.nome || 'Município selecionado'} · ${meta?.uf || ''} · Região ${meta?.regiao || ''}. A UF aparece apenas como base cartográfica; o município está destacado pelo ponto vermelho.`;
     } else if (filtroUFMapa !== 'todas') {
       const meta = estadosRegiao[filtroUFMapa];
-      scopeLabel.textContent = `Escopo atual: ${meta.nome} (${meta.uf}) · municípios demonstrativos disponíveis.`;
+      scopeLabel.textContent = `Escopo atual: ${meta.nome} (${meta.uf}) · municípios disponíveis.`;
     } else if (filtroRegiaoMapa !== 'todas') {
       scopeLabel.textContent = `Escopo atual: Região ${filtroRegiaoMapa}.`;
     } else {
@@ -5160,7 +4868,7 @@ function atualizarMapa(tipo='cob') {
   } else if (filtroUFMapa !== 'todas') {
     const meta = estadosRegiao[filtroUFMapa];
     rankingDados = municipiosDaUF(filtroUFMapa)
-      .map(m => ({ nome: m.nome, subtitulo: `${meta.uf} · dado municipal demonstrativo`, valor: m.valores[mapaAtual] }))
+      .map(m => ({ nome: m.nome, subtitulo: `${meta.uf} · dado municipal`, valor: m.valores[mapaAtual] }))
       .sort((a,b) => serie.maiorMelhor ? b.valor-a.valor : a.valor-b.valor);
   } else if (filtroRegiaoMapa !== 'todas') {
     rankingDados = Object.entries(estadosRegiao)
@@ -5170,7 +4878,7 @@ function atualizarMapa(tipo='cob') {
   } else {
     rankingDados = calcularMediasRegionais(serie)
       .sort((a,b) => serie.maiorMelhor ? b.valor-a.valor : a.valor-b.valor)
-      .map(item => ({ nome: item.regiao, subtitulo: 'Média das UFs · dado demonstrativo', valor: item.valor }));
+      .map(item => ({ nome: item.regiao, subtitulo: 'Média das UFs · dado de referência', valor: item.valor }));
   }
 
   const melhor = rankingDados[0];
@@ -5290,14 +4998,14 @@ function gerarAnaliseIA() {
 function gerarProduto(tipo) {
   const el = document.getElementById('produtoResult');
   const btns = document.getElementById('produtoBtns');
-  el.innerHTML = '<span style="color:var(--azul-med)"><div class="loading-spinner" style="border-color:rgba(30,80,163,.2);border-top-color:var(--azul-med);display:inline-block;margin-right:8px;"></div> Gerando minuta demonstrativa...</span>';
+  el.innerHTML = '<span style="color:var(--azul-med)"><div class="loading-spinner" style="border-color:rgba(30,80,163,.2);border-top-color:var(--azul-med);display:inline-block;margin-right:8px;"></div> Gerando minuta executiva...</span>';
   btns.style.display = 'none';
 
   const produtos = {
     boletim: `<strong>Boletim mensal — minuta preliminar</strong><br><br>Na competência maio/2026, os indicadores estratégicos da SAPS apontam crescimento gradual da cobertura de Atenção Básica, com alcance de 67,4% no Brasil, ainda abaixo da meta anual de 70%. As internações por condições sensíveis à APS mantêm tendência de redução, embora permaneçam acima do parâmetro definido para acompanhamento. A mortalidade materna apresenta estabilidade e segue em situação de atenção. O principal alerta da competência refere-se à mortalidade infantil na Região Norte, com variação desfavorável relevante. A leitura deve ser validada pela COMAV, considerando a qualidade da carga de dados e as diferenças territoriais observadas.`,
     executivo: `<strong>Informe executivo — síntese para gestão</strong><br><br>O painel de maio/2026 indica avanço gradual da cobertura de Atenção Básica e redução das internações por condições sensíveis à APS, ainda com necessidade de acompanhamento para alcance das metas. Permanecem em atenção os indicadores materno-infantis, especialmente a mortalidade infantil na Região Norte, que deverá compor a pauta prioritária de monitoramento.<br><br>A carga de dados foi processada com alta completude, mas há pendências pontuais em três municípios. Recomenda-se validar o impacto dessas pendências antes de qualquer encaminhamento externo.`,
     reuniao: `<strong>Pauta sugerida — reunião de monitoramento</strong><br><br>1. Validar a situação da carga de dados da competência maio/2026.<br>2. Analisar o alerta de mortalidade infantil na Região Norte.<br>3. Verificar a evolução da cobertura de Atenção Básica frente à meta anual.<br>4. Avaliar a tendência das internações por condições sensíveis à APS.<br>5. Definir encaminhamentos com áreas técnicas e responsáveis pelos indicadores em atenção.<br>6. Registrar deliberações e justificativas na trilha de auditoria.`,
-    desigualdade: `<strong>Análise de desigualdades — módulo em evolução</strong><br><br>A análise estratificada dos indicadores deverá priorizar raça/cor, sexo, faixa etária, território e, quando disponível, escolaridade, ocupação, ruralidade e outros marcadores sociais. A proposta é permitir que a gestão identifique desigualdades ocultas nas médias nacionais e oriente respostas para grupos e territórios mais vulnerabilizados. Nesta etapa do protótipo, recomenda-se apresentar o módulo como funcionalidade em desenvolvimento, dependente da qualidade, disponibilidade e padronização das bases.`
+    desigualdade: `<strong>Análise de desigualdades — módulo analítico</strong><br><br>A análise estratificada dos indicadores deverá priorizar raça/cor, sexo, faixa etária, território e, quando disponível, escolaridade, ocupação, ruralidade e outros marcadores sociais. A proposta é permitir que a gestão identifique desigualdades ocultas nas médias nacionais e oriente respostas para grupos e territórios mais vulnerabilizados. Nesta etapa do sistema, recomenda-se apresentar o módulo como funcionalidade em desenvolvimento, dependente da qualidade, disponibilidade e padronização das bases.`
   };
 
   setTimeout(() => {
@@ -5530,7 +5238,7 @@ function atualizarResumoExecutivoPorEscopo(label) {
   if (kpiIndicadores && typeof indicadoresData !== 'undefined') kpiIndicadores.textContent = indicadoresData.length;
   if (healthCarga) healthCarga.textContent = globalScope.competencia;
   if (healthAlertas) healthAlertas.textContent = globalScopeLevel() === 'Município' ? '1 crítico' : 'alertas analíticos';
-  if (cargaSub) cargaSub.textContent = globalScopeLevel() === 'Município' ? 'Carga com leitura municipal demonstrativa' : 'Carga completa com ressalvas pontuais';
+  if (cargaSub) cargaSub.textContent = globalScopeLevel() === 'Município' ? 'Carga com leitura municipal consolidada' : 'Indicadores consolidados para análise';
 
   const insights = document.getElementById('executiveInsights');
   if (insights) {
@@ -5561,7 +5269,7 @@ function registrarAuditoriaEscopo(label) {
   if (!tbody || tbody.dataset.globalScopeLog === label) return;
   tbody.dataset.globalScopeLog = label;
   const tr = document.createElement('tr');
-  tr.innerHTML = `<td>${new Date().toLocaleString('pt-BR')}</td><td>Sistema (automático)</td><td>Escopo territorial</td><td>Aplicado: ${label}</td><td>Sincronização de filtros globais</td><td>Protótipo</td>`;
+  tr.innerHTML = `<td>${new Date().toLocaleString('pt-BR')}</td><td>Sistema (automático)</td><td>Escopo territorial</td><td>Aplicado: ${label}</td><td>Sincronização de filtros globais</td><td>Sistema</td>`;
   tbody.prepend(tr);
 }
 
@@ -5572,7 +5280,7 @@ function globalAplicarEscopo() {
   if (top) top.textContent = label;
 
   const dash = document.getElementById('dashboardScopeNote');
-  if (dash) dash.innerHTML = `Escopo aplicado ao painel: <strong>${label}</strong>. Os valores dos cards seguem demonstrativos, mas a navegação e as leituras analíticas passam a responder ao território selecionado.`;
+  if (dash) dash.innerHTML = `Escopo aplicado ao painel: <strong>${label}</strong>. Os valores dos cards seguem o escopo aplicado, mas a navegação e as leituras analíticas passam a responder ao território selecionado.`;
 
   const ind = document.getElementById('indicadoresScopeNote');
   if (ind) ind.innerHTML = `Escopo territorial aplicado aos indicadores: <strong>${label}</strong>. Em produção, os valores seriam recalculados conforme região, UF, município e competência.`;
@@ -5723,15 +5431,15 @@ function renderIAAvancada() {
   const posRelativa = valoresPares.filter(v => ind.polaridade === 'maior' ? v > ultimo : v < ultimo).length + 1;
 
   const textos = {
-    'Situação e tendência': `Em <b>${territorio}</b>, o indicador <b>${ind.nome}</b> registra <b>${iaFmt(ind, ultimo)}</b> em 2026. A variação fictícia frente a 2025 é de <b>${String(delta).replace('.', ',')} ${ind.unidade}</b>, com tendência <b>${tendencia}</b> e status <b>${status[0]}</b>.`,
-    'Desigualdades e estratos': `A leitura simulada identifica maior concentração no estrato <b>${maiorEstrato}</b>. Recomenda-se aprofundar a análise por raça/cor, renda per capita, ruralidade, gênero e faixa etária antes de qualquer conclusão institucional.`,
+    'Situação e tendência': `Em <b>${territorio}</b>, o indicador <b>${ind.nome}</b> registra <b>${iaFmt(ind, ultimo)}</b> em 2026. A variação referencial frente a 2025 é de <b>${String(delta).replace('.', ',')} ${ind.unidade}</b>, com tendência <b>${tendencia}</b> e status <b>${status[0]}</b>.`,
+    'Desigualdades e estratos': `A leitura analítica identifica maior concentração no estrato <b>${maiorEstrato}</b>. Recomenda-se aprofundar a análise por raça/cor, renda per capita, ruralidade, gênero e faixa etária antes de qualquer conclusão institucional.`,
     'Comparação territorial': `Na comparação com pares territoriais, <b>${territorio}</b> ocupa a posição relativa <b>${posRelativa}</b> entre os territórios apresentados. A leitura deve considerar a polaridade do indicador: <b>${ind.polaridade === 'maior' ? 'quanto maior, melhor' : 'quanto menor, melhor'}</b>.`,
     'Recomendações para gestão': `Recomenda-se verificar a completude da base, comparar unidades extremas, estratificar vulnerabilidades e pactuar respostas com a área técnica responsável, especialmente quando houver distância relevante em relação à meta.`
   };
 
   const iaText = document.getElementById('iaText');
   if (iaText) {
-    iaText.innerHTML = `<b>Análise simulada do apoio analítico:</b> ${textos[tipo]}<br><br><b>Leitura institucional sugerida:</b> esta informação deve ser tratada como minuta preliminar, sujeita à validação técnica da COMAV e do departamento responsável.`;
+    iaText.innerHTML = `<b>Análise do apoio analítico:</b> ${textos[tipo]}<br><br><b>Leitura institucional sugerida:</b> esta informação deve ser tratada como minuta preliminar, sujeita à validação técnica da COMAV e do departamento responsável.`;
   }
 
   const iaSynth = document.getElementById('iaSynth');
@@ -5740,7 +5448,7 @@ function renderIAAvancada() {
       ['Situação atual', `${iaFmt(ind, ultimo)} · ${status[0]}`, 'Monitorar na próxima competência'],
       ['Tendência', `Trajetória ${tendencia}`, 'Comparar com série histórica e meta'],
       ['Equidade', `Maior diferença: ${maiorEstrato}`, 'Priorizar estratificação por vulnerabilidades'],
-      ['Gestão', `Meta demonstrativa: ${iaFmt(ind, ind.metaNum)}`, 'Pactuar encaminhamento com área responsável']
+      ['Gestão', `Meta de referência: ${iaFmt(ind, ind.metaNum)}`, 'Pactuar encaminhamento com área responsável']
     ].map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
   }
 
@@ -5754,8 +5462,8 @@ function copiarAnaliseIAAvancada() {
 
 function baixarAnaliseIAAvancada() {
   const a = document.createElement('a');
-  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._analiseIAAvancada || 'Análise IA simulada');
-  a.download = 'analise_ia_saps_simulada.txt';
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._analiseIAAvancada || 'Análise IA');
+  a.download = 'analise_ia_saps.txt';
   a.click();
 }
 
@@ -5832,10 +5540,10 @@ function renderInterseccionalidade() {
   if (highCount) highCount.textContent = fator >= 1.85 ? '5' : fator >= 1.55 ? '4' : '3';
 
   const high = document.getElementById('highRiskText');
-  if (high) high.textContent = `${raca}, ${genero.toLowerCase()}, ${escolaridade.toLowerCase()}, ${ocupacao.toLowerCase()} e ${territorio.toLowerCase()} — ${interFmt(maiorRisco, cfg.unidade)} na simulação.`;
+  if (high) high.textContent = `${raca}, ${genero.toLowerCase()}, ${escolaridade.toLowerCase()}, ${ocupacao.toLowerCase()} e ${territorio.toLowerCase()} — ${interFmt(maiorRisco, cfg.unidade)} na leitura.`;
 
   const low = document.getElementById('lowRiskText');
-  if (low) low.textContent = `Estrato de referência com menor acúmulo de vulnerabilidades — ${interFmt(menorRisco, cfg.unidade)} na simulação.`;
+  if (low) low.textContent = `Estrato de referência com menor acúmulo de vulnerabilidades — ${interFmt(menorRisco, cfg.unidade)} na leitura.`;
 
   const serieMedia = interLabels.map((_, i) => +(media * (0.88 + i * 0.025)).toFixed(1));
   const serieSelecionada = interLabels.map((_, i) => +(maiorRisco * (0.82 + i * 0.035)).toFixed(1));
@@ -5960,7 +5668,7 @@ const nomesGraficos = {
   extremeChart: 'interseccionalidade_evolucao_comparada_estratos',
   iaTrend: 'ia_serie_historica',
   iaCompare: 'ia_comparacao_pares',
-  iaStrata: 'ia_desagregacao_ficticia'
+  iaStrata: 'ia_desagregacao_estratos'
 };
 
 function nomeArquivoSeguro(nome) {
@@ -6607,27 +6315,6 @@ function filtrarAlteracoesComav(filtro,btn){filtroAlteracoesComav=filtro;documen
 function selecionarAlteracaoComav(id){const item=alteracoesDadosDemo.find(x=>x.id===id); if(!item) return; alteracaoSelecionadaComav=item; const [sl]=labelStatusAlteracao(item.status); const box=document.getElementById('alteracaoDetalheBox'); if(box){box.innerHTML=`<h3>${item.id} · ${item.indicador}</h3><p><strong>Área solicitante:</strong> ${item.area}</p><p><strong>Tipo de alteração:</strong> ${item.tipo}</p><p><strong>Território/competência:</strong> ${item.territorio} · ${item.competencia}</p><p><strong>Justificativa técnica:</strong> ${item.justificativa}</p><div class="change-workflow"><span class="workflow-step">Status: ${sl}</span><span class="workflow-step">Prioridade: ${item.prioridade}</span><span class="workflow-step">Avaliação COMAV</span></div>`;} const ps=document.getElementById('comavPrioridadeAlteracao'); if(ps) ps.value=item.prioridade;}
 function registrarAnaliseComavAlteracao(){if(!alteracaoSelecionadaComav){mostrarToastDownload('Selecione um pedido para registrar análise.'); return;} const status=document.getElementById('comavStatusAlteracao')?.value||'Em análise COMAV'; const prioridade=document.getElementById('comavPrioridadeAlteracao')?.value||alteracaoSelecionadaComav.prioridade; alteracaoSelecionadaComav.prioridade=prioridade; if(status.includes('Respondido')) alteracaoSelecionadaComav.status='respondido'; else if(status.includes('Encaminhado')) alteracaoSelecionadaComav.status='encaminhado'; else if(status.includes('Indeferido')) alteracaoSelecionadaComav.status='indeferido'; else alteracaoSelecionadaComav.status='analise'; renderAlteracoesComav(); selecionarAlteracaoComav(alteracaoSelecionadaComav.id); const rows=document.getElementById('solicitacoesUsuarioRows'); if(rows){rows.insertAdjacentHTML('afterbegin',`<tr><td>${new Date().toLocaleDateString('pt-BR')}</td><td>${alteracaoSelecionadaComav.area}</td><td>${alteracaoSelecionadaComav.indicador}</td><td>${alteracaoSelecionadaComav.tipo}</td><td><span class="tag ${tagPrioridadeAlteracao(prioridade)}">${prioridade}</span></td><td><span class="tag tag-azul">${status}</span></td></tr>`);} mostrarToastDownload('Análise da COMAV registrada no módulo Alteração de Dados.');}
 function baixarRelatorioAlteracoesComav(){const resumo=alteracoesDadosDemo.map(item=>{const [sl]=labelStatusAlteracao(item.status); return `${item.id} | ${item.data} | ${item.area} | ${item.indicador} | ${item.tipo} | ${item.prioridade} | ${sl}`;}).join('\n'); const a=document.createElement('a'); a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(`Alteração de Dados — Resumo COMAV\n\n${resumo}`); a.download='alteracao_de_dados_comav.txt'; a.click();}
-
-
-// ── MENU RESPONSIVO ──
-function toggleMobileMenu(force) {
-  const shouldOpen = typeof force === 'boolean' ? force : !document.body.classList.contains('mobile-menu-open');
-  document.body.classList.toggle('mobile-menu-open', shouldOpen);
-  const btn = document.querySelector('.mobile-menu-toggle');
-  if (btn) btn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
-}
-
-function closeMobileMenu() {
-  toggleMobileMenu(false);
-}
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') closeMobileMenu();
-});
-
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 1080) closeMobileMenu();
-});
 
 // ── PERFIS DE ACESSO ──
 let perfilSistemaAtual = 'comav';
