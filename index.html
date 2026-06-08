@@ -2661,6 +2661,76 @@ body.perfil-usuario .comav-only {display:none!important;}
 body.perfil-comav .usuario-only {display:none!important;}
 @media (max-width:1050px){.change-management-layout{grid-template-columns:1fr;}}
 
+
+/* ── CORREÇÃO DO AVISO DE PERFIL NO ESCOPO ── */
+.module-sticky-header {
+  overflow: visible !important;
+  margin-bottom: 24px !important;
+  display: block !important;
+}
+
+.module-sticky-main {
+  position: relative;
+  z-index: 2;
+}
+
+.active-filter-row {
+  position: relative;
+  z-index: 1;
+}
+
+.module-sticky-profile {
+  margin-top: 12px;
+  border: 1px solid rgba(79,143,224,.18);
+  background: linear-gradient(135deg, rgba(79,143,224,.08), rgba(46,163,114,.07));
+  border-radius: 14px;
+  padding: 11px 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #405770;
+  font-size: 12.6px;
+  line-height: 1.5;
+  width: 100%;
+  position: relative;
+  z-index: 0;
+  clear: both;
+}
+
+.module-sticky-profile .title-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-700, #1b4f8a);
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.profile-notice-global {
+  display: none !important;
+}
+
+body.presentation-mode .module-sticky-profile {
+  display: none !important;
+}
+
+body.compact-ui .module-sticky-profile {
+  max-height: none !important;
+  overflow: visible !important;
+  padding-right: 13px !important;
+  cursor: default !important;
+}
+
+body.compact-ui .module-sticky-profile::after {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .module-sticky-profile {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
 </style>
 </head>
 <body class="perfil-comav">
@@ -2777,7 +2847,7 @@ body.perfil-comav .usuario-only {display:none!important;}
     <div class="sidebar-divider"></div>
     <div class="sidebar-footer">
       Competência analisada: <strong>Mai/2026</strong><br>
-      MonitoraSAPS · Sistema de Monitoramento Estratégico da SAPS
+      Protótipo para validação · MonitoraSAPS
     </div>
   </nav>
 
@@ -2791,7 +2861,8 @@ body.perfil-comav .usuario-only {display:none!important;}
         <div class="page-title">Painel Executivo — Competência Mai/2026</div>
         <div class="page-desc">Leitura executiva dos principais indicadores, alertas analíticos, qualidade dos dados e tendências para apoio à decisão.</div>
       </div>
-<div class="validation-note" id="dashboardScopeNote">Escopo aplicado: Brasil completo · Mai/2026.</div>
+
+      <div class="validation-note" id="dashboardScopeNote">Escopo aplicado: Brasil completo · Mai/2026.</div>
 
       <div class="exec-top-layout">
         <div class="exec-summary-card">
@@ -2842,7 +2913,7 @@ body.perfil-comav .usuario-only {display:none!important;}
         <div class="kpi-card">
           <small>Confiabilidade da carga</small>
           <strong id="kpiConfiabilidade">99,3%</strong>
-          <span id="kpiCargaSub">Indicadores consolidados para análise</span>
+          <span id="kpiCargaSub">Carga completa com ressalvas pontuais</span>
         </div>
       </div>
 
@@ -2892,7 +2963,7 @@ body.perfil-comav .usuario-only {display:none!important;}
       <div class="status-strip">
         <div class="status-item"><strong>Indicadores acompanhados</strong><span>12</span></div>
         <div class="status-item"><strong>Indicadores em atenção</strong><span>3</span></div>
-        <div class="status-item"><strong>Competência analisada DW</strong><span id="healthCarga">Mai/2026</span></div>
+        <div class="status-item"><strong>Última carga DW</strong><span id="healthCarga">Mai/2026</span></div>
         <div class="status-item"><strong>Completude geral</strong><span>99,3%</span></div>
       </div>
 
@@ -2951,7 +3022,7 @@ body.perfil-comav .usuario-only {display:none!important;}
           <div class="card-title"><span>🧠</span> Leitura executiva automatizada do escopo</div>
           <div class="insight-list" id="executiveInsights">
             <div class="insight-item"><div class="insight-bar"></div><div><strong>Integração territorial</strong><span>Os filtros globais orientam painel, mapa, indicadores, IA, interseccionalidade, qualidade e auditoria.</span></div></div>
-            <div class="insight-item"><div class="insight-bar" style="background:var(--amarelo)"></div><div><strong>Atenção metodológica</strong><span>Valores são referenciais, mas a lógica de governança e análise por granularidade está estruturada.</span></div></div>
+            <div class="insight-item"><div class="insight-bar" style="background:var(--amarelo)"></div><div><strong>Atenção metodológica</strong><span>Valores são fictícios, mas a lógica de governança e análise por granularidade está estruturada.</span></div></div>
             <div class="insight-item"><div class="insight-bar" style="background:var(--verde-med)"></div><div><strong>Uso esperado</strong><span>Subsidiar reuniões de monitoramento, priorização de territórios e validação técnica das áreas responsáveis.</span></div></div>
           </div>
         </div>
@@ -3036,9 +3107,9 @@ body.perfil-comav .usuario-only {display:none!important;}
 
       <div class="two-col">
         <div class="card chart-card">
-          <div class="card-title"><span>📈</span> Série histórica do indicador selecionado</div>
+          <div class="card-title"><span>📈</span> Série histórica demonstrativa do indicador selecionado</div>
           <canvas id="chartIndicadorSerie" height="190"></canvas>
-          <div class="section-note">O gráfico apresenta a evolução histórica do indicador com comparação à meta pactuada.</div>
+          <div class="section-note">No protótipo, o gráfico ilustra como a tela poderá apresentar a evolução histórica do indicador com comparação à meta pactuada.</div>
         </div>
         <div class="card chart-card">
           <div class="card-title"><span>📊</span> Comparação territorial do indicador</div>
@@ -3093,7 +3164,7 @@ body.perfil-comav .usuario-only {display:none!important;}
           <button class="btn btn-outline" onclick="limparFiltrosIndicadores()">Limpar filtros</button>
           <button class="btn btn-primary" style="margin-left:auto" onclick="exportarCSV()">⬇ Exportar CSV</button>
         </div>
-        <div class="validation-note" id="resumoFiltrosIndicadores">Exibindo todos os indicadores estratégicos cadastrados no sistema.</div>
+        <div class="validation-note" id="resumoFiltrosIndicadores">Exibindo todos os indicadores estratégicos cadastrados no protótipo.</div>
         <div class="validation-note" id="indicadoresScopeNote">Escopo territorial aplicado: Brasil completo.</div>
         <div class="meta-grid" style="margin-bottom:16px;">
           <div class="meta-card"><strong>Camada de governança</strong><span>Departamento, tema, natureza, prioridade, atualização e validação passam a orientar a leitura dos indicadores.</span></div>
@@ -3170,7 +3241,7 @@ body.perfil-comav .usuario-only {display:none!important;}
             </div>
           </div>
           <div class="validation-note" id="mapScopeLabel">Escopo atual: Brasil completo.</div>
-          <div class="validation-note">Os municípios são apresentados por pontos georreferenciados para apoiar a leitura territorial.</div>
+          <div class="validation-note">No protótipo, os municípios são demonstrados por pontos georreferenciados. Na versão final, a malha municipal do IBGE/geobr poderá permitir pintura por polígono municipal.</div>
           <div class="map-meta">
             <div class="map-meta-item"><strong>Média Brasil</strong><span id="mapMediaBrasil">67,4%</span></div>
             <div class="map-meta-item"><strong>Região de melhor resultado</strong><span id="mapMelhor">Sul · 74,1%</span></div>
@@ -3183,7 +3254,7 @@ body.perfil-comav .usuario-only {display:none!important;}
         <div class="card chart-card">
           <div class="card-title"><span>📉</span> Tendência do indicador selecionado</div>
           <canvas id="chartMapaTendencia" height="190"></canvas>
-          <div class="section-note">Série referencial para demonstrar como o módulo territorial poderá combinar mapa e tendência histórica em uma mesma leitura.</div>
+          <div class="section-note">Série fictícia para demonstrar como o módulo territorial poderá combinar mapa e tendência histórica em uma mesma leitura.</div>
         </div>
         <div class="card">
           <div class="card-title"><span>🏅</span> Ranking territorial da competência</div>
@@ -3198,9 +3269,12 @@ body.perfil-comav .usuario-only {display:none!important;}
     <div id="page-interseccionalidade" class="page">
       <div class="page-header">
         <div class="page-title">Monitoramento Interseccional das Desigualdades</div>
-        <div class="page-desc">Leitura de referência de estratos interseccionais por indicador e território, com comparação entre média geral, maior risco e menor risco.</div>
+        <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador e território, com comparação entre média geral, maior risco e menor risco.</div>
       </div>
-<div class="card">
+
+      <div class="prototype-banner">Módulo demonstrativo. Os valores são fictícios e simulam a lógica de análise interseccional proposta para o MonitoraSAPS.</div>
+
+      <div class="card">
         <div class="card-title"><span>🧭</span> Seleção da análise</div>
         <div class="ind-filters strategic-filters">
           <select class="filter-select" id="interIndicador" onchange="renderInterseccionalidade()">
@@ -3233,7 +3307,7 @@ body.perfil-comav .usuario-only {display:none!important;}
 
         <div class="stats-grid">
           <div class="stat-card azul">
-            <div class="stat-label">Índice interseccional</div>
+            <div class="stat-label">Índice interseccional demonstrativo</div>
             <div class="inter-score" id="interScore">2,8x</div>
             <div class="stat-change neutral">diferença entre estratos extremos</div>
           </div>
@@ -3393,14 +3467,17 @@ body.perfil-comav .usuario-only {display:none!important;}
     <!-- ── IA ── -->
     <div id="page-ia" class="page">
       <div class="page-header">
-        <div class="page-title">Apoio Analítico Automatizado</div>
+        <div class="page-title">Apoio Analítico Automatizado — Simulação</div>
         <div class="page-desc">Gráficos, leitura técnica preliminar, comparação territorial e síntese operacional para apoio à gestão, com validação obrigatória da COMAV.</div>
       </div>
-<div class="ia-panel light">
+
+      <div class="prototype-banner">Módulo demonstrativo inspirado no modelo anexado. Todos os dados exibidos são fictícios e simulam o comportamento esperado de um agente de apoio analítico institucional.</div>
+
+      <div class="ia-panel light">
         <div class="ia-panel-header">
           <div>
             <div class="ia-badge">✦ Apoio analítico · COMAV · Gabinete SAPS</div>
-            <h3 style="margin-top:7px;">Gerar análise do indicador</h3>
+            <h3 style="margin-top:7px;">Gerar análise simulada do indicador</h3>
           </div>
         </div>
 
@@ -3448,9 +3525,9 @@ body.perfil-comav .usuario-only {display:none!important;}
 
       <div class="ia-advanced-grid">
         <div class="card chart-card">
-          <div class="card-title"><span>📈</span> Série histórica analítica</div>
+          <div class="card-title"><span>📈</span> Série histórica simulada</div>
           <canvas id="iaTrend" height="170"></canvas>
-          <div class="chart-caption">Evolução do território selecionado em comparação com a média Brasil e a meta de referência.</div>
+          <div class="chart-caption">Evolução do território selecionado em comparação com a média Brasil e a meta demonstrativa.</div>
         </div>
         <div class="card chart-card">
           <div class="card-title"><span>📊</span> Comparação com pares territoriais</div>
@@ -3458,9 +3535,9 @@ body.perfil-comav .usuario-only {display:none!important;}
           <div class="chart-caption">Comparação entre regiões/territórios para indicar posição relativa do território selecionado.</div>
         </div>
         <div class="card chart-card">
-          <div class="card-title"><span>🧬</span> Desagregação referencial</div>
+          <div class="card-title"><span>🧬</span> Desagregação fictícia</div>
           <canvas id="iaStrata" height="170"></canvas>
-          <div class="chart-caption">Análise de leitura por estratos sociais ou marcadores de desigualdade.</div>
+          <div class="chart-caption">Simulação de leitura por estratos sociais ou marcadores de desigualdade.</div>
         </div>
       </div>
 
@@ -3479,7 +3556,7 @@ body.perfil-comav .usuario-only {display:none!important;}
             <thead>
               <tr>
                 <th>Dimensão</th>
-                <th>Leitura referencial</th>
+                <th>Leitura fictícia</th>
                 <th>Ação sugerida</th>
               </tr>
             </thead>
@@ -3496,7 +3573,10 @@ body.perfil-comav .usuario-only {display:none!important;}
         <div class="page-title">Relatório Executivo do Escopo Selecionado</div>
         <div class="page-desc">Gera uma minuta estratégica para subsidiar o Gabinete da Secretária, o Gabinete do Ministro, a Presidência e demandas de comunicação institucional.</div>
       </div>
-<div class="module-grid">
+
+      <div class="prototype-banner">A COMAV está vinculada diretamente ao Gabinete da Secretária da SAPS. Este módulo simula a consolidação de informações estratégicas para gabinetes e demandas de imprensa.</div>
+
+      <div class="module-grid">
         <div class="module-card"><strong>Gabinete da Secretária</strong><span>Síntese técnica para tomada de decisão e priorização de agendas internas.</span></div>
         <div class="module-card"><strong>Gabinete do Ministro</strong><span>Informações estratégicas com linguagem objetiva, territorializada e validável.</span></div>
         <div class="module-card"><strong>Presidência</strong><span>Resumo executivo com foco em cenário, tendência, riscos e entregas.</span></div>
@@ -4629,7 +4709,7 @@ function cliqueMapa(regiao) {
   const ufs = Object.entries(estadosRegiao).filter(([key, meta]) => meta.regiao === regiao).map(([key]) => serie.valores[key]);
   const media = ufs.reduce((a,b)=>a+b,0) / ufs.length;
   const tt = document.getElementById('mapaTooltip');
-  tt.textContent = `${regiao}: ${formatarValorMapa(media, serie.unidade)} (média referencial das UFs)`;
+  tt.textContent = `${regiao}: ${formatarValorMapa(media, serie.unidade)} (média fictícia das UFs)`;
   tt.style.display = 'block';
   setTimeout(() => { tt.style.display = 'none'; }, 2200);
   const selectReg = document.getElementById('mapFiltroRegiao');
@@ -4793,7 +4873,7 @@ function atualizarMapa(tipo='cob') {
         zIndex: 8
       }, {
         type: 'mappoint',
-        name: 'Municípios disponíveis',
+        name: 'Municípios demonstrativos',
         data: getMunicipiosAtivos().map(m => ({
           name: m.nome,
           municipioId: m.id,
@@ -4849,7 +4929,7 @@ function atualizarMapa(tipo='cob') {
       scopeLabel.textContent = `Escopo atual: ${municipio?.nome || 'Município selecionado'} · ${meta?.uf || ''} · Região ${meta?.regiao || ''}. A UF aparece apenas como base cartográfica; o município está destacado pelo ponto vermelho.`;
     } else if (filtroUFMapa !== 'todas') {
       const meta = estadosRegiao[filtroUFMapa];
-      scopeLabel.textContent = `Escopo atual: ${meta.nome} (${meta.uf}) · municípios disponíveis.`;
+      scopeLabel.textContent = `Escopo atual: ${meta.nome} (${meta.uf}) · municípios demonstrativos disponíveis.`;
     } else if (filtroRegiaoMapa !== 'todas') {
       scopeLabel.textContent = `Escopo atual: Região ${filtroRegiaoMapa}.`;
     } else {
@@ -4865,7 +4945,7 @@ function atualizarMapa(tipo='cob') {
   } else if (filtroUFMapa !== 'todas') {
     const meta = estadosRegiao[filtroUFMapa];
     rankingDados = municipiosDaUF(filtroUFMapa)
-      .map(m => ({ nome: m.nome, subtitulo: `${meta.uf} · dado municipal`, valor: m.valores[mapaAtual] }))
+      .map(m => ({ nome: m.nome, subtitulo: `${meta.uf} · dado municipal demonstrativo`, valor: m.valores[mapaAtual] }))
       .sort((a,b) => serie.maiorMelhor ? b.valor-a.valor : a.valor-b.valor);
   } else if (filtroRegiaoMapa !== 'todas') {
     rankingDados = Object.entries(estadosRegiao)
@@ -4875,7 +4955,7 @@ function atualizarMapa(tipo='cob') {
   } else {
     rankingDados = calcularMediasRegionais(serie)
       .sort((a,b) => serie.maiorMelhor ? b.valor-a.valor : a.valor-b.valor)
-      .map(item => ({ nome: item.regiao, subtitulo: 'Média das UFs · dado de referência', valor: item.valor }));
+      .map(item => ({ nome: item.regiao, subtitulo: 'Média das UFs · dado demonstrativo', valor: item.valor }));
   }
 
   const melhor = rankingDados[0];
@@ -4995,14 +5075,14 @@ function gerarAnaliseIA() {
 function gerarProduto(tipo) {
   const el = document.getElementById('produtoResult');
   const btns = document.getElementById('produtoBtns');
-  el.innerHTML = '<span style="color:var(--azul-med)"><div class="loading-spinner" style="border-color:rgba(30,80,163,.2);border-top-color:var(--azul-med);display:inline-block;margin-right:8px;"></div> Gerando minuta executiva...</span>';
+  el.innerHTML = '<span style="color:var(--azul-med)"><div class="loading-spinner" style="border-color:rgba(30,80,163,.2);border-top-color:var(--azul-med);display:inline-block;margin-right:8px;"></div> Gerando minuta demonstrativa...</span>';
   btns.style.display = 'none';
 
   const produtos = {
     boletim: `<strong>Boletim mensal — minuta preliminar</strong><br><br>Na competência maio/2026, os indicadores estratégicos da SAPS apontam crescimento gradual da cobertura de Atenção Básica, com alcance de 67,4% no Brasil, ainda abaixo da meta anual de 70%. As internações por condições sensíveis à APS mantêm tendência de redução, embora permaneçam acima do parâmetro definido para acompanhamento. A mortalidade materna apresenta estabilidade e segue em situação de atenção. O principal alerta da competência refere-se à mortalidade infantil na Região Norte, com variação desfavorável relevante. A leitura deve ser validada pela COMAV, considerando a qualidade da carga de dados e as diferenças territoriais observadas.`,
     executivo: `<strong>Informe executivo — síntese para gestão</strong><br><br>O painel de maio/2026 indica avanço gradual da cobertura de Atenção Básica e redução das internações por condições sensíveis à APS, ainda com necessidade de acompanhamento para alcance das metas. Permanecem em atenção os indicadores materno-infantis, especialmente a mortalidade infantil na Região Norte, que deverá compor a pauta prioritária de monitoramento.<br><br>A carga de dados foi processada com alta completude, mas há pendências pontuais em três municípios. Recomenda-se validar o impacto dessas pendências antes de qualquer encaminhamento externo.`,
     reuniao: `<strong>Pauta sugerida — reunião de monitoramento</strong><br><br>1. Validar a situação da carga de dados da competência maio/2026.<br>2. Analisar o alerta de mortalidade infantil na Região Norte.<br>3. Verificar a evolução da cobertura de Atenção Básica frente à meta anual.<br>4. Avaliar a tendência das internações por condições sensíveis à APS.<br>5. Definir encaminhamentos com áreas técnicas e responsáveis pelos indicadores em atenção.<br>6. Registrar deliberações e justificativas na trilha de auditoria.`,
-    desigualdade: `<strong>Análise de desigualdades — módulo analítico</strong><br><br>A análise estratificada dos indicadores deverá priorizar raça/cor, sexo, faixa etária, território e, quando disponível, escolaridade, ocupação, ruralidade e outros marcadores sociais. A proposta é permitir que a gestão identifique desigualdades ocultas nas médias nacionais e oriente respostas para grupos e territórios mais vulnerabilizados. Nesta etapa do sistema, recomenda-se apresentar o módulo como funcionalidade em desenvolvimento, dependente da qualidade, disponibilidade e padronização das bases.`
+    desigualdade: `<strong>Análise de desigualdades — módulo em evolução</strong><br><br>A análise estratificada dos indicadores deverá priorizar raça/cor, sexo, faixa etária, território e, quando disponível, escolaridade, ocupação, ruralidade e outros marcadores sociais. A proposta é permitir que a gestão identifique desigualdades ocultas nas médias nacionais e oriente respostas para grupos e territórios mais vulnerabilizados. Nesta etapa do protótipo, recomenda-se apresentar o módulo como funcionalidade em desenvolvimento, dependente da qualidade, disponibilidade e padronização das bases.`
   };
 
   setTimeout(() => {
@@ -5235,7 +5315,7 @@ function atualizarResumoExecutivoPorEscopo(label) {
   if (kpiIndicadores && typeof indicadoresData !== 'undefined') kpiIndicadores.textContent = indicadoresData.length;
   if (healthCarga) healthCarga.textContent = globalScope.competencia;
   if (healthAlertas) healthAlertas.textContent = globalScopeLevel() === 'Município' ? '1 crítico' : 'alertas analíticos';
-  if (cargaSub) cargaSub.textContent = globalScopeLevel() === 'Município' ? 'Carga com leitura municipal consolidada' : 'Indicadores consolidados para análise';
+  if (cargaSub) cargaSub.textContent = globalScopeLevel() === 'Município' ? 'Carga com leitura municipal demonstrativa' : 'Carga completa com ressalvas pontuais';
 
   const insights = document.getElementById('executiveInsights');
   if (insights) {
@@ -5266,7 +5346,7 @@ function registrarAuditoriaEscopo(label) {
   if (!tbody || tbody.dataset.globalScopeLog === label) return;
   tbody.dataset.globalScopeLog = label;
   const tr = document.createElement('tr');
-  tr.innerHTML = `<td>${new Date().toLocaleString('pt-BR')}</td><td>Sistema (automático)</td><td>Escopo territorial</td><td>Aplicado: ${label}</td><td>Sincronização de filtros globais</td><td>Sistema</td>`;
+  tr.innerHTML = `<td>${new Date().toLocaleString('pt-BR')}</td><td>Sistema (automático)</td><td>Escopo territorial</td><td>Aplicado: ${label}</td><td>Sincronização de filtros globais</td><td>Protótipo</td>`;
   tbody.prepend(tr);
 }
 
@@ -5277,7 +5357,7 @@ function globalAplicarEscopo() {
   if (top) top.textContent = label;
 
   const dash = document.getElementById('dashboardScopeNote');
-  if (dash) dash.innerHTML = `Escopo aplicado ao painel: <strong>${label}</strong>. Os valores dos cards seguem o escopo aplicado, mas a navegação e as leituras analíticas passam a responder ao território selecionado.`;
+  if (dash) dash.innerHTML = `Escopo aplicado ao painel: <strong>${label}</strong>. Os valores dos cards seguem demonstrativos, mas a navegação e as leituras analíticas passam a responder ao território selecionado.`;
 
   const ind = document.getElementById('indicadoresScopeNote');
   if (ind) ind.innerHTML = `Escopo territorial aplicado aos indicadores: <strong>${label}</strong>. Em produção, os valores seriam recalculados conforme região, UF, município e competência.`;
@@ -5428,15 +5508,15 @@ function renderIAAvancada() {
   const posRelativa = valoresPares.filter(v => ind.polaridade === 'maior' ? v > ultimo : v < ultimo).length + 1;
 
   const textos = {
-    'Situação e tendência': `Em <b>${territorio}</b>, o indicador <b>${ind.nome}</b> registra <b>${iaFmt(ind, ultimo)}</b> em 2026. A variação referencial frente a 2025 é de <b>${String(delta).replace('.', ',')} ${ind.unidade}</b>, com tendência <b>${tendencia}</b> e status <b>${status[0]}</b>.`,
-    'Desigualdades e estratos': `A leitura analítica identifica maior concentração no estrato <b>${maiorEstrato}</b>. Recomenda-se aprofundar a análise por raça/cor, renda per capita, ruralidade, gênero e faixa etária antes de qualquer conclusão institucional.`,
+    'Situação e tendência': `Em <b>${territorio}</b>, o indicador <b>${ind.nome}</b> registra <b>${iaFmt(ind, ultimo)}</b> em 2026. A variação fictícia frente a 2025 é de <b>${String(delta).replace('.', ',')} ${ind.unidade}</b>, com tendência <b>${tendencia}</b> e status <b>${status[0]}</b>.`,
+    'Desigualdades e estratos': `A leitura simulada identifica maior concentração no estrato <b>${maiorEstrato}</b>. Recomenda-se aprofundar a análise por raça/cor, renda per capita, ruralidade, gênero e faixa etária antes de qualquer conclusão institucional.`,
     'Comparação territorial': `Na comparação com pares territoriais, <b>${territorio}</b> ocupa a posição relativa <b>${posRelativa}</b> entre os territórios apresentados. A leitura deve considerar a polaridade do indicador: <b>${ind.polaridade === 'maior' ? 'quanto maior, melhor' : 'quanto menor, melhor'}</b>.`,
     'Recomendações para gestão': `Recomenda-se verificar a completude da base, comparar unidades extremas, estratificar vulnerabilidades e pactuar respostas com a área técnica responsável, especialmente quando houver distância relevante em relação à meta.`
   };
 
   const iaText = document.getElementById('iaText');
   if (iaText) {
-    iaText.innerHTML = `<b>Análise do apoio analítico:</b> ${textos[tipo]}<br><br><b>Leitura institucional sugerida:</b> esta informação deve ser tratada como minuta preliminar, sujeita à validação técnica da COMAV e do departamento responsável.`;
+    iaText.innerHTML = `<b>Análise simulada do apoio analítico:</b> ${textos[tipo]}<br><br><b>Leitura institucional sugerida:</b> esta informação deve ser tratada como minuta preliminar, sujeita à validação técnica da COMAV e do departamento responsável.`;
   }
 
   const iaSynth = document.getElementById('iaSynth');
@@ -5445,7 +5525,7 @@ function renderIAAvancada() {
       ['Situação atual', `${iaFmt(ind, ultimo)} · ${status[0]}`, 'Monitorar na próxima competência'],
       ['Tendência', `Trajetória ${tendencia}`, 'Comparar com série histórica e meta'],
       ['Equidade', `Maior diferença: ${maiorEstrato}`, 'Priorizar estratificação por vulnerabilidades'],
-      ['Gestão', `Meta de referência: ${iaFmt(ind, ind.metaNum)}`, 'Pactuar encaminhamento com área responsável']
+      ['Gestão', `Meta demonstrativa: ${iaFmt(ind, ind.metaNum)}`, 'Pactuar encaminhamento com área responsável']
     ].map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
   }
 
@@ -5459,8 +5539,8 @@ function copiarAnaliseIAAvancada() {
 
 function baixarAnaliseIAAvancada() {
   const a = document.createElement('a');
-  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._analiseIAAvancada || 'Análise IA');
-  a.download = 'analise_ia_saps.txt';
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(window._analiseIAAvancada || 'Análise IA simulada');
+  a.download = 'analise_ia_saps_simulada.txt';
   a.click();
 }
 
@@ -5537,10 +5617,10 @@ function renderInterseccionalidade() {
   if (highCount) highCount.textContent = fator >= 1.85 ? '5' : fator >= 1.55 ? '4' : '3';
 
   const high = document.getElementById('highRiskText');
-  if (high) high.textContent = `${raca}, ${genero.toLowerCase()}, ${escolaridade.toLowerCase()}, ${ocupacao.toLowerCase()} e ${territorio.toLowerCase()} — ${interFmt(maiorRisco, cfg.unidade)} na leitura.`;
+  if (high) high.textContent = `${raca}, ${genero.toLowerCase()}, ${escolaridade.toLowerCase()}, ${ocupacao.toLowerCase()} e ${territorio.toLowerCase()} — ${interFmt(maiorRisco, cfg.unidade)} na simulação.`;
 
   const low = document.getElementById('lowRiskText');
-  if (low) low.textContent = `Estrato de referência com menor acúmulo de vulnerabilidades — ${interFmt(menorRisco, cfg.unidade)} na leitura.`;
+  if (low) low.textContent = `Estrato de referência com menor acúmulo de vulnerabilidades — ${interFmt(menorRisco, cfg.unidade)} na simulação.`;
 
   const serieMedia = interLabels.map((_, i) => +(media * (0.88 + i * 0.025)).toFixed(1));
   const serieSelecionada = interLabels.map((_, i) => +(maiorRisco * (0.82 + i * 0.035)).toFixed(1));
@@ -5665,7 +5745,7 @@ const nomesGraficos = {
   extremeChart: 'interseccionalidade_evolucao_comparada_estratos',
   iaTrend: 'ia_serie_historica',
   iaCompare: 'ia_comparacao_pares',
-  iaStrata: 'ia_desagregacao_estratos'
+  iaStrata: 'ia_desagregacao_ficticia'
 };
 
 function nomeArquivoSeguro(nome) {
@@ -6348,6 +6428,8 @@ function alterarPerfilSistema(perfil) {
   }
 
   aplicarPermissoesPerfil();
+  criarOuAtualizarCabecalhoModulo();
+  atualizarAvisoPerfil();
 
   const paginaAtual = getPaginaAtivaId ? getPaginaAtivaId() : 'dashboard';
   if (!perfilPodeAcessar(paginaAtual)) {
@@ -6386,19 +6468,21 @@ function aplicarPermissoesPerfil() {
   atualizarAvisoPerfil();
 }
 
+
+function getAvisoPerfilHTML() {
+  if (typeof perfilSistemaAtual !== 'undefined' && perfilSistemaAtual === 'usuario') {
+    return `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV/Gabinete SAPS.</div>`;
+  }
+  return `<span class="title-icon">${svgIcon('shield')}</span><div><strong>Perfil COMAV:</strong> visão completa de gestão estratégica, governança, qualidade, auditoria, relatórios e acompanhamento dos pedidos de alteração de dados.</div>`;
+}
+
 function atualizarAvisoPerfil() {
+  // O aviso de perfil fica dentro do cabeçalho de escopo do módulo.
   document.querySelectorAll('.profile-notice-global').forEach(el => el.remove());
-  const page = document.querySelector('.page.active');
-  if (!page) return;
-
-  const notice = document.createElement('div');
-  notice.className = 'profile-notice profile-notice-global';
-  notice.innerHTML = perfilSistemaAtual === 'usuario'
-    ? `<span class="title-icon">${svgIcon('info')}</span><div><strong>Perfil Usuário SAPS:</strong> acesso de visualização analítica. Módulos de gestão interna, Qualidade dos Dados, Auditoria e Governança ficam restritos à COMAV.</div>`
-    : `<span class="title-icon">${svgIcon('shield')}</span><div><strong>Perfil COMAV:</strong> visão completa de gestão estratégica, governança, qualidade, auditoria, relatórios e acompanhamento das solicitações.</div>`;
-
-  const header = page.querySelector('.module-sticky-header') || page.querySelector('.page-header');
-  if (header && header.nextSibling) header.insertAdjacentElement('afterend', notice);
+  const box = document.querySelector('.page.active .module-sticky-profile');
+  if (box && typeof getAvisoPerfilHTML === 'function') {
+    box.innerHTML = getAvisoPerfilHTML();
+  }
 }
 
 function popularSolicitacaoUsuario() {
@@ -6548,6 +6632,8 @@ function criarOuAtualizarCabecalhoModulo(){
     page.insertBefore(header, page.firstElementChild?.nextSibling || page.firstChild);
   }
 
+  const avisoPerfil = typeof getAvisoPerfilHTML === 'function' ? getAvisoPerfilHTML() : '';
+
   header.innerHTML = `
     <div class="module-sticky-main">
       <div class="module-sticky-title"><span class="title-icon">${svgIcon(icon)}</span><span>${titulo}</span></div>
@@ -6557,7 +6643,9 @@ function criarOuAtualizarCabecalhoModulo(){
       </div>
     </div>
     <div class="active-filter-row" id="activeFilterChips"></div>
+    <div class="module-sticky-profile">${avisoPerfil}</div>
   `;
+
   atualizarChipsFiltrosAtivos();
   aplicarTextoBotoes();
 }
@@ -6613,6 +6701,7 @@ function safeCall(fnName) {
 function bootVisualCompleto() {
   safeCall('aplicarIdentidadeVisualModerna');
   safeCall('criarOuAtualizarCabecalhoModulo');
+  safeCall('atualizarAvisoPerfil');
   safeCall('atualizarChipsFiltrosAtivos');
   safeCall('inserirBotoesDownloadGraficos');
   safeCall('renomearBotoesDownload');
