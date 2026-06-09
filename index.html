@@ -2729,6 +2729,84 @@ body.compact-ui .module-profile-strip::after {
   }
 }
 
+
+/* ── MENU HAMBÚRGUER EM TELAS PEQUENAS ── */
+.mobile-menu-btn {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line-soft, #dbe7f3);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--brand-900, #0f2743);
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(20,42,74,.08);
+}
+.mobile-menu-btn:hover {
+  background: var(--brand-100, #edf5ff);
+}
+@media (max-width: 1080px) {
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 160;
+  }
+  .app-body {
+    flex-direction: column;
+  }
+  .sidebar {
+    display: none !important;
+    width: 100%;
+    max-height: calc(100vh - 62px);
+    overflow-y: auto;
+    flex-direction: column !important;
+    padding: 12px;
+    border-right: none;
+    border-bottom: 1px solid rgba(219,231,243,.9);
+    position: sticky;
+    top: 56px;
+    z-index: 150;
+    box-shadow: 0 16px 32px rgba(20,42,74,.12);
+  }
+  .sidebar.mobile-open {
+    display: flex !important;
+  }
+  .sidebar-section {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 6px;
+    padding: 0;
+    margin: 0 0 10px 0 !important;
+    flex: 0 0 auto;
+  }
+  .sidebar-label {
+    display: block !important;
+    padding: 4px 8px;
+    margin-bottom: 2px;
+  }
+  .sidebar-divider,
+  .sidebar-footer {
+    display: none !important;
+  }
+  .nav-item {
+    width: 100% !important;
+    white-space: normal !important;
+    justify-content: flex-start;
+    margin-bottom: 0;
+  }
+  .nav-item.active::before {
+    display: none;
+  }
+}
+
 </style>
 </head>
 <body class="perfil-comav">
@@ -2736,6 +2814,7 @@ body.compact-ui .module-profile-strip::after {
 <!-- TOPBAR -->
 <header class="topbar">
   <div class="topbar-left">
+    <button class="mobile-menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" onclick="toggleMobileMenu()">☰</button>
     <div class="topbar-logo">MonitoraSAPS</div>
     <div class="topbar-sep"></div>
     <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da SAPS</div>
@@ -3102,7 +3181,7 @@ body.compact-ui .module-profile-strip::after {
     <div id="page-indicadores" class="page">
       <div class="page-header">
         <div class="page-title">Indicadores Estratégicos</div>
-        <div class="page-desc">Consulta técnica por departamento da SAPS, tema, natureza do indicador, forma de atualização, fonte e status de validação.</div>
+        <div class="page-desc">Consulta técnica por departamento da SAPS, tema, forma de atualização, fonte e status de validação.</div>
       </div>
 
       <div class="two-col">
@@ -3137,12 +3216,6 @@ body.compact-ui .module-profile-strip::after {
             <option value="Produção e acompanhamento">Produção e acompanhamento</option>
             <option value="Qualidade do cuidado">Qualidade do cuidado</option>
           </select>
-          <select class="filter-select" id="filtroNatureza" onchange="aplicarFiltrosIndicadores()">
-            <option value="todos">Todas as naturezas</option>
-            <option value="Estrutura">Estrutura</option>
-            <option value="Processo">Processo</option>
-            <option value="Resultado">Resultado</option>
-          </select>
           <select class="filter-select" id="filtroAtualizacao" onchange="aplicarFiltrosIndicadores()">
             <option value="todos">Todas as atualizações</option>
             <option value="DW">Automática via DW</option>
@@ -3167,7 +3240,7 @@ body.compact-ui .module-profile-strip::after {
         <div class="validation-note" id="resumoFiltrosIndicadores">Exibindo todos os indicadores estratégicos cadastrados no protótipo.</div>
         <div class="validation-note" id="indicadoresScopeNote">Escopo territorial aplicado: Brasil completo.</div>
         <div class="meta-grid" style="margin-bottom:16px;">
-          <div class="meta-card"><strong>Camada de governança</strong><span>Departamento, tema, natureza, prioridade, atualização e validação passam a orientar a leitura dos indicadores.</span></div>
+          <div class="meta-card"><strong>Camada de governança</strong><span>Departamento, tema, prioridade, atualização e validação passam a orientar a leitura dos indicadores.</span></div>
           <div class="meta-card"><strong>Uso técnico</strong><span>Filtros apoiam a definição de pauta por área responsável e reduzem ruído na análise de indicadores.</span></div>
           <div class="meta-card"><strong>Produção futura</strong><span>Em produção, cada indicador deve ter dicionário, fórmula, fonte, periodicidade, polaridade e regra de qualidade.</span></div>
         </div>
@@ -3179,7 +3252,6 @@ body.compact-ui .module-profile-strip::after {
               <th>Indicador</th>
               <th>Área técnica</th>
               <th>Tema</th>
-              <th>Natureza</th>
               <th>Valor</th>
               <th>Meta</th>
               <th>Status</th>
@@ -3269,7 +3341,7 @@ body.compact-ui .module-profile-strip::after {
     <div id="page-interseccionalidade" class="page">
       <div class="page-header">
         <div class="page-title">Monitoramento Interseccional das Desigualdades</div>
-        <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador e território, com comparação entre média geral, maior risco e menor risco.</div>
+        <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador, com comparação entre média geral, maior risco e menor risco.</div>
       </div>
 
       <div class="prototype-banner">Módulo demonstrativo. Os valores são fictícios e simulam a lógica de análise interseccional proposta para o MonitoraSAPS.</div>
@@ -3284,15 +3356,6 @@ body.compact-ui .module-profile-strip::after {
             <option value="COB_AB">Cobertura de Atenção Básica</option>
             <option value="RACA_COR">Completude do quesito raça/cor</option>
           </select>
-          <select class="filter-select" id="interTerritorio" onchange="renderInterseccionalidade()">
-            <option>Brasil</option>
-            <option>Região Norte</option>
-            <option>Região Nordeste</option>
-            <option>UF: RJ</option>
-            <option>UF: MA</option>
-            <option>Município: Nova Iguaçu</option>
-            <option>Município: São Gonçalo</option>
-          </select>
           <select class="filter-select" id="interPeriodo" onchange="renderInterseccionalidade()">
             <option value="2021-2026">Série 2021–2026</option>
             <option value="2023-2026">Série 2023–2026</option>
@@ -3302,7 +3365,7 @@ body.compact-ui .module-profile-strip::after {
         </div>
 
         <div class="inter-note">
-          A análise interseccional permite observar desigualdades que podem ficar ocultas nas médias populacionais, combinando marcadores como raça/cor, gênero, escolaridade, ocupação e território. A proposta é apoiar a identificação de grupos prioritários para análise técnica e tomada de decisão.
+          A análise interseccional permite observar desigualdades que podem ficar ocultas nas médias populacionais, combinando marcadores como raça/cor, sexo, povo ou comunidade tradicional, faixa etária, escolaridade, pessoa com deficiência, orientação sexual, identidade de gênero, situação no mercado de trabalho e pessoa em situação de rua. A proposta é apoiar a identificação de grupos prioritários para análise técnica e tomada de decisão.
         </div>
 
         <div class="stats-grid">
@@ -3318,8 +3381,8 @@ body.compact-ui .module-profile-strip::after {
           </div>
           <div class="stat-card verde">
             <div class="stat-label">Variáveis disponíveis</div>
-            <div class="inter-score">5</div>
-            <div class="stat-change neutral">raça/cor, gênero, escolaridade, ocupação e território</div>
+            <div class="inter-score">10</div>
+            <div class="stat-change neutral">recortes sociodemográficos e de vulnerabilidade</div>
           </div>
           <div class="stat-card amarelo">
             <div class="stat-label">Status metodológico</div>
@@ -3335,47 +3398,106 @@ body.compact-ui .module-profile-strip::after {
           <div class="inter-axis-row">
             <label>Raça/cor</label>
             <select id="interRaca" onchange="renderInterseccionalidade()">
-              <option>Mulheres pretas</option>
-              <option>Mulheres pardas</option>
-              <option>Mulheres brancas</option>
-              <option>População indígena</option>
+              <option>Preta</option>
+              <option>Parda</option>
+              <option>Branca</option>
+              <option>Amarela</option>
+              <option>Indígena</option>
+              <option>Ignorada</option>
+              <option>Não informada</option>
               <option>Todos os registros válidos</option>
             </select>
           </div>
           <div class="inter-axis-row">
-            <label>Gênero</label>
-            <select id="interGenero" onchange="renderInterseccionalidade()">
-              <option>Mulheres</option>
-              <option>Homens</option>
+            <label>Sexo</label>
+            <select id="interSexo" onchange="renderInterseccionalidade()">
+              <option>Feminino</option>
+              <option>Masculino</option>
               <option>Ignorado</option>
               <option>Todos</option>
             </select>
           </div>
           <div class="inter-axis-row">
+            <label>POVO OU COMUNIDADE TRADICIONAL</label>
+            <select id="interComunidade" onchange="renderInterseccionalidade()">
+              <option>Não informado</option>
+              <option>Quilombola</option>
+              <option>Indígena</option>
+              <option>Ribeirinha</option>
+              <option>Cigana</option>
+              <option>Pescadora artesanal</option>
+              <option>Povo de terreiro</option>
+              <option>Outra comunidade tradicional</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Faixa etária</label>
+            <select id="interFaixaEtaria" onchange="renderInterseccionalidade()">
+              <option>0 a 9 anos</option>
+              <option>10 a 19 anos</option>
+              <option>20 a 39 anos</option>
+              <option>40 a 59 anos</option>
+              <option>60 anos ou mais</option>
+              <option>Não informada</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
             <label>Escolaridade</label>
             <select id="interEscolaridade" onchange="renderInterseccionalidade()">
+              <option>Sem instrução</option>
               <option>Fundamental incompleto</option>
+              <option>Fundamental completo</option>
               <option>Ensino médio</option>
               <option>Ensino superior</option>
               <option>Ignorada</option>
             </select>
           </div>
           <div class="inter-axis-row">
-            <label>Ocupação</label>
-            <select id="interOcupacao" onchange="renderInterseccionalidade()">
-              <option>Trabalho informal</option>
-              <option>Trabalho formal</option>
-              <option>Desempregada/o</option>
-              <option>Não informado</option>
+            <label>Pessoa com deficiência</label>
+            <select id="interDeficiencia" onchange="renderInterseccionalidade()">
+              <option>Não</option>
+              <option>Sim</option>
+              <option>Não informada</option>
             </select>
           </div>
           <div class="inter-axis-row">
-            <label>Território</label>
-            <select id="interTerrTipo" onchange="renderInterseccionalidade()">
-              <option>Periferia urbana</option>
-              <option>Área rural</option>
-              <option>Capital</option>
-              <option>Interior</option>
+            <label>Orientação Sexual</label>
+            <select id="interOrientacao" onchange="renderInterseccionalidade()">
+              <option>Heterossexual</option>
+              <option>Lésbica</option>
+              <option>Gay</option>
+              <option>Bissexual</option>
+              <option>Outra</option>
+              <option>Não informada</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Identidade de gênero</label>
+            <select id="interIdentidadeGenero" onchange="renderInterseccionalidade()">
+              <option>Cisgênero</option>
+              <option>Mulher trans</option>
+              <option>Homem trans</option>
+              <option>Travesti</option>
+              <option>Não binária</option>
+              <option>Não informada</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>SITUAÇÃO NO MERCADO DE TRABALHO</label>
+            <select id="interMercadoTrabalho" onchange="renderInterseccionalidade()">
+              <option>Trabalho formal</option>
+              <option>Trabalho informal</option>
+              <option>Desocupada/o</option>
+              <option>Fora da força de trabalho</option>
+              <option>Não informada</option>
+            </select>
+          </div>
+          <div class="inter-axis-row">
+            <label>Pessoa em situação de rua</label>
+            <select id="interSituacaoRua" onchange="renderInterseccionalidade()">
+              <option>Não</option>
+              <option>Sim</option>
+              <option>Não informada</option>
             </select>
           </div>
 
@@ -3571,15 +3693,12 @@ body.compact-ui .module-profile-strip::after {
     <div id="page-relatorio" class="page">
       <div class="page-header">
         <div class="page-title">Relatório Executivo do Escopo Selecionado</div>
-        <div class="page-desc">Gera uma minuta estratégica para subsidiar o Gabinete da Secretária, o Gabinete do Ministro, a Presidência e demandas de comunicação institucional.</div>
+        <div class="page-desc">Gera uma minuta estratégica para consolidar indicadores, apoiar decisões institucionais e organizar demandas de comunicação.</div>
       </div>
 
-      <div class="prototype-banner">A COMAV está vinculada diretamente ao Gabinete da Secretária da SAPS. Este módulo simula a consolidação de informações estratégicas para gabinetes e demandas de imprensa.</div>
+      <div class="prototype-banner">Este módulo simula a consolidação de informações estratégicas para apoiar decisões institucionais e demandas de comunicação.</div>
 
       <div class="module-grid">
-        <div class="module-card"><strong>Gabinete da Secretária</strong><span>Síntese técnica para tomada de decisão e priorização de agendas internas.</span></div>
-        <div class="module-card"><strong>Gabinete do Ministro</strong><span>Informações estratégicas com linguagem objetiva, territorializada e validável.</span></div>
-        <div class="module-card"><strong>Presidência</strong><span>Resumo executivo com foco em cenário, tendência, riscos e entregas.</span></div>
         <div class="module-card"><strong>Imprensa</strong><span>Pontos-chave com linguagem segura e sem exposição de dados não validados.</span></div>
       </div>
 
@@ -3588,20 +3707,12 @@ body.compact-ui .module-profile-strip::after {
         <div class="filter-group-panel">
           <div class="filter-group-header">
             <div>
-              <div class="filter-group-title"><span class="title-icon"></span> Destino e linguagem do relatório</div>
-              <div class="filter-group-subtitle">Define o público, o tom e a finalidade da minuta.</div>
+              <div class="filter-group-title"><span class="title-icon"></span> Linguagem do relatório</div>
+              <div class="filter-group-subtitle">Define o tom e a finalidade da minuta.</div>
             </div>
           </div>
           <div class="filter-group-grid">
-            <div class="filter-field">
-              <label>Produto</label>
-              <select class="filter-select" id="relatorioTipo" onchange="gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
-                <option value="gabinete">Síntese para gabinete</option>
-                <option value="ministro">Subsídio para Gabinete do Ministro</option>
-                <option value="presidencia">Subsídio para Presidência</option>
-                <option value="imprensa">Pontos para imprensa</option>
-              </select>
-            </div>
+
             <div class="filter-field">
               <label>Tom</label>
               <select class="filter-select" id="relatorioTom" onchange="gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
@@ -3627,7 +3738,7 @@ body.compact-ui .module-profile-strip::after {
           <div class="filter-group-header">
             <div>
               <div class="filter-group-title"><span class="title-icon"></span> Recorte institucional</div>
-              <div class="filter-group-subtitle">Hierarquiza a seleção por área, tema, natureza e prioridade.</div>
+              <div class="filter-group-subtitle">Hierarquiza a seleção por área, tema e prioridade.</div>
             </div>
           </div>
           <div class="filter-group-grid">
@@ -3654,15 +3765,7 @@ body.compact-ui .module-profile-strip::after {
                 <option value="Qualidade do cuidado">Qualidade do cuidado</option>
               </select>
             </div>
-            <div class="filter-field">
-              <label>Natureza</label>
-              <select class="filter-select" id="relatorioFiltroNatureza" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
-                <option value="todos">Todas as naturezas</option>
-                <option value="Estrutura">Estrutura</option>
-                <option value="Processo">Processo</option>
-                <option value="Resultado">Resultado</option>
-              </select>
-            </div>
+
             <div class="filter-field">
               <label>Prioridade</label>
               <select class="filter-select" id="relatorioFiltroPrioridade" onchange="popularIndicadoresRelatorio(); gerarRelatorioExecutivo(); atualizarChipsFiltrosAtivos();">
@@ -3783,18 +3886,12 @@ body.compact-ui .module-profile-strip::after {
         <div class="page-desc">Camada metodológica do sistema: fórmula, fonte, periodicidade, polaridade, departamento responsável e validação pela COMAV/SAPS.</div>
       </div>
 
-      <div class="validation-note">A COMAV não é departamento: atua vinculada ao Gabinete da Secretária da SAPS, monitorando os indicadores estratégicos e consolidando informações para demandas dos gabinetes e da comunicação institucional.</div>
+      <div class="validation-note">A COMAV não é departamento: atua no monitoramento dos indicadores estratégicos e na consolidação de informações para demandas institucionais e de comunicação.</div>
 
       <div class="card">
         <div class="card-title"><span>📚</span> Metadados dos indicadores</div>
         <div class="ind-filters strategic-filters">
           <div class="dictionary-search"><input id="buscaDicionario" placeholder="Buscar por código, indicador, tema, fonte ou departamento..." oninput="popularDicionarioIndicadores()"></div>
-          <select class="filter-select" id="dicNatureza" onchange="popularDicionarioIndicadores()">
-            <option value="todos">Todas as naturezas</option>
-            <option value="Estrutura">Estrutura</option>
-            <option value="Processo">Processo</option>
-            <option value="Resultado">Resultado</option>
-          </select>
           <select class="filter-select" id="dicDepartamento" onchange="popularDicionarioIndicadores()">
             <option value="todos">Todos os departamentos/áreas</option>
             <option value="DESF">DESF</option>
@@ -3810,7 +3907,6 @@ body.compact-ui .module-profile-strip::after {
               <th>Código</th>
               <th>Indicador</th>
               <th>Área técnica</th>
-              <th>Natureza</th>
               <th>Fonte</th>
               <th>Periodicidade</th>
               <th>Polaridade</th>
@@ -4181,7 +4277,6 @@ function getFiltrosIndicadores() {
   return {
     departamento: document.getElementById('filtroDepartamento')?.value || 'todos',
     tema: document.getElementById('filtroTema')?.value || 'todos',
-    natureza: document.getElementById('filtroNatureza')?.value || 'todos',
     atualizacao: document.getElementById('filtroAtualizacao')?.value || 'todos',
     validacao: document.getElementById('filtroValidacao')?.value || 'todos',
     prioridade: document.getElementById('filtroPrioridade')?.value || 'todos'
@@ -4193,11 +4288,10 @@ function filtrarIndicadores() {
   return indicadoresData.filter(ind => {
     const okDepartamento = f.departamento === 'todos' || ind.departamento === f.departamento;
     const okTema = f.tema === 'todos' || ind.tema === f.tema;
-    const okNatureza = f.natureza === 'todos' || ind.natureza === f.natureza;
     const okAtualizacao = f.atualizacao === 'todos' || ind.atualizacao === f.atualizacao;
     const okValidacao = f.validacao === 'todos' || (ind.validacao || 'Preliminar') === f.validacao;
     const okPrioridade = f.prioridade === 'todos' || ind.prioridade === f.prioridade;
-    return okDepartamento && okTema && okNatureza && okAtualizacao && okValidacao && okPrioridade;
+    return okDepartamento && okTema && okAtualizacao && okValidacao && okPrioridade;
   });
 }
 
@@ -4212,7 +4306,7 @@ function popularTabelaIndicadores(lista = filtrarIndicadores()) {
   if (!tbody) return;
 
   if (!lista.length) {
-    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center;color:var(--cinza-med);padding:24px;">Nenhum indicador encontrado para os filtros selecionados.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;color:var(--cinza-med);padding:24px;">Nenhum indicador encontrado para os filtros selecionados.</td></tr>`;
     atualizarResumoFiltrosIndicadores(lista);
     return;
   }
@@ -4223,7 +4317,6 @@ function popularTabelaIndicadores(lista = filtrarIndicadores()) {
       <td class="ind-name">${ind.nome}<small>${ind.tipo} · ${ind.atualizacao === 'DW' ? 'Automática via DW' : ind.atualizacao === 'COMAV' ? 'Atualização COMAV' : 'Atualização mista'}</small></td>
       <td><span class="tag tag-azul">${ind.departamento}</span></td>
       <td style="font-size:12px;color:var(--cinza);">${ind.tema}</td>
-      <td><span class="tag ${tagNatureza(ind.natureza)}">${ind.natureza}</span></td>
       <td><strong>${ind.valor}</strong><small style="display:block;color:var(--cinza-med);font-size:11px;">Δ ${ind.delta}</small></td>
       <td>${ind.meta}</td>
       <td><span class="tag ${ind.status === 'ok' ? 'tag-verde' : ind.status === 'atencao' ? 'tag-amarelo' : 'tag-vermelho'}">${ind.status === 'ok' ? '✓ OK' : ind.status === 'atencao' ? '⚡ Atenção' : '✗ Crítico'}</span></td>
@@ -4253,7 +4346,7 @@ function aplicarFiltrosIndicadores() {
 }
 
 function limparFiltrosIndicadores() {
-  ['filtroDepartamento','filtroTema','filtroNatureza','filtroAtualizacao','filtroValidacao','filtroPrioridade'].forEach(id => {
+  ['filtroDepartamento','filtroTema','filtroAtualizacao','filtroValidacao','filtroPrioridade'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = 'todos';
   });
@@ -4261,6 +4354,26 @@ function limparFiltrosIndicadores() {
 }
 
 // ── NAVEGAÇÃO ──
+
+function toggleMobileMenu(forceState) {
+  const sidebar = document.querySelector('.sidebar');
+  const btn = document.querySelector('.mobile-menu-btn');
+  if (!sidebar) return;
+  const abrir = typeof forceState === 'boolean' ? forceState : !sidebar.classList.contains('mobile-open');
+  sidebar.classList.toggle('mobile-open', abrir);
+  if (btn) {
+    btn.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+    btn.textContent = abrir ? '×' : '☰';
+    btn.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+  }
+}
+
+function fecharMobileMenuAposNavegar() {
+  if (window.matchMedia('(max-width: 1080px)').matches) {
+    toggleMobileMenu(false);
+  }
+}
+
 function goTo(page, btn) {
   if (typeof perfilPodeAcessar === 'function' && !perfilPodeAcessar(page)) {
     mostrarToastDownload('Funcionalidade restrita à COMAV.');
@@ -4276,6 +4389,7 @@ function goTo(page, btn) {
   if (btn) btn.classList.add('active');
 
   if (typeof popularSolicitacaoUsuario === 'function') popularSolicitacaoUsuario();
+  fecharMobileMenuAposNavegar();
 
   setTimeout(bootVisualCompleto, 60);
   setTimeout(bootVisualCompleto, 220);
@@ -4430,7 +4544,6 @@ function abrirFicha(cod) {
         ['Código', ind.cod],
         ['Área técnica / instância', ind.departamento],
         ['Tema', ind.tema],
-        ['Natureza', ind.natureza],
         ['Prioridade', ind.prioridade],
         ['Forma de atualização', ind.atualizacao === 'DW' ? 'Automática via DW' : ind.atualizacao === 'COMAV' ? 'Atualização COMAV' : 'Mista'],
         ['Tipo', ind.tipo],
@@ -5020,8 +5133,8 @@ function exportarMapaResumo() {
 // ── EXPORTAR CSV ──
 function exportarCSV() {
   const dados = typeof filtrarIndicadores === 'function' ? filtrarIndicadores() : indicadoresData;
-  const rows = [['Código','Indicador','Departamento','Tema','Natureza','Prioridade','Atualização','Valor','Meta','Variação Mensal','Status','Fonte','Validação']];
-  dados.forEach(i => rows.push([i.cod, i.nome, i.departamento, i.tema, i.natureza, i.prioridade, i.atualizacao, i.valor, i.meta, i.delta, i.status, i.fonte, i.validacao]));
+  const rows = [['Código','Indicador','Departamento','Tema','Prioridade','Atualização','Valor','Meta','Variação Mensal','Status','Fonte','Validação']];
+  dados.forEach(i => rows.push([i.cod, i.nome, i.departamento, i.tema, i.prioridade, i.atualizacao, i.valor, i.meta, i.delta, i.status, i.fonte, i.validacao]));
   const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(';')).join('\n');
   const a = document.createElement('a');
   a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
@@ -5567,16 +5680,28 @@ function interFmt(value, unidade) {
 
 function interRiskFactor() {
   const raca = interGetValue('interRaca');
+  const sexo = interGetValue('interSexo');
+  const comunidade = interGetValue('interComunidade');
+  const faixaEtaria = interGetValue('interFaixaEtaria');
   const escolaridade = interGetValue('interEscolaridade');
-  const ocupacao = interGetValue('interOcupacao');
-  const territorio = interGetValue('interTerrTipo');
+  const deficiencia = interGetValue('interDeficiencia');
+  const orientacao = interGetValue('interOrientacao');
+  const identidadeGenero = interGetValue('interIdentidadeGenero');
+  const mercadoTrabalho = interGetValue('interMercadoTrabalho');
+  const situacaoRua = interGetValue('interSituacaoRua');
 
   let fator = 1;
-  if (raca.includes('pretas') || raca.includes('indígena')) fator += 0.38;
-  if (raca.includes('pardas')) fator += 0.22;
-  if (escolaridade.includes('Fundamental')) fator += 0.28;
-  if (ocupacao.includes('informal') || ocupacao.includes('Desempregada')) fator += 0.22;
-  if (territorio.includes('Periferia') || territorio.includes('rural')) fator += 0.20;
+  if (raca.includes('Preta') || raca.includes('Indígena')) fator += 0.38;
+  if (raca.includes('Parda')) fator += 0.22;
+  if (sexo.includes('Feminino')) fator += 0.10;
+  if (!comunidade.includes('Não informado')) fator += 0.24;
+  if (faixaEtaria.includes('60') || faixaEtaria.includes('10 a 19')) fator += 0.12;
+  if (escolaridade.includes('Sem instrução') || escolaridade.includes('Fundamental incompleto')) fator += 0.28;
+  if (deficiencia.includes('Sim')) fator += 0.20;
+  if (!orientacao.includes('Heterossexual') && !orientacao.includes('Não informada')) fator += 0.12;
+  if (!identidadeGenero.includes('Cisgênero') && !identidadeGenero.includes('Não informada')) fator += 0.18;
+  if (mercadoTrabalho.includes('informal') || mercadoTrabalho.includes('Desocupada')) fator += 0.22;
+  if (situacaoRua.includes('Sim')) fator += 0.30;
   return fator;
 }
 
@@ -5591,19 +5716,29 @@ function renderInterseccionalidade() {
   const media = cfg.base;
 
   const raca = interGetValue('interRaca');
-  const genero = interGetValue('interGenero');
+  const sexo = interGetValue('interSexo');
+  const comunidade = interGetValue('interComunidade');
+  const faixaEtaria = interGetValue('interFaixaEtaria');
   const escolaridade = interGetValue('interEscolaridade');
-  const ocupacao = interGetValue('interOcupacao');
-  const territorio = interGetValue('interTerrTipo');
+  const deficiencia = interGetValue('interDeficiencia');
+  const orientacao = interGetValue('interOrientacao');
+  const identidadeGenero = interGetValue('interIdentidadeGenero');
+  const mercadoTrabalho = interGetValue('interMercadoTrabalho');
+  const situacaoRua = interGetValue('interSituacaoRua');
 
   const pills = document.getElementById('interPills');
   if (pills) {
     pills.innerHTML = [
       `Raça/cor: ${raca}`,
-      `Gênero: ${genero}`,
+      `Sexo: ${sexo}`,
+      `POVO OU COMUNIDADE TRADICIONAL: ${comunidade}`,
+      `Faixa etária: ${faixaEtaria}`,
       `Escolaridade: ${escolaridade}`,
-      `Ocupação: ${ocupacao}`,
-      `Território: ${territorio}`
+      `Pessoa com deficiência: ${deficiencia}`,
+      `Orientação Sexual: ${orientacao}`,
+      `Identidade de gênero: ${identidadeGenero}`,
+      `SITUAÇÃO NO MERCADO DE TRABALHO: ${mercadoTrabalho}`,
+      `Pessoa em situação de rua: ${situacaoRua}`
     ].map(t => `<span class="inter-pill">${t}</span>`).join('');
   }
 
@@ -5617,7 +5752,7 @@ function renderInterseccionalidade() {
   if (highCount) highCount.textContent = fator >= 1.85 ? '5' : fator >= 1.55 ? '4' : '3';
 
   const high = document.getElementById('highRiskText');
-  if (high) high.textContent = `${raca}, ${genero.toLowerCase()}, ${escolaridade.toLowerCase()}, ${ocupacao.toLowerCase()} e ${territorio.toLowerCase()} — ${interFmt(maiorRisco, cfg.unidade)} na simulação.`;
+  if (high) high.textContent = `${raca}, sexo ${sexo.toLowerCase()}, ${comunidade.toLowerCase()}, ${faixaEtaria.toLowerCase()}, ${escolaridade.toLowerCase()}, deficiência: ${deficiencia.toLowerCase()}, orientação sexual: ${orientacao.toLowerCase()}, identidade de gênero: ${identidadeGenero.toLowerCase()}, situação no mercado de trabalho: ${mercadoTrabalho.toLowerCase()}, pessoa em situação de rua: ${situacaoRua.toLowerCase()} — ${interFmt(maiorRisco, cfg.unidade)} na simulação.`;
 
   const low = document.getElementById('lowRiskText');
   if (low) low.textContent = `Estrato de referência com menor acúmulo de vulnerabilidades — ${interFmt(menorRisco, cfg.unidade)} na simulação.`;
@@ -5884,15 +6019,13 @@ function popularDicionarioIndicadores() {
   if (!tbody || typeof indicadoresData === 'undefined') return;
 
   const busca = (document.getElementById('buscaDicionario')?.value || '').toLowerCase();
-  const natureza = document.getElementById('dicNatureza')?.value || 'todos';
   const departamento = document.getElementById('dicDepartamento')?.value || 'todos';
 
   const dados = indicadoresData.filter(ind => {
     const texto = `${ind.cod} ${ind.nome} ${ind.tema} ${ind.fonte} ${ind.departamento}`.toLowerCase();
     const okBusca = !busca || texto.includes(busca);
-    const okNatureza = natureza === 'todos' || ind.natureza === natureza;
     const okDep = departamento === 'todos' || ind.departamento === departamento;
-    return okBusca && okNatureza && okDep;
+    return okBusca && okDep;
   });
 
   tbody.innerHTML = dados.map(ind => `
@@ -5900,13 +6033,12 @@ function popularDicionarioIndicadores() {
       <td><code style="font-size:11.5px;background:var(--cinza-bg);padding:2px 6px;border-radius:4px;">${ind.cod}</code></td>
       <td class="ind-name">${ind.nome}<small>${ind.tema}</small></td>
       <td><span class="tag tag-azul">${ind.departamento}</span></td>
-      <td><span class="tag ${tagNatureza ? tagNatureza(ind.natureza) : 'tag-cinza'}">${ind.natureza}</span></td>
       <td style="font-size:12px;color:var(--cinza-med)">${ind.fonte}</td>
       <td>${ind.ficha?.periodicidade || 'A definir'}</td>
       <td>${ind.ficha?.polaridade || 'A definir'}</td>
       <td><span class="tag ${ind.validacao?.includes('análise') ? 'tag-amarelo' : ind.validacao?.includes('Preliminar') ? 'tag-cinza' : 'tag-azul'}">${ind.validacao || 'Preliminar'}</span></td>
     </tr>
-  `).join('') || `<tr><td colspan="8" style="text-align:center;color:var(--cinza-med);padding:24px;">Nenhum indicador encontrado.</td></tr>`;
+  `).join('') || `<tr><td colspan="7" style="text-align:center;color:var(--cinza-med);padding:24px;">Nenhum indicador encontrado.</td></tr>`;
 }
 
 let relatorioScope = { regiao: 'todas', uf: 'todas', municipio: 'todos' };
@@ -5998,7 +6130,6 @@ function getRelatorioFiltrosInstitucionais() {
   return {
     departamento: document.getElementById('relatorioFiltroDepartamento')?.value || 'todos',
     tema: document.getElementById('relatorioFiltroTema')?.value || 'todos',
-    natureza: document.getElementById('relatorioFiltroNatureza')?.value || 'todos',
     prioridade: document.getElementById('relatorioFiltroPrioridade')?.value || 'todos',
     periodo: document.getElementById('relatorioFiltroPeriodo')?.value || 'Mai/2026'
   };
@@ -6011,9 +6142,8 @@ function getIndicadoresRelatorioFiltrados() {
   return indicadoresData.filter(ind => {
     const okDepartamento = filtros.departamento === 'todos' || ind.departamento === filtros.departamento;
     const okTema = filtros.tema === 'todos' || ind.tema === filtros.tema;
-    const okNatureza = filtros.natureza === 'todos' || ind.natureza === filtros.natureza;
     const okPrioridade = filtros.prioridade === 'todos' || ind.prioridade === filtros.prioridade;
-    return okDepartamento && okTema && okNatureza && okPrioridade;
+    return okDepartamento && okTema && okPrioridade;
   });
 }
 
@@ -6049,7 +6179,7 @@ function popularIndicadoresRelatorio() {
         <input type="checkbox" class="relatorio-ind-check" value="${ind.cod}" ${checked ? 'checked' : ''} onchange="atualizarResumoIndicadoresRelatorio(); gerarRelatorioExecutivo();">
         <div>
           <strong>${ind.nome}</strong>
-          <span>${ind.cod} · ${ind.tema} · ${ind.natureza} · ${ind.prioridade}</span>
+          <span>${ind.cod} · ${ind.tema} · ${ind.prioridade}</span>
         </div>
       </label>
     `;
@@ -6074,18 +6204,11 @@ function gerarRelatorioExecutivo() {
   const box = document.getElementById('relatorioExecutivoBox');
   if (!box) return;
 
-  const tipo = document.getElementById('relatorioTipo')?.value || 'gabinete';
   const tom = document.getElementById('relatorioTom')?.value || 'tecnico';
   const escopo = getRelatorioEscopoLabel();
   const filtrosRelatorio = getRelatorioFiltrosInstitucionais();
   const selecionados = getIndicadoresRelatorioSelecionados();
-
-  const titulo = {
-    gabinete: 'Síntese para Gabinete da Secretária',
-    ministro: 'Subsídio para Gabinete do Ministro',
-    presidencia: 'Subsídio para Presidência',
-    imprensa: 'Pontos para Imprensa'
-  }[tipo] || 'Relatório Executivo';
+  const titulo = 'Relatório Executivo';
 
   const linguagem = {
     tecnico: 'linguagem técnico-institucional',
@@ -6111,8 +6234,8 @@ function gerarRelatorioExecutivo() {
     <h3>${titulo}</h3>
     <p><strong>Escopo:</strong> ${escopo}</p>
     <p><strong>Indicadores selecionados:</strong> ${selecionados.length} indicador(es), contemplando os seguintes temas: ${temas}.</p>
-    <p><strong>Filtros aplicados:</strong> área/departamento: ${filtrosRelatorio.departamento}; natureza: ${filtrosRelatorio.natureza}; prioridade: ${filtrosRelatorio.prioridade}; período: ${filtrosRelatorio.periodo}.</p>
-    <p><strong>Finalidade:</strong> consolidar informações estratégicas monitoradas pela COMAV, vinculada ao Gabinete da Secretária da SAPS, para subsidiar demandas do gabinete da secretária, do gabinete do ministro, da Presidência e da comunicação institucional.</p>
+    <p><strong>Filtros aplicados:</strong> área/departamento: ${filtrosRelatorio.departamento}; prioridade: ${filtrosRelatorio.prioridade}; período: ${filtrosRelatorio.periodo}.</p>
+    <p><strong>Finalidade:</strong> consolidar informações estratégicas monitoradas pela COMAV para apoiar decisões institucionais e demandas de comunicação.</p>
 
     <h4>1. Indicadores incluídos na minuta</h4>
     <ul>${indicadoresLista || '<li>Nenhum indicador selecionado. Selecione pelo menos um indicador para compor o relatório.</li>'}</ul>
@@ -6121,7 +6244,7 @@ function gerarRelatorioExecutivo() {
     <p>A seleção apresenta ${qtdCriticos} indicador(es) em situação crítica e ${qtdAtencao} em atenção. A leitura deve priorizar tendência, comparação territorial, distância em relação à meta e identificação de territórios ou estratos com pior desempenho relativo.</p>
 
     <h4>3. Pontos de atenção para decisão</h4>
-    <p>Os indicadores selecionados orientam a construção da pauta estratégica do escopo territorial. Recomenda-se validar a leitura com a área técnica responsável, observando natureza do indicador, fonte, periodicidade e polaridade.</p>
+    <p>Os indicadores selecionados orientam a construção da pauta estratégica do escopo territorial. Recomenda-se validar a leitura com a área técnica responsável, observando fonte, periodicidade e polaridade.</p>
 
     <h4>4. Encaminhamento sugerido</h4>
     <p>Recomenda-se gerar análise complementar no módulo de Apoio Analítico, comparar territórios no mapa e registrar os encaminhamentos no Plano de Ação dos Alertas Analíticos.</p>
@@ -6135,7 +6258,7 @@ function gerarRelatorioExecutivo() {
 Escopo: ${escopo}
 Indicadores selecionados: ${selecionados.length}
 Temas: ${temas}
-Filtros aplicados: área/departamento ${filtrosRelatorio.departamento}; natureza ${filtrosRelatorio.natureza}; prioridade ${filtrosRelatorio.prioridade}; período ${filtrosRelatorio.periodo}
+Filtros aplicados: área/departamento ${filtrosRelatorio.departamento}; prioridade ${filtrosRelatorio.prioridade}; período ${filtrosRelatorio.periodo}
 
 1. Indicadores incluídos:
 ${indicadoresTexto || '- Nenhum indicador selecionado.'}
@@ -6589,10 +6712,8 @@ function getChipsGlobais(){
   const page = getPaginaAtivaId();
 
   if (page === 'relatorio') {
-    chips.push(['Produto', valorSelectTexto('relatorioTipo'), '']);
     chips.push(['Área', valorSelectTexto('relatorioFiltroDepartamento'), 'muted']);
     chips.push(['Tema', valorSelectTexto('relatorioFiltroTema'), 'muted']);
-    chips.push(['Natureza', valorSelectTexto('relatorioFiltroNatureza'), 'muted']);
     chips.push(['Prioridade', valorSelectTexto('relatorioFiltroPrioridade'), valorSelectTexto('relatorioFiltroPrioridade').includes('Alta') ? 'critical' : 'muted']);
     chips.push(['Período', valorSelectTexto('relatorioFiltroPeriodo'), '']);
     if (typeof getRelatorioEscopoLabel === 'function') chips.push(['Recorte do relatório', getRelatorioEscopoLabel(), '']);
@@ -6601,7 +6722,6 @@ function getChipsGlobais(){
   if (page === 'indicadores') {
     chips.push(['Área', valorSelectTexto('filtroDepartamento'), 'muted']);
     chips.push(['Tema', valorSelectTexto('filtroTema'), 'muted']);
-    chips.push(['Natureza', valorSelectTexto('filtroNatureza'), 'muted']);
     chips.push(['Validação', valorSelectTexto('filtroValidacao'), 'muted']);
   }
 
@@ -6620,8 +6740,9 @@ function getChipsGlobais(){
 
   if (page === 'interseccionalidade') {
     chips.push(['Indicador', valorSelectTexto('interIndicador'), '']);
-    chips.push(['Território', valorSelectTexto('interTerritorio'), '']);
     chips.push(['Período', valorSelectTexto('interPeriodo'), '']);
+    chips.push(['Raça/cor', valorSelectTexto('interRaca'), 'muted']);
+    chips.push(['Sexo', valorSelectTexto('interSexo'), 'muted']);
   }
 
   return chips.filter(c => c[1] && !String(c[1]).includes('undefined'));
