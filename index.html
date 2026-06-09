@@ -2807,6 +2807,22 @@ body.compact-ui .module-profile-strip::after {
   }
 }
 
+
+/* ── APOIO ANALÍTICO: FILTRO TERRITORIAL HIERÁRQUICO ── */
+#page-ia .ia-form {
+  grid-template-columns: 1.15fr .9fr .9fr 1fr 1fr auto;
+}
+@media (max-width: 1280px) {
+  #page-ia .ia-form {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 820px) {
+  #page-ia .ia-form {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
 </head>
 <body class="perfil-comav">
@@ -3609,20 +3625,26 @@ body.compact-ui .module-profile-strip::after {
             <select class="ia-select" id="iaInd" onchange="renderIAAvancada()"></select>
           </div>
           <div class="ia-field">
-            <label>TERRITÓRIO</label>
-            <select class="ia-select" id="iaTerr" onchange="renderIAAvancada()">
-              <option>Brasil</option>
-              <option>Norte</option>
-              <option>Nordeste</option>
-              <option>Centro-Oeste</option>
-              <option>Sudeste</option>
-              <option>Sul</option>
-              <option>DF</option>
-              <option>BA</option>
-              <option>MA</option>
-              <option>RJ</option>
-              <option>Nova Iguaçu</option>
-              <option>São Gonçalo</option>
+            <label>REGIÃO</label>
+            <select class="ia-select" id="iaRegiao" onchange="iaAlterarRegiao()">
+              <option value="todas">Brasil completo</option>
+              <option value="Norte">Norte</option>
+              <option value="Nordeste">Nordeste</option>
+              <option value="Centro-Oeste">Centro-Oeste</option>
+              <option value="Sudeste">Sudeste</option>
+              <option value="Sul">Sul</option>
+            </select>
+          </div>
+          <div class="ia-field">
+            <label>UF</label>
+            <select class="ia-select" id="iaUF" onchange="iaAlterarUF()">
+              <option value="todas">Todas as UFs</option>
+            </select>
+          </div>
+          <div class="ia-field">
+            <label>MUNICÍPIO</label>
+            <select class="ia-select" id="iaMunicipio" onchange="renderIAAvancada()">
+              <option value="todos">Todos os municípios</option>
             </select>
           </div>
           <div class="ia-field">
@@ -5538,6 +5560,98 @@ function iaStatus(ind, v) {
   return ok ? ['OK','favorável'] : near ? ['Atenção','atenção'] : ['Crítico','desfavorável'];
 }
 
+
+function iaPopularUFs() {
+  const select = document.getElementById('iaUF');
+  if (!select || typeof estadosRegiao === 'undefined') return;
+
+  const regiao = document.getElementById('iaRegiao')?.value || 'todas';
+  const atual = select.value;
+
+  const ufs = Object.entries(estadosRegiao)
+    .filter(([key, meta]) => regiao === 'todas' || meta.regiao === regiao)
+    .sort((a,b) => a[1].uf.localeCompare(b[1].uf, 'pt-BR'));
+
+  select.innerHTML = `<option value="todas">Todas as UFs</option>` +
+    ufs.map(([key, meta]) => `<option value="${key}">${meta.uf} · ${meta.nome}</option>`).join('');
+
+  if ([...select.options].some(o => o.value === atual)) select.value = atual;
+  else select.value = 'todas';
+}
+
+function iaPopularMunicipios() {
+  const select = document.getElementById('iaMunicipio');
+  if (!select) return;
+
+  const uf = document.getElementById('iaUF')?.value || 'todas';
+  const atual = select.value;
+
+  if (uf === 'todas') {
+    select.innerHTML = `<option value="todos">Todos os municípios</option>`;
+    select.disabled = true;
+    return;
+  }
+
+  const municipios = typeof municipiosDaUF === 'function' ? municipiosDaUF(uf) : [];
+  select.disabled = false;
+  select.innerHTML = `<option value="todos">Todos os municípios da UF</option>` +
+    municipios.map(m => `<option value="${m.id}">${m.nome}</option>`).join('');
+
+  if ([...select.options].some(o => o.value === atual)) select.value = atual;
+  else select.value = 'todos';
+}
+
+function iaAlterarRegiao() {
+  iaPopularUFs();
+  iaPopularMunicipios();
+  renderIAAvancada();
+}
+
+function iaAlterarUF() {
+  iaPopularMunicipios();
+  renderIAAvancada();
+}
+
+function iaGetTerritorioSelecionado() {
+  const regiao = document.getElementById('iaRegiao')?.value || 'todas';
+  const uf = document.getElementById('iaUF')?.value || 'todas';
+  const municipio = document.getElementById('iaMunicipio')?.value || 'todos';
+
+  if (municipio !== 'todos' && uf !== 'todas') {
+    const mun = typeof municipiosDaUF === 'function' ? municipiosDaUF(uf).find(m => m.id === municipio) : null;
+    const meta = typeof estadosRegiao !== 'undefined' ? estadosRegiao[uf] : null;
+    return mun ? `${mun.nome} · ${meta?.uf || ''}` : municipio;
+  }
+
+  if (uf !== 'todas') {
+    const meta = typeof estadosRegiao !== 'undefined' ? estadosRegiao[uf] : null;
+    return meta ? `${meta.uf} · ${meta.nome}` : uf;
+  }
+
+  if (regiao !== 'todas') return `Região ${regiao}`;
+  return 'Brasil completo';
+}
+
+function iaGetParesTerritoriais() {
+  const regiao = document.getElementById('iaRegiao')?.value || 'todas';
+  const uf = document.getElementById('iaUF')?.value || 'todas';
+
+  if (uf !== 'todas' && typeof municipiosDaUF === 'function') {
+    const meta = typeof estadosRegiao !== 'undefined' ? estadosRegiao[uf] : null;
+    return ['Brasil', meta?.uf || uf, ...municipiosDaUF(uf).map(m => m.nome)];
+  }
+
+  if (regiao !== 'todas' && typeof estadosRegiao !== 'undefined') {
+    const ufs = Object.entries(estadosRegiao)
+      .filter(([key, meta]) => meta.regiao === regiao)
+      .slice(0, 8)
+      .map(([key, meta]) => meta.uf);
+    return [`Região ${regiao}`, ...ufs];
+  }
+
+  return ['Brasil','Norte','Nordeste','Centro-Oeste','Sudeste','Sul'];
+}
+
 function renderIAAvancada() {
   preencherIndicadoresIA();
   const lista = iaIndicadoresDisponiveis();
@@ -5545,7 +5659,9 @@ function renderIAAvancada() {
 
   const cod = document.getElementById('iaInd').value || lista[0].cod;
   const ind = lista.find(i => i.cod === cod) || lista[0];
-  const territorio = document.getElementById('iaTerr')?.value || 'Brasil';
+  iaPopularUFs();
+  iaPopularMunicipios();
+  const territorio = iaGetTerritorioSelecionado();
   const tipo = document.getElementById('iaTipo')?.value || 'Situação e tendência';
   const labels = ['2021','2022','2023','2024','2025','2026'];
 
@@ -5575,7 +5691,7 @@ function renderIAAvancada() {
     });
   }
 
-  const pares = ['Brasil','Norte','Nordeste','Centro-Oeste','Sudeste','Sul'];
+  const pares = iaGetParesTerritoriais();
   const valoresPares = pares.map(p => +(ind.valorNum * (0.82 + (iaHash(p + ind.cod) % 46) / 100)).toFixed(1));
   const ctxCompare = document.getElementById('iaCompare');
   if (ctxCompare) {
@@ -6734,7 +6850,9 @@ function getChipsGlobais(){
 
   if (page === 'ia') {
     chips.push(['Indicador', valorSelectTexto('iaInd'), '']);
-    chips.push(['Território', valorSelectTexto('iaTerr'), '']);
+    chips.push(['Região', valorSelectTexto('iaRegiao'), 'muted']);
+    chips.push(['UF', valorSelectTexto('iaUF'), 'muted']);
+    chips.push(['Município', valorSelectTexto('iaMunicipio'), 'muted']);
     chips.push(['Leitura', valorSelectTexto('iaTipo'), 'muted']);
   }
 
@@ -6857,6 +6975,8 @@ function bootDadosSistema() {
     'globalInitEscopo',
     'renderInterseccionalidade',
     'preencherIndicadoresIA',
+    'iaPopularUFs',
+    'iaPopularMunicipios',
     'renderIAAvancada',
     'popularDicionarioIndicadores',
     'popularIndicadoresRelatorio',
