@@ -3035,7 +3035,7 @@ body.compact-ui .module-profile-strip::after {
           <div class="exec-summary-kicker">Síntese analítica da competência</div>
           <div class="exec-summary-title">Situação geral: avanço em cobertura, atenção em materno-infantil e monitoramento das internações por CSAPS</div>
           <div class="exec-summary-text">
-            Na competência maio/2026, o sistema sinaliza crescimento da cobertura de Atenção Básica, redução gradual das internações por condições sensíveis à APS e manutenção de indicadores materno-infantis em situação de atenção. A leitura executiva destaca os principais movimentos analíticos observados na competência, com foco em tendência, comparação territorial e identificação de prioridades para acompanhamento técnico.
+            Na competência maio/2026, o sistema sinaliza crescimento da cobertura de Atenção Primária à Saúde, redução gradual das internações por condições sensíveis à APS e manutenção de indicadores materno-infantis em situação de atenção. A leitura executiva destaca os principais movimentos analíticos observados na competência, com foco em tendência, comparação territorial e identificação de prioridades para acompanhamento técnico.
           </div>
           <div class="exec-summary-actions">
             <span class="institutional-pill">✓ Atualização via DW</span>
@@ -3292,7 +3292,6 @@ body.compact-ui .module-profile-strip::after {
             <option value="DEPROS">DEPROS · Departamento de Promoção da Saúde</option>
             <option value="DGCI">DGCI · Departamento de Gestão do Cuidado Integral</option>
             <option value="DAPS">DAPS · Departamento de Ações Programáticas Estratégicas</option>
-            <option value="GAB/SAPS">Gabinete SAPS · Demandas estratégicas</option>
           </select>
           <select class="filter-select" id="filtroTema" onchange="aplicarFiltrosIndicadores()">
             <option value="todos">Todos os temas</option>
@@ -3360,7 +3359,7 @@ body.compact-ui .module-profile-strip::after {
       </div>
       <div class="two-col">
         <div class="card" style="grid-column: 1 / -1;">
-          <div class="card-title"><span>🗺️</span> <span id="mapMetricTitle">Cobertura de Atenção Básica por Região — Mai/2026</span></div>
+          <div class="card-title"><span>🗺️</span> <span id="mapMetricTitle">Cobertura de Atenção Primária à Saúde por Região — Mai/2026</span></div>
           <div class="ind-filters">
             <select class="filter-select" id="mapIndicador" onchange="atualizarMapa(this.value)">
               <option value="cob">Cobertura AB (%)</option>
@@ -3440,7 +3439,7 @@ body.compact-ui .module-profile-strip::after {
             <option value="MORT_MAT">Mortalidade Materna</option>
             <option value="MORT_INF">Mortalidade Infantil</option>
             <option value="INT_CSAPS">Internações por CSAPS</option>
-            <option value="COB_AB">Cobertura de Atenção Básica</option>
+            <option value="COB_APS">Cobertura de Atenção Primária â Saúde</option>
             <option value="RACA_COR">Completude do quesito raça/cor</option>
           </select>
           <select class="filter-select" id="interPeriodo" onchange="renderInterseccionalidade()">
@@ -4086,7 +4085,7 @@ body.compact-ui .module-profile-strip::after {
 
       <div class="card">
         <div class="card-title"><span>📋</span> Histórico de pedidos de alteração</div>
-        <table class="audit-table"><thead><tr><th>Data</th><th>Área</th><th>Indicador</th><th>Tipo</th><th>Prioridade</th><th>Status</th></tr></thead><tbody id="solicitacoesUsuarioRows"><tr><td>03/06/2026</td><td>DGCI</td><td>MORT_INF</td><td>Inclusão de observação técnica</td><td><span class="tag tag-amarelo">Média</span></td><td><span class="tag tag-azul">Em análise COMAV</span></td></tr><tr><td>02/06/2026</td><td>DESF</td><td>COB_AB</td><td>Atualização de recorte territorial</td><td><span class="tag tag-cinza">Rotina</span></td><td><span class="tag tag-verde">Respondido</span></td></tr></tbody></table>
+        <table class="audit-table"><thead><tr><th>Data</th><th>Área</th><th>Indicador</th><th>Tipo</th><th>Prioridade</th><th>Status</th></tr></thead><tbody id="solicitacoesUsuarioRows"><tr><td>03/06/2026</td><td>DGCI</td><td>MORT_INF</td><td>Inclusão de observação técnica</td><td><span class="tag tag-amarelo">Média</span></td><td><span class="tag tag-azul">Em análise COMAV</span></td></tr><tr><td>02/06/2026</td><td>DESF</td><td>COB_APS</td><td>Atualização de recorte territorial</td><td><span class="tag tag-cinza">Rotina</span></td><td><span class="tag tag-verde">Respondido</span></td></tr></tbody></table>
       </div>
     </div>
 
@@ -4302,7 +4301,7 @@ body.compact-ui .module-profile-strip::after {
             <tr>
               <td style="white-space:nowrap;font-size:12px;color:var(--cinza-med)">25/05/2026<br>11:05</td>
               <td>João Mello (COMAV)</td>
-              <td>COB_AB · MA · Abr/2026</td>
+              <td>COB_APS · MA · Abr/2026</td>
               <td>
                 <div class="change-badge">
                   <span class="change-old">61,2%</span>
@@ -4340,7 +4339,7 @@ body.compact-ui .module-profile-strip::after {
 <script>
 // ── DATA ──
 const indicadoresData = [
-  { cod: 'COB_AB', nome: 'Cobertura de Atenção Básica', tipo: 'Cobertura', departamento: 'DESF', tema: 'Cobertura e acesso', natureza: 'Estrutura', prioridade: 'Alta', atualizacao: 'DW', valor: '67,4%', meta: '70%', delta: '+1,2 p.p.', deltaUp: true, status: 'atencao', fonte: 'SCNES/SISAB/DW', validacao: 'Validado pela COMAV',
+  { cod: 'COB_APS', nome: 'Cobertura de Atenção Primária à Saúde', tipo: 'Cobertura', departamento: 'DESF', tema: 'Cobertura e acesso', natureza: 'Estrutura', prioridade: 'Alta', atualizacao: 'DW', valor: '67,4%', meta: '70%', delta: '+1,2 p.p.', deltaUp: true, status: 'atencao', fonte: 'SCNES/SISAB/DW', validacao: 'Validado pela COMAV',
     ficha: { definicao: 'Proporção da população coberta por equipes de AB cadastradas no SCNES.', numerador: 'Pop. coberta por equipes AB', denominador: 'Pop. total estimada', periodicidade: 'Mensal', fonte: 'SCNES/SISAB — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '70%' }},
   { cod: 'EQUIPES_ESF', nome: 'Equipes de Saúde da Família homologadas', tipo: 'Cobertura', departamento: 'DESF', tema: 'Cobertura e acesso', natureza: 'Estrutura', prioridade: 'Alta', atualizacao: 'DW', valor: '47.823', meta: '50.000', delta: '+318', deltaUp: true, status: 'ok', fonte: 'SCNES/DW', validacao: 'Validado pela COMAV',
     ficha: { definicao: 'Número de equipes de Saúde da Família homologadas e com registro ativo.', numerador: 'Equipes homologadas ativas', denominador: 'Não se aplica', periodicidade: 'Mensal', fonte: 'SCNES — DW SAPS', polaridade: 'Quanto maior, melhor', meta2026: '50.000' }},
@@ -4778,7 +4777,7 @@ function municipiosDaUF(ufKey) {
 
 const valoresUF = {
   cob: {
-    titulo: 'Cobertura de Atenção Básica por UF — Mai/2026',
+    titulo: 'Cobertura de Atenção Primária à Saúde por UF — Mai/2026',
     unidade: '%', maiorMelhor: true, mediaBrasil: '67,4%',
     tendencia: { labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'], brasil: [66.3,66.6,66.9,67.2,67.4] },
     valores: {
@@ -5245,7 +5244,7 @@ function gerarAnaliseIA() {
   const meta = document.getElementById('iaMeta');
 
   const nomes = {
-    cobertura_ab: 'Cobertura de Atenção Básica',
+    cobertura_ab: 'Cobertura de Atenção Primária à Saúde',
     mortalidade_materna: 'Mortalidade Materna',
     mortalidade_infantil: 'Mortalidade Infantil',
     internacoes_csaps: 'Internações por Condições Sensíveis à APS',
@@ -5285,9 +5284,9 @@ function gerarProduto(tipo) {
   btns.style.display = 'none';
 
   const produtos = {
-    boletim: `<strong>Boletim mensal — minuta preliminar</strong><br><br>Na competência maio/2026, os indicadores estratégicos da SAPS apontam crescimento gradual da cobertura de Atenção Básica, com alcance de 67,4% no Brasil, ainda abaixo da meta anual de 70%. As internações por condições sensíveis à APS mantêm tendência de redução, embora permaneçam acima do parâmetro definido para acompanhamento. A mortalidade materna apresenta estabilidade e segue em situação de atenção. O principal alerta da competência refere-se à mortalidade infantil na Região Norte, com variação desfavorável relevante. A leitura deve ser validada pela COMAV, considerando a qualidade da carga de dados e as diferenças territoriais observadas.`,
-    executivo: `<strong>Informe executivo — síntese para gestão</strong><br><br>O painel de maio/2026 indica avanço gradual da cobertura de Atenção Básica e redução das internações por condições sensíveis à APS, ainda com necessidade de acompanhamento para alcance das metas. Permanecem em atenção os indicadores materno-infantis, especialmente a mortalidade infantil na Região Norte, que deverá compor a pauta prioritária de monitoramento.<br><br>A carga de dados foi processada com alta completude, mas há pendências pontuais em três municípios. Recomenda-se validar o impacto dessas pendências antes de qualquer encaminhamento externo.`,
-    reuniao: `<strong>Pauta sugerida — reunião de monitoramento</strong><br><br>1. Validar a situação da carga de dados da competência maio/2026.<br>2. Analisar o alerta de mortalidade infantil na Região Norte.<br>3. Verificar a evolução da cobertura de Atenção Básica frente à meta anual.<br>4. Avaliar a tendência das internações por condições sensíveis à APS.<br>5. Definir encaminhamentos com áreas técnicas e responsáveis pelos indicadores em atenção.<br>6. Registrar deliberações e justificativas na trilha de auditoria.`,
+    boletim: `<strong>Boletim mensal — minuta preliminar</strong><br><br>Na competência maio/2026, os indicadores estratégicos da SAPS apontam crescimento gradual da cobertura de Atenção Primária à Saúde, com alcance de 67,4% no Brasil, ainda abaixo da meta anual de 70%. As internações por condições sensíveis à APS mantêm tendência de redução, embora permaneçam acima do parâmetro definido para acompanhamento. A mortalidade materna apresenta estabilidade e segue em situação de atenção. O principal alerta da competência refere-se à mortalidade infantil na Região Norte, com variação desfavorável relevante. A leitura deve ser validada pela COMAV, considerando a qualidade da carga de dados e as diferenças territoriais observadas.`,
+    executivo: `<strong>Informe executivo — síntese para gestão</strong><br><br>O painel de maio/2026 indica avanço gradual da cobertura de Atenção Primária à Saúde e redução das internações por condições sensíveis à APS, ainda com necessidade de acompanhamento para alcance das metas. Permanecem em atenção os indicadores materno-infantis, especialmente a mortalidade infantil na Região Norte, que deverá compor a pauta prioritária de monitoramento.<br><br>A carga de dados foi processada com alta completude, mas há pendências pontuais em três municípios. Recomenda-se validar o impacto dessas pendências antes de qualquer encaminhamento externo.`,
+    reuniao: `<strong>Pauta sugerida — reunião de monitoramento</strong><br><br>1. Validar a situação da carga de dados da competência maio/2026.<br>2. Analisar o alerta de mortalidade infantil na Região Norte.<br>3. Verificar a evolução da cobertura de Atenção Primária à Saúde frente à meta anual.<br>4. Avaliar a tendência das internações por condições sensíveis à APS.<br>5. Definir encaminhamentos com áreas técnicas e responsáveis pelos indicadores em atenção.<br>6. Registrar deliberações e justificativas na trilha de auditoria.`,
     desigualdade: `<strong>Análise de desigualdades — módulo em evolução</strong><br><br>A análise estratificada dos indicadores deverá priorizar raça/cor, sexo, faixa etária, território e, quando disponível, escolaridade, ocupação, ruralidade e outros marcadores sociais. A proposta é permitir que a gestão identifique desigualdades ocultas nas médias nacionais e oriente respostas para grupos e territórios mais vulnerabilizados. Nesta etapa do protótipo, recomenda-se apresentar o módulo como funcionalidade em desenvolvimento, dependente da qualidade, disponibilidade e padronização das bases.`
   };
 
@@ -5860,7 +5859,7 @@ const interIndicadoresConfig = {
   MORT_MAT: { nome: 'Mortalidade Materna', unidade: ' por 100 mil NV', base: 52.1, polaridade: 'menor' },
   MORT_INF: { nome: 'Mortalidade Infantil', unidade: ' por mil NV', base: 11.8, polaridade: 'menor' },
   INT_CSAPS: { nome: 'Internações por CSAPS', unidade: ' por 10 mil hab.', base: 54.3, polaridade: 'menor' },
-  COB_AB: { nome: 'Cobertura de Atenção Básica', unidade: '%', base: 67.4, polaridade: 'maior' },
+  COB_APS: { nome: 'Cobertura de Atenção Primária à Saúde', unidade: '%', base: 67.4, polaridade: 'maior' },
   RACA_COR: { nome: 'Completude do quesito raça/cor', unidade: '%', base: 86.2, polaridade: 'maior' }
 };
 
@@ -6699,7 +6698,7 @@ let alteracaoSelecionadaComav = null;
 let filtroAlteracoesComav = 'todos';
 const alteracoesDadosDemo = [
   {id:'ALT-2026-001',data:'03/06/2026',area:'DGCI',indicador:'MORT_INF',tipo:'Inclusão de observação técnica',prioridade:'Média',status:'analise',justificativa:'Área solicita inclusão de observação técnica sobre variação territorial da mortalidade infantil no período analisado.',territorio:'Região Norte',competencia:'Mai/2026'},
-  {id:'ALT-2026-002',data:'02/06/2026',area:'DESF',indicador:'COB_AB',tipo:'Atualização de recorte territorial',prioridade:'Rotina',status:'respondido',justificativa:'Solicitada qualificação do recorte territorial para análise de cobertura da Atenção Básica.',territorio:'UF: RJ',competencia:'Mai/2026'},
+  {id:'ALT-2026-002',data:'02/06/2026',area:'DESF',indicador:'COB_APS',tipo:'Atualização de recorte territorial',prioridade:'Rotina',status:'respondido',justificativa:'Solicitada qualificação do recorte territorial para análise de cobertura da Atenção Primária à Saúde.',territorio:'UF: RJ',competencia:'Mai/2026'},
   {id:'ALT-2026-003',data:'01/06/2026',area:'DEPROS',indicador:'EQUID_RACA',tipo:'Revisão de metadado',prioridade:'Alta',status:'novo',justificativa:'Área solicita revisão do metadado de recorte raça/cor para alinhamento metodológico da análise de equidade.',territorio:'Brasil',competencia:'1º quadrimestre/2026'},
   {id:'ALT-2026-004',data:'30/05/2026',area:'DAPS',indicador:'HIPER_ACOMP',tipo:'Revisão de fórmula ou fonte',prioridade:'Média',status:'analise',justificativa:'Solicitação de conferência da fórmula utilizada no acompanhamento de pessoas hipertensas.',territorio:'Região Nordeste',competencia:'Mai/2026'}
 ];
