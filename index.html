@@ -2823,6 +2823,77 @@ body.compact-ui .module-profile-strip::after {
   }
 }
 
+ /* ── TESTE VISUAL ── */
+  /* REFINAMENTOS VISUAIS - MonitoraSAPS */
+:root {
+  --brand-100: #edf5ff;
+  --brand-200: #d9eaff;
+  --shadow-brand: 0 8px 20px rgba(31, 79, 138, 0.12);
+}
+
+/* Cards com hover mais suave */
+.card, .stat-card, .qc-card, .kpi-card, .exec-summary-card {
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.2s;
+}
+.card:hover, .stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-brand);
+}
+
+/* Filtros mais integrados */
+.global-filterbar {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-400);
+  padding: 12px 28px;
+}
+.global-filter-controls select, .filter-select {
+  border-radius: 32px;
+  background-color: white;
+  font-size: 13px;
+  padding: 8px 32px 8px 16px;
+}
+
+/* Tabelas com linhas zebradas suaves */
+.ind-table tbody tr:nth-child(even), .audit-table tbody tr:nth-child(even) {
+  background-color: var(--brand-100);
+}
+.ind-table td, .audit-table td {
+  padding: 14px 12px;
+}
+
+/* Badges e tags refinados */
+.tag {
+  border-radius: 40px;
+  padding: 4px 12px;
+  font-weight: 600;
+  font-size: 11px;
+}
+.tag-verde { background: #e3f7ec; color: #0e6b3e; }
+.tag-amarelo { background: #fff0db; color: #b75f00; }
+.tag-vermelho { background: #ffe6e5; color: #bc2c1e; }
+
+/* Botões de ação */
+.btn, .btn-ia, .btn-xs {
+  border-radius: 32px !important;
+  padding: 8px 18px !important;
+  font-weight: 600;
+}
+.btn-primary {
+  background: var(--brand-600);
+  box-shadow: none;
+}
+.btn-primary:hover {
+  background: var(--brand-700);
+  transform: scale(0.98);
+}
+
+/* Ajustes para gráficos responsivos */
+.chart-card canvas {
+  max-height: 280px;
+  width: 100% !important;
+}
+  
 </style>
 </head>
 <body class="perfil-comav">
@@ -5732,7 +5803,15 @@ function renderIAAvancada() {
       options: { responsive: true, ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } } }
     });
   }
-
+  // Sobrescrever renderIAAvancada
+  const originalRender = window.renderIAAvancada;
+  window.renderIAAvancada = function() {
+  const iaText = document.getElementById('iaText');
+  if (iaText) iaText.innerHTML = '<div class="skeleton-load">🔍 Gerando análise simulada...</div>';
+  setTimeout(() => {
+    originalRender();
+  }, 100);
+  };
   const maiorEstrato = estratos[valoresEstratos.indexOf(Math.max(...valoresEstratos))];
   const posRelativa = valoresPares.filter(v => ind.polaridade === 'maior' ? v > ultimo : v < ultimo).length + 1;
 
