@@ -5803,15 +5803,7 @@ function renderIAAvancada() {
       options: { responsive: true, ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } } }
     });
   }
-  // Sobrescrever renderIAAvancada
-  const originalRender = window.renderIAAvancada;
-  window.renderIAAvancada = function() {
-  const iaText = document.getElementById('iaText');
-  if (iaText) iaText.innerHTML = '<div class="skeleton-load">🔍 Gerando análise simulada...</div>';
-  setTimeout(() => {
-    originalRender();
-  }, 100);
-  };
+
   const maiorEstrato = estratos[valoresEstratos.indexOf(Math.max(...valoresEstratos))];
   const posRelativa = valoresPares.filter(v => ind.polaridade === 'maior' ? v > ultimo : v < ultimo).length + 1;
 
@@ -5840,6 +5832,16 @@ function renderIAAvancada() {
   window._analiseIAAvancada = (document.getElementById('iaText')?.innerText || '') + '\\n\\n' + (document.getElementById('iaSynth')?.innerText || '');
   setTimeout(inserirBotoesDownloadGraficos, 100);
 }
+const renderIAAvancadaOriginal = window.renderIAAvancada;
+window.renderIAAvancada = function() {
+  const iaText = document.getElementById('iaText');
+  if (iaText) {
+    iaText.innerHTML = '<div class="skeleton-load">🔍 Gerando análise simulada...</div>';
+  }
+  setTimeout(function() {
+    renderIAAvancadaOriginal();
+  }, 100);
+};
 
 function copiarAnaliseIAAvancada() {
   if (navigator.clipboard) navigator.clipboard.writeText(window._analiseIAAvancada || '');
