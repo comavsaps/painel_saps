@@ -3451,7 +3451,7 @@ body.compact-ui .module-profile-strip::after {
         </div>
 
         <div class="inter-note">
-          A análise interseccional permite observar desigualdades que podem ficar ocultas nas médias populacionais, combinando marcadores como raça/cor, sexo, povo ou comunidade tradicional, faixa etária, escolaridade, pessoa com deficiência, orientação sexual, identidade de gênero, situação no mercado de trabalho e pessoa em situação de rua. A proposta é apoiar a identificação de grupos prioritários para análise técnica e tomada de decisão.
+          A análise interseccional permite observar desigualdades que podem ficar ocultas nas médias populacionais, combinando as categorias dos sistemas de informação da APS como raça/cor, sexo, povo ou comunidade tradicional, faixa etária, escolaridade, pessoa com deficiência, orientação sexual, identidade de gênero, situação no mercado de trabalho e pessoa em situação de rua. A proposta é apoiar a identificação de grupos prioritários para análise técnica e tomada de decisão.
         </div>
 
         <div class="stats-grid">
@@ -3484,106 +3484,90 @@ body.compact-ui .module-profile-strip::after {
           <div class="inter-axis-row">
             <label>Raça/cor</label>
             <select id="interRaca" onchange="renderInterseccionalidade()">
-              <option>Preta</option>
-              <option>Parda</option>
-              <option>Branca</option>
-              <option>Amarela</option>
+              <option>Não selecionada</option>
+              <option>Negra</option>
+              <option>Branca/Amarela</option>
               <option>Indígena</option>
-              <option>Ignorada</option>
-              <option>Não informada</option>
-              <option>Todos os registros válidos</option>
             </select>
           </div>
           <div class="inter-axis-row">
             <label>Sexo</label>
             <select id="interSexo" onchange="renderInterseccionalidade()">
+              <option>Não selecionado</option>
               <option>Feminino</option>
               <option>Masculino</option>
-              <option>Ignorado</option>
-              <option>Todos</option>
             </select>
           </div>
           <div class="inter-axis-row">
-            <label>POVO OU COMUNIDADE TRADICIONAL</label>
+            <label>Povo ou comunidade tradicional</label>
             <select id="interComunidade" onchange="renderInterseccionalidade()">
-              <option>Não informado</option>
+              <option>Não selecionado</option>
+              <option>Qualquer povo ou comunidade</option>
               <option>Quilombola</option>
               <option>Indígena</option>
               <option>Ribeirinha</option>
               <option>Cigana</option>
               <option>Pescadora artesanal</option>
               <option>Povo de terreiro</option>
-              <option>Outra comunidade tradicional</option>
             </select>
           </div>
           <div class="inter-axis-row">
             <label>Faixa etária</label>
             <select id="interFaixaEtaria" onchange="renderInterseccionalidade()">
+              <option>Não selecionado</option>
               <option>0 a 9 anos</option>
               <option>10 a 19 anos</option>
               <option>20 a 39 anos</option>
               <option>40 a 59 anos</option>
               <option>60 anos ou mais</option>
-              <option>Não informada</option>
             </select>
           </div>
           <div class="inter-axis-row">
             <label>Escolaridade</label>
             <select id="interEscolaridade" onchange="renderInterseccionalidade()">
-              <option>Sem instrução</option>
-              <option>Fundamental incompleto</option>
-              <option>Fundamental completo</option>
-              <option>Ensino médio</option>
-              <option>Ensino superior</option>
-              <option>Ignorada</option>
+              <option>Não selecionado</option>
+              <option>Sem instrução/Ensino fundamental</option>
+              <option>Ensino médio/superior</option>
             </select>
           </div>
           <div class="inter-axis-row">
             <label>Pessoa com deficiência</label>
             <select id="interDeficiencia" onchange="renderInterseccionalidade()">
+              <option>Não selecionado</option>
               <option>Não</option>
               <option>Sim</option>
-              <option>Não informada</option>
             </select>
           </div>
           <div class="inter-axis-row">
             <label>Orientação Sexual</label>
             <select id="interOrientacao" onchange="renderInterseccionalidade()">
+              <option>Não selecionado</option>
               <option>Heterossexual</option>
-              <option>Lésbica</option>
-              <option>Gay</option>
-              <option>Bissexual</option>
-              <option>Outra</option>
-              <option>Não informada</option>
+              <option>Não heterossexual</option>
             </select>
           </div>
           <div class="inter-axis-row">
             <label>Identidade de gênero</label>
             <select id="interIdentidadeGenero" onchange="renderInterseccionalidade()">
               <option>Cisgênero</option>
-              <option>Mulher trans</option>
-              <option>Homem trans</option>
-              <option>Travesti</option>
-              <option>Não binária</option>
-              <option>Não informada</option>
+              <option>Transgênero/Travesti/Não binária</option>
             </select>
           </div>
           <div class="inter-axis-row">
-            <label>SITUAÇÃO NO MERCADO DE TRABALHO</label>
+            <label>Situação no mercado de trabalho</label>
             <select id="interMercadoTrabalho" onchange="renderInterseccionalidade()">
+              <option>Não selecionado</option>
               <option>Trabalho formal</option>
               <option>Trabalho informal</option>
-              <option>Desocupada/o</option>
-              <option>Fora da força de trabalho</option>
-              <option>Não informada</option>
+              <option>Desocupada/Fora da força de trabalho</option>
             </select>
           </div>
           <div class="inter-axis-row">
             <label>Pessoa em situação de rua</label>
             <select id="interSituacaoRua" onchange="renderInterseccionalidade()">
+              <option>Não selecionado</option>
               <option>Não</option>
               <option>Sim</option>
-              <option>Não informada</option>
             </select>
           </div>
 
@@ -5925,13 +5909,13 @@ function renderInterseccionalidade() {
     pills.innerHTML = [
       `Raça/cor: ${raca}`,
       `Sexo: ${sexo}`,
-      `POVO OU COMUNIDADE TRADICIONAL: ${comunidade}`,
+      `Povo ou comunidade tradicional: ${comunidade}`,
       `Faixa etária: ${faixaEtaria}`,
       `Escolaridade: ${escolaridade}`,
       `Pessoa com deficiência: ${deficiencia}`,
       `Orientação Sexual: ${orientacao}`,
       `Identidade de gênero: ${identidadeGenero}`,
-      `SITUAÇÃO NO MERCADO DE TRABALHO: ${mercadoTrabalho}`,
+      `Situação no mercado de trabalho: ${mercadoTrabalho}`,
       `Pessoa em situação de rua: ${situacaoRua}`
     ].map(t => `<span class="inter-pill">${t}</span>`).join('');
   }
