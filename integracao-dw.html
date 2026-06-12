@@ -149,7 +149,7 @@ button{cursor:pointer}
     <form id="indicatorForm">
       <input type="hidden" id="indicatorOriginalCode">
       <div class="form-grid">
-        <div class="field"><label for="indicatorCode">Código</label><input class="input" id="indicatorCode" maxlength="24" required placeholder="EX.: COB_PSE"></div>
+        <div class="field"><label for="indicatorCode">Código</label><input class="input" id="indicatorCode" maxlength="24" required></div>
         <div class="field"><label for="indicatorDepartment">Área responsável</label><select class="select" id="indicatorDepartment" required><option value="">Selecione</option><option>GAB/SAPS</option><option>DEPROS</option><option>DESF</option><option>DGCI</option><option>DAPS</option><option>CGAN</option><option>COMAV</option></select></div>
         <div class="field full"><label for="indicatorName">Nome do indicador</label><input class="input" id="indicatorName" required placeholder="Nome institucional do indicador"></div>
         <div class="field"><label for="indicatorTheme">Tema</label><input class="input" id="indicatorTheme" required placeholder="Cobertura e acesso"></div>
@@ -169,7 +169,7 @@ button{cursor:pointer}
   <div class="modal" style="max-width:560px">
     <div class="modal-head"><div><h2 id="deleteModalTitle">Excluir indicador</h2><p>A exclusão será registrada como inativação lógica.</p></div><button class="close" data-close="deleteModal">×</button></div>
     <div class="danger-box" id="deleteIndicatorSummary"></div>
-    <div class="field"><label for="deleteReason">Justificativa obrigatória</label><textarea class="textarea" id="deleteReason" placeholder="Ex.: indicador substituído por nova metodologia ou descontinuado pela área técnica."></textarea></div>
+    <div class="field"><label for="deleteReason">Justificativa obrigatória</label><textarea class="textarea" id="deleteReason"></textarea></div>
     <div class="actions"><button class="btn" data-close="deleteModal">Cancelar</button><button class="btn btn-danger" id="confirmDeleteBtn">Confirmar exclusão lógica</button></div>
   </div>
 </div>
