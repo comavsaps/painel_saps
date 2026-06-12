@@ -3437,19 +3437,15 @@ body.compact-ui .module-profile-strip::after {
     #page-interseccionalidade .axis-box { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
     #page-interseccionalidade .axis-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding: 6px 8px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); transition: border-color 0.15s; }
     #page-interseccionalidade .axis-row.active { border-color: #378ADD; background: #E6F1FB; }
-#page-interseccionalidade .axis-row.active .axis-row-label,
-#page-interseccionalidade .axis-row.active select,
-#page-interseccionalidade .axis-row.active select option {
-  color: #1A3A5C;
-}
-@media (prefers-color-scheme: dark) {
-  #page-interseccionalidade .axis-row.active { background: #042C53; border-color: #378ADD; }
-  #page-interseccionalidade .axis-row.active .axis-row-label,
-  #page-interseccionalidade .axis-row.active select,
-  #page-interseccionalidade .axis-row.active select option {
-    color: #E6F1FB;
-  }
-}
+    #page-interseccionalidade .axis-row.active .axis-row-label,
+    #page-interseccionalidade .axis-row.active select,
+    #page-interseccionalidade .axis-row.active select option { color: #1A3A5C; }
+    @media (prefers-color-scheme: dark) {
+      #page-interseccionalidade .axis-row.active { background: #042C53; border-color: #378ADD; }
+      #page-interseccionalidade .axis-row.active .axis-row-label,
+      #page-interseccionalidade .axis-row.active select,
+      #page-interseccionalidade .axis-row.active select option { color: #E6F1FB; }
+    }
     #page-interseccionalidade .axis-row input[type=checkbox] { cursor: pointer; accent-color: #378ADD; width: 14px; height: 14px; flex-shrink: 0; }
     #page-interseccionalidade .axis-row select { flex: 1; font-size: 12px; border: none; background: transparent; color: var(--color-text-primary); cursor: pointer; outline: none; min-width: 0; }
     #page-interseccionalidade .axis-row select:disabled { color: var(--color-text-secondary); cursor: default; }
@@ -3482,14 +3478,14 @@ body.compact-ui .module-profile-strip::after {
   <div class="card">
     <div class="card-title"><span>🧭</span> Seleção da análise</div>
     <div class="ind-filters strategic-filters">
-      <select class="filter-select" id="interIndicador">
+      <select class="filter-select" id="interIndicador" onchange="renderInter()">
         <option value="MORT_MAT">Mortalidade Materna</option>
         <option value="MORT_INF">Mortalidade Infantil</option>
         <option value="INT_CSAPS">Internações por CSAPS</option>
         <option value="COB_APS">Cobertura de Atenção Primária à Saúde</option>
         <option value="RACA_COR">Completude do quesito raça/cor</option>
       </select>
-      <select class="filter-select" id="interPeriodo">
+      <select class="filter-select" id="interPeriodo" onchange="renderInter()">
         <option value="2021-2026">Série 2021–2026</option>
         <option value="2023-2026">Série 2023–2026</option>
         <option value="mai2026">Competência Mai/2026</option>
@@ -3504,12 +3500,12 @@ body.compact-ui .module-profile-strip::after {
     <div class="stats-grid">
       <div class="stat-card azul">
         <div class="stat-label">Índice interseccional demonstrativo</div>
-        <div class="stat-value">2,8x</div>
+        <div class="stat-value" id="interScore">2,8x</div>
         <div class="stat-sub">diferença entre estratos extremos</div>
       </div>
       <div class="stat-card vermelho">
         <div class="stat-label">Estratos com maior risco</div>
-        <div class="stat-value">4</div>
+        <div class="stat-value" id="interHighCount">4</div>
         <div class="stat-sub">prioridade para análise técnica</div>
       </div>
       <div class="stat-card verde">
@@ -3560,17 +3556,33 @@ body.compact-ui .module-profile-strip::after {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
+// ── Dados fictícios por indicador (série 2021–2026, "média geral") ──
+const INDICATORS = {
+  MORT_MAT:  { unit: 'óbitos / 100 mil NV',       base: [62, 60, 58, 55, 53, 50] },
+  MORT_INF:  { unit: 'óbitos / 1.000 NV',          base: [12.4, 11.9, 11.5, 11.0, 10.6, 10.4] },
+  INT_CSAPS: { unit: 'internações / 10 mil hab.',  base: [64, 62, 60, 58, 57, 55] },
+  COB_APS:   { unit: '% de cobertura',             base: [66, 69, 71, 73, 75, 77] },
+  RACA_COR:  { unit: '% de completude',            base: [52, 58, 64, 70, 76, 83] },
+};
+const LABELS_FULL = ['2021','2022','2023','2024','2025','2026'];
+const PERIODS = {
+  '2021-2026': { labels: LABELS_FULL,        slice: [0,6] },
+  '2023-2026': { labels: LABELS_FULL.slice(2), slice: [2,6] },
+  'mai2026':   { labels: ['Mai/2026'],       slice: [5,6] },
+};
+
+// ── Eixos interseccionais e "pesos de risco" fictícios (descendente: 1ª opção = maior risco) ──
 const AXES_INTER = [
-  { id: 'raca', label: 'Raça/cor', options: ['Negra', 'Parda', 'Branca/Amarela', 'Indígena'] },
-  { id: 'sexo', label: 'Sexo', options: ['Feminino', 'Masculino'] },
-  { id: 'comunidade', label: 'Povo ou comunidade tradicional', options: ['Quilombola', 'Indígena', 'Ribeirinha', 'Cigana', 'Pescadora artesanal', 'Povo de terreiro'] },
-  { id: 'faixa', label: 'Faixa etária', options: ['0 a 9 anos', '10 a 19 anos', '20 a 39 anos', '40 a 59 anos', '60 anos ou mais'] },
-  { id: 'escolaridade', label: 'Escolaridade', options: ['Sem instrução / ensino fundamental', 'Ensino médio / superior'] },
-  { id: 'deficiencia', label: 'Pessoa com deficiência', options: ['Sim', 'Não'] },
-  { id: 'orientacao', label: 'Orientação sexual', options: ['Não heterossexual', 'Heterossexual'] },
-  { id: 'genero', label: 'Identidade de gênero', options: ['Transgênero / travesti / não binária', 'Cisgênero'] },
-  { id: 'trabalho', label: 'Situação no mercado de trabalho', options: ['Desocupada / fora da força de trabalho', 'Trabalho informal', 'Trabalho formal'] },
-  { id: 'rua', label: 'Pessoa em situação de rua', options: ['Sim', 'Não'] },
+  { id: 'raca',          label: 'Raça/cor',                          options: ['Negra', 'Parda', 'Indígena', 'Branca/Amarela'],                         factors: [1.60, 1.30, 1.15, 0.80] },
+  { id: 'sexo',          label: 'Sexo',                               options: ['Feminino', 'Masculino'],                                                factors: [1.25, 0.95] },
+  { id: 'comunidade',    label: 'Povo ou comunidade tradicional',     options: ['Quilombola', 'Indígena', 'Ribeirinha', 'Cigana', 'Pescadora artesanal', 'Povo de terreiro'], factors: [1.70, 1.50, 1.35, 1.20, 1.05, 0.95] },
+  { id: 'faixa',         label: 'Faixa etária',                       options: ['0 a 9 anos', '10 a 19 anos', '20 a 39 anos', '40 a 59 anos', '60 anos ou mais'], factors: [1.50, 1.25, 1.00, 0.85, 0.70] },
+  { id: 'escolaridade',  label: 'Escolaridade',                       options: ['Sem instrução / ensino fundamental', 'Ensino médio / superior'],       factors: [1.45, 0.90] },
+  { id: 'deficiencia',   label: 'Pessoa com deficiência',             options: ['Sim', 'Não'],                                                           factors: [1.50, 0.95] },
+  { id: 'orientacao',    label: 'Orientação sexual',                  options: ['Não heterossexual', 'Heterossexual'],                                  factors: [1.35, 0.95] },
+  { id: 'genero',        label: 'Identidade de gênero',               options: ['Transgênero / travesti / não binária', 'Cisgênero'],                   factors: [1.55, 0.95] },
+  { id: 'trabalho',      label: 'Situação no mercado de trabalho',    options: ['Desocupada / fora da força de trabalho', 'Trabalho informal', 'Trabalho formal'], factors: [1.50, 1.15, 0.85] },
+  { id: 'rua',           label: 'Pessoa em situação de rua',          options: ['Sim', 'Não'],                                                           factors: [1.85, 0.95] },
 ];
 
 function buildAxesInter() {
@@ -3614,83 +3626,178 @@ function buildAxesInter() {
   });
 }
 
+function geoMean(arr) {
+  if (arr.length === 0) return 1;
+  const product = arr.reduce((a, b) => a * b, 1);
+  return Math.pow(product, 1 / arr.length);
+}
+
+function fmtNum(n) {
+  return n.toFixed(1).replace('.', ',');
+}
+
+let interChartInst, extremeChartInst;
+
 function renderInter() {
+  const indKey = document.getElementById('interIndicador').value;
+  const perKey = document.getElementById('interPeriodo').value;
+  const ind = INDICATORS[indKey];
+  const per = PERIODS[perKey];
+  const [s, e] = per.slice;
+  const base = ind.base.slice(s, e);
+  const labels = per.labels;
+
   const activeAxes = AXES_INTER.filter(ax => document.getElementById(`cb-${ax.id}`).checked);
 
+  // pills
   const pills = document.getElementById('interPills');
   pills.innerHTML = '';
   activeAxes.forEach(ax => {
-    const val = document.getElementById(`sel-${ax.id}`).value;
+    const sel = document.getElementById(`sel-${ax.id}`);
+    const val = ax.options[sel.selectedIndex];
     const p = document.createElement('span');
     p.className = 'pill';
     p.textContent = `${ax.label}: ${val}`;
     pills.appendChild(p);
   });
 
+  // fatores de risco fictícios
+  const selFactors = activeAxes.map(ax => {
+    const sel = document.getElementById(`sel-${ax.id}`);
+    return ax.factors[sel.selectedIndex];
+  });
+  const hiFactors = activeAxes.map(ax => ax.factors[0]);
+  const loFactors = activeAxes.map(ax => ax.factors[ax.factors.length - 1]);
+
+  const fSel = selFactors.length ? geoMean(selFactors) : 1;
+  const fHi  = hiFactors.length ? geoMean(hiFactors) : 1.6;
+  const fLo  = loFactors.length ? geoMean(loFactors) : 0.65;
+
+  const dataSel = base.map(v => +(v * fSel).toFixed(2));
+  const dataHi  = base.map(v => +(v * fHi).toFixed(2));
+  const dataLo  = base.map(v => +(v * fLo).toFixed(2));
+
+  // índice interseccional (último ponto da série)
+  const last = base.length - 1;
+  const score = dataLo[last] !== 0 ? dataHi[last] / dataLo[last] : 0;
+  document.getElementById('interScore').textContent = fmtNum(score) + 'x';
+
+  // estratos com maior risco
+  document.getElementById('interHighCount').textContent = activeAxes.length > 0 ? activeAxes.length : 4;
+
+  // listas de extremos
   const highList = document.getElementById('highRiskList');
   const lowList = document.getElementById('lowRiskList');
-
   if (activeAxes.length === 0) {
     highList.innerHTML = '<span class="empty-state">Nenhum eixo selecionado</span>';
     lowList.innerHTML = '<span class="empty-state">Nenhum eixo selecionado</span>';
-    return;
+  } else {
+    highList.innerHTML = '';
+    lowList.innerHTML = '';
+    activeAxes.forEach(ax => {
+      const opts = ax.options;
+      const f = ax.factors;
+      const hiVal = base[last] * f[0];
+      const loVal = base[last] * f[f.length - 1];
+
+      const hi = document.createElement('span');
+      hi.className = 'extreme-item';
+      hi.textContent = `${ax.label}: ${opts[0]} (≈ ${fmtNum(hiVal)})`;
+      highList.appendChild(hi);
+
+      const lo = document.createElement('span');
+      lo.className = 'extreme-item';
+      lo.textContent = `${ax.label}: ${opts[opts.length - 1]} (≈ ${fmtNum(loVal)})`;
+      lowList.appendChild(lo);
+    });
   }
 
-  highList.innerHTML = '';
-  lowList.innerHTML = '';
-  activeAxes.forEach(ax => {
-    const opts = ax.options;
+  // ── gráfico 1: estrato selecionado vs extremos ──
+  interChartInst.data.labels = labels;
+  interChartInst.data.datasets[0].data = base;
+  interChartInst.data.datasets[1].data = dataSel;
+  interChartInst.data.datasets[1].label = activeAxes.length > 0 ? 'Estrato selecionado' : 'Estrato selecionado (nenhum eixo)';
+  interChartInst.data.datasets[2].data = dataHi;
+  interChartInst.data.datasets[3].data = dataLo;
+  if (interChartInst.options.scales && interChartInst.options.scales.y) {
+    interChartInst.options.scales.y.title = { display: true, text: ind.unit, font: { size: 10 } };
+  }
+  interChartInst.update();
 
-    const hi = document.createElement('span');
-    hi.className = 'extreme-item';
-    hi.textContent = `${ax.label}: ${opts[0]}`;
-    highList.appendChild(hi);
+  // ── gráfico 2: combinações extremas fixas + estrato selecionado dinâmico ──
+  const comboHi = base.map(v => +(v * 1.7).toFixed(2));
+  const comboLo = base.map(v => +(v * 0.55).toFixed(2));
+  extremeChartInst.data.labels = labels;
+  extremeChartInst.data.datasets[0].data = comboHi;
+  extremeChartInst.data.datasets[1].data = comboLo;
+  extremeChartInst.data.datasets[2].data = base;
 
-    const lo = document.createElement('span');
-    lo.className = 'extreme-item';
-    lo.textContent = `${ax.label}: ${opts[opts.length - 1]}`;
-    lowList.appendChild(lo);
-  });
+  if (activeAxes.length > 0) {
+    if (extremeChartInst.data.datasets.length === 3) {
+      extremeChartInst.data.datasets.push({
+        label: 'Estrato selecionado',
+        data: dataSel,
+        borderColor: '#378ADD',
+        backgroundColor: 'transparent',
+        tension: 0.3,
+        borderWidth: 2
+      });
+    } else {
+      extremeChartInst.data.datasets[3].data = dataSel;
+    }
+  } else if (extremeChartInst.data.datasets.length === 4) {
+    extremeChartInst.data.datasets.pop();
+  }
+  extremeChartInst.update();
 }
 
-let interChartInst, extremeChartInst;
-
 function buildChartsInter() {
-  const labels = ['2021', '2022', '2023', '2024', '2025', '2026'];
   const ctx1 = document.getElementById('interChart').getContext('2d');
   interChartInst = new Chart(ctx1, {
     type: 'line',
     data: {
-      labels,
+      labels: LABELS_FULL,
       datasets: [
-        { label: 'Média geral', data: [48,46,44,42,41,39], borderColor: '#888780', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
-        { label: 'Estrato selecionado', data: [62,60,58,55,53,50], borderColor: '#378ADD', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
-        { label: 'Maior risco', data: [78,76,73,70,67,64], borderColor: '#E24B4A', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,3] },
-        { label: 'Menor risco', data: [30,29,28,27,26,25], borderColor: '#639922', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,3] },
+        { label: 'Média geral',          data: [], borderColor: '#888780', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
+        { label: 'Estrato selecionado',  data: [], borderColor: '#378ADD', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
+        { label: 'Maior risco',          data: [], borderColor: '#E24B4A', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,3] },
+        { label: 'Menor risco',          data: [], borderColor: '#639922', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,3] },
       ]
     },
-    options: { plugins: { legend: { labels: { font: { size: 11 }, boxWidth: 16 } } }, scales: { x: { ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11 } } } }, responsive: true }
+    options: {
+      plugins: { legend: { labels: { font: { size: 11 }, boxWidth: 16 } } },
+      scales: {
+        x: { ticks: { font: { size: 11 } } },
+        y: { ticks: { font: { size: 11 } }, title: { display: true, text: '', font: { size: 10 } } }
+      },
+      responsive: true
+    }
   });
 
   const ctx2 = document.getElementById('extremeChart').getContext('2d');
   extremeChartInst = new Chart(ctx2, {
     type: 'line',
     data: {
-      labels,
+      labels: LABELS_FULL,
       datasets: [
-        { label: 'Negra + Sem instrução + Desocupada', data: [82,80,77,74,71,68], borderColor: '#E24B4A', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
-        { label: 'Branca + Ens. superior + Trab. formal', data: [28,27,26,25,24,23], borderColor: '#639922', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
-        { label: 'Média geral', data: [48,46,44,42,41,39], borderColor: '#888780', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,3] },
+        { label: 'Combinação de maior risco', data: [], borderColor: '#E24B4A', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
+        { label: 'Combinação de menor risco', data: [], borderColor: '#639922', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
+        { label: 'Média geral',                data: [], borderColor: '#888780', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,3] },
       ]
     },
-    options: { plugins: { legend: { labels: { font: { size: 11 }, boxWidth: 16 } } }, scales: { x: { ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11 } } } }, responsive: true }
+    options: {
+      plugins: { legend: { labels: { font: { size: 11 }, boxWidth: 16 } } },
+      scales: { x: { ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11 } } } },
+      responsive: true
+    }
   });
 }
 
 buildAxesInter();
 buildChartsInter();
+renderInter();
 </script>
-
+    
     <!-- ── ALERTAS ── -->
     <div id="page-alertas" class="page">
       <div class="page-header">
