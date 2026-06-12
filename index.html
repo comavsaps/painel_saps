@@ -3427,181 +3427,257 @@ body.compact-ui .module-profile-strip::after {
 
 
     <!-- ── INTERSECCIONALIDADE ── -->
-    <div id="page-interseccionalidade" class="page">
-      <div class="page-header">
-        <div class="page-title">Monitoramento Interseccional das Desigualdades</div>
-        <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador, com comparação entre média geral, maior risco e menor risco.</div>
+<div id="page-interseccionalidade" class="page">
+
+  <style>
+    #page-interseccionalidade .inter-note { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; padding: 10px 12px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); margin-bottom: 14px; }
+    #page-interseccionalidade .stat-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+    #page-interseccionalidade .stat-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 4px; }
+    #page-interseccionalidade .inter-grid { display: grid; grid-template-columns: 300px 1fr; gap: 16px; margin-bottom: 16px; }
+    #page-interseccionalidade .axis-box { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+    #page-interseccionalidade .axis-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding: 6px 8px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); transition: border-color 0.15s; }
+    #page-interseccionalidade .axis-row.active { border-color: #378ADD; background: #E6F1FB; }
+    @media (prefers-color-scheme: dark) { #page-interseccionalidade .axis-row.active { background: #042C53; border-color: #378ADD; } }
+    #page-interseccionalidade .axis-row input[type=checkbox] { cursor: pointer; accent-color: #378ADD; width: 14px; height: 14px; flex-shrink: 0; }
+    #page-interseccionalidade .axis-row select { flex: 1; font-size: 12px; border: none; background: transparent; color: var(--color-text-primary); cursor: pointer; outline: none; min-width: 0; }
+    #page-interseccionalidade .axis-row select:disabled { color: var(--color-text-secondary); cursor: default; }
+    #page-interseccionalidade .axis-row-label { font-size: 11px; color: var(--color-text-secondary); white-space: nowrap; min-width: 80px; flex-shrink: 0; max-width:110px; overflow:hidden; text-overflow:ellipsis; }
+    #page-interseccionalidade .pills { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; padding-top: 10px; border-top: 0.5px solid var(--color-border-tertiary); min-height: 24px; }
+    #page-interseccionalidade .pill { font-size: 11px; background: var(--color-background-info); color: var(--color-text-info); padding: 3px 8px; border-radius: 99px; }
+    #page-interseccionalidade .extremes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    #page-interseccionalidade .extreme-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
+    #page-interseccionalidade .extreme-card strong { display: block; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+    #page-interseccionalidade .extreme-card.maior strong { color: #A32D2D; }
+    #page-interseccionalidade .extreme-card.menor strong { color: #3B6D11; }
+    #page-interseccionalidade .extreme-list { display: flex; flex-direction: column; gap: 4px; }
+    #page-interseccionalidade .extreme-item { font-size: 12px; padding: 3px 8px; border-radius: var(--border-radius-md); }
+    #page-interseccionalidade .extreme-card.maior .extreme-item { background: #FCEBEB; color: #791F1F; }
+    #page-interseccionalidade .extreme-card.menor .extreme-item { background: #EAF3DE; color: #27500A; }
+    #page-interseccionalidade .empty-state { font-size: 12px; color: var(--color-text-secondary); font-style: italic; }
+    @media (prefers-color-scheme: dark) {
+      #page-interseccionalidade .extreme-card.maior .extreme-item { background: #501313; color: #F7C1C1; }
+      #page-interseccionalidade .extreme-card.menor .extreme-item { background: #173404; color: #C0DD97; }
+    }
+  </style>
+
+  <div class="page-header">
+    <div class="page-title">Monitoramento Interseccional das Desigualdades</div>
+    <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador, com comparação entre média geral, maior risco e menor risco.</div>
+  </div>
+
+  <div class="prototype-banner">Módulo demonstrativo. Os valores são fictícios e simulam a lógica de análise interseccional proposta para o MonitoraSAPS.</div>
+
+  <div class="card">
+    <div class="card-title"><span>🧭</span> Seleção da análise</div>
+    <div class="ind-filters strategic-filters">
+      <select class="filter-select" id="interIndicador">
+        <option value="MORT_MAT">Mortalidade Materna</option>
+        <option value="MORT_INF">Mortalidade Infantil</option>
+        <option value="INT_CSAPS">Internações por CSAPS</option>
+        <option value="COB_APS">Cobertura de Atenção Primária à Saúde</option>
+        <option value="RACA_COR">Completude do quesito raça/cor</option>
+      </select>
+      <select class="filter-select" id="interPeriodo">
+        <option value="2021-2026">Série 2021–2026</option>
+        <option value="2023-2026">Série 2023–2026</option>
+        <option value="mai2026">Competência Mai/2026</option>
+      </select>
+      <button class="btn btn-primary" onclick="renderInter()">Atualizar leitura</button>
+    </div>
+
+    <div class="inter-note">
+      A análise interseccional permite observar desigualdades que podem ficar ocultas nas médias populacionais, combinando as categorias dos sistemas de informação da APS como raça/cor, sexo, povo ou comunidade tradicional, faixa etária, escolaridade, pessoa com deficiência, orientação sexual, identidade de gênero, situação no mercado de trabalho e pessoa em situação de rua. A proposta é apoiar a identificação de grupos prioritários para análise técnica e tomada de decisão.
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card azul">
+        <div class="stat-label">Índice interseccional demonstrativo</div>
+        <div class="stat-value">2,8x</div>
+        <div class="stat-sub">diferença entre estratos extremos</div>
       </div>
-
-      <div class="prototype-banner">Módulo demonstrativo. Os valores são fictícios e simulam a lógica de análise interseccional proposta para o MonitoraSAPS.</div>
-
-      <div class="card">
-        <div class="card-title"><span>🧭</span> Seleção da análise</div>
-        <div class="ind-filters strategic-filters">
-          <select class="filter-select" id="interIndicador" onchange="renderInterseccionalidade()">
-            <option value="MORT_MAT">Mortalidade Materna</option>
-            <option value="MORT_INF">Mortalidade Infantil</option>
-            <option value="INT_CSAPS">Internações por CSAPS</option>
-            <option value="COB_APS">Cobertura de Atenção Primária â Saúde</option>
-            <option value="RACA_COR">Completude do quesito raça/cor</option>
-          </select>
-          <select class="filter-select" id="interPeriodo" onchange="renderInterseccionalidade()">
-            <option value="2021-2026">Série 2021–2026</option>
-            <option value="2023-2026">Série 2023–2026</option>
-            <option value="mai2026">Competência Mai/2026</option>
-          </select>
-          <button class="btn btn-primary" onclick="renderInterseccionalidade()">Atualizar leitura</button>
-        </div>
-
-        <div class="inter-note">
-          A análise interseccional permite observar desigualdades que podem ficar ocultas nas médias populacionais, combinando as categorias dos sistemas de informação da APS como raça/cor, sexo, povo ou comunidade tradicional, faixa etária, escolaridade, pessoa com deficiência, orientação sexual, identidade de gênero, situação no mercado de trabalho e pessoa em situação de rua. A proposta é apoiar a identificação de grupos prioritários para análise técnica e tomada de decisão.
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-card azul">
-            <div class="stat-label">Índice interseccional demonstrativo</div>
-            <div class="inter-score" id="interScore">2,8x</div>
-            <div class="stat-change neutral">diferença entre estratos extremos</div>
-          </div>
-          <div class="stat-card vermelho">
-            <div class="stat-label">Estratos com maior risco</div>
-            <div class="inter-score" id="interHighCount">4</div>
-            <div class="stat-change down">prioridade para análise técnica</div>
-          </div>
-          <div class="stat-card verde">
-            <div class="stat-label">Variáveis disponíveis</div>
-            <div class="inter-score">10</div>
-            <div class="stat-change neutral">recortes sociodemográficos e de vulnerabilidade</div>
-          </div>
-          <div class="stat-card amarelo">
-            <div class="stat-label">Status metodológico</div>
-            <div style="font-weight:800;font-size:18px;margin-top:10px;">Em validação</div>
-            <div class="stat-change neutral">requer pactuação técnica</div>
-          </div>
-        </div>
+      <div class="stat-card vermelho">
+        <div class="stat-label">Estratos com maior risco</div>
+        <div class="stat-value">4</div>
+        <div class="stat-sub">prioridade para análise técnica</div>
       </div>
-
-      <div class="inter-grid">
-        <div class="inter-axis-box">
-          <div class="card-title"><span>🧩</span> Eixos interseccionais</div>
-          <div class="inter-axis-row">
-            <label>Raça/cor</label>
-            <select id="interRaca" onchange="renderInterseccionalidade()">
-              <option>Não selecionada</option>
-              <option>Negra</option>
-              <option>Branca/Amarela</option>
-              <option>Indígena</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Sexo</label>
-            <select id="interSexo" onchange="renderInterseccionalidade()">
-              <option>Não selecionado</option>
-              <option>Feminino</option>
-              <option>Masculino</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Povo ou comunidade tradicional</label>
-            <select id="interComunidade" onchange="renderInterseccionalidade()">
-              <option>Não selecionado</option>
-              <option>Qualquer povo ou comunidade</option>
-              <option>Quilombola</option>
-              <option>Indígena</option>
-              <option>Ribeirinha</option>
-              <option>Cigana</option>
-              <option>Pescadora artesanal</option>
-              <option>Povo de terreiro</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Faixa etária</label>
-            <select id="interFaixaEtaria" onchange="renderInterseccionalidade()">
-              <option>Não selecionado</option>
-              <option>0 a 9 anos</option>
-              <option>10 a 19 anos</option>
-              <option>20 a 39 anos</option>
-              <option>40 a 59 anos</option>
-              <option>60 anos ou mais</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Escolaridade</label>
-            <select id="interEscolaridade" onchange="renderInterseccionalidade()">
-              <option>Não selecionado</option>
-              <option>Sem instrução/Ensino fundamental</option>
-              <option>Ensino médio/superior</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Pessoa com deficiência</label>
-            <select id="interDeficiencia" onchange="renderInterseccionalidade()">
-              <option>Não selecionado</option>
-              <option>Não</option>
-              <option>Sim</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Orientação Sexual</label>
-            <select id="interOrientacao" onchange="renderInterseccionalidade()">
-              <option>Não selecionado</option>
-              <option>Heterossexual</option>
-              <option>Não heterossexual</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Identidade de gênero</label>
-            <select id="interIdentidadeGenero" onchange="renderInterseccionalidade()">
-              <option>Não selecionado</option>
-              <option>Cisgênero</option>
-              <option>Transgênero/Travesti/Não binária</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Situação no mercado de trabalho</label>
-            <select id="interMercadoTrabalho" onchange="renderInterseccionalidade()">
-              <option>Não selecionado</option>
-              <option>Trabalho formal</option>
-              <option>Trabalho informal</option>
-              <option>Desocupada/Fora da força de trabalho</option>
-            </select>
-          </div>
-          <div class="inter-axis-row">
-            <label>Pessoa em situação de rua</label>
-            <select id="interSituacaoRua" onchange="renderInterseccionalidade()">
-              <option>Não selecionado</option>
-              <option>Não</option>
-              <option>Sim</option>
-            </select>
-          </div>
-
-          <div class="inter-pills" id="interPills"></div>
-        </div>
-
-        <div class="card chart-card" style="margin-bottom:0;">
-          <div class="card-title"><span>📈</span> Evolução comparada do estrato selecionado</div>
-          <canvas id="interChart" height="210"></canvas>
-          <div class="chart-caption">Compara o estrato interseccional selecionado com a média geral do indicador e com estratos extremos de maior e menor risco.</div>
-        </div>
+      <div class="stat-card verde">
+        <div class="stat-label">Variáveis disponíveis</div>
+        <div class="stat-value">10</div>
+        <div class="stat-sub">recortes sociodemográficos e de vulnerabilidade</div>
       </div>
-
-      <div class="extremes-grid">
-        <div class="extreme-card">
-          <strong>Estrato extremo de maior risco</strong>
-          <span id="highRiskText">—</span>
-        </div>
-        <div class="extreme-card">
-          <strong>Estrato extremo de menor risco</strong>
-          <span id="lowRiskText">—</span>
-        </div>
-      </div>
-
-      <div class="card chart-card" style="margin-top:20px;">
-        <div class="card-title"><span>📈</span> Evolução comparada entre estratos interseccionais</div>
-        <canvas id="extremeChart" height="160"></canvas>
-        <div class="chart-caption">Compara a evolução temporal de diferentes estratos interseccionais, permitindo visualizar distância, tendência e persistência das desigualdades ao longo da série.</div>
+      <div class="stat-card amarelo">
+        <div class="stat-label">Status metodológico</div>
+        <div class="stat-value" style="font-size:16px;">Em validação</div>
+        <div class="stat-sub">requer pactuação técnica</div>
       </div>
     </div>
+  </div>
+
+  <div class="inter-grid">
+    <div class="axis-box">
+      <div class="card-title"><span>🧩</span> Eixos interseccionais</div>
+      <div id="axisContainer"></div>
+      <div class="pills" id="interPills"></div>
+    </div>
+
+    <div class="card chart-card" style="margin-bottom:0;">
+      <div class="card-title"><span>📈</span> Evolução comparada do estrato selecionado</div>
+      <canvas id="interChart" height="210"></canvas>
+      <div class="chart-caption">Compara o estrato interseccional selecionado com a média geral do indicador e com estratos extremos de maior e menor risco.</div>
+    </div>
+  </div>
+
+  <div class="extremes-grid">
+    <div class="extreme-card maior">
+      <strong>⚠️ Estrato extremo de maior risco</strong>
+      <div class="extreme-list" id="highRiskList"><span class="empty-state">Nenhum eixo selecionado</span></div>
+    </div>
+    <div class="extreme-card menor">
+      <strong>✅ Estrato extremo de menor risco</strong>
+      <div class="extreme-list" id="lowRiskList"><span class="empty-state">Nenhum eixo selecionado</span></div>
+    </div>
+  </div>
+
+  <div class="card chart-card" style="margin-top:20px;">
+    <div class="card-title"><span>📈</span> Evolução comparada entre estratos interseccionais</div>
+    <canvas id="extremeChart" height="160"></canvas>
+    <div class="chart-caption">Compara a evolução temporal de diferentes estratos interseccionais, permitindo visualizar distância, tendência e persistência das desigualdades ao longo da série.</div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const AXES_INTER = [
+  { id: 'raca', label: 'Raça/cor', options: ['Negra', 'Parda', 'Branca/Amarela', 'Indígena'] },
+  { id: 'sexo', label: 'Sexo', options: ['Feminino', 'Masculino'] },
+  { id: 'comunidade', label: 'Povo ou comunidade tradicional', options: ['Quilombola', 'Indígena', 'Ribeirinha', 'Cigana', 'Pescadora artesanal', 'Povo de terreiro'] },
+  { id: 'faixa', label: 'Faixa etária', options: ['0 a 9 anos', '10 a 19 anos', '20 a 39 anos', '40 a 59 anos', '60 anos ou mais'] },
+  { id: 'escolaridade', label: 'Escolaridade', options: ['Sem instrução / ensino fundamental', 'Ensino médio / superior'] },
+  { id: 'deficiencia', label: 'Pessoa com deficiência', options: ['Sim', 'Não'] },
+  { id: 'orientacao', label: 'Orientação sexual', options: ['Não heterossexual', 'Heterossexual'] },
+  { id: 'genero', label: 'Identidade de gênero', options: ['Transgênero / travesti / não binária', 'Cisgênero'] },
+  { id: 'trabalho', label: 'Situação no mercado de trabalho', options: ['Desocupada / fora da força de trabalho', 'Trabalho informal', 'Trabalho formal'] },
+  { id: 'rua', label: 'Pessoa em situação de rua', options: ['Sim', 'Não'] },
+];
+
+function buildAxesInter() {
+  const container = document.getElementById('axisContainer');
+  container.innerHTML = '';
+  AXES_INTER.forEach(ax => {
+    const row = document.createElement('div');
+    row.className = 'axis-row';
+    row.id = `row-${ax.id}`;
+
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = `cb-${ax.id}`;
+    cb.setAttribute('aria-label', `Incluir eixo ${ax.label}`);
+    cb.addEventListener('change', () => {
+      sel.disabled = !cb.checked;
+      row.classList.toggle('active', cb.checked);
+      renderInter();
+    });
+
+    const lbl = document.createElement('span');
+    lbl.className = 'axis-row-label';
+    lbl.textContent = ax.label;
+    lbl.title = ax.label;
+
+    const sel = document.createElement('select');
+    sel.id = `sel-${ax.id}`;
+    sel.disabled = true;
+    sel.addEventListener('change', renderInter);
+    ax.options.forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt;
+      o.textContent = opt;
+      sel.appendChild(o);
+    });
+
+    row.appendChild(cb);
+    row.appendChild(lbl);
+    row.appendChild(sel);
+    container.appendChild(row);
+  });
+}
+
+function renderInter() {
+  const activeAxes = AXES_INTER.filter(ax => document.getElementById(`cb-${ax.id}`).checked);
+
+  const pills = document.getElementById('interPills');
+  pills.innerHTML = '';
+  activeAxes.forEach(ax => {
+    const val = document.getElementById(`sel-${ax.id}`).value;
+    const p = document.createElement('span');
+    p.className = 'pill';
+    p.textContent = `${ax.label}: ${val}`;
+    pills.appendChild(p);
+  });
+
+  const highList = document.getElementById('highRiskList');
+  const lowList = document.getElementById('lowRiskList');
+
+  if (activeAxes.length === 0) {
+    highList.innerHTML = '<span class="empty-state">Nenhum eixo selecionado</span>';
+    lowList.innerHTML = '<span class="empty-state">Nenhum eixo selecionado</span>';
+    return;
+  }
+
+  highList.innerHTML = '';
+  lowList.innerHTML = '';
+  activeAxes.forEach(ax => {
+    const opts = ax.options;
+
+    const hi = document.createElement('span');
+    hi.className = 'extreme-item';
+    hi.textContent = `${ax.label}: ${opts[0]}`;
+    highList.appendChild(hi);
+
+    const lo = document.createElement('span');
+    lo.className = 'extreme-item';
+    lo.textContent = `${ax.label}: ${opts[opts.length - 1]}`;
+    lowList.appendChild(lo);
+  });
+}
+
+let interChartInst, extremeChartInst;
+
+function buildChartsInter() {
+  const labels = ['2021', '2022', '2023', '2024', '2025', '2026'];
+  const ctx1 = document.getElementById('interChart').getContext('2d');
+  interChartInst = new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Média geral', data: [48,46,44,42,41,39], borderColor: '#888780', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
+        { label: 'Estrato selecionado', data: [62,60,58,55,53,50], borderColor: '#378ADD', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
+        { label: 'Maior risco', data: [78,76,73,70,67,64], borderColor: '#E24B4A', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,3] },
+        { label: 'Menor risco', data: [30,29,28,27,26,25], borderColor: '#639922', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,3] },
+      ]
+    },
+    options: { plugins: { legend: { labels: { font: { size: 11 }, boxWidth: 16 } } }, scales: { x: { ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11 } } } }, responsive: true }
+  });
+
+  const ctx2 = document.getElementById('extremeChart').getContext('2d');
+  extremeChartInst = new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Negra + Sem instrução + Desocupada', data: [82,80,77,74,71,68], borderColor: '#E24B4A', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
+        { label: 'Branca + Ens. superior + Trab. formal', data: [28,27,26,25,24,23], borderColor: '#639922', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2 },
+        { label: 'Média geral', data: [48,46,44,42,41,39], borderColor: '#888780', backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,3] },
+      ]
+    },
+    options: { plugins: { legend: { labels: { font: { size: 11 }, boxWidth: 16 } } }, scales: { x: { ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11 } } } }, responsive: true }
+  });
+}
+
+buildAxesInter();
+buildChartsInter();
+</script>
 
     <!-- ── ALERTAS ── -->
     <div id="page-alertas" class="page">
