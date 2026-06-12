@@ -3001,6 +3001,9 @@ body.compact-ui .module-profile-strip::after {
       <button class="nav-item" data-page="dicionario" data-access="all" onclick="goTo('dicionario', this)">
         <span class="nav-icon">📚</span> Dicionário de Indicadores
       </button>
+      <button class="nav-item" data-page="integracao-dw" data-access="comav" onclick="abrirIntegracaoDW()">
+        <span class="nav-icon">🗄️</span> Integração DW, Planilhas e Indicadores
+      </button>
       <button class="nav-item" data-page="qualidade" data-access="comav" onclick="goTo('qualidade', this)">
         <span class="nav-icon">✅</span> Qualidade dos Dados
       </button>
@@ -4449,6 +4452,10 @@ function fecharMobileMenuAposNavegar() {
   if (window.matchMedia('(max-width: 1080px)').matches) {
     toggleMobileMenu(false);
   }
+}
+
+function abrirIntegracaoDW() {
+  window.location.href = 'integracao-dw.html';
 }
 
 function goTo(page, btn) {
@@ -6508,12 +6515,13 @@ function aplicarIconesSidebar(){
     solicitacoes:'report',
     plano:'plan',
     dicionario:'book',
+    'integracao-dw':'database',
     qualidade:'shield',
     auditoria:'history'
   };
   document.querySelectorAll('.nav-item').forEach(btn => {
     const match = btn.getAttribute('onclick')?.match(/goTo\('([^']+)'/);
-    const page = match ? match[1] : '';
+    const page = match ? match[1] : (btn.dataset.page || '');
     const icon = btn.querySelector('.nav-icon');
     if (icon) icon.innerHTML = svgIcon(map[page] || 'info');
   });
