@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MonitoraSAPS — Sistema de Monitoramento Estratégico da SAPS</title>
+<title>MonitoraAPS — Sistema de Monitoramento Estratégico da SAPS</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Public+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -2824,7 +2824,7 @@ body.compact-ui .module-profile-strip::after {
 }
 
  /* ── TESTE VISUAL ── */
-  /* REFINAMENTOS VISUAIS - MonitoraSAPS */
+  /* REFINAMENTOS VISUAIS - MonitoraAPS */
 :root {
   --brand-100: #edf5ff;
   --brand-200: #d9eaff;
@@ -2902,7 +2902,7 @@ body.compact-ui .module-profile-strip::after {
 <header class="topbar">
   <div class="topbar-left">
     <button class="mobile-menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" onclick="toggleMobileMenu()">☰</button>
-    <div class="topbar-logo">MonitoraSAPS</div>
+    <div class="topbar-logo">MonitoraAPS</div>
     <div class="topbar-sep"></div>
     <div class="topbar-subtitle">Sistema de Monitoramento Estratégico da SAPS</div>
   </div>
@@ -3014,7 +3014,7 @@ body.compact-ui .module-profile-strip::after {
     <div class="sidebar-divider"></div>
     <div class="sidebar-footer">
       Competência analisada: <strong>Mai/2026</strong><br>
-      Protótipo para validação · MonitoraSAPS
+      Protótipo para validação · MonitoraAPS
     </div>
   </nav>
 
@@ -3473,7 +3473,7 @@ body.compact-ui .module-profile-strip::after {
     <div class="page-desc">Leitura demonstrativa de estratos interseccionais por indicador, com comparação entre média geral, maior risco e menor risco.</div>
   </div>
 
-  <div class="prototype-banner">Módulo demonstrativo. Os valores são fictícios e simulam a lógica de análise interseccional proposta para o MonitoraSAPS.</div>
+  <div class="prototype-banner">Módulo demonstrativo. Os valores são fictícios e simulam a lógica de análise interseccional proposta para o MonitoraAPS.</div>
 
   <div class="card">
     <div class="card-title"><span>🧭</span> Seleção da análise</div>
@@ -6694,7 +6694,7 @@ function svgIcon(name){
 function modernizarTopo(){
   const logo = document.querySelector('.topbar-logo');
   if (logo && !logo.querySelector('.brand-mark')) {
-    logo.innerHTML = `<span class="brand-mark">${svgIcon('brand')}</span><span>MonitoraSAPS</span>`;
+    logo.innerHTML = `<span class="brand-mark">${svgIcon('brand')}</span><span>MonitoraAPS</span>`;
   }
 }
 
@@ -7259,7 +7259,7 @@ function bootDadosSistema() {
   }
 }
 
-function iniciarMonitoraSAPS() {
+function iniciarMonitoraAPS() {
   bootVisualCompleto();
 
   // Segunda passagem para elementos já presentes no DOM.
@@ -7278,9 +7278,9 @@ function iniciarMonitoraSAPS() {
 
 
 // ── INIT CORRIGIDO ──
-document.addEventListener('DOMContentLoaded', iniciarMonitoraSAPS);
+document.addEventListener('DOMContentLoaded', iniciarMonitoraAPS);
 window.addEventListener('load', () => {
-  setTimeout(iniciarMonitoraSAPS, 120);
+  setTimeout(iniciarMonitoraAPS, 120);
 });
 
 </script>
